@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+"""气象 + Python 编程文档 —— 一键构建脚本。
+
+用法（在 P312 环境下）：
+    python build.py            # 增量构建
+    python build.py --clean    # 先清空再全量构建
+    python build.py --serve    # 构建后启动本地预览服务器
+
+脚本会：
+  1. 自动把 conda 环境的 Library/bin 加入 PATH（修复 Windows 下 DLL 找不到的问题）。
+  2. 若 ../WebPy/dist 存在，自动拷贝到 _static/webpy（在线运行器）。
+  3. 调用 sphinx-build 编译 HTML 到 _build/html。
+"""
+import os
+import shutil
+import subprocess
+import sys
+import argparse
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+SRC = os.path.join(HERE, '_static', 'webpy')
+WEBPY_DIST = os.path.normpath(os.path.join(HERE, '..', 'WebPy', 'dist'))
+
+
+def setup_conda_path():
+    """把 conda 环境的 Library/bin 等目录加入 PATH。
+
+    Windows 上，直接调用 python.exe 时不会自动激活 conda 环境，
+    导致 numpy / matplotlib 等含 C 扩展的库找不到 DLL 而崩溃。
+    此函数检测当前解释器是否在 conda 环境中，并补全 PATH。
+    """
+    python_dir = os.path.dirname(sys.executable)          # .../envs/P312
+    env_dir = os.path.dirname(python_dir)                  # .../envs
+    extra_dirs = [
+        os.path.join(python_dir, 'Library', 'mingw-w64', 'bin'),
+        os.path.join(python_dir, 'Library', 'bin'),
+        os.path.join(python_dir, 'Scripts'),
+        os.path.join(python_dir, 'bin'),
+        python_dir,
+    ]
+    existing = set(os.environ.get('PATH', '').split(os.pathsep))
+    additions = [d for d in extra_dirs if os.path.isdir(d) and d not in existing]
+    if additions:
+        os.environ['PATH'] = os.pathsep.join(additions) + os.pathsep + os.environ.get('PATH', '')
+        print(f'[build] 已补充 PATH: {additions[0]} ...' if len(additions) > 1
+              else f'[build] 已补充 PATH: {additions[0]}')
+
+
+def copy_webpy():
+    """把 WebPy 构建产物拷进 _static/webpy。"""
+    if not os.path.isdir(WEBPY_DIST):
+        print('[build] 未找到 ../WebPy/dist，跳过在线运行器拷贝。')
+        print('        请先在 WebPy/ 下执行 `pnpm build`。')
+        return
+    if os.path.isdir(SRC):
+        shutil.rmtree(SRC)
+    shutil.copytree(WEBPY_DIST, SRC)
+    print('[build] 已拷贝 WebPy -> _static/webpy')
+
+
+def build(clean=False):
+    setup_conda_path()
+
+    args = [sys.executable, '-m', 'sphinx']
+    if clean:
+        args += ['-E', '-a']            # 全量重建
+        bdir = os.path.join(HERE, '_build', 'html')
+        if os.path.isdir(bdir):
+            shutil.rmtree(bdir)
+    args += ['-b', 'html', HERE, os.path.join(HERE, '_build', 'html')]
+    print('[build] 运行:', ' '.join(args))
+    rc = subprocess.call(args, cwd=HERE)
+    if rc != 0:
+        sys.exit(rc)
+    print('[build] 完成 -> _build/html/index.html')
+
+
+def serve():
+    import http.server
+    import socketserver
+    os.chdir(os.path.join(HERE, '_build', 'html'))
+    handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(('127.0.0.1', 8000), handler) as httpd:
+        print('[serve] http://127.0.0.1:8000  (Ctrl+C 退出)')
+        httpd.serve_forever()
+
+
+if __name__ == '__main__':
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--clean', action='store_true')
+    ap.add_argument('--serve', action='store_true')
+    ns = ap.parse_args()
+    copy_webpy()
+    build(clean=ns.clean)
+    if ns.serve:
+        serve()

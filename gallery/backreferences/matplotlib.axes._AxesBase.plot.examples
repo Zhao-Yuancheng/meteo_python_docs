@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib.axes._AxesBase.plot``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="最简单的 Matplotlib 示例：生成一组角度，画出对应的正弦曲线。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_sine_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_basics/plot_sine`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制正弦波</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/auto_examples/plot_basics/plot_sine`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

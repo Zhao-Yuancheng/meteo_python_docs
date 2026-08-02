@@ -1,0 +1,7 @@
+{
+  "version": "0.1.0",
+  "versions": [
+    {"name": "0.1.0 (stable)", "version": "0.1.0", "url": "/"},
+    {"name": "开发中 (dev)", "version": "dev", "url": "/"}
+  ]
+}

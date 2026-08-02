@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib.axes._base._AxesBase.contourf``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="绘制一个二维函数的等值线填色（contourf），是气象场可视化的常见形式。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_viz/plot_contour`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">等值线填色图</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/auto_examples/plot_viz/plot_contour`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

@@ -1,0 +1,84 @@
+/* ============================================================
+   气象 + Python 文档 自定义样式
+   汇总自：02 主题配置 / 03 画廊 / 04 在线运行器
+   ============================================================ */
+
+/* —— 正文宽度放宽（两条规则必须分开写）—— */
+.bd-main .bd-content .bd-article-container { max-width: 100%; }
+.bd-page-width { max-width: 100%; }
+
+/* —— 中文字体回退 —— */
+body {
+  font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei",
+               system-ui, sans-serif;
+}
+code, pre, kbd {
+  font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+}
+
+/* ============================================================
+   画廊 A：sphinx-gallery 缩略图 —— 悬停变暗 + 标题浮现
+   ============================================================ */
+.sphx-glr-thumbcontainer { position: relative; overflow: hidden; border-radius: 6px; }
+.sphx-glr-thumbcontainer img { transition: filter .25s ease, transform .25s ease; }
+.sphx-glr-thumbcontainer .sphx-glr-thumbnail-title {
+  position: absolute; inset: auto 0 0 0; margin: 0; padding: 6px 8px;
+  background: rgba(0,0,0,.62); color: #fff; font-size: .85rem;
+  transform: translateY(110%); transition: transform .25s ease;
+}
+.sphx-glr-thumbcontainer:hover img { filter: brightness(.55); transform: scale(1.03); }
+.sphx-glr-thumbcontainer:hover .sphx-glr-thumbnail-title { transform: translateY(0); }
+
+/* ============================================================
+   画廊 B：sphinx-design 教程卡片 —— 悬停变暗 + 标题浮现
+   ============================================================ */
+.gallery-card { position: relative; overflow: hidden;
+  transition: box-shadow .25s ease, transform .25s ease; }
+.gallery-card .sd-card-img-top { transition: filter .25s ease, transform .25s ease; }
+.gallery-card .sd-card-body {
+  position: absolute; inset: auto 0 0 0; margin: 0; padding: .5rem .75rem;
+  background: rgba(0,0,0,.62); color: #fff;
+  transform: translateY(110%); transition: transform .25s ease;
+}
+.gallery-card:hover { transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+.gallery-card:hover .sd-card-img-top { filter: brightness(.5); transform: scale(1.04); }
+.gallery-card:hover .sd-card-body { transform: translateY(0); }
+html[data-theme="dark"] .gallery-card .sd-card-body { background: rgba(0,0,0,.72); }
+
+/* ============================================================
+   在线运行器：悬浮面板 + 代码块运行按钮
+   ============================================================ */
+#webpy-panel {
+  position: fixed; right: 16px; bottom: 16px;
+  width: 480px; height: 420px; z-index: 2000;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--pst-color-border, #ccc);
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,.25);
+  background: var(--pst-color-background, #fff);
+  transition: height .25s ease, width .25s ease;
+}
+#webpy-panel.collapsed { height: 38px; }
+#webpy-panel.flash { box-shadow: 0 0 0 3px #3b82f6, 0 8px 28px rgba(0,0,0,.25); }
+#webpy-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 10px; font-size: 13px;
+  background: var(--pst-color-surface, #f7f7f7);
+  border-bottom: 1px solid var(--pst-color-border, #ddd);
+}
+#webpy-toggle { border: none; background: none; cursor: pointer; font-size: 14px; }
+#webpy-frame { flex: 1; width: 100%; border: none; }
+
+.webpy-run-btn {
+  position: absolute; top: 6px; right: 2.6em;   /* 左移避开复制按钮 */
+  padding: 2px 8px; font-size: 12px; color: #fff;
+  background: #2563eb; border: none; border-radius: 4px;
+  cursor: pointer; opacity: 0; transition: opacity .15s ease; z-index: 5;
+}
+.highlight:hover .webpy-run-btn { opacity: 1; }
+.webpy-run-btn:hover { background: #1d4ed8; }
+
+@media (max-width: 768px) {
+  #webpy-panel { width: calc(100% - 16px); right: 8px; bottom: 8px; }
+}
