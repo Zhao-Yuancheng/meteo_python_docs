@@ -8,8 +8,7 @@
 
 脚本会：
   1. 自动把 conda 环境的 Library/bin 加入 PATH（修复 Windows 下 DLL 找不到的问题）。
-  2. 若 ../WebPy/dist 存在，自动拷贝到 _static/webpy（在线运行器）。
-  3. 调用 sphinx-build 编译 HTML 到 _build/html。
+  2. 调用 sphinx-build 编译 HTML 到 _build/html。
 """
 import os
 import shutil
@@ -18,8 +17,6 @@ import sys
 import argparse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, '_static', 'webpy')
-WEBPY_DIST = os.path.normpath(os.path.join(HERE, '..', 'WebPy', 'dist'))
 
 
 def setup_conda_path():
@@ -44,18 +41,6 @@ def setup_conda_path():
         os.environ['PATH'] = os.pathsep.join(additions) + os.pathsep + os.environ.get('PATH', '')
         print(f'[build] 已补充 PATH: {additions[0]} ...' if len(additions) > 1
               else f'[build] 已补充 PATH: {additions[0]}')
-
-
-def copy_webpy():
-    """把 WebPy 构建产物拷进 _static/webpy。"""
-    if not os.path.isdir(WEBPY_DIST):
-        print('[build] 未找到 ../WebPy/dist，跳过在线运行器拷贝。')
-        print('        请先在 WebPy/ 下执行 `pnpm build`。')
-        return
-    if os.path.isdir(SRC):
-        shutil.rmtree(SRC)
-    shutil.copytree(WEBPY_DIST, SRC)
-    print('[build] 已拷贝 WebPy -> _static/webpy')
 
 
 def build(clean=False):
@@ -90,7 +75,6 @@ if __name__ == '__main__':
     ap.add_argument('--clean', action='store_true')
     ap.add_argument('--serve', action='store_true')
     ns = ap.parse_args()
-    copy_webpy()
     build(clean=ns.clean)
     if ns.serve:
         serve()

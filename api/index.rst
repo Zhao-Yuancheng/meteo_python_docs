@@ -1,46 +1,49 @@
-API 参考
-========
+术语 API 参考
+=============
 
-本版块汇总文档中用到的关键函数与类的签名。后续可接入 ``sphinx.ext.autodoc`` 自动从源码抽取，
-并用 ``sphinx.ext.intersphinx`` 链接到 NumPy / Matplotlib / Xarray 的官方 API。
+本站的 API 参考与常规文档不同，是 **术语 API**：常规 API 讲"函数怎么调用"，术语 API 讲"**词是什么意思**"。Python 教程里总有那么些词——整型、浮点型、可变、切片、作用域——它们是专业术语，或与日常用语含义不同。本版块专门为初学者拆解这些词。
 
-下面是文档示例里出现过的两个辅助函数的手写签名示例。
+每个词条包含四个部分：
 
-.. py:function:: celsius_to_kelvin(c)
-   :noindex:
+#. **一句话定义**：这个词的准确含义；
+#. **生活类比**：用身边的经验理解它（气象与地理场景优先）；
+#. **代码示例**：两三行可运行的代码；
+#. **易混淆点**：初学者最容易踩的坑。
 
-   摄氏度转开尔文。
+正文中出现的术语可用 :term:`行内链接 <变量>` 跳转到这里，例如 :term:`浮点型 <浮点型 float>`、:term:`切片 <切片>`。
 
-   :param float c: 摄氏温度
-   :returns: 开尔文温度
-   :rtype: float
+章节术语索引
+------------
 
-   .. code-block:: python
+.. list-table::
+   :header-rows: 1
+   :widths: 18 50 32
 
-      from meteo.utils import celsius_to_kelvin
-      celsius_to_kelvin(25)   # 298.15
+   * - 章节
+     - 收录词条
+     - 状态
+   * - 第 2 章 · 基本数据类型、变量和运算符
+     - 变量、整型、浮点型、字符串、布尔值、可变类型、不可变类型、索引、切片、空值
+     - ✅ 已上线
+   * - 第 1 章 · Python 简介及安装环境
+     - 解释器、环境、PATH、包管理器、IDE、脚本
+     - ⏳ T-103 交付后上线
+   * - 第 3 章 · 分支、循环与条件
+     - 条件表达式、循环变量、迭代、缩进、代码块
+     - ⏳ T-303 交付后上线
+   * - 第 4-10 章
+     - 函数、类、数组、广播、投影……
+     - ⏳ 陆续上线
 
-.. py:function:: pressure_profile(levels, p0=1013.25)
-   :noindex:
+.. toctree::
+   :maxdepth: 2
+   :hidden:
 
-   简化的气压随高度递减序列。
+   ch02_terms
 
-   :param int levels: 层数
-   :param float p0: 地面气压 (hPa)
-   :returns: 各层气压列表
-   :rtype: list[float]
+使用提示
+--------
 
-.. py:class:: Station(name, lat, lon)
-   :noindex:
-
-   气象站抽象，封装观测数据与统计。
-
-   .. py:method:: record(temp)
-      :noindex:
-
-      记录一次气温观测。
-
-   .. py:property:: mean_temp
-      :noindex:
-
-      已记录气温的均值。
+- 词条按"遇到不懂的词 → 查这里"的方式使用，也可在每章小结处通过链接批量回顾；
+- 每个词条的**易混淆点**都来自初学者的高频报错，读一遍能省几次调试；
+- 与 Python 官方文档的术语表（`Glossary <https://docs.python.org/zh-cn/3/glossary.html>`_）互为补充：官方版严谨，本站版好懂。

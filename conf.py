@@ -21,7 +21,7 @@ extensions = [
     'sphinx_design',                # 卡片 / 网格 / 标签页
     'sphinx_gallery.gen_gallery',   # 可执行示例画廊
     'sphinx_copybutton',            # 代码块复制按钮
-    'myst_parser',                  # 可选：Markdown 源文件支持
+    # 'myst_parser',                  # 可选：Markdown 源文件支持
 ]
 
 # MyST：允许在 .md 中用 {} 指令，与 reST 互通
@@ -29,10 +29,10 @@ myst_enable_extensions = ['colon_fence', 'deflist', 'substitution']
 
 # -- 主题 --
 html_theme = 'pydata_sphinx_theme'
-html_static_path = ['_static']
+html_static_path = ['./_static']
 
 html_logo = '_static/logo.svg'
-html_favicon = '_static/favicon.svg'
+html_favicon = './_static/favicon.svg'
 
 html_theme_options = {
     # 顶部导航栏
@@ -57,7 +57,6 @@ html_theme_options = {
     'icon_links': [
         {
             'name': 'GitHub',
-            'url': 'https://github.com/LZU-Atmos/meteo-python-docs',
             'icon': 'fab fa-github-square',
         },
     ],
@@ -68,20 +67,39 @@ html_theme_options = {
     'search_bar_text': '搜索文档…',
 }
 
-# -- 自定义 CSS / JS --
-html_css_files = ['custom.css']
-html_js_files = ['webpy_bridge.js']
+# -- 自定义 CSS --
+html_css_files = ['./custom.css']
 
 # -- sphinx-gallery --
+
+_ZH_FONTS = ['Microsoft YaHei', 'SimHei', 'Noto Sans CJK SC', 'DejaVu Sans']
+
+
+def _reset_mpl_zh(gallery_conf, fname):
+    """默认 matplotlib 重置 + 中文字体回填。
+
+    sphinx-gallery 每个示例执行前会调用 plt.rcdefaults() 抹掉 rcParams，
+    0.21.0 尚无 matplotlib_rcparams 配置键，故用 reset_modules 钩子
+    在重置之后立刻把中文字体配回去，保证画廊图中文不变成方块。
+    """
+    from sphinx_gallery.scrapers import _reset_matplotlib
+    _reset_matplotlib(gallery_conf, fname)
+    import matplotlib.pyplot as plt
+    plt.rcParams['font.sans-serif'] = list(_ZH_FONTS)
+    plt.rcParams['axes.unicode_minus'] = False
+
+
 sphinx_gallery_conf = {
-    'examples_dirs': ['examples'],            # 源脚本目录
-    'gallery_dirs':  ['gallery/auto_examples'],  # 生成画廊目录
-    'filename_pattern': r'plot_.*\.py',        # 仅执行 plot_ 开头的脚本
-    'ignore_pattern': r'__init__\.py|GALLERY_HEADER',
+    'examples_dirs': ['./examples'],            # 源脚本目录
+    'gallery_dirs':  ['./gallery/auto_examples'],  # 生成画廊目录
+    # Windows 路径用 \ 分隔，正则需同时兼容 / 与 \
+    'filename_pattern': r'[/\\]plot_[^/\\]+\.py$',   # 仅执行 plot_ 开头的脚本
+    'ignore_pattern': r'__init__\.py$|GALLERY_HEADER',
     'thumbnail_size': (400, 280),
-    'backreferences_dir': 'gallery/backreferences',
+    'backreferences_dir': './gallery/backreferences',
     'doc_module': ('numpy', 'matplotlib'),
     'notebook_extensions': {'.py', '.ipynb'},
+    'reset_modules': (_reset_mpl_zh, 'seaborn'),
     'only_warn_on_example_error': True,       # 单个示例失败不中断构建
     'plot_gallery': True,
 }
@@ -94,19 +112,22 @@ copybutton_prompt_is_regexp = True
 html_title = '气象 + Python 编程文档'
 html_last_updated_fmt = '%Y-%m-%d'
 exclude_patterns = [
-    '_build', 'Thumbs.db', '.DS_Store',
-    'examples/GALLERY_HEADER.rst',
-    'examples/plot_basics/GALLERY_HEADER.rst',
-    'examples/plot_numpy/GALLERY_HEADER.rst',
-    'examples/plot_viz/GALLERY_HEADER.rst',
+    './_build', './Thumbs.db', './.DS_Store',
+    './examples/GALLERY_HEADER.rst',
+    './examples/plot_basics/GALLERY_HEADER.rst',
+    './examples/plot_numpy/GALLERY_HEADER.rst',
+    './examples/plot_viz/GALLERY_HEADER.rst',
 ]
+
 
 # -- matplotlib 中文字体（sphinx-gallery 缩略图用）--
 def setup(app):
     try:
         import matplotlib
         matplotlib.use('Agg')
-        matplotlib.rcParams['font.sans-serif'] = ['Microsoft YaHei', 'SimHei', 'Noto Sans CJK SC', 'DejaVu Sans']
+        matplotlib.rcParams['font.sans-serif'] = list(_ZH_FONTS)
         matplotlib.rcParams['axes.unicode_minus'] = False
     except ImportError:
         pass
+
+html_baseurl = "https://zhao-yuancheng.github.io/meteo_python_docs_html/"

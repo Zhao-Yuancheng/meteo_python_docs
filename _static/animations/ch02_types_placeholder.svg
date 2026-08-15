@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f2440"/>
+      <stop offset="1" stop-color="#1e3a5f"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <g opacity="0.14" stroke="#7fb3ff" stroke-width="1.5" fill="none">
+    <path d="M0 470 Q 160 400 320 440 T 640 420 T 960 450"/>
+    <path d="M0 500 Q 160 440 320 480 T 640 460 T 960 490"/>
+  </g>
+  <g transform="translate(480 225)">
+    <circle r="64" fill="#ffffff" opacity="0.94"/>
+    <circle r="74" fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.45"/>
+    <path d="M-18 -30 L 38 0 L -18 30 Z" fill="#1e3a5f"/>
+  </g>
+  <text x="480" y="352" text-anchor="middle" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="30" fill="#ffffff" font-weight="700">配套动画位（T-202）</text>
+  <text x="480" y="396" text-anchor="middle" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="18" fill="#bcd4f5">变量“贴标签” · 浮点数精度 · 列表 / 元组 / 字典三种容器对比</text>
+  <rect x="330" y="428" rx="13" width="300" height="30" fill="#ffffff" opacity="0.14"/>
+  <text x="480" y="448" text-anchor="middle" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="15" fill="#dbe8fa">动画制作完成后将替换此占位图</text>
+  <text x="48" y="50" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="20" fill="#8fb8ea" font-weight="700">第 2 章 · 基本数据类型、变量和运算符</text>
+</svg>

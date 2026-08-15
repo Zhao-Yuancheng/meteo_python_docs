@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.143** total execution time for 3 files **from all galleries**:
+**00:00.326** total execution time for 4 files **from all galleries**:
 
 .. container::
 
@@ -32,12 +32,15 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_array_demo.py` (``examples\plot_numpy\plot_array_demo.py``)
-     - 00:00.143
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_contour.py` (``examples\plot_viz\plot_contour.py``)
+     - 00:00.102
      - 0.0
    * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_sine.py` (``examples\plot_basics\plot_sine.py``)
-     - 00:00.000
+     - 00:00.091
      - 0.0
-   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_contour.py` (``examples\plot_viz\plot_contour.py``)
-     - 00:00.000
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_array_demo.py` (``examples\plot_numpy\plot_array_demo.py``)
+     - 00:00.067
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_datatypes.py` (``examples\plot_basics\plot_datatypes.py``)
+     - 00:00.065
      - 0.0

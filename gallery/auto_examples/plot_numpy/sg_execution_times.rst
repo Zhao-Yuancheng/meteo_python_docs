@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.143** total execution time for 1 file **from gallery\auto_examples\plot_numpy**:
+**00:00.067** total execution time for 1 file **from gallery\auto_examples\plot_numpy**:
 
 .. container::
 
@@ -33,5 +33,5 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_array_demo.py` (``plot_array_demo.py``)
-     - 00:00.143
+     - 00:00.067
      - 0.0

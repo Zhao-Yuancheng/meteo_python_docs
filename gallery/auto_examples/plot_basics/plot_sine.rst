@@ -33,27 +33,8 @@
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    D:\Code\Vibe\meteo_python_docs\examples\plot_basics\plot_sine.py:19: UserWarning: Glyph 35282 (\N{CJK UNIFIED IDEOGRAPH-89D2}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_basics\plot_sine.py:19: UserWarning: Glyph 24230 (\N{CJK UNIFIED IDEOGRAPH-5EA6}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_basics\plot_sine.py:19: UserWarning: Glyph 27491 (\N{CJK UNIFIED IDEOGRAPH-6B63}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_basics\plot_sine.py:19: UserWarning: Glyph 24358 (\N{CJK UNIFIED IDEOGRAPH-5F26}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_basics\plot_sine.py:19: UserWarning: Glyph 27874 (\N{CJK UNIFIED IDEOGRAPH-6CE2}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
 
 
-
-
-
-
-|
 
 .. code-block:: Python
 
@@ -75,7 +56,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.164 seconds)
+   **Total running time of the script:** (0 minutes 0.091 seconds)
 
 
 .. _sphx_glr_download_gallery_auto_examples_plot_basics_plot_sine.py:

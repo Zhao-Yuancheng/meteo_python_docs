@@ -33,27 +33,8 @@
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    D:\Code\Vibe\meteo_python_docs\examples\plot_viz\plot_contour.py:22: UserWarning: Glyph 31561 (\N{CJK UNIFIED IDEOGRAPH-7B49}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_viz\plot_contour.py:22: UserWarning: Glyph 20540 (\N{CJK UNIFIED IDEOGRAPH-503C}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_viz\plot_contour.py:22: UserWarning: Glyph 32447 (\N{CJK UNIFIED IDEOGRAPH-7EBF}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_viz\plot_contour.py:22: UserWarning: Glyph 22635 (\N{CJK UNIFIED IDEOGRAPH-586B}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_viz\plot_contour.py:22: UserWarning: Glyph 33394 (\N{CJK UNIFIED IDEOGRAPH-8272}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
 
 
-
-
-
-
-|
 
 .. code-block:: Python
 
@@ -78,7 +59,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.226 seconds)
+   **Total running time of the script:** (0 minutes 0.102 seconds)
 
 
 .. _sphx_glr_download_gallery_auto_examples_plot_viz_plot_contour.py:

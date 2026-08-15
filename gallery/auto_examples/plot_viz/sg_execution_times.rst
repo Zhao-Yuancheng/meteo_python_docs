@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.226** total execution time for 1 file **from gallery\auto_examples\plot_viz**:
+**00:00.102** total execution time for 1 file **from gallery\auto_examples\plot_viz**:
 
 .. container::
 
@@ -33,5 +33,5 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_contour.py` (``plot_contour.py``)
-     - 00:00.226
+     - 00:00.102
      - 0.0

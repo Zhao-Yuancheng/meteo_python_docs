@@ -36,6 +36,23 @@
     </div>
 
 
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例（T-206）：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_datatypes_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_basics/plot_datatypes`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">用基本数据类型存储站点信息</div>
+    </div>
+
+
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -47,4 +64,5 @@
    :hidden:
 
    /gallery/auto_examples/plot_basics/plot_sine
+   /gallery/auto_examples/plot_basics/plot_datatypes
 

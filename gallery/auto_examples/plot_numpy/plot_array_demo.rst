@@ -33,29 +33,8 @@
    :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    D:\Code\Vibe\meteo_python_docs\examples\plot_numpy\plot_array_demo.py:20: UserWarning: Glyph 21015 (\N{CJK UNIFIED IDEOGRAPH-5217}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_numpy\plot_array_demo.py:20: UserWarning: Glyph 34892 (\N{CJK UNIFIED IDEOGRAPH-884C}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_numpy\plot_array_demo.py:20: UserWarning: Glyph 20108 (\N{CJK UNIFIED IDEOGRAPH-4E8C}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_numpy\plot_array_demo.py:20: UserWarning: Glyph 32500 (\N{CJK UNIFIED IDEOGRAPH-7EF4}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_numpy\plot_array_demo.py:20: UserWarning: Glyph 22330 (\N{CJK UNIFIED IDEOGRAPH-573A}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
-    D:\Code\Vibe\meteo_python_docs\examples\plot_numpy\plot_array_demo.py:20: UserWarning: Glyph 20540 (\N{CJK UNIFIED IDEOGRAPH-503C}) missing from font(s) DejaVu Sans.
-      plt.tight_layout()
 
 
-
-
-
-
-|
 
 .. code-block:: Python
 
@@ -78,7 +57,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.143 seconds)
+   **Total running time of the script:** (0 minutes 0.067 seconds)
 
 
 .. _sphx_glr_download_gallery_auto_examples_plot_numpy_plot_array_demo.py:
