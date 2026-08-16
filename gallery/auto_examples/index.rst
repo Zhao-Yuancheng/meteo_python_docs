@@ -1,7 +1,7 @@
 :orphan:
 
-气象 + Python 示例画廊
-======================
+MeteoPython 示例画廊
+====================
 
 以下示例由 sphinx-gallery 自动生成，源脚本是 ``examples/`` 下以 ``plot_`` 开头的 Python 文件。
 编译时每个脚本会被真实执行，生成的图自动成为缩略图。
@@ -60,6 +60,23 @@
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_first_weather_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_basics/plot_first_weather`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">我的第一个气象图</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例（T-206）：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
 
 .. only:: html
@@ -72,6 +89,23 @@
 .. raw:: html
 
       <div class="sphx-glr-thumbnail-title">用基本数据类型存储站点信息</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例（T-306）：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_flow_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_basics/plot_flow`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">气温等级判定与逐日可视化</div>
     </div>
 
 

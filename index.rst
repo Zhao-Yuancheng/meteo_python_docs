@@ -1,7 +1,7 @@
-气象 + Python 编程文档
-======================
+MeteoPython
+===========
 
-欢迎来到兰州大学大气科学学院编程社区的 **气象 + Python 语言** 编程文档。
+欢迎来到兰州大学大气科学学院编程社区的 **MeteoPython** 编程文档。
 本站仿照 Matplotlib 官方文档体系组织，覆盖 Python 基础、气象数据处理与气象数据可视化三大模块，
 以"兰州气温观测数据分析与可视化系统"贯穿项目为主线，每学完一章，项目就往前推进一步。
 
@@ -17,7 +17,7 @@
 
       安装 Conda 与 Python，画出第一张气象图。
 
-   .. grid-item-card:: 术语 API
+   .. grid-item-card:: 术语参考
       :link: api/index
       :link-type: doc
       :class-card: gallery-card
@@ -26,7 +26,7 @@
 
       整型、浮点型、切片……初学者术语逐一拆解。
 
-   .. grid-item-card:: 配套练习
+   .. grid-item-card:: 练习
       :link: tutorials/index
       :link-type: doc
       :class-card: gallery-card
@@ -53,7 +53,7 @@
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: 气象 + Python
+   :caption: MeteoPython
 
    user_guide/index
    tutorials/index

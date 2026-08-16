@@ -21,6 +21,7 @@ extensions = [
     'sphinx_design',                # 卡片 / 网格 / 标签页
     'sphinx_gallery.gen_gallery',   # 可执行示例画廊
     'sphinx_copybutton',            # 代码块复制按钮
+    'sphinxcontrib.video',
     # 'myst_parser',                  # 可选：Markdown 源文件支持
 ]
 
@@ -109,7 +110,7 @@ copybutton_prompt_text = r'>>> |\.\.\. |\$ '
 copybutton_prompt_is_regexp = True
 
 # -- 输出 --
-html_title = '气象 + Python 编程文档'
+html_title = 'MeteoPython'
 html_last_updated_fmt = '%Y-%m-%d'
 exclude_patterns = [
     './_build', './Thumbs.db', './.DS_Store',
@@ -129,5 +130,3 @@ def setup(app):
         matplotlib.rcParams['axes.unicode_minus'] = False
     except ImportError:
         pass
-
-html_baseurl = "https://zhao-yuancheng.github.io/meteo_python_docs_html/"

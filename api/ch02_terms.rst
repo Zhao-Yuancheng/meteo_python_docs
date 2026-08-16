@@ -3,6 +3,8 @@
 
 配套 :ref:`tut-datatype` 正文使用。每个词条 = 一句话定义 + **生活类比** + **代码示例** + **易混淆点**。
 
+.. seealso:: 配套正文：:doc:`/user_guide/basics/datatypes`　·　配套练习：:doc:`/tutorials/ch02_practice`
+
 .. glossary::
 
    变量
