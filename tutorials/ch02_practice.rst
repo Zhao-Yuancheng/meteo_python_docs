@@ -285,4 +285,4 @@
 
    - 返回正文：:ref:`tut-datatype`
    - 术语速查：:doc:`/api/ch02_terms`
-   - 可执行示例：:doc:`/gallery/auto_examples/plot_basics/plot_datatypes`
+   - 可执行示例：:doc:`/gallery/plot_basics/plot_datatypes`

@@ -19,10 +19,10 @@ Examples using ``matplotlib.axes._AxesBase.imshow``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_numpy/images/thumb/sphx_glr_plot_array_demo_thumb.png
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_array_demo_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_numpy/plot_array_demo`
+  :doc:`/gallery/plot_numpy/plot_array_demo`
 
 .. raw:: html
 
@@ -32,7 +32,7 @@ Examples using ``matplotlib.axes._AxesBase.imshow``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_numpy/plot_array_demo`
+ * :doc:`/gallery/plot_numpy/plot_array_demo`
 
 .. thumbnail-parent-div-close
 

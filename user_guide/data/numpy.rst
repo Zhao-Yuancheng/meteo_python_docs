@@ -643,4 +643,4 @@
 
    补充：NumPy 的**视图 vs 复制**。切片返回视图（改切片会同时改原数组，需要独立数据用 ``.copy()``），而布尔索引、花式索引返回副本。多站叠加列（如 ``df["day_area_max"] = ...``）按列对齐时也要留意：永远先 ``print(shape)``、用``.copy()``，再进入计算，才能避免"改了拷贝、原表也变了"的隐性 bug。
 
-.. seealso:: 配套练习：第 6 章练习《NumPy 基础》将在随后交付后上线（链接到时补全）　·　术语参考：:doc:`/api/ch06_terms`　·　示例画廊 :doc:`/gallery/auto_examples/plot_numpy/index`
+.. seealso:: 配套练习：第 6 章练习《NumPy 基础》将在随后交付后上线（链接到时补全）　·　术语参考：:doc:`/api/ch06_terms`　·　示例画廊 :doc:`/gallery/plot_numpy/index`

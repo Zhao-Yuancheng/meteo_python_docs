@@ -19,10 +19,10 @@ Examples using ``matplotlib.axes._AxesBase.hist``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_basics/plot_oop`
+  :doc:`/gallery/plot_basics/plot_oop`
 
 .. raw:: html
 
@@ -32,7 +32,7 @@ Examples using ``matplotlib.axes._AxesBase.hist``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_basics/plot_oop`
+ * :doc:`/gallery/plot_basics/plot_oop`
 
 .. thumbnail-parent-div-close
 

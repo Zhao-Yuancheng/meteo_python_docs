@@ -19,10 +19,10 @@ Examples using ``numpy.nanmax``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_numpy/images/thumb/sphx_glr_plot_temperature_matrix_thumb.png
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_temperature_matrix_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_numpy/plot_temperature_matrix`
+  :doc:`/gallery/plot_numpy/plot_temperature_matrix`
 
 .. raw:: html
 
@@ -32,7 +32,7 @@ Examples using ``numpy.nanmax``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_numpy/plot_temperature_matrix`
+ * :doc:`/gallery/plot_numpy/plot_temperature_matrix`
 
 .. thumbnail-parent-div-close
 

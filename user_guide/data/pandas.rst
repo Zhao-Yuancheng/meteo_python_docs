@@ -231,4 +231,4 @@ Pandas 适合站点观测等表格数据：
 5. **数据顺序**：时间序列处理前务必对日期排序，保证聚合结果可靠；
 6. **结果校验**：关注缺失统计，当某月有效样本过少时，该月统计结果不具备参考价值，宁可标注也不硬用。
 
-.. seealso:: 配套练习：:doc:`/tutorials/ch07_practice`　·　示例画廊 :doc:`/gallery/auto_examples/plot_numpy/index`。
+.. seealso:: 配套练习：:doc:`/tutorials/ch07_practice`　·　示例画廊 :doc:`/gallery/plot_numpy/index`。

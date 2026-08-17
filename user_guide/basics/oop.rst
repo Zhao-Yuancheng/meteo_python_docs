@@ -375,4 +375,4 @@ Python 编程可以粗略分为两种思路：**面向过程** 与 **面向对�
 
 至此，"把气象站抽象成类"的整条主线走完了——从一张"台站说明书"（类），到一座座活灵活现的真站（实例），再到站与自动站的继承接力。拿到配套练习，把 ``Station``、``AutoStation``、``MeteoStation`` 亲手实现一遍，本章就稳了。
 
-.. seealso:: 配套练习：:doc:`/tutorials/ch05_practice`　·　术语参考：:doc:`/api/ch05_terms`　·　示例画廊 :doc:`/gallery/auto_examples/plot_basics/index`
+.. seealso:: 配套练习：:doc:`/tutorials/ch05_practice`　·　术语参考：:doc:`/api/ch05_terms`　·　示例画廊 :doc:`/gallery/plot_basics/index`

@@ -3,7 +3,7 @@
 
 配套 :ref:`tut-pandas` 正文使用。本练习贯穿一条现实主线：兰州站的一组逐日观测，你要把它拆开揉碎——先看清（读取）、再挑出高温日（筛选）、再按月算报表（分组）、再排出名次（排序）、最后存好文件（导出）。
 
-.. seealso:: 配套正文：:doc:`/user_guide/data/pandas`　·　示例画廊 :doc:`/gallery/auto_examples/plot_numpy/index`
+.. seealso:: 配套正文：:doc:`/user_guide/data/pandas`　·　示例画廊 :doc:`/gallery/plot_numpy/index`
 
 练习使用一份气象站点 CSV 数据。示例 CSV 字段：``date, station_id, temp, pressure``
 

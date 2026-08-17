@@ -19,10 +19,10 @@ Examples using ``matplotlib.contour.QuadContourSet``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_viz/plot_contour`
+  :doc:`/gallery/plot_viz/plot_contour`
 
 .. raw:: html
 
@@ -32,7 +32,7 @@ Examples using ``matplotlib.contour.QuadContourSet``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_viz/plot_contour`
+ * :doc:`/gallery/plot_viz/plot_contour`
 
 .. thumbnail-parent-div-close
 

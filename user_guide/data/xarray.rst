@@ -240,4 +240,4 @@ xarray 序列 ``.to_dataframe()`` 转成 DataFrame 后用 ``.to_csv`` 导出，�
 5. **绘图规范**：配置中文字体、使用 ``bbox_inches="tight"`` 防止标题截断；绘图完成 ``plt.close()`` 释放画布，避免多图重叠；
 6. **校验习惯**：每一步 ``print(shape)`` 核对维度 ``(time, lat, lon)``，及时发现维度错乱。
 
-.. seealso:: 术语参考：:doc:`/api/ch08_terms`　·　示例画廊 :doc:`/gallery/auto_examples/plot_numpy/index`。
+.. seealso:: 术语参考：:doc:`/api/ch08_terms`　·　示例画廊 :doc:`/gallery/plot_numpy/index`。

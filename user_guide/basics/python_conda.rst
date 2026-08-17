@@ -37,7 +37,7 @@ Python 与 Conda 简介
       环境创建、安装包、运行脚本实战题
 
    .. grid-item-card:: 🖼 可执行示例
-      :link: /gallery/auto_examples/plot_basics/plot_first_weather
+      :link: /gallery/plot_basics/plot_first_weather
       :link-type: doc
       :class-card: gallery-card
 
@@ -47,7 +47,7 @@ Python 与 Conda 简介
 
 .. _ch01-video:
 
-配套视频（T-102）
+配套视频
 -----------------
 
 三支视频分别对应安装 Anaconda、配置 VS Code、Python 执行流程动画，点击即可播放：
@@ -95,7 +95,7 @@ Python 与 Conda 简介
 
 （3）Python 执行流程动画
 
-.. video:: /_static/videos/T102-安装Anaconda_av1.webm
+.. video:: /_static/videos/T102-Python代码执行流程.webm
    :width: 100%
 
 
@@ -325,7 +325,7 @@ VS Code 配置 Python 开发环境
 
 本章的项目推进：完成环境搭建、创建 ``weather_project`` 目录、运行 ``main.py`` 打印兰州站信息。**验收标准**：终端能跑通上面的演示代码并输出一致结果。
 
-可运行示例见 :doc:`/gallery/auto_examples/plot_basics/plot_first_weather`。
+可运行示例见 :doc:`/gallery/plot_basics/plot_first_weather`。
 
 本章小结
 --------

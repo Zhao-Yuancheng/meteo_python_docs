@@ -19,10 +19,10 @@ Examples using ``matplotlib.artist.Artist.colorbar``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_numpy/images/thumb/sphx_glr_plot_temperature_matrix_thumb.png
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_temperature_matrix_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_numpy/plot_temperature_matrix`
+  :doc:`/gallery/plot_numpy/plot_temperature_matrix`
 
 .. raw:: html
 
@@ -32,7 +32,7 @@ Examples using ``matplotlib.artist.Artist.colorbar``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_numpy/plot_temperature_matrix`
+ * :doc:`/gallery/plot_numpy/plot_temperature_matrix`
 
 .. raw:: html
 
@@ -40,10 +40,10 @@ Examples using ``matplotlib.artist.Artist.colorbar``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_viz/plot_cartopy_temp`
+  :doc:`/gallery/plot_viz/plot_cartopy_temp`
 
 .. raw:: html
 
@@ -53,7 +53,7 @@ Examples using ``matplotlib.artist.Artist.colorbar``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_viz/plot_cartopy_temp`
+ * :doc:`/gallery/plot_viz/plot_cartopy_temp`
 
 .. raw:: html
 
@@ -61,10 +61,10 @@ Examples using ``matplotlib.artist.Artist.colorbar``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_viz/images/thumb/sphx_glr_plot_temperature_series_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_temperature_series_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_viz/plot_temperature_series`
+  :doc:`/gallery/plot_viz/plot_temperature_series`
 
 .. raw:: html
 
@@ -74,7 +74,7 @@ Examples using ``matplotlib.artist.Artist.colorbar``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_viz/plot_temperature_series`
+ * :doc:`/gallery/plot_viz/plot_temperature_series`
 
 .. thumbnail-parent-div-close
 

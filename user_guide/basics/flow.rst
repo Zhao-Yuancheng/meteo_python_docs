@@ -37,7 +37,7 @@
       5 道气温等级与循环实战题
 
    .. grid-item-card:: 🖼 可执行示例
-      :link: /gallery/auto_examples/plot_basics/plot_flow
+      :link: /gallery/plot_basics/plot_flow
       :link-type: doc
       :class-card: gallery-card
 
@@ -47,15 +47,13 @@
 
 .. _ch03-animation:
 
-配套动画（T-302 占位）
--------------------------
+配套动画（T-302）
+-------------------
 
-.. figure:: /_static/animations/ch03_flow_placeholder.svg
-   :alt: 第 3 章配套动画占位图
-   :width: 88%
-   :align: center
+本动画把本节的三类控制流一口气演给你看：① ``if-elif-else`` 流程图——条件为真走这条路、为假走那条路（箭头高亮动画）；② ``for`` 循环遍历列表——指针逐个滑过元素；③ ``while`` 循环——条件检查 → 执行体 → 回到条件；④ ``break``（直接跳出）与 ``continue``（跳过本次）的跳转路径对比。点击播放，可暂停拖动进度条反复观看。
 
-   **图 3-1** 配套动画（T-302 交付后替换本占位图）：① ``if-elif-else`` 流程图——条件为真走这条路、为假走那条路（箭头高亮动画）；② ``for`` 循环遍历列表——指针逐个滑过元素；③ ``while`` 循环——条件检查 → 执行体 → 回到条件；④ ``break`` （直接跳出）与 ``continue`` （跳过本次）的跳转路径对比。
+.. video:: /_static/videos/T302-分支、循环、条件动画_av1.webm
+   :width: 100%
 
 条件判断：if / elif / else
 --------------------------
@@ -68,7 +66,7 @@
 - 若判断为 ``True`` （是），程序走"高温天气"这条路；
 - 若判断为 ``False`` （否），程序走"天气较凉爽"这条路。
 
-（完整的分支流程图见本节上方"配套动画"处的图 3-1。）
+（完整的分支流程图见本节上方"配套动画"处的动画。）
 
 在这个判断框里，布尔值起到**双刀开关**的作用：开关拨向 ``True`` 走一条路，拨向 ``False`` 走另一条路。不同的执行路径就是**分支**，计算机判断 ``True`` / ``False`` 的过程就是**逻辑运算**。
 
@@ -536,7 +534,7 @@ while-else：循环正常结束才执行的兜底
    33.2℃ → 炎热
    各等级天数： {'炎热': 5, '适宜': 2}
 
-**验收标准**：脚本对每个温度输出等级，并统计各等级天数。可运行版本见 :doc:`/gallery/auto_examples/plot_basics/plot_flow`。
+**验收标准**：脚本对每个温度输出等级，并统计各等级天数。可运行版本见 :doc:`/gallery/plot_basics/plot_flow`。
 
 本章小结
 --------
@@ -551,4 +549,4 @@ while-else：循环正常结束才执行的兜底
 
    - 术语详解：:doc:`/api/ch03_terms` —— 每个名词的生活类比与易混淆点；
    - 动手练习：:doc:`/tutorials/ch03_practice` —— 5 道气温等级与循环实战题（含提示）；
-   - 可执行示例：:doc:`/gallery/auto_examples/plot_basics/plot_flow` —— 气温等级判定与统计可视化。
+   - 可执行示例：:doc:`/gallery/plot_basics/plot_flow` —— 气温等级判定与统计可视化。

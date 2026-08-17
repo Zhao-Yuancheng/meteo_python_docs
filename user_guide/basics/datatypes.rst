@@ -37,7 +37,7 @@
       5 道西北站点实战题（含提示）
 
    .. grid-item-card:: 🖼 可执行示例
-      :link: /gallery/auto_examples/plot_basics/plot_datatypes
+      :link: /gallery/plot_basics/plot_datatypes
       :link-type: doc
       :class-card: gallery-card
 
@@ -826,7 +826,7 @@ f-string（格式化字符串字面量）是当前最主流的字符串拼接方
    位置：103.83°E, 36.06°N, 海拔 1517.2 m
    近三日平均最高气温：12.6 °C，平均最低气温：1.5 °C
 
-**验收标准**：脚本输出站名、站号、经纬度、海拔与三日均温，数值格式正确（保留 1 位小数）。可运行版本见 :doc:`/gallery/auto_examples/plot_basics/plot_datatypes`。
+**验收标准**：脚本输出站名、站号、经纬度、海拔与三日均温，数值格式正确（保留 1 位小数）。可运行版本见 :doc:`/gallery/plot_basics/plot_datatypes`。
 
 本章小结
 --------
@@ -890,4 +890,4 @@ f-string（格式化字符串字面量）是当前最主流的字符串拼接方
 
    - 术语详解：:doc:`/api/ch02_terms` —— 每个名词的生活类比与易混淆点；
    - 动手练习：:doc:`/tutorials/ch02_practice` —— 5 道西北站点实战题（含提示与参考答案）；
-   - 可执行示例：:doc:`/gallery/auto_examples/plot_basics/plot_datatypes` —— 用基本类型存储站点信息并绘图。
+   - 可执行示例：:doc:`/gallery/plot_basics/plot_datatypes` —— 用基本类型存储站点信息并绘图。

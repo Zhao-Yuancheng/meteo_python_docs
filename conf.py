@@ -16,6 +16,10 @@ copyright = '2026, ' + author
 version = '0.1'
 release = '0.1.0'
 language = 'zh_CN'
+html_search_language = 'zh'
+html_search_options = {
+    'dict': None,   # 使用 jieba 默认词典
+}
 
 extensions = [
     'sphinx_design',                # 卡片 / 网格 / 标签页
@@ -92,7 +96,7 @@ def _reset_mpl_zh(gallery_conf, fname):
 
 sphinx_gallery_conf = {
     'examples_dirs': ['./examples'],            # 源脚本目录
-    'gallery_dirs':  ['./gallery/auto_examples'],  # 生成画廊目录
+    'gallery_dirs':  ['./gallery'],  # 生成画廊目录（顶层「示例」导航直连画廊）
     # Windows 路径用 \ 分隔，正则需同时兼容 / 与 \
     'filename_pattern': r'[/\\]plot_[^/\\]+\.py$',   # 仅执行 plot_ 开头的脚本
     'ignore_pattern': r'__init__\.py$|GALLERY_HEADER',

@@ -1,0 +1,140 @@
+
+
+.. _sphx_glr_gallery_plot_basics:
+
+基础绘图示例
+============
+
+本节展示 Python 基础语法的可视化示例，帮助理解数据类型与控制流。
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="最简单的 Matplotlib 示例：生成一组角度，画出对应的正弦曲线。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_sine_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_sine`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制正弦波</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_first_weather_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_first_weather`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">我的第一个气象图</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例（T-206）：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_datatypes_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_datatypes`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">用基本数据类型存储站点信息</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例（T-306）：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_flow_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_flow`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">气温等级判定与逐日可视化</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示第 4 章「函数及变量作用域、模块和包」的完整应用：把华氏温度转换、 热量指数（有效积温）计算、气温统计分别收成 独立函数，再用兰州站近几日气温数据 驱动整个流程，最后用面向对象的 matplotlib 接口绘图并标记高温日。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_functions_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_functions`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">函数化气温处理流程</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示面向对象编程在气象数据处理中的应用。它以兰州站（区站号 52889，纬 36.05°N、经 103.88°E、海拔约 1517 m）最近几日的逐日气温为 数据，展示三个要点：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_oop`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Station 类的气温统计与可视化（兼用兰州站示例数据）</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /gallery/plot_basics/plot_sine
+   /gallery/plot_basics/plot_first_weather
+   /gallery/plot_basics/plot_datatypes
+   /gallery/plot_basics/plot_flow
+   /gallery/plot_basics/plot_functions
+   /gallery/plot_basics/plot_oop
+

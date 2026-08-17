@@ -1,11 +1,345 @@
+:orphan:
+
 示例
 ====
 
-示例版块由 **sphinx-gallery** 自动生成：源脚本是 ``examples/`` 下以 ``plot_`` 开头的 Python 文件，编译时会被真实执行，生成的图自动成为缩略图。悬浮缩略图会变暗并浮现标题，点击进入查看完整代码与说明。
+以下示例由 sphinx-gallery 自动生成，源脚本是 ``examples/`` 下以 ``plot_`` 开头的 Python 文件。
+编译时每个脚本会被真实执行，生成的图自动成为缩略图。
 
-每个示例页提供可下载的 ``.py`` 脚本与 ``.ipynb`` 笔记本，可直接在本地复现。
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+基础绘图示例
+============
+
+本节展示 Python 基础语法的可视化示例，帮助理解数据类型与控制流。
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="最简单的 Matplotlib 示例：生成一组角度，画出对应的正弦曲线。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_sine_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_sine`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制正弦波</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_first_weather_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_first_weather`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">我的第一个气象图</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例（T-206）：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_datatypes_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_datatypes`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">用基本数据类型存储站点信息</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例（T-306）：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_flow_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_flow`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">气温等级判定与逐日可视化</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示第 4 章「函数及变量作用域、模块和包」的完整应用：把华氏温度转换、 热量指数（有效积温）计算、气温统计分别收成 独立函数，再用兰州站近几日气温数据 驱动整个流程，最后用面向对象的 matplotlib 接口绘图并标记高温日。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_functions_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_functions`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">函数化气温处理流程</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示面向对象编程在气象数据处理中的应用。它以兰州站（区站号 52889，纬 36.05°N、经 103.88°E、海拔约 1517 m）最近几日的逐日气温为 数据，展示三个要点：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_oop`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Station 类的气温统计与可视化（兼用兰州站示例数据）</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+NumPy 计算示例
+==============
+
+本节展示 NumPy 数组运算与可视化的示例。
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="用 NumPy 生成一个二维场，Matplotlib 的 imshow 展示其结构。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_array_demo_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_array_demo`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">二维数组可视化</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_pandas_analysis_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_pandas_analysis`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Pandas 气温月度分析</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示 NumPy 处理气象多站气温矩阵的完整链路： 创建 7 天 × 5 站 的气温矩阵，沿 axis 做逐站均值 / 逐日极值， 再逐站做 Z-score 标准化，最后用 imshow 热力图把原始矩阵和标准化矩阵画出来。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_temperature_matrix_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_temperature_matrix`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">多站气温矩阵的计算与可视化</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行时间切片、 空间子区域裁剪，并做纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_xarray_field_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_xarray_field`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Xarray 西北气温场分析</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+气象数据可视化示例
+==================
+
+本节展示 Matplotlib 与 Cartopy 绘制气象场的示例。
+
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="绘制一个二维函数的等值线填色（contourf），是气象场可视化的常见形式。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_contour`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">等值线填色图</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示如何用 Cartopy 绘制中国西北地区的气温空间分布填色图：先构造一 个覆盖东经 90°~112°、北纬 32°~43° 的合成气温场，再用 PlateCarree 等经纬 度投影加上 contourf 填色，随后叠加海岸线、国界、河流等地理要素，裁剪出 西北区域，并标注兰州观测站点。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_cartopy_temp`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">西北地区气温场地图</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示如何用 Matplotlib 的面向对象接口，把一套整年的逐日气温数据 绘制成一张 3 行子图的综合图板：上图为逐日平均温的年周期曲线（叠加月均温 并标注冬夏极值点），中图为日最高温与日最低温的相关性散点，下图为全年气温 分布直方图。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_temperature_series_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_temperature_series`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">兰州气温时间序列综合分析</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
 
 .. toctree::
    :hidden:
+   :includehidden:
 
-   auto_examples/index
+
+   /./gallery/plot_basics/index.rst
+   /./gallery/plot_numpy/index.rst
+   /./gallery/plot_viz/index.rst
+
+
+.. only:: html
+
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
+
+    .. container:: sphx-glr-download sphx-glr-download-python
+
+      :download:`Download all examples in Python source code: gallery_python.zip </gallery/gallery_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: gallery_jupyter.zip </gallery/gallery_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

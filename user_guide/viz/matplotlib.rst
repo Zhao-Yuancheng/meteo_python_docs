@@ -394,4 +394,4 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
 6. ``twinx`` 双轴管不同量纲、``annotate`` 定点标极值、``rcParams`` 统一定中文字体与风格；
 7. 中文字体、负号方块、不 savefig、图例挡数据、刻度重叠——五座大头坑，各有排雷口诀。
 
-.. seealso:: 示例画廊 :doc:`/gallery/auto_examples/plot_viz/index`　·　配套练习：第 9 章练习《Matplotlib 气象绘图》将在随后交付后上线（链接到时补全）　·　术语参考：第 9 章术语表将在随后交付后上线（链接到时补全）
+.. seealso:: 示例画廊 :doc:`/gallery/plot_viz/index`　·　配套练习：第 9 章练习《Matplotlib 气象绘图》将在随后交付后上线（链接到时补全）　·　术语参考：第 9 章术语表将在随后交付后上线（链接到时补全）

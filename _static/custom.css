@@ -61,3 +61,18 @@ html[data-theme="dark"] .gallery-card:has(.sd-card-img-top) .sd-card-body { back
   padding: .75rem 1rem; min-height: 3.5rem;
 }
 
+/* ============================================================
+   配套视频：桌面端限制高度，避免 100% 宽度把高度拉得过大
+   sphinx-contrib.video 指令输出：<div class="sphinx-contrib-video-container">
+   ============================================================ */
+.sphinx-contrib-video-container { text-align: center; }
+.sphinx-contrib-video-container video {
+  width: auto;        /* 覆盖 HTML 上的 width="100%"，不再撑满容器 */
+  max-width: 100%;    /* 窄屏时仍不超出容器 */
+  height: auto;       /* 保持原始宽高比 */
+  max-height: 480px;  /* 桌面端高度上限（原生 720p / 544p 均在此范围） */
+  display: inline-block;
+  margin: 0 auto;
+  background: #000;
+}
+

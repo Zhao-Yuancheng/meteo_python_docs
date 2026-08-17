@@ -696,4 +696,4 @@ Cartopy 标准绘图固定流程
 4. ✅ 标题简洁规范：统一格式「区域+时段+气象要素空间分布图」，无冗余文字；
 5. ✅ 字体统一使用无衬线字体，避免系统缺失字体导致文字乱码（中文字体配置见相应章节，如 ``SimHei``/``Microsoft YaHei``）。
 
-.. seealso:: 配套练习：第 10 章练习《Cartopy 气象地图》将在随后交付后上线（链接到时补全）　·　示例画廊 :doc:`/gallery/auto_examples/plot_viz/index`
+.. seealso:: 配套练习：第 10 章练习《Cartopy 气象地图》将在随后交付后上线（链接到时补全）　·　示例画廊 :doc:`/gallery/plot_viz/index`

@@ -15,14 +15,35 @@ Examples using ``matplotlib.Artist.text``
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例（T-306）：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_flow_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_flow`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">气温等级判定与逐日可视化</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_basics/plot_flow`
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示面向对象编程在气象数据处理中的应用。它以兰州站（区站号 52889，纬 36.05°N、经 103.88°E、海拔约 1517 m）最近几日的逐日气温为 数据，展示三个要点：">
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_basics/plot_oop`
+  :doc:`/gallery/plot_basics/plot_oop`
 
 .. raw:: html
 
@@ -32,7 +53,7 @@ Examples using ``matplotlib.Artist.text``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_basics/plot_oop`
+ * :doc:`/gallery/plot_basics/plot_oop`
 
 .. raw:: html
 
@@ -40,10 +61,10 @@ Examples using ``matplotlib.Artist.text``
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_viz/plot_cartopy_temp`
+  :doc:`/gallery/plot_viz/plot_cartopy_temp`
 
 .. raw:: html
 
@@ -53,7 +74,7 @@ Examples using ``matplotlib.Artist.text``
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_viz/plot_cartopy_temp`
+ * :doc:`/gallery/plot_viz/plot_cartopy_temp`
 
 .. thumbnail-parent-div-close
 

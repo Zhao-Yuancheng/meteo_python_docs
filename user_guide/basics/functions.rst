@@ -10,6 +10,16 @@
 
 函数把重复逻辑收成一块，起个名字，换数据再调用。模块再往上走一步：相近的函数放进同一个文件，方便管理和复用。
 
+.. _ch04-animation:
+
+配套动画（T-402）
+-------------------
+
+本动画把本节的"函数"讲透：① ``def`` 定义与 ``return`` 返回——调用时进入函数体、返回结果交还给调用者的过程；② 形参／实参的绑定与位置参数、关键字参数的传参方式；③ 变量作用域——函数内部的局部变量与外部全局变量的隔离；④ 模块与 ``import``——把离散的函数收敛进一个文件再整体复用。点击播放，配合下文逐步消化。
+
+.. video:: /_static/videos/T402-函数、作用域、模块动画_av1.webm
+   :width: 100%
+
 4.1 函数：把重复的逻辑收起来
 ----------------------------
 
@@ -539,4 +549,4 @@
 - 改完 ``utils.py`` 后要重新运行 ``main.py``。只盯着编辑器看，运行的还是旧代码。
 - 从项目以外的目录运行时，确认当前目录能找到 ``utils.py``，否则会 ``ModuleNotFoundError``。
 
-.. seealso:: 配套练习：:doc:`/tutorials/ch04_practice`　·　术语参考：:doc:`/api/ch04_terms`　·　示例画廊 :doc:`/gallery/auto_examples/plot_basics/index`。
+.. seealso:: 配套练习：:doc:`/tutorials/ch04_practice`　·　术语参考：:doc:`/api/ch04_terms`　·　示例画廊 :doc:`/gallery/plot_basics/index`。
