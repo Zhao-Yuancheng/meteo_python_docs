@@ -1,0 +1,95 @@
+"""
+函数化气温处理流程
+==================
+
+本示例演示第 4 章「函数及变量作用域、模块和包」的完整应用：把华氏温度转换、
+热量指数（有效积温）计算、气温统计分别收成 **独立函数**，再用兰州站近几日气温数据
+驱动整个流程，最后用面向对象的 matplotlib 接口绘图并标记高温日。
+
+这是一个自包含、可直接运行的函数化气温处理流程：气温转换 + 热量指数 + 统计 + 绘图，
+数据为兰州站近 7 日日最高/最低气温（内联数组，无任何外部文件依赖）。
+"""
+
+# %%
+# 导入库并配置中文字体
+import matplotlib.pyplot as plt
+
+plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "Noto Sans CJK SC", "DejaVu Sans"]
+plt.rcParams["axes.unicode_minus"] = False
+
+# %%
+# 1. 数据：兰州站近 7 日日最高 / 日最低气温（单位：℃，内联数据）
+days = ["10-11", "10-12", "10-13", "10-14", "10-15", "10-16", "10-17"]
+tmax = [18.0, 21.0, 24.0, 26.0, 23.0, 20.0, 17.0]
+tmin = [6.0, 8.0, 10.0, 12.0, 11.0, 9.0, 5.0]
+
+# %%
+# 2. 函数定义：把每个处理步骤收成独立函数
+
+def c_to_f(celsius):
+    """摄氏度转华氏度。"""
+    return celsius * 9 / 5 + 32
+
+
+def heat_index(high_temp, base=10.0):
+    """逐日热量指数：日最高温超过界限温度的"有效积温"，低于界限记为 0。"""
+    return max(0.0, high_temp - base)
+
+
+def calc_stats(temps):
+    """对一组气温返回 (最低, 最高, 平均)。空列表时明确报错，而不是返回 0°C。"""
+    if not temps:
+        raise ValueError("气温列表为空，无法统计")
+    return min(temps), max(temps), sum(temps) / len(temps)
+
+
+def classify_day(temp):
+    """教学用单日气温分级（阈值自拟，非气象规范）。"""
+    if temp >= 25:
+        return "高温"
+    if temp >= 15:
+        return "温暖"
+    if temp >= 5:
+        return "凉爽"
+    return "寒冷"
+
+
+# %%
+# 3. 计算：调用上面定义的函数驱动整个流程
+hi_f = [c_to_f(t) for t in tmax]          # 日最高气温转华氏
+heat = [heat_index(t) for t in tmax]      # 逐日有效积温
+levels = [classify_day(t) for t in tmax]  # 逐日分级
+
+daily_mean = [(hi + lo) / 2 for hi, lo in zip(tmax, tmin)]  # 逐日平均
+tmin_s, tmax_s, tavg_s = calc_stats(tmax)                    # 最高气温组的统计
+period_avg = calc_stats(daily_mean)[2]                        # 整周平均气温
+heat_sum = sum(heat)                                          # 7 日有效积温累计
+
+print("兰州站近 7 日最高气温（华氏）:", [f"{v:.1f}" for v in hi_f])
+print("逐日有效积温（℃·日）:", heat)
+print("逐日分级:", levels)
+print(f"最高气温统计: 最低 {tmin_s}℃，最高 {tmax_s}℃，平均 {tavg_s:.1f}℃")
+print(f"7 日平均气温: {period_avg:.1f}℃，7 日有效积温合计: {heat_sum:.1f} ℃·日")
+
+# %%
+# 4. 绘图：面向对象接口 fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(9, 5))
+
+ax.plot(days, tmax, marker="o", color="tab:red", label="日最高气温")
+ax.plot(days, tmin, marker="s", linestyle="--", color="tab:blue", label="日最低气温")
+ax.fill_between(days, tmin, tmax, alpha=0.15, color="tab:red")
+ax.axhline(period_avg, color="tab:green", linestyle=":", label=f"周平均 {period_avg:.1f}℃")
+
+# 标记高温日
+hot_days = [i for i, lev in enumerate(levels) if lev == "高温"]
+for i in hot_days:
+    ax.annotate(f"{tmax[i]:.0f}℃", (i, tmax[i]), textcoords="offset points",
+                xytext=(0, 8), ha="center", fontsize=9, color="tab:red")
+
+ax.set_title("兰州站近 7 日气温与热量（函数化处理流程）")
+ax.set_xlabel("日期")
+ax.set_ylabel("气温 (℃)")
+ax.grid(alpha=0.3)
+ax.legend()
+
+plt.show()

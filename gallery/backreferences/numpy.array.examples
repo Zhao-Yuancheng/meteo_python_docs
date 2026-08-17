@@ -15,24 +15,24 @@ Examples using ``numpy.array``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
+    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示如何用 Matplotlib 的面向对象接口，把一套整年的逐日气温数据 绘制成一张 3 行子图的综合图板：上图为逐日平均温的年周期曲线（叠加月均温 并标注冬夏极值点），中图为日最高温与日最低温的相关性散点，下图为全年气温 分布直方图。">
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_first_weather_thumb.png
+  .. image:: /gallery/auto_examples/plot_viz/images/thumb/sphx_glr_plot_temperature_series_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_basics/plot_first_weather`
+  :doc:`/gallery/auto_examples/plot_viz/plot_temperature_series`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">我的第一个气象图</div>
+      <div class="sphx-glr-thumbnail-title">兰州气温时间序列综合分析</div>
     </div>
 
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_basics/plot_first_weather`
+ * :doc:`/gallery/auto_examples/plot_viz/plot_temperature_series`
 
 .. thumbnail-parent-div-close
 

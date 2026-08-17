@@ -44,7 +44,29 @@
 
       5 道实战题：气温等级、统计、循环、嵌套循环
 
-模块二 · 气象数据处理、模块三 · 气象数据可视化的章节练习将随正文交付陆续上线。
+   .. grid-item-card:: 第 4 章 · 函数、作用域、模块与包
+      :img-top: /_static/gallery/functions.svg
+      :img-alt: 第 4 章练习示意
+      :link: /tutorials/ch04_practice
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      4 道实战题：气温单位换算、平均、作用域、创建模块
+
+   .. grid-item-card:: 第 5 章 · 面向对象与高级语法
+      :img-top: /_static/gallery/oop.svg
+      :img-alt: 第 5 章练习示意
+      :link: /tutorials/ch05_practice
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      5 道实战题：设计 Station 类、继承、装饰器、生成器
+
+模块二 · 气象数据处理、模块三 · 气象数据可视化的章节练习将随正文交付陆续上线。已完成：第 7 章 Pandas 练习见 :doc:`ch07_practice`。
 
 .. toctree::
    :hidden:
@@ -52,3 +74,6 @@
    ch01_practice
    ch02_practice
    ch03_practice
+   ch04_practice
+   ch05_practice
+   ch07_practice

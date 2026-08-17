@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib.artist.Artist.hist``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示面向对象编程在气象数据处理中的应用。它以兰州站（区站号 52889，纬 36.05°N、经 103.88°E、海拔约 1517 m）最近几日的逐日气温为 数据，展示三个要点：">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_basics/plot_oop`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Station 类的气温统计与可视化（兼用兰州站示例数据）</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/auto_examples/plot_basics/plot_oop`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

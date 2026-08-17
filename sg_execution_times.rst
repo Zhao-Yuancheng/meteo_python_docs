@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.326** total execution time for 4 files **from all galleries**:
+**00:00.531** total execution time for 13 files **from all galleries**:
 
 .. container::
 
@@ -32,15 +32,42 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_contour.py` (``examples\plot_viz\plot_contour.py``)
-     - 00:00.102
-     - 0.0
-   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_sine.py` (``examples\plot_basics\plot_sine.py``)
-     - 00:00.091
-     - 0.0
-   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_array_demo.py` (``examples\plot_numpy\plot_array_demo.py``)
-     - 00:00.067
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_pandas_analysis.py` (``examples\plot_numpy\plot_pandas_analysis.py``)
+     - 00:00.531
      - 0.0
    * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_datatypes.py` (``examples\plot_basics\plot_datatypes.py``)
-     - 00:00.065
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_first_weather.py` (``examples\plot_basics\plot_first_weather.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_flow.py` (``examples\plot_basics\plot_flow.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_functions.py` (``examples\plot_basics\plot_functions.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_oop.py` (``examples\plot_basics\plot_oop.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_sine.py` (``examples\plot_basics\plot_sine.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_array_demo.py` (``examples\plot_numpy\plot_array_demo.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_temperature_matrix.py` (``examples\plot_numpy\plot_temperature_matrix.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_xarray_field.py` (``examples\plot_numpy\plot_xarray_field.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_cartopy_temp.py` (``examples\plot_viz\plot_cartopy_temp.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_contour.py` (``examples\plot_viz\plot_contour.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_temperature_series.py` (``examples\plot_viz\plot_temperature_series.py``)
+     - 00:00.000
      - 0.0

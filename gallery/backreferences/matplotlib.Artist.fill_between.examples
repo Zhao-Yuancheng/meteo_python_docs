@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib.Artist.fill_between``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示第 4 章「函数及变量作用域、模块和包」的完整应用：把华氏温度转换、 热量指数（有效积温）计算、气温统计分别收成 独立函数，再用兰州站近几日气温数据 驱动整个流程，最后用面向对象的 matplotlib 接口绘图并标记高温日。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_functions_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_basics/plot_functions`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">函数化气温处理流程</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/auto_examples/plot_basics/plot_functions`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

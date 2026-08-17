@@ -1,1 +1,137 @@
-{}
+{
+ "matplotlib.Figure": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "matplotlib.RcParams": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "matplotlib.figure.Figure": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "matplotlib.pyplot.show": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "matplotlib.pyplot.subplots": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "matplotlib.rcParams": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.Generator": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.Generator.normal": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.cos": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.ndarray": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.pi": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.random.Generator": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.random.Generator.normal": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.random.default_rng": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ],
+ "numpy.ufunc": [
+  [
+   "plot_pandas_analysis.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_numpy",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery/auto_examples\\plot_numpy",
+   "用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。",
+   "Pandas 气温月度分析"
+  ]
+ ]
+}

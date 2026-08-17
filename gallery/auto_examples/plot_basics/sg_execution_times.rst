@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.156** total execution time for 2 files **from gallery\auto_examples\plot_basics**:
+**00:00.315** total execution time for 6 files **from gallery\auto_examples\plot_basics**:
 
 .. container::
 
@@ -32,9 +32,21 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_sine.py` (``plot_sine.py``)
-     - 00:00.091
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_oop.py` (``plot_oop.py``)
+     - 00:00.216
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_functions.py` (``plot_functions.py``)
+     - 00:00.099
      - 0.0
    * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_datatypes.py` (``plot_datatypes.py``)
-     - 00:00.065
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_first_weather.py` (``plot_first_weather.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_flow.py` (``plot_flow.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_basics_plot_sine.py` (``plot_sine.py``)
+     - 00:00.000
      - 0.0

@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.067** total execution time for 1 file **from gallery\auto_examples\plot_numpy**:
+**00:00.531** total execution time for 4 files **from gallery\auto_examples\plot_numpy**:
 
 .. container::
 
@@ -32,6 +32,15 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_pandas_analysis.py` (``plot_pandas_analysis.py``)
+     - 00:00.531
+     - 0.0
    * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_array_demo.py` (``plot_array_demo.py``)
-     - 00:00.067
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_temperature_matrix.py` (``plot_temperature_matrix.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_numpy_plot_xarray_field.py` (``plot_xarray_field.py``)
+     - 00:00.000
      - 0.0

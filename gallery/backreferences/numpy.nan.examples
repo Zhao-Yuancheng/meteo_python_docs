@@ -1,0 +1,42 @@
+
+
+Examples using ``numpy.nan``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示 NumPy 处理气象多站气温矩阵的完整链路： 创建 7 天 × 5 站 的气温矩阵，沿 axis 做逐站均值 / 逐日极值， 再逐站做 Z-score 标准化，最后用 imshow 热力图把原始矩阵和标准化矩阵画出来。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_numpy/images/thumb/sphx_glr_plot_temperature_matrix_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_numpy/plot_temperature_matrix`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">多站气温矩阵的计算与可视化</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/auto_examples/plot_numpy/plot_temperature_matrix`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

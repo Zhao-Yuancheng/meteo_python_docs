@@ -1,0 +1,643 @@
+{
+ "axes": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "bins": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "daily_avg": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "daily_avg.mean": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ],
+ "day_mean": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "days_per_month": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "diurnal": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "doy": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "fig": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure"
+  }
+ ],
+ "fig.colorbar": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure.colorbar"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure.colorbar"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "FigureBase.colorbar"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "FigureBase.colorbar"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.colorbar"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.colorbar"
+  }
+ ],
+ "fig.suptitle": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure.suptitle"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure.suptitle"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "FigureBase.suptitle"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "FigureBase.suptitle"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.suptitle"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.suptitle"
+  }
+ ],
+ "fig.tight_layout": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure.tight_layout"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure.tight_layout"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "FigureBase.tight_layout"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "FigureBase.tight_layout"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.tight_layout"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.tight_layout"
+  }
+ ],
+ "hi": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "float64"
+  }
+ ],
+ "i_cold": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "int"
+  }
+ ],
+ "i_hot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "int"
+  }
+ ],
+ "lo": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "float64"
+  }
+ ],
+ "month": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "month_mid": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "monthly_mean": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "monthly_mean.argmax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ],
+ "monthly_mean.argmin": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ],
+ "monthly_mean.max": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ],
+ "monthly_mean.min": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ],
+ "np.arange": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "arange"
+  }
+ ],
+ "np.argmax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "_ArrayFunctionDispatcher"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "argmax"
+  }
+ ],
+ "np.argmin": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "_ArrayFunctionDispatcher"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "argmin"
+  }
+ ],
+ "np.array": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "array"
+  }
+ ],
+ "np.ceil": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ufunc"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ceil"
+  }
+ ],
+ "np.cos": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ufunc"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "cos"
+  }
+ ],
+ "np.floor": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ufunc"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "floor"
+  }
+ ],
+ "np.pi": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "pi"
+  }
+ ],
+ "np.random.default_rng": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "_cython_3_2_4",
+   "module_short": "_cython_3_2_4",
+   "name": "cython_function_or_method"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "default_rng"
+  }
+ ],
+ "np.repeat": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "_ArrayFunctionDispatcher"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "repeat"
+  }
+ ],
+ "np.where": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "_ArrayFunctionDispatcher"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "where"
+  }
+ ],
+ "plt.rcParams": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "RcParams"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib",
+   "name": "rcParams"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "rng": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random._generator",
+   "module_short": "numpy.random",
+   "name": "Generator"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "Generator"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "Generator"
+  }
+ ],
+ "rng.normal": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random._generator",
+   "module_short": "numpy.random",
+   "name": "Generator.normal"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "Generator.normal"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "Generator.normal"
+  }
+ ],
+ "sc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.collections",
+   "module_short": "matplotlib.collections",
+   "name": "PathCollection"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "PathCollection"
+  }
+ ],
+ "tmax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "tmax.max": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ],
+ "tmin": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "tmin.min": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ]
+}

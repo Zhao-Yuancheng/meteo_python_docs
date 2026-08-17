@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib.axes._AxesBase.set_extent``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示如何用 Cartopy 绘制中国西北地区的气温空间分布填色图：先构造一 个覆盖东经 90°~112°、北纬 32°~43° 的合成气温场，再用 PlateCarree 等经纬 度投影加上 contourf 填色，随后叠加海岸线、国界、河流等地理要素，裁剪出 西北区域，并标注兰州观测站点。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_viz/plot_cartopy_temp`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">西北地区气温场地图</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/auto_examples/plot_viz/plot_cartopy_temp`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

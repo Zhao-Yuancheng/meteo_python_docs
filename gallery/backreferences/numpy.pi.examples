@@ -15,24 +15,24 @@ Examples using ``numpy.pi``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="最简单的 Matplotlib 示例：生成一组角度，画出对应的正弦曲线。">
+    <div class="sphx-glr-thumbcontainer" tooltip="用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。">
 
 .. only:: html
 
-  .. image:: /gallery/auto_examples/plot_basics/images/thumb/sphx_glr_plot_sine_thumb.png
+  .. image:: /gallery/auto_examples/plot_numpy/images/thumb/sphx_glr_plot_pandas_analysis_thumb.png
     :alt:
 
-  :doc:`/gallery/auto_examples/plot_basics/plot_sine`
+  :doc:`/gallery/auto_examples/plot_numpy/plot_pandas_analysis`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">绘制正弦波</div>
+      <div class="sphx-glr-thumbnail-title">Pandas 气温月度分析</div>
     </div>
 
 
 .. only:: not html
 
- * :doc:`/gallery/auto_examples/plot_basics/plot_sine`
+ * :doc:`/gallery/auto_examples/plot_numpy/plot_pandas_analysis`
 
 .. thumbnail-parent-div-close
 

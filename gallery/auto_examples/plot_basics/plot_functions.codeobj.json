@@ -1,0 +1,773 @@
+{
+ "ax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes"
+  }
+ ],
+ "ax.annotate": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.annotate"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.annotate"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.annotate"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.annotate"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.annotate"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.annotate"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.annotate"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.annotate"
+  }
+ ],
+ "ax.axhline": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.axhline"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.axhline"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.axhline"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.axhline"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.axhline"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.axhline"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.axhline"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.axhline"
+  }
+ ],
+ "ax.fill_between": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.fill_between"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.fill_between"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.fill_between"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.fill_between"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.fill_between"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.fill_between"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.fill_between"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.fill_between"
+  }
+ ],
+ "ax.grid": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.grid"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.grid"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.grid"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.grid"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.grid"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.grid"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.grid"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.grid"
+  }
+ ],
+ "ax.legend": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.legend"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.legend"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.legend"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.legend"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.legend"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.legend"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.legend"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.legend"
+  }
+ ],
+ "ax.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.plot"
+  }
+ ],
+ "ax.set_title": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.set_title"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.set_title"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.set_title"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.set_title"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.set_title"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.set_title"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.set_title"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.set_title"
+  }
+ ],
+ "ax.set_xlabel": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.set_xlabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.set_xlabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.set_xlabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.set_xlabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.set_xlabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.set_xlabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.set_xlabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.set_xlabel"
+  }
+ ],
+ "ax.set_ylabel": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.set_ylabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.set_ylabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.set_ylabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.set_ylabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.set_ylabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.set_ylabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.set_ylabel"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.set_ylabel"
+  }
+ ],
+ "c_to_f": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  }
+ ],
+ "calc_stats": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  }
+ ],
+ "classify_day": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  }
+ ],
+ "daily_mean": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "days": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "fig": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure"
+  }
+ ],
+ "heat": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "heat_index": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  }
+ ],
+ "heat_sum": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ],
+ "hi_f": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "hot_days": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "i": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "int"
+  }
+ ],
+ "levels": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "period_avg": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ],
+ "plt.rcParams": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "RcParams"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib",
+   "name": "rcParams"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "tavg_s": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ],
+ "tmax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "tmax_s": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ],
+ "tmin": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "tmin_s": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ]
+}

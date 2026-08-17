@@ -1,0 +1,42 @@
+
+
+Examples using ``numpy.random.default_rng``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="用 Pandas 对兰州站 2024 年全年逐日气温做「月度统计」与「高温日筛选」。">
+
+.. only:: html
+
+  .. image:: /gallery/auto_examples/plot_numpy/images/thumb/sphx_glr_plot_pandas_analysis_thumb.png
+    :alt:
+
+  :doc:`/gallery/auto_examples/plot_numpy/plot_pandas_analysis`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Pandas 气温月度分析</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/auto_examples/plot_numpy/plot_pandas_analysis`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

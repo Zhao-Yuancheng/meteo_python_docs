@@ -1,0 +1,1472 @@
+{
+ "amplitude": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ],
+ "ax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "dates": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeIndex"
+  }
+ ],
+ "dates.dayofyear.to_numpy": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.datetimelike",
+   "module_short": "pandas.core.indexes.datetimelike",
+   "name": "DatetimeTimedeltaMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "DatetimeTimedeltaMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DatetimeTimedeltaMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeTimedeltaMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.datetimelike",
+   "module_short": "pandas.core.indexes.datetimelike",
+   "name": "DatetimeIndexOpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "DatetimeIndexOpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DatetimeIndexOpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeIndexOpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "abc",
+   "module_short": "abc",
+   "name": "ABC.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.extension",
+   "module_short": "pandas.core.indexes.extension",
+   "name": "NDArrayBackedExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "NDArrayBackedExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDArrayBackedExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDArrayBackedExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.extension",
+   "module_short": "pandas.core.indexes.extension",
+   "name": "ExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "ExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "ExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "ExtensionIndex.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "Index.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "IndexOpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexOpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexOpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin.dayofyear"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin.dayofyear"
+  }
+ ],
+ "df": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame"
+  }
+ ],
+ "df.groupby": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.generic",
+   "module_short": "pandas.core.generic",
+   "name": "NDFrame.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDFrame.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDFrame.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexing",
+   "module_short": "pandas.core.indexing",
+   "name": "IndexingMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexingMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexingMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin.groupby"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin.groupby"
+  }
+ ],
+ "df.head": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.generic",
+   "module_short": "pandas.core.generic",
+   "name": "NDFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexing",
+   "module_short": "pandas.core.indexing",
+   "name": "IndexingMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexingMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexingMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin.head"
+  }
+ ],
+ "doy": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "fig": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure"
+  }
+ ],
+ "hot_days": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame"
+  }
+ ],
+ "hot_days.head": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.generic",
+   "module_short": "pandas.core.generic",
+   "name": "NDFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDFrame.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexing",
+   "module_short": "pandas.core.indexing",
+   "name": "IndexingMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexingMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexingMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin.head"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin.head"
+  }
+ ],
+ "hot_days.to_csv": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.generic",
+   "module_short": "pandas.core.generic",
+   "name": "NDFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexing",
+   "module_short": "pandas.core.indexing",
+   "name": "IndexingMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexingMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexingMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin.to_csv"
+  }
+ ],
+ "mean_temp": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ],
+ "month_stats": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame"
+  }
+ ],
+ "month_stats.columns": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "Index"
+  }
+ ],
+ "month_stats.index": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeIndex"
+  }
+ ],
+ "month_stats.index.strftime": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.datetimelike",
+   "module_short": "pandas.core.indexes.datetimelike",
+   "name": "DatetimeTimedeltaMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "DatetimeTimedeltaMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DatetimeTimedeltaMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeTimedeltaMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.datetimelike",
+   "module_short": "pandas.core.indexes.datetimelike",
+   "name": "DatetimeIndexOpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "DatetimeIndexOpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DatetimeIndexOpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DatetimeIndexOpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "abc",
+   "module_short": "abc",
+   "name": "ABC.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.extension",
+   "module_short": "pandas.core.indexes.extension",
+   "name": "NDArrayBackedExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "NDArrayBackedExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDArrayBackedExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDArrayBackedExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes.extension",
+   "module_short": "pandas.core.indexes.extension",
+   "name": "ExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexes",
+   "module_short": "pandas.core.indexes",
+   "name": "ExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "ExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "ExtensionIndex.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "Index.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "IndexOpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexOpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexOpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin.strftime"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin.strftime"
+  }
+ ],
+ "month_stats.to_csv": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.generic",
+   "module_short": "pandas.core.generic",
+   "name": "NDFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDFrame.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.indexing",
+   "module_short": "pandas.core.indexing",
+   "name": "IndexingMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexingMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexingMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin.to_csv"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin.to_csv"
+  }
+ ],
+ "noise": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "np.cos": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ufunc"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "cos"
+  }
+ ],
+ "np.pi": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "pi"
+  }
+ ],
+ "np.random.default_rng": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "_cython_3_2_4",
+   "module_short": "_cython_3_2_4",
+   "name": "cython_function_or_method"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "default_rng"
+  }
+ ],
+ "pd.DataFrame": [
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core.generic",
+   "module_short": "pandas.core.generic",
+   "name": "NDFrame"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "NDFrame"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "NDFrame"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core.arraylike",
+   "module_short": "pandas.core.arraylike",
+   "name": "OpsMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "OpsMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "OpsMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core.base",
+   "module_short": "pandas.core.base",
+   "name": "PandasObject"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "PandasObject"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "PandasObject"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core.indexing",
+   "module_short": "pandas.core.indexing",
+   "name": "IndexingMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "IndexingMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "IndexingMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core.accessor",
+   "module_short": "pandas.core.accessor",
+   "name": "DirNamesMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas.core",
+   "module_short": "pandas.core",
+   "name": "DirNamesMixin"
+  },
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DirNamesMixin"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "DataFrame"
+  }
+ ],
+ "pd.Grouper": [
+  {
+   "is_class": true,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "Grouper"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "Grouper"
+  }
+ ],
+ "pd.date_range": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "date_range"
+  }
+ ],
+ "pd.to_datetime": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "pandas",
+   "module_short": "pandas",
+   "name": "to_datetime"
+  }
+ ],
+ "peak_doy": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "float"
+  }
+ ],
+ "periodic": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "plt.rcParams": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "RcParams"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib",
+   "name": "rcParams"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "rng": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random._generator",
+   "module_short": "numpy.random",
+   "name": "Generator"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "Generator"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "Generator"
+  }
+ ],
+ "rng.normal": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random._generator",
+   "module_short": "numpy.random",
+   "name": "Generator.normal"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "Generator.normal"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "Generator.normal"
+  }
+ ],
+ "temp": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "temp.round": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ]
+}

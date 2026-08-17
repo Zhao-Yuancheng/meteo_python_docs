@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.102** total execution time for 1 file **from gallery\auto_examples\plot_viz**:
+**00:00.492** total execution time for 3 files **from gallery\auto_examples\plot_viz**:
 
 .. container::
 
@@ -32,6 +32,12 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_temperature_series.py` (``plot_temperature_series.py``)
+     - 00:00.350
+     - 0.0
+   * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_cartopy_temp.py` (``plot_cartopy_temp.py``)
+     - 00:00.141
+     - 0.0
    * - :ref:`sphx_glr_gallery_auto_examples_plot_viz_plot_contour.py` (``plot_contour.py``)
-     - 00:00.102
+     - 00:00.000
      - 0.0
