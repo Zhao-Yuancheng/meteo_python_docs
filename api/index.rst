@@ -43,8 +43,11 @@
    * - 第 8 章 · 气象数据分析（二）Xarray
      - DataArray、Dataset、维度、坐标、NetCDF、属性 attrs、重采样
      - ✅ 已上线
-   * - 第 7/9/10 章
-     - Pandas、Matplotlib、Cartopy 相关术语
+   * - 第 7 章 · 气象数据分析（一）Pandas
+     - DataFrame、Series、索引、布尔索引、分组聚合、透视表、NaN
+     - ✅ 已上线
+   * - 第 9/10 章
+     - Matplotlib、Cartopy 相关术语
      - ⏳ 陆续上线
 
 .. toctree::
@@ -57,6 +60,7 @@
    ch04_terms
    ch05_terms
    ch06_terms
+   ch07_terms
    ch08_terms
 
 使用提示

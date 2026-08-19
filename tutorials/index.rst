@@ -66,7 +66,47 @@
 
       5 道实战题：设计 Station 类、继承、装饰器、生成器
 
-模块二 · 气象数据处理、模块三 · 气象数据可视化的章节练习将随正文交付陆续上线。已完成：第 7 章 Pandas 练习见 :doc:`ch07_practice`。
+模块二 · 气象数据处理
+
+.. grid:: 2 2 3 4
+   :gutter: 2
+
+   .. grid-item-card:: 第 6 章 · 气象数据计算 NumPy
+      :img-top: /_static/gallery/numpy.svg
+      :img-alt: 第 6 章练习示意
+      :link: /tutorials/ch06_practice
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      5 道实战题：气温矩阵、axis 参数、广播运算、布尔筛选、标准化
+
+   .. grid-item-card:: 第 7 章 · 气象数据分析（一）Pandas
+      :img-top: /_static/gallery/pandas.svg
+      :img-alt: 第 7 章练习示意
+      :link: /tutorials/ch07_practice
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      5 道实战题：读取 CSV、筛选高温日、按月分组、排序、导出
+
+   .. grid-item-card:: 第 8 章 · 气象数据分析（二）Xarray
+      :img-top: /_static/gallery/xarray.svg
+      :img-alt: 第 8 章练习示意
+      :link: /tutorials/ch08_practice
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      4 道实战题：DataArray 创建、区域平均、sel/isel、时间重采样
+
+模块三 · 气象数据可视化
+
+待上线：第 9 章 Matplotlib、第 10 章 Cartopy 的配套练习将随正文章节交付先后补全。
 
 .. toctree::
    :hidden:
@@ -76,4 +116,6 @@
    ch03_practice
    ch04_practice
    ch05_practice
+   ch06_practice
    ch07_practice
+   ch08_practice
