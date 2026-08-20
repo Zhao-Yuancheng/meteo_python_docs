@@ -29,7 +29,7 @@
 完整走一遍 Cartopy 的标准流程：
 
 1. 指定画布投影（GeoAxes）——决定“纸往哪张地图坐标架上铺”；
-2. ``contourf`` 绘制气温填色场，**必须**绑定 ``transform``；
+2. ``contourf`` 绘制气温填色场，**必须**\绑定 ``transform``；
 3. 叠加地理要素（海岸线、国界、河流），图层顺序由底到顶；
 4. ``set_extent`` 裁剪西北区域；
 5. 添加 ``colorbar``、标题，并标注兰州站点散点。
@@ -152,7 +152,7 @@
     D:\Code\miniforge3\envs\P312\Lib\site-packages\cartopy\mpl\feature_artist.py:143: UserWarning: facecolor will have no effect as it has been defined as "never".
       warnings.warn('facecolor will have no effect as it has been '
 
-    <cartopy.mpl.feature_artist.FeatureArtist object at 0x0000022A66D29DC0>
+    <cartopy.mpl.feature_artist.FeatureArtist object at 0x0000020ECD91D310>
 
 
 
@@ -233,7 +233,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.116 seconds)
+   **Total running time of the script:** (0 minutes 0.212 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_viz_plot_cartopy_temp.py:

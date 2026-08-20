@@ -1,0 +1,1507 @@
+函数、变量作用域、模块与包 Q&A
+====================================
+
+   章节定位：第 4 章（模块一）· 对应用户指南
+   ``user_guide/basics/functions.rst`` 通用排错方法论见
+   :doc:`00-通用排错指南 </qa/basics/00-通用排错指南>`\ 。本文全部报错均在本机
+   Python 环境实测、Traceback 原文照录。
+
+**本文档的阅读法**\ ：第 4 章是「函数 → 作用域 →
+模块/包」层层套壳的过程，报错也分三层——**函数内算错（参数/返回值）**\ 、\ **作用域拿错（NameError
+/ UnboundLocalError）**\ 、\ **模块引用错（ModuleNotFoundError /
+循环导入）**\ 。看到报错先判断落在哪一层，再对号入座。
+
+--------------
+
+.. _40-本章报错总览表:
+
+4.0 本章报错总览表
+------------------
+
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| #  | 报错英文关键词（见到它想什么）                                            | 常见位置                                          | 对应的 4.x    | 一句话                       |
+|    |                                                                           |                                                   | 条目          |                              |
++====+===========================================================================+===================================================+===============+==============================+
+| 1  | ``NameError: name 'xxx' is not defined``                                  | 变量/函数名拼错、用全局名当局部、调用在前定义在后 | 4.1.1、4.1.2  | 名字不存在或拼错             |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 2  | ``UnboundLocalError: cannot access local variable ...``                   | 函数内给全局同名变量赋值却未声明                  | 4.2.1、4.2.2  | 作用域隔离，函数里“先读后写” |
+|    |                                                                           | ``global``\ （先读后写）                          |               |                              |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 3  | ``SyntaxError: 'return' outside function``                                | ``return`` 缩进跑出函数体                         | 4.2.3         | return 放错层级              |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 4  | ``SyntaxError: no binding for nonlocal 'x' found``                        | 外层函数没有该局部变量就写 ``nonlocal``           | 4.2.4         | nonlocal 指错层              |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 5  | ``TypeError: ... missing 1 required positional argument``                 | 少传参数 / 参数个数不匹配                         | 4.1.3、4.1.9  | 实参个数或名不对             |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 6  | ``TypeError: ... takes 2 positional arguments but 3 were given``          | 多传了位置参数                                    | 4.1.4         | 传多了                       |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 7  | ``TypeError: ... got an unexpected keyword argument 'lon'``               | 关键字参数名写错                                  | 4.1.5         | 形参名拼错                   |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 8  | ``TypeError: ... got multiple values for argument 'x'``                   | 同一个参数既给位置又给关键字                      | 4.1.6         | 一个参数喂两次               |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 9  | ``SyntaxError: positional argument follows keyword argument``             | 关键字参数写在位置参数前面                        | 4.1.7         | 传参顺序语法错误             |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 10 | ``SyntaxError: parameter without a default follows ...``                  | 无默认值的参数排在默认参数后面                    | 4.1.8         | 参数默认值顺序               |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 11 | （无报错，结果诡异）可变默认参数被污染                                    | ``def f(x, lst=[])`` 默认列表被共享               | 4.1.10        | 默认值被“记住”               |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 12 | ``TypeError: ... 'NoneType' ...`` / ``print(f()) → None``                 | 函数忘 ``return``                                 | 4.1.11        | 忘返回值                     |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 13 | ``TypeError: 'float' object is not callable``                             | ``c_to_f = c_to_f(25)`` 多写了括号                | 4.1.12        | 函数对象被调用               |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 14 | ``ValueError: not enough values to unpack``                               | 返回值个数 ≠ 接收变量个数                         | 4.1.13        | 解包个数对不上               |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 15 | ``RecursionError: maximum recursion depth exceeded``                      | 递归缺出口 / 出口永远到不了                       | 4.3.1         | 递归停不住                   |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 16 | （无报错）\ ``lambda`` 延迟绑定：全取到循环末值                           | 循环/推导式里造 lambda                            | 4.3.2         | late binding                 |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 17 | ``SyntaxError: invalid syntax``\ （lambda 里名写 return）                 | lambda 写多语句/``return``                        | 4.3.3、4.3.4  | lambda 只能单表达式          |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 18 | ``ModuleNotFoundError: No module named 'xxx'``                            | 包/库没装、名字拼错、不在搜索路径                 | 4.4.1、4.4.7  | 找不到模块                   |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 19 | ``NameError``\ （写了 ``import numpy`` 却没 ``as np``\ ，用 ``np.``\ ）   | import 与调用别名不一致                           | 4.4.2         | 名字对不上                   |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 20 | ``AttributeError: module 'math' has no attribute 'squt'``                 | 库函数名拼错                                      | 4.4.3         | 方法名拼错                   |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 21 | （无报错）import 时打印了一堆不该打印的东西                               | 模块顶层裸写可执行语句、缺 ``__main__`` 守卫      | 4.4.4         | 导入副作用                   |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 22 | ``ImportError: cannot import name 'x' from partially initialized module`` | 两个模块互相 import                               | 4.4.5         | 循环导入                     |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+| 23 | ``NameError``\ （\ ``from ... import *`` 引不到下划线名/没在              | 被 ``*`` 导入规则拦下                             | 4.4.6         | 星号导入的“围栏”             |
+|    | ``__all__``\ ）                                                           |                                                   |               |                              |
++----+---------------------------------------------------------------------------+---------------------------------------------------+---------------+------------------------------+
+
+..
+
+   提示：别把 ``NameError`` 和 ``UnboundLocalError``
+   记混。\ **``NameError``
+   是“这个名字从头到尾没定义”**\ （全局层面查无此人）；\ **``UnboundLocalError``
+   是“这个名字原本外部有，但你在函数里一赋值，它就被判成局部、还没赋值就先用”**\ 。前者像没这个站点，后者像“雷达图上这一格明明有回波，却被你新造了一个同名空格盖住了”。
+
+--------------
+
+.. _41-函数定义与调用参数返回值:
+
+4.1 函数定义与调用（参数、返回值）
+----------------------------------
+
+.. _411-nameerror-name-tempf-is-not-defined变量名拼错--忘定义:
+
+4.1.1 ``NameError: name 'tempf' is not defined``\ （变量名拼错 / 忘定义）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实报错信息**\ （\ ``_sim/ch04/t01_nameerror_misspell.py``\ ）：
+
+.. code:: python
+
+   temp_c = 25
+   temp_f = temp_c * 9 / 5 + 32
+   print(temp_f)
+   print(tempf)          # 想打 temp_f，却拼成了 tempf
+
+.. code:: text
+
+   77.0
+   Traceback (most recent call last):
+     File "...\sim\ch04\t01_nameerror_misspell.py", line 5, in <module>
+       print(tempf)
+             ^^^^^
+   NameError: name 'tempf' is not defined. Did you mean: 'temp_f'?
+
+**原因**\ ：变量名是“先定义、后用”。\ ``tempf``
+从头到尾没被赋值过，Python 在所有命名空间里都找不到它。常见三类：①
+拼写/大小写不一致；②
+函数里想用外面定义的全局大写变量名，却没写进调用、也没正确引用；③
+定义了但 ``print`` 摆在 ``def``/赋值之前。
+
+**解决办法**\ ：让“写法”和“定义”完全一致——要么把它改成已定义的
+``temp_f``\ ，要么先去定义它。
+
+.. code:: python
+
+   temp_c = 25
+   temp_f = temp_c * 9 / 5 + 32
+   print(temp_f)   # 修正拼写：tempf -> temp_f
+
+..
+
+   **气象场景一句话**\ ：就像气象报文里把 ``temp(气温)`` 手滑写成
+   ``tmp``\ ，报文解析器翻遍表头都找不到这一列，直接拒收整份报文——报错远比“静默假装收到”好，因为它能立刻抓住笔误。
+
+.. _412-nameerror-name-celsius_to_fahrenheit-is-not-defined调用写在定义之前:
+
+4.1.2 ``NameError: name 'celsius_to_fahrenheit' is not defined``\ （调用写在定义之前）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实报错信息**\ （\ ``_sim/ch04/t02_nameerror_call_before_def.py``\ ）：
+
+.. code:: python
+
+   print(celsius_to_fahrenheit(25))   # 定义还没执行就调用
+
+   def celsius_to_fahrenheit(c):
+       return c * 9 / 5 + 32
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t02_nameerror_call_before_def.py", line 2, in <module>
+       print(celsius_to_fahrenheit(25))
+             ^^^^^^^^^^^^^^^^^^^^^
+   NameError: name 'celsius_to_fahrenheit' is not defined
+
+**原因**\ ：Python 自上而下逐行执行。执行到第 2
+行时，\ ``def celsius_to_fahrenheit`` 还没被执行到（它在第 4
+行）。函数名在 ``def`` 语句执行那一刻才绑定。这与第 4 章正文 4.1
+强调的一致：“调用必须写在定义\ **之后**”。
+
+**解决办法**\ ：把调用挪到 ``def``
+之后；或把主流程收进一个函数，在文件底部用
+``if __name__ == "__main__":`` 里调（见 4.4 高频速查表）。
+
+.. code:: python
+
+   def celsius_to_fahrenheit(c):
+       return c * 9 / 5 + 32
+
+   print(celsius_to_fahrenheit(25))   # 定义在前，调用在后
+
+..
+
+   **气象场景一句话**\ ：相当于在还没有建立“兰州站观测记录”这张表之前就先去查表——你让预报员“直接取
+   25 时次的风速”，可那列数据此刻还不存在，当然查无此名。
+
+.. _413-typeerror--missing-1-required-positional-argument-lat少传参数:
+
+4.1.3 ``TypeError: ... missing 1 required positional argument: 'lat'``\ （少传参数）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t08_missing_arg.py``\ ）：
+
+.. code:: python
+
+   def describe_station(name, lon, lat):
+       return f"{name} at {lon}E, {lat}N"
+
+   describe_station("兰州站", 103.82)   # 少传了 lat
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t08_missing_arg.py", line 5, in <module>
+       describe_station("兰州站", 103.82)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   TypeError: describe_station() missing 1 required positional argument: 'lat'
+
+**原因**\ ：函数定义了 3 个\ **无默认值**\ 的形参，调用只给了 2
+个。\ ``lat`` 没有默认值兜底，属于必填项，没给就报 ``TypeError``\ 。
+
+**解决办法**\ ：补足实参；或给该形参设默认值让它变成可选（注意无默认值的参要写在有默认值的前面，见
+4.1.8）。
+
+.. code:: python
+
+   def describe_station(name, lon, lat):
+       return f"{name} at {lon}E, {lat}N"
+
+   describe_station("兰州站", 103.82, 36.06)   # 补齐 lat
+
+..
+
+   **气象场景一句话**\ ：站点描述函数要求“站名 + 经度 +
+   纬度”，你只给了“站名 +
+   经度”，就像发“兰州站”却没给坐标——少了一个必填字段，校验直接打回；比“把纬度漏填成缺测值
+   9999”更好排查，因为前者会响，后者会静默。
+
+.. _414-typeerror-calc_gradient-takes-2-positional-arguments-but-3-were-given多传参数:
+
+4.1.4 ``TypeError: calc_gradient() takes 2 positional arguments but 3 were given``\ （多传参数）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t09_too_many_args.py``\ ）：
+
+.. code:: python
+
+   def calc_gradient(t1, t2):
+       return (t2 - t1) / 100
+
+   calc_gradient(20, 22, 25)   # 多了第三个实参
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t09_too_many_args.py", line 5, in <module>
+       calc_gradient(20, 22, 25)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+   TypeError: calc_gradient() takes 2 positional arguments but 3 were given
+
+**原因**\ ：函数只收 2 个位置形参，调用却给了 3
+个位置实参，多出来的没地方放。
+
+**解决办法**\ ：删掉多余实参；如果确实要支持任意个参数，改用
+``*args``\ （见正文 4.2 的 ``log_daily_temps``\ ）。
+
+.. code:: python
+
+   def calc_gradient(t1, t2):
+       return (t2 - t1) / 100
+
+   calc_gradient(20, 22)   # 两个就够
+
+..
+
+   **气象场景一句话**\ ：两点温度算温度梯度只需要两个端点的气温，你却硬塞进第三个值，编译器立刻指出“多了一个数”，就像给三点温度的探空算两点梯度——格式对不上。
+
+.. _415-typeerror--got-an-unexpected-keyword-argument-longitude关键字名写错:
+
+4.1.5 ``TypeError: ... got an unexpected keyword argument 'longitude'``\ （关键字名写错）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t10_unexpected_kwarg.py``\ ）：
+
+.. code:: python
+
+   def describe_station(name, lon, lat):
+       return f"{name} at {lon}E, {lat}N"
+
+   describe_station(name="兰州站", longitude=103.82, latitude=36.06)   # 形参名写错
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t10_unexpected_kwarg.py", line 5, in <module>
+       describe_station(name="兰州站", longitude=103.82, latitude=36.06)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   TypeError: describe_station() got an unexpected keyword argument 'longitude'
+
+**原因**\ ：关键字参数按\ **形参名字**\ 匹配。函数里定义的是 ``lon`` /
+``lat``\ ，调用却写成了 ``longitude`` /
+``latitude``——这个名字函数里根本没有，多出来的关键字没人认领。
+
+**解决办法**\ ：关键字名必须与形参名一字不差（正文 4.2
+专门提醒：写错形参名会立刻 ``TypeError``\ ，反而比经纬度对调好查）。
+
+.. code:: python
+
+   describe_station(name="兰州站", lon=103.82, lat=36.06)   # lon/lat 与定义一致
+
+..
+
+   **气象场景一句话**\ ：报文里字段叫 ``lon``\ ，你却用英文全名
+   ``longitude``
+   去填，站点表里找不到这一列，直接报“意料之外的关键字”——比“把 103
+   当纬度填进去悄悄错位”更容易被抓住。
+
+.. _416-typeerror--got-multiple-values-for-argument-s同一参数喂两次:
+
+4.1.6 ``TypeError: ... got multiple values for argument 's'``\ （同一参数喂两次）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t11_multiple_values.py``\ ）：
+
+.. code:: python
+
+   def calc_average(s):
+       return sum(s) / len(s)
+
+   calc_average([1, 2, 3], s=[1, 2, 3])   # s 既给了位置参数又给了关键字参数
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t11_multiple_values.py", line 5, in <module>
+       calc_average([1, 2, 3], s=[1, 2, 3])
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   TypeError: calc_average() got multiple values for argument 's'
+
+**原因**\ ：同一个形参 ``s`` 被两个身份同时塞值——第一个位置实参
+``[1,2,3]`` 按顺序绑给了 ``s``\ ，后面关键字 ``s=[1,2,3]`` 又想再绑一次
+``s``\ 。一个参数只能接一份数据，自相矛盾。
+
+**解决办法**\ ：一个参数只给一次——要么都用位置，要么都用关键字，混用时就别再重复同一个形参。
+
+.. code:: python
+
+   calc_average([1, 2, 3])                 # 位置参数即可
+   calc_average(s=[1, 2, 3])               # 或关键字
+   # calc_average([1,2,3], s=[1,2,3])      # 杜绝：同一参数给了两份
+
+..
+
+   **气象场景一句话**\ ：一份探空记录只能有一个 ``temperature``
+   值，你却既把它当位置参数又用关键字再写一遍——上报系统不知道该信哪份，直接判为冲突数据。
+
+.. _417-syntaxerror-positional-argument-follows-keyword-argument先关键字后位置:
+
+4.1.7 ``SyntaxError: positional argument follows keyword argument``\ （先关键字后位置）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t12_pos_after_kw.py``\ ）：
+
+.. code:: python
+
+   def day_stats(tmin, tmax, tavg):
+       return f"{tmin}~{tmax}，均温 {tavg}"
+
+   day_stats(tmin=-2, 12, 5)   # 关键字 tmin= 在前，位置参数 12,5 在后
+
+.. code:: text
+
+     File "...\sim\ch04\t12_pos_after_kw.py", line 5
+       day_stats(tmin=-2, 12, 5)
+                               ^
+   SyntaxError: positional argument follows keyword argument
+
+**原因**\ ：位置参数必须整体排在关键字参数\ **之前**\ 。你让位置参数
+``12, 5`` 跟在关键字 ``tmin=-2`` 后面，Python 已经无法知道 ``12``
+到底是该给 ``tmin`` 还是 ``tmax``\ ，直接语法拒绝。正文 4.2
+明确写了这个错误示范。
+
+**解决办法**\ ：把位置参数全部挪到前面，关键字放后面（可乱序）。
+
+.. code:: python
+
+   day_stats(-2, 12, tavg=5)     # 位置参数在前，关键字参数可乱序
+   day_stats(tmin=-2, tmax=12, tavg=5)   # 全关键字也可以，顺序无所谓
+
+..
+
+   **气象场景一句话**\ ：填气温记录你草稿先写了“\ ``tmin=早晚``\ ”再随手补两个数，填表程序根本没法判断后两个数属于哪两列，当场格式报错——规范永远是“先按列填，再指名道姓”。
+
+.. _418-syntaxerror-parameter-without-a-default-follows-parameter-with-a-default默认参数顺序:
+
+4.1.8 ``SyntaxError: parameter without a default follows parameter with a default``\ （默认参数顺序）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t12b_default_order.py``\ ）：
+
+.. code:: python
+
+   def f(decimal=1, celsius):   # 没有默认值的 celsius 却排在带默认值的后面
+       return round(celsius, decimal)
+
+.. code:: text
+
+     File "...\sim\ch04\t12b_default_order.py", line 2
+       def f(decimal=1, celsius):
+                        ^^^^^^^
+   SyntaxError: parameter without a default follows parameter with a default
+
+**原因**\ ：带默认值的参数必须排在末尾。\ ``decimal=1``
+有了默认值，后面再跟没有默认值的
+``celsius``\ ，调用时会无法区分“到底哪些参数必须传”。正文 4.2
+明确：\ ``def f(decimal=1, celsius):`` 会直接语法错误，不是运行才报。
+
+**解决办法**\ ：把无默认值的形参全部放到有默认值的前面。可选的（有默认值）的参数只能放最后。
+
+.. code:: python
+
+   def f(celsius, decimal=1):   # 无默认值的 celsius 在前，默认的 decimal 在后
+       return round(celsius, decimal)
+
+..
+
+   **气象场景一句话**\ ：必填项（气温值
+   ``celsius``\ ）必须排在可选项（小数位
+   ``decimal``\ ）之前，就像表格里“数据列”永远在“格式设置列”前面——把必填空项藏到可选项后面，填表人会抓狂。
+
+.. _419-typeerror--missing-1-required-positional-argument参数解包个数对不上:
+
+4.1.9 ``TypeError: ... missing 1 required positional argument``\ （参数解包个数对不上）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t16_unpack_wrong.py``\ ）：
+
+.. code:: python
+
+   def describe_station(name, lon, lat):
+       return f"{name} at {lon}E, {lat}N"
+
+   info = ["兰州站", 103.82]       # 列表里只有 2 个元素
+   print(describe_station(*info))  # * 拆包要给 3 个位置参数
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t16_unpack_wrong.py", line 6, in <module>
+       print(describe_station(*info))
+             ^^^^^^^^^^^^^^^^^^^^^^^
+   TypeError: describe_station() missing 1 required positional argument: 'lat'
+
+**原因**\ ：\ ``*info`` 会把列表摊成一个个位置实参。这里列表只有 2
+个元素，摊出来的实参只有 2 个，还差 ``lat``\ 。正文 4.2
+提醒：列表元素个数对不上，或字典里多了/少了/写错了键，都会
+``TypeError``\ 。
+
+**解决办法**\ ：解包前先核对 ``len(info)`` 与形参个数、\ ``info_dict``
+的键名与形参名。
+
+.. code:: python
+
+   info = ["兰州站", 103.82, 36.06]          # 3 个元素配 3 个形参
+   print(describe_station(*info))
+
+   info_dict = {"name": "兰州站", "lon": 103.82, "lat": 36.06}
+   print(describe_station(**info_dict))      # 键名必须与形参名一致
+
+..
+
+   **气象场景一句话**\ ：一张清单写着站点坐标，\ ``*``
+   拆开却发现少了一列——就像分发 3 个字段的报文，第 3
+   列（纬度）在打包前就丢了，接收端点名要它。
+
+.. _4110-可变默认参数被记住无报错结果诡异def-add_temptemp-temps_list:
+
+4.1.10 可变默认参数被“记住”（无报错、结果诡异）：\ ``def add_temp(temp, temps_list=[])``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实运行输出**\ （\ ``_sim/ch04/t13_mutable_default.py``\ ）：
+
+.. code:: python
+
+   def add_temp(temp, temps_list=[]):   # 错误示范：用可变 list 当默认值
+       temps_list.append(temp)
+       return temps_list
+
+   print(add_temp(25))
+   print(add_temp(30))
+   print(id(add_temp(10)) == id(add_temp.__defaults__[0]))
+
+.. code:: text
+
+   [25]
+   [25, 30]
+   True
+
+**原因**\ ：默认参数的值只在 **``def`` 定义那一刻算一次**\ 。\ ``[]``
+这个列表只创建一次，被所有不传 ``temps_list``
+的调用\ **共享**\ 。第一次调用 ``append(25)`` 就往这个共享列表塞了
+``25``\ ，第二次 ``add_temp(30)`` 看到的还是同一个列表，于是
+``[25, 30]``——上次的结果被“记住”了。没有报错，但结果完全不符合预期，最难查（正文
+4.2 点名此坑）。
+
+**解决办法**\ ：用 ``None`` 占位，在函数体内再新建列表（正文 4.2
+的推荐写法）。
+
+.. code:: python
+
+   def add_temp(temp, temps_list=None):
+       if temps_list is None:
+           temps_list = []
+       temps_list.append(temp)
+       return temps_list
+
+   print(add_temp(25))   # [25]
+   print(add_temp(30))   # [30]，每次都是干净的新列表
+
+..
+
+   **气象场景一句话**\ ：每次要给“当天气温”开一张新的记录表，结果表头是同一个文件夹里复用的一张旧表——今天填
+   ``25``\ 、明天填 ``30``\ ，打开一看昨天那行 ``25``
+   还在，越积越满，而程序全程绿灯。默认参数别用这种“会被内部改造”的共享对象。
+
+.. _4111-忘-return返回-none无报错但结果错-typeerror:
+
+4.1.11 忘 ``return``\ ：返回 ``None``\ （无报错但结果错）+ ``TypeError``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实运行输出**\ （\ ``_sim/ch04/t06_forgot_return.py``\ ）：
+
+.. code:: python
+
+   def k_to_c(k):
+       result = k - 273.15    # 忘了 return result
+
+   print(k_to_c(300))         # 打出 None
+   print(k_to_c(300) * 2)     # 拿 None 去做算术
+
+.. code:: text
+
+   None
+   Traceback (most recent call last):
+     File "...\sim\ch04\t06_forgot_return.py", line 6, in <module>
+       print(k_to_c(300) * 2)
+             ~~~~~~~~~~~~^~~
+   TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+
+**原因**\ ：函数没写 ``return``\ ，或写了 ``return`` 却没带值，都会返回
+``None``\ （\ ``_sim/ch04/t06b_return_no_value.py`` 里
+``print(repr(classify(28)))`` 输出 ``'None'``\ ）。\ ``None``
+表示“没有可用的结果”。第一个 ``print`` 打出
+``None``\ （可能你还没反应过来），一旦拿返回值继续运算，就
+``TypeError: 'NoneType' ...``\ 。正文 4.3 明确：“该 return 的地方写了
+print”，屏幕有输出，但调用处拿到的是 ``None``\ 。
+
+**解决办法**\ ：确认每个分支都真的用 ``return`` 把值交出去；\ ``return``
+一执行函数立刻结束，写在它后面的代码永远不会跑。
+
+.. code:: python
+
+   def k_to_c(k):
+       return k - 273.15     # 关键：return result
+
+   print(k_to_c(300))        # 26.850000000000023
+   print(k_to_c(300) * 2)    # 53.700000000000045
+
+..
+
+   **气象场景一句话**\ ：一个“返回开尔文转摄氏”的函数干完了活却忘了把结果交出来，下游求平均时拿到的是一叠“无值”记录，\ ``TypeError``
+   立刻炸；而更阴险的是直接打印它只看到
+   ``None``——务必让每个以“出数”为目的的函数都有 ``return``\ 。
+
+.. _4112-typeerror-float-object-is-not-callable多写了括号--少写了括号:
+
+4.1.12 ``TypeError: 'float' object is not callable``\ （多写了括号 / 少写了括号）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t17_callable_gotcha.py``\ ）：
+
+.. code:: python
+
+   def c_to_f(c):
+       return c * 9 / 5 + 32
+
+   f1 = c_to_f          # 把函数对象交给 f1（正确）
+   print(f1(25))        # 77.0
+
+   f2 = c_to_f(25)      # 先调用，结果是数字 77.0，不是函数
+   print(f2)            # 77.0
+   print(f2(30))        # 把数字当函数去调用
+
+.. code:: text
+
+   77.0
+   77.0
+   Traceback (most recent call last):
+     File "...\sim\ch04\t17_callable_gotcha.py", line 13, in <module>
+       print(f2(30))
+             ^^^^^^
+   TypeError: 'float' object is not callable
+
+**原因**\ ：\ ``c_to_f = celsius_to_fahrenheit``
+是把\ **函数对象本身**\ 交给变量；\ ``c_to_f = celsius_to_fahrenheit()``
+是\ **先调用再赋值**\ ，右边变成返回的数字/``None``\ 。于是第二次赋值里
+``f2`` 只是个 ``float``\ ，\ ``f2(30)`` 想“调用一个数字”，报
+``'float' object is not callable``\ （正文 4.7
+专门提了这对括号的坑）。\ ``make_checker`` 那个例子同理：返回的是
+``checker`` 这个函数，不是 ``checker(...)`` 的结果。
+
+**解决办法**\ ：赋值时留意括号。要“持有一个函数后反复调用”，就去掉调用括号；要“马上就调用一次”，才保留括号。
+
+.. code:: python
+
+   f2 = c_to_f              # 持有函数对象（不要括号），之后
+   print(f2(25))            # 每次都能调用它
+
+..
+
+   **气象场景一句话**\ ：把“气温换算工具”发给同事，结果递的不是“这个工具（能反复用）”，而是算好的一次性答案
+   ``77.0``——再让这份答案去“换算另一批数据”自然没门。函数对象与函数结果，一个带括号一个不带，别混。
+
+.. _4113-valueerror-not-enough-values-to-unpack返回值个数对不上:
+
+4.1.13 ``ValueError: not enough values to unpack``\ （返回值个数对不上）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t26_unpack_return.py``\ ）：
+
+.. code:: python
+
+   def calc_stats(temps):
+       return min(temps), max(temps), sum(temps) / len(temps)   # 返回 3 个值
+
+   t_min, t_max, t_avg, extra = calc_stats([-2, 5, 12, 20, 28])   # 左边 4 个变量
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t26_unpack_return.py", line 5, in <module>
+       t_min, t_max, t_avg, extra = calc_stats([-2, 5, 12, 20, 28])
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ValueError: not enough values to unpack (expected 4, got 3)
+
+**原因**\ ：函数一次返回多个值时，Python
+实际返回一个\ **元组**\ ，左边用同等数量的变量接住。这里返回 3
+个（min/max/avg），左边却写了 4 个变量。正文 4.3
+明确：“返回了三个值，左边只写两个变量，就会炸”（这里是写多了一个，反向版本）。
+
+**解决办法**\ ：让左边变量个数与返回值数目一致；多余部分用通配符 ``*``
+收起。
+
+.. code:: python
+
+   t_min, t_max, t_avg = calc_stats([-2, 5, 12, 20, 28])     # 3 个接 3 个
+   t_min, *rest, t_avg = calc_stats([-2, 5, 12, 20, 28])     # 中间用 * 收起，随意个数也行
+
+..
+
+   **气象场景一句话**\ ：一个函数吐出一份统计三件套（最低温/最高温/均温），你却在收件端写了四个口袋去接——第三个装满后第四个空手而归，打包程序当场报“个数不齐”。
+
+--------------
+
+.. _42-变量作用域全局--局部--nonlocal:
+
+4.2 变量作用域（全局 / 局部 / nonlocal）
+----------------------------------------
+
+.. _421-unboundlocalerror-cannot-access-local-variable-station-经典先读后写:
+
+4.2.1 ``UnboundLocalError: cannot access local variable 'station' ...``\ （经典“先读后写”）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实报错信息**\ （\ ``_sim/ch04/t03_unboundlocal_read_before_write.py``\ ）。注意
+Traceback 出现了你\ **自己的函数名
+``show()``**——这是判断“错误发生在你自己的函数内部”的第一线索：
+
+.. code:: python
+
+   station = "兰州站"
+
+   def show():
+       print(station)     # 先读
+       station = "西宁站"  # 后写
+
+   show()
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t03_unboundlocal_read_before_write.py", line 8, in <module>
+       show()
+     File "...\sim\ch04\t03_unboundlocal_read_before_write.py", line 5, in show
+       print(station)
+             ^^^^^^^
+   UnboundLocalError: cannot access local variable 'station' where it is not associated with a value
+
+**现象对比**\ ：如果函数里\ **没有任何** ``station = ...``
+赋值，\ ``print(station)`` 读到的就是外面那个
+``"兰州站"``\ （能正常打印）；可一旦函数\ **某处**\ 给 ``station``
+赋了值，整函数都会把 ``station``
+判为\ **局部变量**——连赋值前面的读取也被当成“读一个还没赋值的局部变量”。这就是本章经典“先读后写”问题。正文
+4.4 明确解释了这个机制。
+
+**原因**\ ：Python
+的判定规则是“看整函数”而非“看某一行”：只要函数体内出现了对某名字的赋值，这个名字从函数第一行起就是局部变量，与外部全局同名变量彻底隔离。赋值发生在
+``print`` 之后，于是先读了一个“尚未与任何值关联”的局部变量。
+
+**解决办法**\ ：要么别在函数里给这个全局名赋值（直接用 ``global``
+声明），要么把名字换掉/作为参数传入。
+
+.. code:: python
+
+   station = "兰州站"
+
+   def show():
+       global station     # 声明：我要改的是外面那个全局 station
+       station = "西宁站"
+
+   show()
+   print(station)         # 西宁站
+
+或者不依赖全局、用参数返回，更干净：
+
+.. code:: python
+
+   def show(st):
+       return st + "（已更新）"
+
+   station = "兰州站"
+   station = show(station)   # 数据从参数进、从返回值出
+
+..
+
+   **气象场景一句话**\ ：今天是兰州站，你想把站点更新成西宁站，却在改名之前就先打印了——雷达显示屏上“这一格还没关联任何站点值”就非要读出名字，自然报“引用了一个尚未绑定值的局部变量”。这就是作用域隔离的地雷：\ **只要函数里要改全局名，就提前
+   ``global`` 声明**\ 。
+
+.. _422-unboundlocalerrorcount--1-想改全局却不写-global:
+
+4.2.2 ``UnboundLocalError``\ （\ ``count += 1`` 想改全局却不写 ``global``\ ）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实报错信息**\ （\ ``_sim/ch04/t04_unboundlocal_global_plus.py``\ ）：
+
+.. code:: python
+
+   count = 0
+
+   def count_record():
+       count += 1      # 没写 global count
+
+   count_record()
+   print(count)
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t04_unboundlocal_global_plus.py", line 7, in <module>
+       count_record()
+     File "...\sim\ch04\t04_unboundlocal_global_plus.py", line 5, in count_record
+       count += 1
+       ^^^^^
+   UnboundLocalError: cannot access local variable 'count' where it is not associated with a value
+
+**原因**\ ：\ ``count += 1`` 等价于 ``count = count + 1``\ ，右侧要先读
+``count`` 再加。因为没有 ``global``\ ，\ ``count``
+被当成局部变量，右侧读的时候还没给它赋过值 → 报错。正文 4.4
+专门对比了两种容易混的情况：不加 ``global`` 写 ``count += 1`` 会
+``UnboundLocalError``\ ；不加 ``global`` 写
+``count = 1``\ （改成别的数）\ **不会报错**\ ，但改的是局部副本，外面那个
+``count`` 仍是 ``0``——两者都是“没真正改到全局”，前者响、后者闷。
+
+**解决办法**\ ：想累计/刷新全局计数，函数里先写
+``global count``\ ；更推荐把计数设计为“传参进来、返回新值”。
+
+.. code:: python
+
+   count = 0
+
+   def count_record():
+       global count     # 关键
+       count += 1
+
+   count_record()
+   print(count)         # 1
+
+..
+
+   **气象场景一句话**\ ：你在全国站点循环里想对“极值日计数”不断
+   +1，结果没有声明它属于全局，Python
+   把它当成了函数私有的一次性变量，先读未赋值就炸。气象统计要牢记：\ **要动全局计数器，先
+   ``global``**\ 。
+
+.. _423-syntaxerror-return-outside-functionreturn-跑出函数体:
+
+4.2.3 ``SyntaxError: 'return' outside function``\ （return 跑出函数体）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t05_return_outside.py``\ ）：
+
+.. code:: python
+
+   def f(x):
+       return x * 2
+
+   return 42    # return 写在了函数外面
+
+.. code:: text
+
+     File "...\sim\ch04\t05_return_outside.py", line 5
+       return 42
+       ^^^^^^^^^
+   SyntaxError: 'return' outside function
+
+**原因**\ ：\ ``return`` 只能出现在函数体（\ ``def``
+内部）里。这段代码里第 5 行的 ``return`` 已经缩进到模块顶层（和 ``def``
+平级），属于“函数外
+return”，是\ **语法错误**\ （文件一开始解析就被拒，连运行都不会到）。
+
+**解决办法**\ ：检查缩进——要么把这段逻辑放回函数里并且正确缩进，要么删掉多余的
+``return``\ （顶层直接写表达式即可）。
+
+.. code:: python
+
+   def f(x):
+       return x * 2
+
+   print(f(21))   # 42，模块顶层用 print 而非 return
+
+..
+
+   **气象场景一句话**\ ：\ ``return``
+   就像“缴报表的口子”——只有函数这座气象观测站才设这个出口；你把出口建在了站外，整个解释器直接判定语法不合法，整份文件拒收。
+
+.. _424-syntaxerror-no-binding-for-nonlocal-x-foundnonlocal-指错层:
+
+4.2.4 ``SyntaxError: no binding for nonlocal 'x' found``\ （nonlocal 指错层）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t25_nonlocal_error.py``\ ）：
+
+.. code:: python
+
+   def outer():
+       # 外层函数没有定义 x
+       def inner():
+           nonlocal x      # 想改外层的 x，但外层的 x 全局没有局部定义
+           x = 1
+       inner()
+
+   outer()
+
+.. code:: text
+
+     File "...\sim\ch04\t25_nonlocal_error.py", line 5
+       nonlocal x
+       ^^^^^^^^^^
+   SyntaxError: no binding for nonlocal 'x' found
+
+**原因**\ ：\ ``nonlocal``
+声明“我要修改\ **外层函数里**\ 的那个同名局部变量”。可 ``outer()``
+里根本没有定义局部 ``x``\ （\ ``x`` 不是 ``outer`` 的局部变量），Python
+找不到可绑定的外层局部名，报 ``SyntaxError``\ 。正文 4.4
+提醒：“``global`` 改模块顶层的名字，\ ``nonlocal``
+改外层函数里的名字。对象搞反了会
+``SyntaxError``”。区别在于：\ ``global`` 找模块顶层；\ ``nonlocal``
+找\ **当前的 enclosing 局部**\ ，跳过全局层。
+
+**解决办法**\ ：确认外层函数里真的有那个同名局部变量；若只想改全局，用
+``global``\ 。
+
+.. code:: python
+
+   def outer():
+       x = 0                     # 外层函数先真正定义局部 x
+       def inner():
+           nonlocal x
+           x = 1
+       inner()
+       return x
+
+   print(outer())                # 1
+
+..
+
+   **气象场景一句话**\ ：\ ``nonlocal``
+   只认“套着你的那层函数”里的变量。就好比内层探空报文想改写“外层包那层”的某个量，得先确认外层真有这个量——连外层都没这个量，却到处喊
+   ``nonlocal``\ ，自然“无绑定可指”。
+
+--------------
+
+.. _43-递归-与-lambda:
+
+4.3 递归 与 lambda
+------------------
+
+.. _431-recursionerror-maximum-recursion-depth-exceeded递归无出口:
+
+4.3.1 ``RecursionError: maximum recursion depth exceeded``\ （递归无出口）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实报错信息**\ （\ ``_sim/ch04/t07_recursion_no_exit.py``\ ，西风风速逐日累加一例）。看
+Traceback：同一个函数帧 ``westerly_speed``
+被\ **反复压了上千层**——这就是“自己调用自己停不住”的铁证；\ ``.py``
+里出现\ **你自己的函数名被重复列出**\ 时，立刻想到递归：
+
+.. code:: python
+
+   def westerly_speed(n):
+       return westerly_speed(n - 1) + 1   # 没有 n<=0 的终止条件
+
+   print(westerly_speed(100))
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t07_recursion_no_exit.py", line 5, in <module>
+       print(westerly_speed(100))
+             ^^^^^^^^^^^^^^^^^^^
+     File "...\sim\ch04\t07_recursion_no_exit.py", line 3, in westerly_speed
+       return westerly_speed(n - 1) + 1
+              ^^^^^^^^^^^^^^^^^^^^^
+     File "...\sim\ch04\t07_recursion_no_exit.py", line 3, in westerly_speed
+       return westerly_speed(n - 1) + 1
+              ^^^^^^^^^^^^^^^^^^^^^
+     [Previous line repeated 996 more times]
+   RecursionError: maximum recursion depth exceeded
+
+另一个常见版本：斐波那契漏了基准条件、且从负数往下探（\ ``_sim/ch04/t07b_recursion_fib.py``\ ），同样
+``[... Previous line repeated 996 more times]`` 后报同样的错。
+
+**原因**\ ：正文 4.6
+强调递归\ **必须有终止条件**\ 。缺了它，函数永远调用自己，每调用层占用一些内存，直到撞上
+Python 的递归深度上限（默认约 1000
+层）后崩溃。终止条件“写了但永远进不去”（比如写成 ``if n == 0`` 却从
+``n=-1`` 往下减）同样会爆。
+
+**解决办法**\ ：确认每条递归路径都会朝基准条件收敛；给递归加上明确的出口。
+
+.. code:: python
+
+   def westerly_speed(n):
+       if n <= 0:                 # 终止条件
+           return 0
+       return westerly_speed(n - 1) + 1
+
+   print(westerly_speed(5))       # 5
+
+..
+
+   **气象场景一句话**\ ：你想“逐日把西风风速累加 5
+   天”，结果累加函数没有“累到第 0 天就停”的闸门，一路递归到 1000
+   层深的天穹之上才被解释器按停——雷达回波里那种自鸡自己转个不停的超级单体,正是递归没有“出涡流”条件的样子。
+
+.. _432-lambda-在循环推导式里捕获循环变量无报错结果诡异late-binding:
+
+4.3.2 ``lambda`` 在循环/推导式里捕获循环变量（无报错、结果诡异）：late binding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实运行输出**\ （\ ``_sim/ch04/t14_lambda_late.py``\ ，正文
+4.5 的官方例子）：
+
+.. code:: python
+
+   funcs = [lambda: i for i in range(3)]
+   print(funcs[0]())   # 期望 0，实际 2
+   print(funcs[1]())   # 期望 1，实际 2
+   print(funcs[2]())   # 2
+
+.. code:: text
+
+   2
+   2
+   2
+
+**原因**\ ：正文 4.5 明确说：\ ``lambda``
+在循环里用到的循环变量是\ **用的时候**\ 才取值的（late binding /
+延迟绑定），不是创建时定住的。三个 ``lambda`` 捕获的都是同一个外层变量
+``i``\ ，循环结束后 ``i=2``\ ，所以三个函数被调用时全读到
+``2``\ 。没有报错，但三个函数结果一模一样，完全违背直觉。
+
+**解决办法**\ ：用默认参数 ``lambda i=i: i``
+把取值时刻提前到创建时，先把 ``i`` 的一次快照绑进 lambda。
+
+.. code:: python
+
+   funcs = [lambda i=i: i for i in range(3)]
+   print(funcs[0](), funcs[1](), funcs[2]())   # 0 1 2
+
+..
+
+   **气象场景一句话**\ ：你要为 3
+   个站点各做一个“背下来它的名字”的标签生成器，结果后台没有在创建时把站点名定住，反而等最后一刻统一取到“上次那个站点”——等到打印时三个标签都写着同一个月相/站点。要按住快照，加默认参数
+   ``i=i``\ 。
+
+.. _433-syntaxerror-invalid-syntaxlambda-里写了-return--想写多行:
+
+4.3.3 ``SyntaxError: invalid syntax``\ （lambda 里写了 ``return`` / 想写多行）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t15_lambda_return.py``\ ）：
+
+.. code:: python
+
+   g = lambda x: return x * 2   # lambda 不能写 return 关键字
+
+.. code:: text
+
+     File "...\sim\ch04\t15_lambda_return.py", line 2
+       g = lambda x: return x * 2
+                     ^^^^^^
+   SyntaxError: invalid syntax
+
+**原因**\ ：正文 4.5 强调，\ ``lambda``
+冒号后面\ **只能是一个表达式**\ ，这个表达式本身就当返回值；它\ **不能**\ 放
+``return``\ ，也不能放多条语句。想写 ``return`` 就成了语法错误。
+
+**解决办法**\ ：逻辑一长（要 ``return``\ 、要分支、要多行）就改回
+``def``\ （正文 4.5 的建议）。\ ``lambda``
+只留那些“一个表达式就能算完”的短逻辑。
+
+.. code:: python
+
+   def g(x):          # 要 return / 要复杂逻辑，用 def
+       return x * 2
+
+   print(g(21))       # 42
+
+..
+
+   **气象场景一句话**\ ：\ ``lambda``
+   是一支“一次性单行换算笔”,只能一行算完就交数;你非要它写“return”这么个完整报表的收尾动作,笔当场写崩。复杂换算还是换正式的
+   ``def`` 观测流程。
+
+.. _434-lambda-用作纯副作用时忘返回拿到-none无报错:
+
+4.3.4 ``lambda`` 用作纯副作用时“忘返回”：拿到 ``None``\ （无报错）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实运行输出**\ （\ ``_sim/ch04/t15b_lambda_print_none.py``\ ）：
+
+.. code:: python
+
+   f = lambda x: print(x)     # lambda 的表达式是 print()，它返回 None
+   print(f(27))               # 先打印 27，再打出 None
+
+.. code:: text
+
+   27
+   None
+
+**原因**\ ：lambda 的返回值就是冒号后面那个表达式的结果。\ ``print(x)``
+这个表达式本身返回 ``None``\ （\ ``print``
+只负责在屏幕上打印，不交回值）。正文 4.3 说“该 return 的地方写了
+print，调用处拿到的是 None”。这在 lambda
+里尤其隐蔽——你会看到它“打印对了”，却不知道它“交回的是
+None”，后续拿返回值继续计算就又回到 4.1.11 的
+``TypeError: 'NoneType' ...``\ 。
+
+**解决办法**\ ：需要“算出一个值给别人”的
+lambda，冒号后写\ **计算表达式**\ 而非 ``print``\ 。
+
+.. code:: python
+
+   f = lambda x: x * 2     # 表达式是计算，交回值
+   print(f(27))            # 54
+
+..
+
+   **气象场景一句话**\ ：你的匿名换算“只顾在屏幕上喊一声温度就撒手”，别人接住后拿到的是
+   ``None``
+   而不是温度值——就像气象台只广播了一次、却没把数值写进数据表，下游一算平均值就炸（\ ``'NoneType'``\ ）。
+
+--------------
+
+.. _44-模块-与-包import:
+
+4.4 模块 与 包（import）
+------------------------
+
+.. _441-modulenotfounderror-no-module-named-numby库名拼错--没装包:
+
+4.4.1 ``ModuleNotFoundError: No module named 'numby'``\ （库名拼错 / 没装包）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实报错信息**\ （\ ``_sim/ch04/t18_modulenotfound.py``\ ）。注意这里是把
+``numpy`` 拼成了 ``numby``\ ：
+
+.. code:: python
+
+   import numby as np      # 把 numpy 拼成了 numby
+
+   print(np.abs(-5))
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t18_modulenotfound.py", line 2, in <module>
+       import numby as np
+       ^^^^^^^^^^^^^^^^^^
+   ModuleNotFoundError: No module named 'numby'
+
+**原因**\ ：这个名字在 Python
+的模块搜索路径（\ ``sys.path``\ ）里根本不存在——要么名字拼错，要么确实没安装。对照
+:doc:`00-通用排错指南（0.3 节） </qa/basics/00-通用排错指南>`
+的家谱：\ ``ModuleNotFoundError`` 是 ``ImportError``
+的子孙，指向“模块找不到”。先在 ``sys.path`` 里找，再查安装。
+
+**解决办法**\ ：核对拼写后重新安装/导入正确名字；用
+``import sys; print(sys.path)`` 和 ``python -m pip list``
+确认包在不在当前解释器环境（不要装错环境，见第 1 章）。
+
+.. code:: python
+
+   import numpy as np      # 拼对
+   print(np.abs(-5))       # 5
+
+..
+
+   **气象场景一句话**\ ：\ ``numpy``
+   是气象数组计算的“标配工具包”，你把包名写成
+   ``numby``\ ，就像标准观测仪器清单里把 ``sonde``\ （探空仪）写成
+   ``sonnd``——库里没有这件“设备”，直接找不到。
+
+.. _442-nameerror-name-np-is-not-definedimport-与调用别名不一致:
+
+4.4.2 ``NameError: name 'np' is not defined``\ （import 与调用别名不一致）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 /
+真实报错信息**\ （\ ``_sim/ch04/t19_alias_inconsistent.py``\ ）：
+
+.. code:: python
+
+   import math              # 没写 as np
+
+   print(math.sqrt(16))     # 4.0，正常
+   print(np.cos(0))         # 用了 np.，但 np 没定义
+
+.. code:: text
+
+   4.0
+   Traceback (most recent call last):
+     File "...\sim\ch04\t19_alias_inconsistent.py", line 5, in <module>
+       print(np.cos(0))
+             ^^
+   NameError: name 'np' is not defined
+
+**原因**\ ：这是本章最容易被忽略的“命名一致性”坑。第 1 行
+``import math``\ （没 ``as np``\ ），第 5 行却用 ``np.`` 调用——``np``
+这个别名从未被定义，于是 ``NameError``\ 。同理：\ ``import numpy``
+之后却到处写 ``np.array``\ 。别名 ``as np`` 只在 ``import ... as np``
+之后才存在。
+
+**解决办法**\ ：统一“导入的写法”和“调用的写法”。要么不取别名直接用原名，要么取了别名就全程用别名。
+
+.. code:: python
+
+   import numpy as np       # 统一：以后都用 np.
+   print(np.cos(0))         # 1.0
+
+   # 另一种一致写法：不取别名
+   import numpy
+   print(numpy.cos(0))
+
+..
+
+   **气象场景一句话**\ ：你在一份脚本里 ``import numpy``
+   却全篇给数组计算都套上 ``np.`` 前缀——``np``
+   这个“缩写代号”压根没登记，一调用就查无此名。如同报告开头说仪器叫“探空仪”，地图软件却一直找“sonde”关键字，两边没对上号。
+
+.. _443-attributeerror-module-math-has-no-attribute-squt库函数名拼错:
+
+4.4.3 ``AttributeError: module 'math' has no attribute 'squt'``\ （库函数名拼错）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （\ ``_sim/ch04/t20_attributeerror.py``\ ）：
+
+.. code:: python
+
+   import math
+
+   print(math.squt(16))   # squt 拼错，应为 sqrt
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t20_attributeerror.py", line 4, in <module>
+       print(math.squt(16))
+             ^^^^^^^^^
+   AttributeError: module 'math' has no attribute 'squt'. Did you mean: 'sqrt'?
+
+**原因**\ ：模块导入成功了（\ ``math``
+存在），你要的\ **属性（函数名）** ``squt`` 它没有。\ ``AttributeError``
+指向“对象没有这个成员”，这里就是函数名拼错。新版本 Python 还会贴心地提示
+``Did you mean: 'sqrt'?``\ 。
+
+**解决办法**\ ：核对属性名拼写；不确定有哪些成员时用 ``dir(math)``
+查看（正文 PPT“查看导入模块的属性”讲到 ``dir``\ ）。
+
+.. code:: python
+
+   import math
+
+   print(math.sqrt(16))     # 4.0，sqrt 才是平方根
+   # print(dir(math))       # 列出一整个 math 的属性，找出正确函数名
+
+..
+
+   **气象场景一句话**\ ：你调 ``math.squt``
+   想开根号，可气象计算包里的函数名是 ``sqrt``——就像口令本里只有
+   “SQT_LEVEL” 你却喊 “SQT_level”，对不上号，系统提醒你“是不是想找
+   sqrt”。
+
+.. _444-缺-if-__name__--__main__--import-时打印一堆不该打印的东西副作用:
+
+4.4.4 缺 ``if __name__ == "__main__":`` → import 时打印一堆不该打印的东西（副作用）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实运行输出**\ 。先做一个\ **没有守卫**\ 的模块
+``_sim/ch04/weather_utils.py``\ ，里面既有函数定义，又有几行\ **顶层可执行语句**\ （自测打印）。再写主程序
+``_sim/ch04/t21_main.py`` 导入它：
+
+.. code:: python
+
+   # weather_utils.py
+   STATION = "兰州站"
+   def c_to_f(c):
+       return c * 9 / 5 + 32
+   print(f"[模块 weather_utils] STATION = {STATION}")          # 顶层打印
+   print(f"[模块 weather_utils] 自测调用 c_to_f(25) = {c_to_f(25)}")
+
+.. code:: python
+
+   # t21_main.py
+   import weather_utils            # 只 import，不希望有任何输出
+   print("主程序从这里开始：")
+   print(weather_utils.c_to_f(25))
+
+运行 ``t21_main.py``\ ，真实输出：
+
+.. code:: text
+
+   [模块 weather_utils] STATION = 兰州站
+   [模块 weather_utils] 自测调用 c_to_f(25) = 77.0
+   主程序从这里开始：
+   77.0
+
+**原因**\ ：\ ``import``
+一个模块=执行一遍这个模块的\ **顶层代码**\ 。凡写在 ``def`` /
+``if __name__ == "__main__":`` 之外的第 1
+列可执行语句，导入时都会被迫跑一遍。这个模块把“自测打印”裸写在顶层，一被引入，主程序还没开始就被它的调试信息刷屏。正文
+4.8 明确：“自测代码如果写在 ``if __name__ == '__main__':``
+外面，一被导入就会打印一堆东西”。（对照：加了守卫的
+``weather_utils_guarded.py`` 导入时\ **零输出**\ 、直接运行时才打印自测
+``自测调用 c_to_f(25) = 77.0``——两种路径行为不同证明守卫生效。）
+
+**解决办法**\ ：把“模块自测/演示/副作用代码”挪进 ``def main()``
+或直接放进 ``if __name__ == "__main__":`` 里（正文 4.8 /
+4.9）。只有\ **直接运行**\ 本文件时 ``__name__ == "__main__"`` 才为真。
+
+.. code:: python
+
+   # weather_utils.py（正确写法）
+   def c_to_f(c):
+       return c * 9 / 5 + 32
+
+   if __name__ == "__main__":
+       print(c_to_f(25))     # 只有直接 python weather_utils.py 才打印
+
+..
+
+   **气象场景一句话**\ ：这台工具站每次被“调用”时都把整站的自检日志大喊一遍，主程序出图时还得先忍受它的吼叫。把“演示/自测”关进
+   ``__main__``
+   守卫的小屋里，只有它自己开门（直接运行）时才喊，被别处引用时保持安静。
+
+.. _445-循环导入-importerror-cannot-import-name-func_b-from-partially-initialized-module模块互相-import:
+
+4.4.5 循环导入 ``ImportError: cannot import name 'func_b' from partially initialized module``\ （模块互相 import）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ 。两个模块互相引用：\ ``circ_a.py`` import
+``circ_b``\ ，\ ``circ_b.py`` 又 import ``circ_a``\ 。运行
+``circ_a.py``\ （\ ``_sim/ch04/circ_a.py``\ 、\ ``circ_b.py``\ ）：
+
+.. code:: python
+
+   # circ_a.py
+   from circ_b import func_b
+   def func_a():
+       return "a"
+   print(func_b())
+
+   # circ_b.py
+   from circ_a import func_a
+   def func_b():
+       return "b"
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\circ_a.py", line 2, in <module>
+       from circ_b import func_b
+     File "...\sim\ch04\circ_b.py", line 2, in <module>
+       from circ_a import func_a
+     File "...\sim\ch04\circ_a.py", line 2, in <module>
+       from circ_b import func_b
+   ImportError: cannot import name 'func_b' from partially initialized module 'circ_b' (most likely due to a circular import) (...circ_b.py)
+
+**原因**\ ：\ ``import circ_a``
+开始执行时它还是“\ **未初始化完**\ ”的；执行到
+``from circ_b import func_b`` 又调起 ``circ_b``\ ，\ ``circ_b`` 里
+``from circ_a import func_a`` 回头引用还没跑完的
+``circ_a``\ ……于是循环。报错说的“partially initialized
+module（尚未初始化完成的模块）”就是这个意思。正文 4.8 说：两个模块互相
+import 可能形成循环导入，表现为“模块里明明有这个函数，却提示没有”。
+
+**解决办法**\ ：打破单向循环——常见三招：①
+把两者共同依赖的共享代码抽到第三个模块里；② 把某一方的 import
+挪到函数体内部（延迟到运行时才 import，模块装载已完成）；③ 只用
+``import module``\ （模块级访问属性），别在顶层
+``from ... import 名字``\ 。入门阶段正文 4.8 的建议：工具放
+``utils.py``\ 、主程序放 ``main.py``\ 、只让主程序导入工具，通常能避开。
+
+.. code:: python
+
+   # 解法一：抽公共
+   # common.py: 放两者共享的定义
+   # circ_a.py: 只 import common，不再反向引用 circ_b
+   # 解法二：延迟导入
+   # circ_a.py
+   def func_a():
+       from circ_b import func_b    # 用的时候才 import
+       return func_b()
+
+..
+
+   **气象场景一句话**\ ：两个模块像一对互相张望的气象台：A 问 B要资料，B
+   又回头找 A
+   要资料——谁都没先完成开张，谁都拿不全对方的东西，于是卡在多佛尔环岛。让依赖走单向（主程序只依赖工具），才能绕出这团互锁的环流。
+
+.. _446-from--import--与-__all__下划线开头的名字星号导入的围栏:
+
+4.4.6 ``from ... import *`` 与 ``__all__``\ 、下划线开头的名字（星号导入的“围栏”）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ 。模块 ``_sim/ch04/station_utils.py`` 定义
+``__all__`` 和几个名字，主程序 ``_sim/ch04/t22_star_import_all.py`` 用
+``from station_utils import *`` 导入：
+
+.. code:: python
+
+   # station_utils.py
+   __all__ = ["calc_average", "STATION"]   # __all__：* 只放行这两个
+   STATION = "兰州站"
+   _CONST = 273.15          # 下划线开头
+   def calc_average(temps):
+       return sum(temps) / len(temps)
+   def _private_helper():
+       return "内部函数"
+
+.. code:: python
+
+   # t22_star_import_all.py
+   from station_utils import *
+
+   print("STATION:", STATION)
+   print("calc_average:", calc_average([-2, 0, 5, 8]))
+   print("_CONST:", _CONST)                    # NameError
+
+.. code:: text
+
+   STATION: 兰州站
+   calc_average: 2.75
+   Traceback (most recent call last):
+     File "...\sim\ch04\t22_star_import_all.py", line 7, in <module>
+       print("_CONST:", _CONST)
+                        ^^^^^^
+   NameError: name '_CONST' is not defined
+
+**原因**\ ：\ ``from module import *``
+不是无条件照单全收。它遵循两条“围栏”：①
+**单下划线开头**\ 的名字默认不导入（\ ``_CONST``\ 、\ ``_private_helper``
+用 ``*`` 拿不到）；② 若模块定义了 ``__all__``\ ，则 ``*`` 只放行
+``__all__``
+名单里的名字（\ ``calc_average``\ 、\ ``STATION``\ ）。这俩机制是模块作者用来“对外隐藏内部实现”的。正文
+4.8 同时提醒：\ ``from ... import *``
+**少用**\ ，它把整个命名空间倒进来，和自己写的函数重名时易互相覆盖。
+
+**解决办法**\ ：书写一致原则——既然 ``*`` 被
+``__all__``/下划线挡在外面，需要的名字就要\ **显式 import**
+或用别名（要看 ``_CONST`` 就 ``from station_utils import _CONST``
+明确导入，或 ``import station_utils`` 后
+``station_utils._CONST``\ ）；模块内部涉及内部实现尽量用单下划线开头配合
+``__all__`` 白名单。
+
+.. code:: python
+
+   import station_utils                      # 用模块限定的方式读，绕开 * 的规则
+   print(station_utils._CONST)               # 273.15
+   from station_utils import _CONST          # 或显式点名导入
+   print(_CONST)                             # 273.15
+
+..
+
+   **气象场景一句话**\ ：站点工具模块用 ``__all__``
+   只把“对外接口”（求平均、站点名）暴露给 ``*``
+   导入，内部常数和私有函数都贴着下划线标签、锁在后台——你非要 ``*``
+   一把抓出
+   ``_CONST``\ ，就像想用万能钥匙开进仪器舱取出内部校准参数，被“只开放白名单”的政策挡在门外。
+
+.. _447-modulenotfounderror-no-module-named-util模块存在但不在当前工作目录--不在-syspath:
+
+4.4.7 ``ModuleNotFoundError: No module named 'util'``\ （模块存在，但不在当前工作目录 / 不在 ``sys.path``\ ）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ 。项目里明明有 ``proj/util.py``\ ，但运行
+``_sim/ch04/t24_cwd_error.py``\ （它 ``import util``\ ）时报错：
+
+.. code:: python
+
+   # t24_cwd_error.py（与 proj/util.py 同工程，但 util.py 在 proj/ 子目录）
+   import util     # 当前工作目录在 ch04/，不是 proj/
+
+   print(util.hot_days([30, 31, 35]))
+
+.. code:: text
+
+   Traceback (most recent call last):
+     File "...\sim\ch04\t24_cwd_error.py", line 3, in <module>
+       import util
+       ^^^^^^^^^^^
+   ModuleNotFoundError: No module named 'util'
+
+**原因**\ ：\ ``.py`` 文件存在 ≠ 一定能 import。Python
+找模块的搜索路径是 ``sys.path``\ （正文
+PPT“导入模块时的搜索路径”讲了顺序：程序所在目录 → ``PYTHONPATH``
+环境变量 → 标准库 → ``.pth``
+文件目录）。当你的\ **工作目录/脚本所在目录**\ 不在 ``sys.path``
+覆盖范围内，或模块被装进子目录而没加进路径时，就
+``ModuleNotFoundError``\ 。这里 ``util.py`` 在 ``proj/``
+子目录、当前目录是 ``ch04/``\ ，找不到。
+
+**解决办法**\ ：三选一均可——① 把工作目录切到模块所在目录再运行；② 设置
+``PYTHONPATH``\ ；③ 代码里往 ``sys.path`` 插入模块所在目录再 import。
+
+.. code:: python
+
+   import sys
+   sys.path.insert(0, "proj")       # 把模块所在目录加进搜索路径（正文 4.9：从项目以外目录运行时确认能找到）
+   import util
+   print(util.hot_days([30, 31, 35]))   # 3
+
+..
+
+   **气象场景一句话**\ ：仪器确实在 ``proj`` 仓库里,可你的控制台站在
+   ``ch04`` 目录、\ ``sys.path``
+   没指到那儿——就像观测员站在站外，明明仓库里有资料却按“只从当前位置找”的规矩取不到。要么站进去（切工作目录），要么把仓库路径写进
+   ``PYTHONPATH``\ 。
+
+--------------
+
+本章高频速查表（对着症状抄作业）
+--------------------------------
+
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| 你看到的                                                           | 多半是                            | 一句口诀             |
++====================================================================+===================================+======================+
+| ``NameError: name 'x' is not defined``                             | 变量/函数名拼错、调用在定义前、用 | 名要对上，定义在前   |
+|                                                                    | ``np.`` 却只 ``import numpy``     |                      |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``UnboundLocalError: cannot access local variable 'x'``            | 函数里改全局 ``x`` 却漏           | 要改全局先           |
+|                                                                    | ``global``\ （先读后写）          | ``global``           |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``SyntaxError: 'return' outside function``                         | ``return`` 缩进跑出函数           | return 只在函数里    |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``TypeError: missing 1 required positional arg``                   | 少填无默认值参数 / 解包个数对不上 | 参数数要对齐         |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``TypeError: takes N positional but M given``                      | 多传了位置参数                    | 别塞多               |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``TypeError: got an unexpected keyword argument 'lat'``            | 关键字名拼错 / 解包字典键错       | 形参名一字不差       |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``TypeError: got multiple values for argument 'x'``                | 同一参数既位置又关键字            | 一个参数只喂一次     |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``SyntaxError: positional argument follows keyword argument``      | 位置参数写在关键字后面            | 位置参数在前         |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``SyntaxError: parameter without a default follows ...``           | 无默认值参数排在默认参数后面      | 必填参数在前         |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``TypeError: 'NoneType' ...`` / ``print(f()) → None``              | 函数忘 ``return``\ ，交回         | 想给数就回 return    |
+|                                                                    | ``None``                          |                      |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``TypeError: 'float' object is not callable``                      | ``f = f(25)`` 多写了括号          | 函数别提前调用       |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``ValueError: not enough values to unpack``                        | 返回值个数 ≠ 接收变量个数         | 几个口接几个值       |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``RecursionError``\ （\ ``Previous line repeated`` 堆栈）          | 递归缺出口                        | 递归必设出口         |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| （无报错）\ ``lambda`` 循环里全取到末值                            | lambda 延迟绑定                   | ``lambda i=i: i``    |
+|                                                                    |                                   | 定住                 |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``ModuleNotFoundError: No module named 'x'``                       | 库没装 / 名字拼错 / 不在          | 拼对并进搜索路径     |
+|                                                                    | ``sys.path``                      |                      |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``AttributeError: module 'math' has no attribute 'squt'``          | 库函数名拼错                      | 用 ``dir()`` 查名    |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``ImportError: cannot import name 'x' from partially initialized`` | 模块互相 import 成环              | 依赖走单向 /         |
+|                                                                    |                                   | 延迟导入             |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| ``from ... import *`` 引不到 ``_xxx`` / 不在 ``__all__``           | 星号导入被白名单/下划线挡下       | 显式 import          |
+|                                                                    |                                   | 或用模块名限定       |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+| import 时打印出一堆东西                                            | 模块顶层裸写可执行语句、缺        | 自测关进             |
+|                                                                    | ``__main__`` 守卫                 | ``__main__``         |
++--------------------------------------------------------------------+-----------------------------------+----------------------+
+
+..
+
+   最后一句话总结第 4
+   章的精髓：\ **函数把逻辑收住（参数对、该返回就返回），作用域把名字分清（该
+   global/nonlocal 就声明），模块把职责梳理（依赖单向、给包/工具配
+   ``__all__`` 与 ``__main__`` 守卫）**\ 。排错时按「名字 → 传参 →
+   作用域 → 导入路径」这条路逐个排查，多数报错一眼就能定位。

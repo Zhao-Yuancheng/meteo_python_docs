@@ -25,12 +25,12 @@
 创建 ``7 天 × 5 站`` 的气温矩阵，沿 ``axis`` 做逐站均值 / 逐日极值，
 再逐站做 Z-score 标准化，最后用 ``imshow`` 热力图把原始矩阵和标准化矩阵画出来。
 
-气象背景：矩阵的**行代表时间（天）**，**列代表站点**。
-- ``mean(axis=0)``：压缩行 → 得到**每个站的日均温**；
-- ``max(axis=1)`` / ``min(axis=1)``：压缩列 → 得到**每天的区域极值**；
-- 标准化必须**逐站（按列）**做，不能全局标准化，否则会抹平站点气候差异。
+气象背景：矩阵的\ **行代表时间（天）**，**列代表站点**。
+- ``mean(axis=0)``：压缩行 → 得到\ **每个站的日均温**；
+- ``max(axis=1)`` / ``min(axis=1)``：压缩列 → 得到\ **每天的区域极值**；
+- 标准化必须\ **逐站（按列）**\ 做，不能全局标准化，否则会抹平站点气候差异。
 
-本脚本**自包含、无任何外部文件依赖**：数据由固定随机种子在内存中生成，可直接运行。
+本脚本\ **自包含、无任何外部文件依赖**：数据由固定随机种子在内存中生成，可直接运行。
 运行需要安装 ``numpy`` 与 ``matplotlib``。
 
 .. GENERATED FROM PYTHON SOURCE LINES 19-21
@@ -252,7 +252,7 @@ axis=0：沿行方向压缩 → 每个站点的平均气温
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.222 seconds)
+   **Total running time of the script:** (0 minutes 0.208 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_temperature_matrix.py:

@@ -15,7 +15,7 @@ Examples using ``numpy.radians``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行时间切片、 空间子区域裁剪，并做纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行\ 时间切片、 空间子区域裁剪，并做\ 纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
 
 .. only:: html
 

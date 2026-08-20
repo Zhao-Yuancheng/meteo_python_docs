@@ -15,28 +15,7 @@ Examples using ``matplotlib.axes.Axes.tick_params``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示面向对象编程在气象数据处理中的应用。它以兰州站（区站号 52889，纬 36.05°N、经 103.88°E、海拔约 1517 m）最近几日的逐日气温为 数据，展示三个要点：">
-
-.. only:: html
-
-  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
-    :alt:
-
-  :doc:`/gallery/plot_basics/plot_oop`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Station 类的气温统计与可视化（兼用兰州站示例数据）</div>
-    </div>
-
-
-.. only:: not html
-
- * :doc:`/gallery/plot_basics/plot_oop`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行时间切片、 空间子区域裁剪，并做纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行\ 时间切片、 空间子区域裁剪，并做\ 纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
 
 .. only:: html
 

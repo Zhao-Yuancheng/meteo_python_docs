@@ -46,9 +46,12 @@
    * - 第 7 章 · 气象数据分析（一）Pandas
      - DataFrame、Series、索引、布尔索引、分组聚合、透视表、NaN
      - ✅ 已上线
-   * - 第 9/10 章
-     - Matplotlib、Cartopy 相关术语
-     - ⏳ 陆续上线
+   * - 第 9 章 · Matplotlib 气象绘图
+     - Figure、Axes、Artist、刻度、图例、色带、面向对象接口
+     - ✅ 已上线
+   * - 第 10 章 · Cartopy 地图绘图
+     - Cartopy 相关术语将在正文交付后上线
+     - ⏳ 待交付
 
 .. toctree::
    :maxdepth: 2
@@ -62,10 +65,11 @@
    ch06_terms
    ch07_terms
    ch08_terms
+   ch09_terms
 
 使用提示
 --------
 
 - 词条按"遇到不懂的词 → 查这里"的方式使用，也可在每章小结处通过链接批量回顾；
-- 每个词条的**易混淆点**都来自初学者的高频报错，读一遍能省几次调试；
+- 每个词条的\ **易混淆点**\都来自初学者的高频报错，读一遍能省几次调试；
 - 与 Python 官方文档的术语表（`Glossary <https://docs.python.org/zh-cn/3/glossary.html>`_）互为补充：官方版严谨，本站版好懂。

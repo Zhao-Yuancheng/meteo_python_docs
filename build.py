@@ -11,7 +11,6 @@
   2. 调用 sphinx-build 编译 HTML 到 _build/html。
 """
 import os
-import shutil
 import subprocess
 import sys
 import argparse
@@ -45,13 +44,17 @@ def setup_conda_path():
 
 def build(clean=False):
     setup_conda_path()
+    # 用户级 site-packages 里装有一份与 conda 环境冲突的 shapely，
+    # 会让 cartopy 画廊示例在导入 shapely.lib 时 DLL 加载失败。
+    # 构建期间统一禁用用户 site，改用 conda 环境的包（子进程会继承该环境变量）。
+    os.environ['PYTHONNOUSERSITE'] = '1'
 
     args = [sys.executable, '-m', 'sphinx']
     if clean:
-        args += ['-E', '-a']            # 全量重建
-        bdir = os.path.join(HERE, '_build', 'html')
-        if os.path.isdir(bdir):
-            shutil.rmtree(bdir)
+        # 全量重建：Sphinx 的 -E 忽略环境缓存、-a 重读全部源文件并删除
+        # 已不再生成的历史文件。不整目录 rmtree —— _build/html 下可能内嵌
+        # .git（只读文件会抛 PermissionError，且删除会丢构建站点的版本历史）。
+        args += ['-E', '-a']
     args += ['-b', 'html', HERE, os.path.join(HERE, '_build', 'html')]
     print('[build] 运行:', ' '.join(args))
     rc = subprocess.call(args, cwd=HERE)

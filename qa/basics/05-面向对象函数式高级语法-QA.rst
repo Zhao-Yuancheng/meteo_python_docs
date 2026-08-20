@@ -1,0 +1,1412 @@
+面向对象、函数式编程与高级语法 Q&A
+========================================
+
+   章节定位：第 5 章（模块一）· 对应用户指南
+   ``user_guide/basics/oop.rst`` 的
+   5.1~5.7（类/对象、封装、继承、模块中的类、装饰器/生成器/推导式/match-case
+   高级语法）· 贯穿项目「Station 气象站类」 通用排错方法论见
+   :doc:`00-通用排错指南 </qa/basics/00-通用排错指南>`\ 。本文全部报错均在本机
+   Python 环境实测，报错信息原样粘贴。 比对口径：正文全文已对齐 oop.rst
+   5.7 节的「最高频易错点」与 5.3 的 ``@property``\ 、5.4 继承、5.6
+   ``MeteoStation``
+   实战；构造/析构、\ ``match-case``\ 、装饰器、生成器等「高级语法」正文多为拓展导向（占位），以下按官方
+   + 实测为准并来源已在条目内注明。
+
+.. _50-本章报错总览表:
+
+5.0 本章报错总览表
+------------------
+
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 序号   | 中文场景                          | 真实报错类型            | 关键词                                             | 排错方向一句话                            |
++========+===================================+=========================+====================================================+===========================================+
+| 5.1.1  | ``__init__`` 忘了 ``self``        | ``TypeError``           | ``takes 2 positional arguments but 3 were given``  | 第一参数应是 self，被自动填占             |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.1.2  | 方法忘了 ``self``                 | ``TypeError``           | ``takes 0 positional arguments but 1 was given``   | 实例调用自动多传一个 self                 |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.1.3  | ``Station.info()``\ （类.方法）缺 | ``TypeError``           | ``missing 1 required positional argument: 'self'`` | 调方法要么给实例、要么手动传实例          |
+|        | self                              |                         |                                                    |                                           |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.1.4  | 方法第一参数非 self 传参错位      | ``TypeError``           | ``takes 1 positional argument but 2 were given``   | 实参被塞错位置                            |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.2.1  | 只 ``self.属性`` 却没定义         | ``AttributeError``      | ``has no attribute 'temp'``                        | 读到的属性从没被赋值/拼写不一致           |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.2.2  | 属性名大小写/下划线不对           | ``AttributeError``      | ``has no attribute 'station_id'``                  | 命名要处处一致（\ ``self.station_id``\ ） |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.2.3  | ``__init__`` 拼错                 | ``TypeError``           | ``Station() takes no arguments``                   | 构造没被调用才「不收参」                  |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.2.4  | 外部摸 ``__私有属性``             | ``AttributeError``      | ``has no attribute '__deposit'``                   | 私有名已被改写，非语法级加密              |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.2.5  | 类共享/实例私有混淆               | 无报错但错              | —                                                  | 实例赋值会生成本实例同名属性              |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.3.1  | 子类忘 ``super().__init__``       | ``AttributeError``      | ``has no attribute 'lat'``                         | 父类构造没跑，父类属性缺失                |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.4.1  | read-only 属性被赋值              | ``AttributeError``      | ``property 'mean_temp' ... has no setter``         | 补 ``@xxx.setter``                        |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.4.2  | ``@classmethod`` 少参数/忘 cls    | ``TypeError``           | ``missing 1 required positional argument``         | cls 也占一位                              |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.5.1  | 装饰器忘 ``return inner``         | ``TypeError``           | ``'NoneType' object is not callable``              | 装饰器返回值应是函数                      |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.5.2  | ``return wrapper()`` 而非         | ``TypeError``           | ``'int' object is not callable``                   | 返回了结果不是函数                        |
+|        | ``wrapper``                       |                         |                                                    |                                           |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.5.3  | 带参装饰器层级不够                | ``TypeError``           | ``missing 1 required positional argument: 'func'`` | 需外层套三层                              |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.6.1  | ``next()`` 取完                   | ``StopIteration``       | ``StopIteration:``                                 | 迭代器已耗尽                              |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.6.2  | 生成器内 ``return 值``            | ``StopIteration.value`` | ``value='count=2'``                                | return 值不直接返回，存进异常             |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.6.3  | 忘 ``yield`` 当生成器用           | ``TypeError``           | ``'NoneType' object is not an iterator``           | 没 yield 就不是生成器，返回 None          |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.7.1  | 推导式引用未定义变量              | ``NameError``           | ``name 'mean_t' is not defined``                   | 推导式内变量名也要定义                    |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.7.2  | 类体内推导式访问类属性            | ``NameError``           | ``name 'base' is not defined``                     | 推导式独立作用域                          |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.8.1  | ``map``/``filter`` 忘 ``list()``  | 无报错但错              | ``<map object at 0x...>``                          | 惰性迭代器，需消费                        |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.8.2  | ``filter(None)`` 删掉 0℃          | 无报错但错              | ``[5.0, -3.5, 8.0]``                               | 假值判据误伤 0 与 NaN                     |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.8.3  | lambda 循环捕获变量               | 无报错但错              | ``[2, 2, 2]``                                      | 闭包晚绑定，需默认参数快照                |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.9.1  | match-case 的 case 忘冒号         | ``SyntaxError``         | ``expected ':'``                                   | 编译期语法错误，缩进/冒号要齐             |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+| 5.10.1 | 没定义 ``__repr__``/``__str__``   | 无报错但难读            | ``<Station object at 0x...>``                      | 打印对象只会显示地址                      |
++--------+-----------------------------------+-------------------------+----------------------------------------------------+-------------------------------------------+
+
+--------------
+
+.. _51-self-与实例方法本章最高频区:
+
+5.1 self 与实例方法（本章最高频区）
+-----------------------------------
+
+   关于 self 的根因，请先对照通用指南 0.3 的异常家谱：self
+   相关的报错几乎全是 ``TypeError``\ （参数个数/位置不对）。而
+   ``AttributeError``\ （见
+   5.2）则是「对象上根本没有这个属性」。\ **TypeError
+   看「参数」、AttributeError
+   看「属性/方法名」，这是区分这两大类的一先手。**
+
+.. _511-__init__-忘了写-self--takes--positional-arguments:
+
+5.1.1 ``__init__`` 忘了写 ``self`` → takes … positional arguments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: text
+
+   Traceback (most recent call last):
+     ...
+   TypeError: Station.__init__() takes 2 positional arguments but 3 were given
+
+**原因** 实例化 ``Station("52889", "兰州")`` 时，Python
+会自动把\ **新建实例塞进第一个实参位**\ ，于是实际发出去的实参是「实例 +
+两个实参」共 3 个；而你把 ``self`` 写漏，方法只剩 2
+个形参，装不下第三个。报错文案里的「2 个参数却给了 3
+个」里的「多出的那个」，正是营养被抢的实例自己。
+
+**解决办法**\ （先把 self 补在最前）
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id, name):   # 最前必须有 self
+           self.station_id = station_id
+           self.name = name
+
+   s = Station("52889", "兰州")
+   print(s.name)   # 兰州
+
+..
+
+   **气象场景一句话**\ ：这就像「台站报观测所得那条上传命令漏填了站位号」——报文整体多塞了一个字段、上传接口却只留了两个槽位，格式对不上直接被退回。
+
+.. _512-普通方法忘写-self--takes-0-positional-arguments-but-1-was-given:
+
+5.1.2 普通方法忘写 ``self`` → takes 0 positional arguments but 1 was given
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: text
+
+   Traceback (most recent call last):
+       print(s2.info())
+             ^^^^^^^^^
+   TypeError: Station.info() takes 0 positional arguments but 1 was given
+
+**原因** ``def info():`` 没有 self（也没任何参数），但通过 ``s2.info()``
+调用时，Python **额外自动传入实例 s2**\ ，共 1
+个实参，函数却一个槽位都没有。「说了不接参数，却硬塞了一个实例」。
+
+**解决办法**
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id):
+           self.station_id = station_id
+       def info(self):                      # 补上 self
+           return f"站号 {self.station_id}"
+
+   print(Station("52889").info())           # 站号 52889
+
+..
+
+   **气象场景一句话**\ ：自记站上报「无参方法」，调度程序却习惯性每站补发一次站位对象——理由只有一个，你给方法的「签名」少给了
+   self 这一位。
+
+.. _513-用类名直接调方法stationinfo-missing--self:
+
+5.1.3 用类名直接调方法（\ ``Station.info()``\ ）→ missing … ‘self’
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: text
+
+   TypeError: Station.info() missing 1 required positional argument: 'self'
+
+**原因** ``instance.method()`` 的写法会自动把实例填给
+self；只有当你\ **绕过实例、直接用 ``类名.方法()``**
+时，这个自动填充消失，self 立刻缺位。oop.rst 5.2
+明确讲过「类对象无法直接调用带 self 的实例方法」。
+
+**解决办法**
+
+.. code:: python
+
+   # 要么走实例：
+   s = Station("52889")
+   print(s.info())
+
+   # 要么手动补实例作为第一个实参（能跑但少见）：
+   print(Station.info(s))      # 类名.方法(实例) —— self 手动填上
+
+..
+
+   **气象场景一句话**\ ：\ ``Station.info()``
+   就像是拿着一整摞台的「类蓝图」直接要数据，却忘了指定「具体是哪座站」——没有台站位置，统计自然无从谈起。
+
+.. _514-方法第一参数命名非-self占了位置-参数错位:
+
+5.1.4 方法第一参数命名非 ``self``\ （占了位置）→ 参数错位
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   def rename(new_name):   # 第一参数应是 self
+       self.station_id = new_name
+
+   s7.rename("57036")
+
+.. code:: text
+
+   Traceback (most recent call last):
+       s7.rename("57036")
+       ^^^^^^^^^^^^^^^^^^
+   TypeError: Station.rename() takes 1 positional argument but 2 were given
+
+**原因** ``self`` 这个名字可以换成 ``this``\ 、\ ``obj`` 等（oop.rst 5.3
+也强调「重要的是位置不是名字」），但\ **位置必须留出来**\ 。你把它删掉，方法只剩
+``new_name`` 一个槽位，实例却占据它，而你要传的 ``"57036"`` 就没了位置。
+
+**解决办法**
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id):
+           self.station_id = station_id
+       def rename(this, new_name):   # 位置第一位必须是"实例"，名字随意
+           this.station_id = new_name
+
+   s = Station("52889")
+   s.rename("57036")
+   print(s.station_id)   # 57036
+
+..
+
+   **气象场景一句话**\ ：台站改区站号的流程里，「站位」这一栏永远固定排在第一列——你可以给它换个名字，但不可能把它从第一列挪走，否则后面的数据全都对不齐。
+
+--------------
+
+.. _52-属性实例属性命名伪私有多报-attributeerror:
+
+5.2 属性：实例属性、命名、伪私有（多报 AttributeError）
+-------------------------------------------------------
+
+.. _521-只写-self属性-却没定义--attributeerror-has-no-attribute:
+
+5.2.1 只写 ``self.属性`` 却没定义 → AttributeError has no attribute
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   def today_temp(self):
+       return self.temp      # temp 从没被赋值过
+
+.. code:: text
+
+   AttributeError: 'Station' object has no attribute 'temp'
+
+**原因** 实例属性是在首次 ``self.xxx = 值`` 赋值时才「出生」的（oop.rst
+5.3：「实例对象一开始是空的」）。你在这里只\ **读**
+``self.temp``\ ，却在别处从没赋值过它，于是对象上根本没有这个属性。归还一个自记站，站上却连温度传感器都没装。
+
+**解决办法**\ ：读之前先赋值——要么在 ``__init__`` 里初始化，要么用
+``setattr`` / 先判断存在。
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id, temp):
+           self.station_id = station_id
+           self.temperature = temp          # 先"生"这个属性
+       def today_temp(self):
+           return self.temperature
+
+判空写法（避免 KeyError 式翻车，但更应防患于未然）：
+
+.. code:: python
+
+   def today_temp(self):
+       return getattr(self, "temperature", None)   # 属性不存在时返回 None
+
+..
+
+   **气象场景一句话**\ ：这就像你去查某站今天气温，可那一列观测在库里压根没入库过——「对象没有这个属性」等于「观测手册里没有这一格」。
+
+.. _522-属性命名大小写--下划线不一致--attributeerror:
+
+5.2.2 属性命名：大小写 / 下划线不一致 → AttributeError
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   self.Temp   = temp          # 存进 Temp
+   return self.temp             # 读 temp —— 大小写不一致
+
+.. code:: text
+
+   AttributeError: 'Station' object has no attribute 'temp'
+
+另一种：类内存 ``self.stationID``\ （驼峰），外部想读
+``s6.station_id``\ （下划线）：
+
+.. code:: text
+
+   AttributeError: 'Station' object has no attribute 'station_id'
+
+**原因** Python 区分大小写；\ ``Temp`` 与 ``temp``\ 、\ ``stationID`` 与
+``station_id`` 是\ **两个完全不同的属性**\ 。学了 ``__init__``
+后最常见的错：\ ``__init__``
+里一个名、方法或外部又一个名，肉眼看起来像是一回事，Python
+却认定是两回事。
+
+**解决办法**\ ：全项目统一一套命名规范。本项目贯穿项目/``MeteoStation``
+用\ **小写下划线**\ （\ ``station_id``\ 、\ ``temperature``\ 、\ ``mean_temp``\ ），照此写：
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id, temperature):
+           self.station_id = station_id
+           self.temperature = temperature
+       def today_temp(self):
+           return self.temperature          # 与初值同款命名
+
+   print(Station("52889", 25.0).today_temp())
+
+..
+
+   **气象场景一句话**\ ：\ ``stationID`` 和 ``station_id``
+   在观测数据库里就是两张不同的台账列——台账没对好，\ ``AttributeError``
+   就一次次点名找不到那一列。
+
+.. _523-__init__-拼错写成-__init--_init_-station-takes-no-arguments:
+
+5.2.3 ``__init__`` 拼错（写成 ``__init`` / ``_init_``\ ）→ Station() takes no arguments
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   class Station:
+       def __init(self, station_id):    # 写错，少一个下划线
+           self.station_id = station_id
+
+   s = Station("52889")
+
+.. code:: text
+
+   TypeError: Station() takes no arguments
+
+**原因** ``__init__`` 是「双下划线开头 +
+双下划线结尾」的魔法方法（名字两端各两根下划线）。你写成
+``__init``\ （尾只有一根）或 ``_init_``\ （头尾各一根），Python
+就不认为它是构造函数——于是用默认构造
+``object.__init__``\ ，它\ **不接受任何参数**\ ，你却传了
+``"52889"``\ ，于是报「这个类不收参数」。
+
+   提醒：5.1.1 的报错是 ``takes 2 ... given 3``\ ，而\ **这里**\ 是
+   ``takes no arguments``——区别在于前者 self
+   还在只是漏位，后者构造根本没被兑现。
+
+**解决办法**\ ：数清楚下划线——``def __init__(self, ...)``\ （首尾都是两根
+``__``\ ）。
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id):    # 三处：def 后、参数前各一对双下划线
+           self.station_id = station_id
+
+   print(Station("52889").station_id)     # 52889
+
+..
+
+   **气象场景一句话**\ ：站点在申报系统的「注册」表里漏填、漏勾了一处必填（双下划线成了单下划线），系统默认它「无感注册」，自然拒绝任何站号录入。
+
+.. _524-外部直接访问-__私有属性--attributeerror伪私有:
+
+5.2.4 外部直接访问 ``__私有属性`` → AttributeError（伪私有）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   st.__deposit
+
+.. code:: text
+
+   AttributeError: 'Station' object has no attribute '__deposit'
+
+**原因** 双下划线开头的名字（\ ``__deposit``\ ）会触发「名称改写（name
+mangling）」，底层改成 ``_Station__deposit``\ ，外部直接写 ``__deposit``
+当然找不到。它的本质\ **不是语法级加密**\ ，而是开发层的「伪私有」约定（oop.rst
+5.3 原话）。
+
+**客观补充**\ （本机实测，说明它锁不住真正想摸的人）：
+
+.. code:: text
+
+   名称被改写为: ['_Station__deposit']
+   靠 _Station__deposit 访问: 100      # 确实能摸到
+
+**解决办法**\ ：需要私有语义时，外部就别碰
+``__xxx``\ ，提供公有的读/写方法（或
+``@property``\ ）；若只是「习惯性下划线」，用
+``_deposit``\ （单下划线）更贴合社区惯例。
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id, deposit):
+           self.station_id = station_id
+           self.__deposit = deposit
+       def get_deposit(self):                    # 提供公有的读接口
+           return self.__deposit
+
+..
+
+   **气象场景一句话**\ ：观测的「仪器出借台账」标了私有，是想让外部查不到——可台站编号这扇门只是「上了把普通锁」，懂行的机务照样能撬开，别把它当绝对防线。
+
+.. _525-类共享属性-vs-实例私有属性-混淆无报错但结果不对:
+
+5.2.5 类共享属性 vs 实例私有属性 混淆（无报错但结果不对）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   class Station:
+       unit = "℃"                 # 类共享属性
+   s = Station(); s.unit = "K"     # 只给 s 实例"盖"一个同名属性
+   print(s.unit, Station.unit)     # K ℃
+
+.. code:: text
+
+   K ℃
+
+类属性改动会全局联动；实例级赋值则只影响当前实例——正是 oop.rst
+5.7「最高频易错点 1」。
+
+**原因** 类顶层赋值是「全站共享的温度单位」；实例用
+``self./实例.unit = 值``
+会新建一个\ **仅属于这个实例**\ 的同名属性，从此这个实例不再读类那份。
+
+**解决办法**\ ：想改就要清楚改的是哪一份。
+
+.. code:: python
+
+   class Station:
+       unit = "℃"
+   # 全站改单位：
+   Station.unit = "K"
+   print(Station("52889").unit)     # K —— 读取类共享那份
+   # 仅某台改：只在实例上赋值
+   s = Station("1"); s.unit = "K"
+
+..
+
+   **气象场景一句话**\ ：全区改写单位标准「℃→K」人人同步；可你若只对某座卫星站局部改口径，会让另一些站还用旧单位——数据口径打架最坑。
+
+--------------
+
+.. _53-类的继承:
+
+5.3 类的继承
+------------
+
+.. _531-子类重写-__init__-后忘-super__init__--父类属性缺失:
+
+5.3.1 子类重写 ``__init__`` 后忘 ``super().__init__`` → 父类属性缺失
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   class AutoStation(Station):
+       def __init__(self, *a, temp):
+           self.temperature = temp        # 忘了调用父类构造
+
+   a = AutoStation("58362", "上海", 31.40, 121.47, 6, 33.5)
+   print(a.lat)                           # 父类才有的 lat
+
+.. code:: text
+
+   AttributeError: 'AutoStation' object has no attribute 'lat'
+
+**原因**
+继承只让子类「拥有」父类的方法，但\ **属性是构造出来的**\ 。子类一旦自定义了
+``__init__``\ ，父类的 ``__init__`` 就\ **不再自动执行**\ （oop.rst 5.4
+明言），父类那套 ``lat/lon/altitude`` 从来没人初始化，于是读取即报
+``AttributeError``\ 。
+
+**解决办法**\ ：子类构造第一件事调 ``super().__init__(...)``\ 。
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id, name, lat, lon, altitude):
+           self.station_id, self.name = station_id, name
+           self.lat, self.lon, self.altitude = lat, lon, altitude
+
+   class AutoStation(Station):
+       def __init__(self, station_id, name, lat, lon, altitude, temperature):
+           super().__init__(station_id, name, lat, lon, altitude)   # 先"喂"父类建好父属性
+           self.temperature = temperature
+
+   a = AutoStation("58362", "上海", 31.40, 121.47, 6, 33.5)
+   print(a.lat)           # 31.4
+
+..
+
+   注意 ``super()``
+   是在父类环境里拿「下一个基类」，\ ``super().__init__(...)`` 不写
+   ``self``\ （Python 3 自动绑定）；别手滑写成
+   ``super().__init__(self, ...)`` 造成重复传 self（旧式写法，Python 3
+   会因位置错误抛 ``TypeError``\ ）。
+
+   **气象场景一句话**\ ：自动站「升级」时，若只把自己的新传感器（气温）接上、却不先同步父台的基础坐标（经纬/海拔），数据库那几列永远空缺，一读就
+   ``AttributeError``\ 。
+
+--------------
+
+.. _54-propertyclassmethodstaticmethod:
+
+5.4 @property、@classmethod、@staticmethod
+------------------------------------------
+
+.. _541-向只读-property-赋值--attributeerror-has-no-setter:
+
+5.4.1 向只读 property 赋值 → AttributeError: has no setter
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   class Station:
+       def __init__(self, name, temps=None):
+           self._temps = temps if temps is not None else []
+       @property
+       def mean_temp(self):
+           return sum(self._temps)/len(self._temps) if self._temps else None
+
+   s9 = Station("兰州", [5, 6, 7])
+   s9.mean_temp = 6.0
+
+.. code:: text
+
+   mean_temp= 6.0
+   AttributeError: property 'mean_temp' of 'Station' object has no setter
+
+**原因** ``@property`` 默认\ **只读**\ ：它的存在只是让
+``实例.mean_temp`` 能像读字段一样取值（oop.rst 5.3）。一旦你想给它赋值
+``s9.mean_temp = ...``\ ，Python 发现这个属性没有配套的
+``setter``\ ，直接拒绝。
+
+**解决办法**\ ：需要「赋值即校验」时补一个 ``@xxx.setter``\ 。
+
+.. code:: python
+
+   class Station:
+       def __init__(self, name, temperature=0.0):
+           self.name = name
+           self._temperature = temperature
+       @property
+       def temperature(self):                 # getter：读
+           return self._temperature
+       @temperature.setter
+       def temperature(self, value):          # setter：写 + 校验
+           if value < -273.15:
+               raise ValueError("气温不能低于绝对零度 -273.15℃")
+           self._temperature = value
+
+   st = Station("兰州")
+   st.temperature = 25.0                       # 走 setter，OK
+   # st.temperature = -300.0                  # 触发 ValueError，拒绝非法气象记录
+
+..
+
+   细节坑：setter 里务必要存/读\ **真实后备字段**
+   ``self._temperature``\ ，配套 getter 也读 ``_temperature``——否则
+   getter/setter 互相 ``self.temperature`` 会无限递归
+   ``RecursionError``\ 。
+
+   **气象场景一句话**\ ：只读属性像「只出不进的观测屏」——你能读当前均值，却绝不能手写改它；真要改，得先给装一个带「低于
+   -273.15℃ 直接拒收」闸门的录入通道。
+
+.. _542-classmethod少传参数--忘了写-cls:
+
+5.4.2 @classmethod：少传参数 / 忘了写 cls
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   class Demo:
+       @classmethod
+       def make(cls, x):
+           return cls()
+   Demo.make()                        # 缺 x
+
+.. code:: text
+
+   TypeError: Demo.make() missing 1 required positional argument: 'x'
+
+另一种：\ ``@classmethod`` 方法第一个参数忘了叫
+``cls``\ （其实占位了，见下）：
+
+.. code:: python
+
+   class Demo2:
+       @classmethod
+       def make(x):                   # 第一个参数应是 cls；这里让位给 x
+           return Demo2()
+   Demo2.make(1)
+
+.. code:: text
+
+   TypeError: Demo2.make() takes 1 positional argument but 2 were given
+
+**原因** ``@classmethod`` 会像 self 一样自动把「类对象
+cls」塞进第一个形参位。① 参数不够时提示「missing x」；② 你删了 cls
+占位，\ ``make(1)`` 实际发送「cls + 1」两个实参，而方法只留一个槽位。
+
+**解决办法**
+
+.. code:: python
+
+   class Demo:
+       @classmethod
+       def make(cls, x):              # 第一个形参必须是 cls（作为类的代表）
+           return cls.__name__ + f"({x})"
+
+   print(Demo.make(3))                # Demo(3) —— cls 由 Python 自动填充
+
+..
+
+   **气象场景一句话**\ ：类方法像「按台站编制批量出报表」的针——第一个针脚永远是「台站列表（cls）」本身，你若不先插它，后面每根数据针都对不齐。
+
+.. _543-staticmethod实例类两种调用都合法对照正常现象:
+
+5.4.3 @staticmethod：实例/类两种调用都合法（对照，正常现象）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （本机实测，非报错，用于对照 5.4.2）
+
+.. code:: python
+
+   class Demo3:
+       @staticmethod
+       def kelvin_to_celsius(k):
+           return k - 273.15
+
+   Demo3.kelvin_to_celsius(300)        # 26.85（通过类调用）
+   Demo3().kelvin_to_celsius(310)      # 36.85（通过实例调用，同样合法）
+
+.. code:: text
+
+   26.850000000000023
+   36.85000000000002
+
+**原因** ``@staticmethod`` 不吃
+``self``/``cls``\ ，是「寄生在类里的普通函数」，类与实例调用都能用——和
+``@classmethod``\ （自动塞类）最大的区别就在第一个参数。
+
+**解决办法**\ ：函数逻辑与实例/类状态无关就用
+``@staticmethod``\ ；需要访问类状态（如读类共享属性、产生实例）就用
+``@classmethod``\ ；需要访问实例属性就用普通方法（带 self）。
+
+   **气象场景一句话**\ ：开尔文转摄氏度这种「纯换算、不带任何台站的状态」公用工具，就该做成静态方法——全国各站都能直接调，互不沾染台站个性化数据。
+
+--------------
+
+.. _55-装饰器-忘写--忘-return--层级不足:
+
+5.5 装饰器（@ 忘写 / 忘 return / 层级不足）
+-------------------------------------------
+
+.. _551-装饰器忘写---忘-return-inner--nonetype-object-is-not-callable:
+
+5.5.1 装饰器忘写 ``@`` / 忘 ``return inner`` → ‘NoneType’ object is not callable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   def timer(func):
+       def inner(*a, **k):
+           ...
+           return func(*a, **k)
+   # 忘了 return inner
+   @timer
+   def fetch():
+       return 42
+
+   print(fetch())
+
+.. code:: text
+
+   Traceback (most recent call last):
+       print(fetch())
+             ^^^^^^^
+   TypeError: 'NoneType' object is not callable
+
+**原因** ``@timer`` 的语义是
+``fetch = timer(fetch)``\ ：装饰器的\ **返回值**\ 就是新
+``fetch``\ 。你的 ``timer`` 没 ``return inner``\ ，返回了
+``None``\ ，于是 ``fetch`` 变成了 ``None``——再把 ``None``
+当函数调，就报「NoneType 不可调用」。（通用指南 0.3：\ ``TypeError`` →
+参数/类型不对。）
+
+**解决办法**\ ：装饰器函数内部\ **一定要
+``return inner``**\ （返回内层函数本身，不是调用它）。
+
+.. code:: python
+
+   def timer(func):
+       def inner(*a, **k):
+           import time
+           t = time.time()
+           r = func(*a, **k)
+           print(f"耗时 {time.time()-t:.3f}s")
+           return r
+       return inner                     # ★ 返回内层函数
+
+..
+
+   **气象场景一句话**\ ：给观测步骤装「计时套件」，套件拆开后忘了把「真正干活的台站函数」装回去，返回给你一个空壳（None）——你要再上台站号，当然扑空。
+
+.. _552-装饰器里写-return-wrapper-而非-return-wrapper:
+
+5.5.2 装饰器里写 ``return wrapper()`` 而非 ``return wrapper``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   def deco(func):
+       def wrapper():
+           return func() + 1
+       return wrapper()        # 返回了调用结果(整数)，不是函数
+
+   @deco
+   def get():
+       return 10
+
+   print(get()); get()         # get 变成整数 11，第二次调用报错
+
+.. code:: text
+
+   Traceback (most recent call last):
+       print(get())
+             ^^^^^^^
+   TypeError: 'int' object is not callable
+
+**原因** ``return wrapper()`` 是把 wrapper 的\ **返回值**\ （一个整数
+11）返回出去，而非返回 wrapper 这个\ **函数**\ 。于是
+``get = 11``\ ，把整数当函数调用即报错。
+
+**解决办法**\ ：返回函数本身 — ``return wrapper``\ （不带括号）。
+
+.. code:: python
+
+   def deco(func):
+       def wrapper():
+           return func() + 1
+       return wrapper          # ← 不带括号
+
+..
+
+   **气象场景一句话**\ ：你要「上交的是整套处理流程（函数）」，却把「这一趟算出来的
+   11℃」当结果交了上去——未来每次调用都只能在这个数字上撞墙。
+
+.. _553-带参数的装饰器只写了两层--missing--func:
+
+5.5.3 带参数的装饰器只写了两层 → missing … ‘func’
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   def repeat(func, count):      # 带参装饰器本该再包一层，这里只有两层
+       def inner(*a, **k):
+           return (*[func(*a, **k)] * count,)
+       return inner
+
+   class T:
+       @repeat(count=3)          # Python 把 count=3 当成 func 调用 repeat
+       def go(self):
+           return "go"
+
+.. code:: text
+
+   TypeError: repeat() missing 1 required positional argument: 'func'
+
+**原因** ``@repeat(count=3)`` 实际上是先算 ``repeat(count=3)``\ 。可你的
+``repeat`` 第一个参数是
+``func``\ （装饰器应直接收被装饰函数），现在却被塞了
+``count``——于是它要的 ``func``
+缺失。带参装饰器必须\ **三层**\ ：外层收参 → 中层返回装饰器 →
+内层真正的包装。
+
+**解决办法**\ ：\ ``repeat`` 需再多包一层：
+
+.. code:: python
+
+   def repeat(count):
+       def decorator(func):          # 真正的装饰器
+           def inner(*a, **k):
+               return (*[func(*a, **k)] * count,)
+           return inner
+       return decorator
+
+   @repeat(count=3)
+   def go():
+       return "go"
+   print(go())        # ('go', 'go', 'go')
+
+..
+
+   **气象场景一句话**\ ：批量重放某站三次资料，指令需要「先指明重放次数」再套「待重放函数」——你少了一层中转，把次数误当成函数名递了过去，报错自然点名
+   ``func`` 缺失。
+
+--------------
+
+.. _56-生成器yield-的脾气:
+
+5.6 生成器（yield 的脾气）
+--------------------------
+
+.. _561-next-把生成器取尽--stopiteration:
+
+5.6.1 ``next()`` 把生成器取尽 → StopIteration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   def temps():
+       yield 5.0
+       yield 6.0
+   g = temps()
+   print(next(g)); print(next(g))
+   print(next(g))        # 第三个 next —— 已耗尽
+
+.. code:: text
+
+   5.0
+   6.0
+   StopIteration:
+
+**原因** 生成器每 ``next()`` 一次吐一个值，\ ``yield``
+吐完就「清零」，再 ``next()`` 就抛 ``StopIteration``\ 。这与通用指南 0.3
+的家谱一致——``StopIteration``
+表示「迭代器取不出下一个元素」。反过来说，\ ``for``
+循环内部其实就是在捕获它才正常停下的。
+
+**解决办法**\ ：用 ``for`` 循环自动消费（不必手管 next 和
+StopIteration），或先判断是否耗尽：
+
+.. code:: python
+
+   def temps():
+       yield 5.0
+       yield 6.0
+
+   for t in temps():           # for 自动帮你吞掉结尾的 StopIteration
+       print(t)
+
+..
+
+   手册级建议：只有真需要「手动控制节奏 / 前向取一个」时才显式
+   ``next()``\ ，并自行捕获 ``StopIteration``\ 。
+
+   **气象场景一句话**\ ：逐日观测值一条条吐出来的「流水线」，吞到最后一格还在喊「再来一条」，自然是末端无料的
+   ``StopIteration``\ 。
+
+.. _562-生成器内-return-值--值藏在-stopiterationvalue:
+
+5.6.2 生成器内 ``return 值`` → 值藏在 StopIteration.value
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   def temps_with_count():
+       yield 5.0
+       yield 6.0
+       return "count=2"          # 生成器里的 return 特殊
+
+   g = temps_with_count()
+   next(g); next(g)
+   try:
+       next(g)
+   except StopIteration as si:
+       print(f"StopIteration.value = {si.value!r}")
+
+.. code:: text
+
+   StopIteration.value = 'count=2'
+
+**原因** 生成器里 ``return 值``
+**不会像普通函数那样返回给你**\ ，而是被转成挂载在
+``StopIteration.value`` 上的「尾声」。你若是 ``result = gen()``
+想拿返回值，拿到的永远是生成器对象而非那个值。
+
+**解决办法**\ ：别指望生成器用 ``return 返回数据``
+拿结果；需要「返回值」就别用生成器，或把值放在最后一个 ``yield``
+里让调用方取。
+
+.. code:: python
+
+   def fine():
+       yield 5.0
+       yield 6.0
+   # 想拿"总条数"，改成普通函数或在外部统计：
+   def count(gen):
+       return sum(1 for _ in gen)
+
+..
+
+   **气象场景一句话**\ ：观测流水线吐完最后一笔后，那条「本次共 2
+   条」的统计不是丢给你，而是粘在工单最后的 ``StopIteration.value``
+   里——你不翻到底就看不见。
+
+.. _563-忘-yield-当生成器用--返回-none--不是迭代器:
+
+5.6.3 忘 ``yield`` 当生成器用 → 返回 None / 不是迭代器
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   def fake_generator(x):       # 没有 yield，只是普通函数，返回 None
+       result = x * 2
+   print("调用结果:", fake_generator(3))     # None
+   next(fake_generator(3))                  # 想当迭代器用
+
+.. code:: text
+
+   调用结果: None
+   TypeError: 'NoneType' object is not an iterator
+
+**原因** 一个函数里只要\ **没有一个
+``yield``**\ ，它就不是生成器函数：调用即执行、返回 ``None``\ （没写
+return 时）。而 ``next()`` 需要一个「迭代器/可迭代对象」，\ ``None``
+当然不行。
+
+**解决办法**\ ：写成生成器就在函数体内加上 ``yield``\ ：
+
+.. code:: python
+
+   def temps(n):
+       for i in range(n):
+           yield i * 1.5          # 有 yield，才是生成器
+   print(list(temps(3)))          # [0.0, 1.5, 3.0]
+
+..
+
+   **气象场景一句话**\ ：想造一条「逐点吐温度」的采样泵，可泵里一个吐料口（yield）都没装——抽出来自然是空的，让你去找料的调用方只能报「这不是个泵」。
+
+--------------
+
+.. _57-列表推导式作用域命名:
+
+5.7 列表推导式（作用域/命名）
+-----------------------------
+
+.. _571-推导式引用未定义变量--nameerror:
+
+5.7.1 推导式引用未定义变量 → NameError
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   temps = [5, 6, 7, 8]
+   mean = sum(temps)/len(temps)
+   anomalies = [t - mean_t for t in temps]    # mean_t 是拼写错误
+
+.. code:: text
+
+   NameError: name 'mean_t' is not defined
+
+**原因** 推导式里的 ``mean_t`` 从未定义（应为
+``mean``\ ）。这点与通用指南 0.3 家谱中
+``NameError``\ （名字没定义/拼错）完全一致——推导式并没有帮你「就近猜词」。
+
+**解决办法**\ ：变量名要与前面定义的一致，简明起见用字面或明确定义的变量：
+
+.. code:: python
+
+   temps = [5, 6, 7, 8]
+   mean = sum(temps)/len(temps)
+   anomalies = [t - mean for t in temps]      # 名字对上了
+   print(anomalies)                            # [-1.5, -0.5, 0.5, 1.5]
+
+..
+
+   **气象场景一句话**\ ：算「距平」时，把温标里的 ``mean`` 错念成
+   ``mean_t``——台站手册里根本没这个量，气象统计自然就地停摆。
+
+.. _572-类体内推导式访问外层类属性--nameerrorpython-3-特有:
+
+5.7.2 类体内推导式访问外层类属性 → NameError（Python 3 特有）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （实测）
+
+.. code:: python
+
+   class Scale:
+       base = 2
+       vals = [base * k for k in range(3)]
+
+.. code:: text
+
+   NameError: name 'base' is not defined
+
+**原因** Python 3 起，推导式拥有\ **自己的局部作用域**\ ，看不到类体里
+``base = 2`` 这个类顶层变量（Python 2
+曾能读到，行为已改）。这就是清单里「列表推导式作用域泄漏」的典型。
+
+**解决办法**\ ：在类体内把需要的值先拿出来再推导，或用推导式括号外引用：
+
+.. code:: python
+
+   class Scale:
+       base = 2
+       vals = [(Scale.base) * k for k in range(3)]   # 显式经类名取
+   print(Scale.vals)      # [0, 2, 4]
+
+..
+
+   更稳妥是在 ``__init__``/方法里构造推导，避免类体作用域坑。
+
+   **气象场景一句话**\ ：换算表格在「类 /
+   台站编制」这一层想直接引用全局量程——可推算表有自己的一扇门，门不递进来它就拿不到外面那个基础常数。
+
+.. _573-推导式遮蔽外层同名变量python-3-行为对照说明:
+
+5.7.3 推导式遮蔽外层同名变量（Python 3 行为，对照说明）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   x = 99
+   print([x for x in range(3)])    # 推导内 x 是局部
+   print(x)                         # 外层仍是 99
+
+.. code:: text
+
+   [0, 1, 2]
+   99
+
+**原因** Python 3 推导式里 ``for x`` 的 ``x``
+只在推导内部可见，\ **不会污染外层**\ 。这不是报错，而是很多人误以为会「改掉外面的
+x」——理解它有助于读懂 5.7.2。
+
+**解决办法**\ ：无需修复；只需知道外层变量安全，且不要依赖「推导式的 x
+会被带出去」。若确实需要在外部继续用那个值，用普通循环 + 手动收集变量。
+
+   **气象场景一句话**\ ：推导式像一次独立的「小分队采样巡逻」，它自己在范围内编号（x），结束后并不会改变观测场里原来的那个编号者。
+
+--------------
+
+.. _58-函数式map--filter--lambda多半无报错但错:
+
+5.8 函数式：map / filter / lambda（多半「无报错但错」）
+-------------------------------------------------------
+
+.. _581-map--filter-忘-list--打印-map-object-at-0x惰性:
+
+5.8.1 ``map`` / ``filter`` 忘 ``list()`` → 打印 ``<map object at 0x...>``\ （惰性）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   ks = [285, 290, 300]
+   r = map(lambda k: k - 273.15, ks)
+   print(r)                 # 惰性：只打印对象地址
+   print(list(r))           # 消费一次后
+   print(list(r))           # 再取就是空
+
+.. code:: text
+
+   <map object at 0x0000012E310F18D0>
+   [11.85, 16.85, 26.85]
+   []
+
+**原因** ``map``/``filter`` 在 Python 3 返回\ **惰性迭代器**\ ，只有被
+``list()``/``for``/``sum`` 消费时才真正算；直接 ``print``
+只会看到对象地址。而且它是一次性的：取过一次就空。这正属于通用指南 0.5
+的「静默污染」——程序不报错，结果却不是你以为的「一个现成列表」。
+
+**解决办法**\ ：需要列表就显式 ``list(...)``\ ，且只消费一次：
+
+.. code:: python
+
+   ks = [285, 290, 300]
+   r = list(map(lambda k: k - 273.15, ks))   # 一步到位转成列表
+   print(r)                                   # [11.85, 16.85, 26.85]
+
+..
+
+   **气象场景一句话**\ ：\ ``map``
+   只是给了你一份「换算的借条」而不是现成的温度表；你不把它折成现钞（list），打印的永远是借条地址。
+
+.. _582-filternone--把-0及-nan当假值删掉--静默丢数据:
+
+5.8.2 ``filter(None, ...)`` 把 0℃（及 NaN）当假值删掉 → 静默丢数据
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   rows = [5.0, 0.0, -3.5, 8.0]          # 0.0 是有效观测
+   list(filter(None, rows))               # 无解析的 filter(None)
+
+.. code:: text
+
+   filter(None) 结果: [5.0, -3.5, 8.0]       # 0.0 被误删！
+   filter(x is not None): [5.0, 0.0, -3.5, 8.0]   # 正确保留 0.0
+
+**原因** ``filter(None, it)``
+会删掉\ **所有假值**\ （\ ``0``\ 、\ ``0.0``\ 、\ ``""``\ 、\ ``None``\ 、\ ``False``\ 、\ ``NaN``\ ）。气象里
+0.0℃ 是完全正常的观测，NaN 才是缺测——用 ``filter(None)`` 会静默把 0℃
+及有效 0
+值全部剔掉，重新返回图就可能出「看起来平滑却少了真值」的假象（呼应通用指南
+0.5）。
+
+**解决办法**\ ：只要「去 None」就明确写 ``x is not None``\ ；只要「去
+NaN」就结合 ``math.isnan``\ 。
+
+.. code:: python
+
+   import math
+   rows = [5.0, 0.0, math.nan, 8.0]
+   cleaned = [x for x in rows if x is not None and not (isinstance(x, float) and math.isnan(x))]
+   # [5.0, 0.0, 8.0]   —— 0.0 与 8.0 保留，仅 NaN 剔除
+
+..
+
+   **气象场景一句话**\ ：\ ``filter(None)``
+   像一把「看见零便拔闸」的粗筛——它把你 0℃
+   的最低温真观测当成了缺测扔进废纸篓，绝对零度那关倒瞪眼放行了。
+
+.. _583-lambda-在循环里捕获变量--全都取到最后值late-binding:
+
+5.8.3 lambda 在循环里捕获变量 → 全都取到最后值（late binding）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   funcs = [lambda: i * 1 for i in range(3)]
+   [f() for f in funcs]            # [2, 2, 2] 而不是 [0, 1, 2]
+
+.. code:: text
+
+   all lambdas: [2, 2, 2]
+   snapshot   : [0, 1, 2]
+
+**原因** lambda（及普通闭包）是\ **按名字晚绑定**\ 的：它记录的是变量
+``i`` 的「引用」，等你在循环结束后调用时才去取值，所以所有 lambda
+共享同一个已到终值的 ``i``\ （=2）。spikes 不报错，纯属「0.5 静默错」。
+
+**解决办法**\ ：用默认参数把当前值\ **快照**\ 进 lambda：
+
+.. code:: python
+
+   funcs = [lambda i=i: i for i in range(3)]   # 默认参数在定义时求值，等于拍了快照
+   print([f() for f in funcs])                 # [0, 1, 2]
+
+..
+
+   **气象场景一句话**\ ：给每个时次登记「这次该用的雨量计读数」，lambda
+   却只在整点过后才去翻表——于是所有时次都记成了最后一根雨量计的示数。
+
+--------------
+
+.. _59-match-case310新增语法:
+
+5.9 match-case（3.10+，新增语法）
+---------------------------------
+
+.. _591-case-缺冒号--缩进错--syntaxerror-expected-:
+
+5.9.1 case 缺冒号 / 缩进错 → SyntaxError: expected ‘:’
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实报错信息**\ （本机实测，编译期语法错误）
+
+.. code:: python
+
+   match level:
+       case '大风'            # 忘了冒号
+           print('预警!')
+
+.. code:: text
+
+       case '大风'
+                ^
+   SyntaxError: expected ':'
+
+**原因** ``case``
+子句是独立代码块，末尾\ **必须有冒号**\ 、内部要缩进，如同
+``if/for``\ 。忘了冒号或缩进错了，解释器编译期直接
+``SyntaxError``\ （通用指南 0.3 家谱的
+``SyntaxError: expected ':'``\ ）。另注意：\ ``match``/``case``
+是「软关键字」，需 Python ≥3.10；本课程环境
+met_p312（3.12）原生支持，但若在有同学仍用 3.8/3.9 的环境跑，会直接
+``SyntaxError: invalid syntax``\ 。
+
+**解决办法**\ ：每个 ``case`` 带冒号、子句块缩进 4 格，末尾用
+``case _:`` 兜底：
+
+.. code:: python
+
+   def warn(level):
+       match level:
+           case "大风":
+               return "黄色预警"
+           case _:                      # 通配分支(兜底)
+               return "无预警"
+   print(warn("大风"))                   # 黄色预警
+
+..
+
+   **气象场景一句话**\ ：汛情分级对表（match-case）里，每一档「case
+   级别：」结尾的冒号就像每个预警等级的封口——漏了它，整张分级表在编译那关就被打回。
+
+.. _592-旧版本环境--变量未定义导致的-nameerror运行期提示:
+
+5.9.2 旧版本环境 / 变量未定义导致的 NameError（运行期提示）
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: text
+
+   Python 版本: 3.12.12
+   NameError: name 'x' is not defined
+
+在本环境上，\ ``match x:`` 里的 ``x`` 未定义 → ``NameError``\ ；而在
+<3.10 的解释器里，\ ``match`` 起步就会 ``SyntaxError``\ （无法运行到
+NameError）。
+
+**原因** ``match x:`` 先要\ **求值被匹配对象 ``x``**\ 。\ ``x``
+没定义就是 ``NameError``\ ；环境版本不够高则是 ``SyntaxError``——两者都是
+match-case 新手常见的两道门槛。
+
+**解决办法**\ ：先定义好被匹配对象；并确认解释器 ≥3.10（本课程环境
+met_p312 满足，直接在章节所用环境运行即可）：
+
+.. code:: python
+
+   level = "大风"                 # 先定义 x
+   def warn(level):
+       match level:
+           case "大风":
+               return "黄色预警"
+           case _:
+               return "无预警"
+   print(warn(level))             # 黄色预警
+
+..
+
+   **气象场景一句话**\ ：分级判定先得手里有「当前风力等级」这张牌——没拿到观测值（x
+   未定义）自然无从匹配，版本太低（<3.10）更是连牌桌都上不了。
+
+--------------
+
+.. _510-魔法方法-repr--str无报错但难读:
+
+5.10 魔法方法 **repr** / **str**\ （无报错，但难读）
+----------------------------------------------------
+
+.. _5101-没定义-reprstr--打印全是-station-object-at-0x:
+
+5.10.1 没定义 **repr**/**str** → 打印全是 ``<Station object at 0x...>``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**现象 / 真实输出**\ （实测）
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id, name):
+           self.station_id = station_id
+           self.name = name
+
+   s = Station("52889", "兰州")
+   print(s)          # <__main__.Station object at 0x...>
+
+.. code:: text
+
+   打印实例: <__main__.Station object at 0x000002736F437F80>
+   str   : <__main__.Station object at 0x000002736F437F80>
+   repr  : <__main__.Station object at 0x000002736F437F80>
+
+列表里一堆对象也一样（实测）：
+
+.. code:: text
+
+   [<__main__.Station object at 0x0000026D0D9B1130>, <__main__.Station object at 0x0000026D0D9B11C0>]
+
+**原因** ``__str__``\ （\ ``print``/``str`` 用）与 ``__repr__``\ （无
+``str`` 时也被 ``print`` 兜底引用，列表/调试里用）默认都只返回「类名 +
+内存地址」。不报错，但你在气象调试里完全不知道「这是哪座站、多少度」。
+
+**解决办法**\ ：实现 ``__str__`` 与
+``__repr__``\ ，把台站关键字段打印出来。
+
+.. code:: python
+
+   class Station:
+       def __init__(self, station_id, name):
+           self.station_id = station_id
+           self.name = name
+       def __repr__(self):                      # 调试用：明确的表示
+           return f"<Station {self.station_id} {self.name}>"
+       def __str__(self):                       # print 用（可省略，Python 用 __repr__ 兜底）
+           return f"Station({self.name}, {self.station_id})"
+
+   print(Station("52889", "兰州"))              # Station(兰州, 52889)
+
+..
+
+   **气象场景一句话**\ ：不写 ``__repr__``
+   的输出像一串台站「坐标纸条」只写第几帧内存地址——你看到一堆地址却认不出哪张是兰州站，排障全靠猜。
+
+--------------
+
+.. _511-本章高频速查表关键词--原因--一句话修法:
+
+5.11 本章高频速查表（关键词 → 原因 → 一句话修法）
+-------------------------------------------------
+
++----------------------------------------------------+----------------------------------+----------------------------------+
+| 看到的关键词                                       | 多数是什么坑                     | 一句话修法                       |
++====================================================+==================================+==================================+
+| ``takes 3 positional arguments but 2 were given``  | ``__init__``/方法忘了            | 第一形参补 ``self``              |
+|                                                    | ``self``\ （实例被自动多塞一位） |                                  |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``missing 1 required positional argument: 'self'`` | 用 ``类名.方法()`` 没带实例      | 改用 ``实例.方法()`` 或手动      |
+|                                                    |                                  | ``类名.方法(实例)``              |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``takes 0 positional arguments but 1 was given``   | 方法忘了 self 且无参             | 方法加 ``self``                  |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``'Station' object has no attribute 'temp'``       | 属性没赋值 /                     | 先 ``self.xxx=...``              |
+|                                                    | 名字(大小写/下划线)不一致        | 初始化，统一命名                 |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``Station() takes no arguments``                   | ``__init__`` 拼错或只有 self     | 检查双下划线写全、参数与调用匹配 |
+|                                                    | 无参却传参                       |                                  |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``property '...' has no setter``                   | 给只读 property 赋值             | 补 ``@xxx.setter``               |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``super().__init__`` 相关 ``AttributeError``       | 子类忘调用父类构造               | 子类 ``__init__`` 里             |
+|                                                    |                                  | ``super().__init__(...)``        |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``'NoneType' object is not callable``              | 装饰器没 ``return inner``        | 装饰器返回函数本身               |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``'int' object is not callable``                   | 装饰器 ``return wrapper()``      | 去掉括号 ``return wrapper``      |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``StopIteration``                                  | ``next()`` 把迭代器/生成器取完了 | 用 ``for`` 或先判断耗尽          |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``StopIteration.value``                            | 生成器 ``return 值``             | 需要返回值就别用生成器           |
+|                                                    | 的值藏在异常里                   |                                  |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``'NoneType' object is not an iterator``           | 函数里没 ``yield`` 却被当生成器  | 函数体加 ``yield``               |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``NameError: name '...' is not defined``           | 推导式/代码里变量没定义或拼错    | 核对变量名可在推导式结果处访问   |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| 推印 ``<map object at 0x...>``                     | ``map``/``filter`` 惰性、忘消费  | ``list(map(...))``               |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``filter(None)`` 结果少了 0/0.0                    | 假值误删有效观测                 | 用 ``x is not None`` 而非        |
+|                                                    |                                  | ``filter(None)``                 |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| lambda 全取最后一个值                              | 闭包晚绑定                       | ``lambda i=i: ...`` 默认参数快照 |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| ``SyntaxError: expected ':'``                      | ``case`` 忘冒号 / 缩进错         | ``case 值:`` + 子句缩进 4 格     |
++----------------------------------------------------+----------------------------------+----------------------------------+
+| 打印 ``<Station object at 0x...>``                 | 没写 ``__repr__``/``__str__``    | 定义 ``__repr__``                |
+|                                                    |                                  | 展示台站关键字段                 |
++----------------------------------------------------+----------------------------------+----------------------------------+
+
+..
+
+   定位小抄：\ **先看最后一个 ``ErrorType`` 与报错行**\ （通用指南
+   0.1/0.2），\ ``TypeError`` 查参数个数与类型，\ ``AttributeError``
+   查属性/方法名，\ ``NameError`` 查名字定义，\ ``SyntaxError``
+   查标点/缩进/冒号，\ ``StopIteration`` 查迭代器是否耗尽。

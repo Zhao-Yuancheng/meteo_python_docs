@@ -7,6 +7,12 @@
 """
 import os
 import sys
+import warnings
+
+# sphinx-gallery 生成“下载例句 ipynb 的 zip 包”时，同一示例会被多个打包入口
+# 重复写盘并触发 zipfile 的 ``Duplicate name`` UserWarning（纯重复项拉警告，
+# 无实际数据丢失）。这类 Python 通知不属于文档问题，提前静默。
+warnings.filterwarnings('ignore', message='Duplicate name:')
 
 sys.path.insert(0, os.path.abspath('.'))
 
@@ -26,11 +32,14 @@ extensions = [
     'sphinx_gallery.gen_gallery',   # 可执行示例画廊
     'sphinx_copybutton',            # 代码块复制按钮
     'sphinxcontrib.video',
-    # 'myst_parser',                  # 可选：Markdown 源文件支持
+    'myst_parser',                  # Markdown 源文件支持（Q&A 章节）
 ]
 
 # MyST：允许在 .md 中用 {} 指令，与 reST 互通
 myst_enable_extensions = ['colon_fence', 'deflist', 'substitution']
+# Markdown 内部相对链接：把指向 .md/.rst 的链接解析为 Sphinx 文档交叉引用
+myst_heading_anchors = 3
+myst_links_external = False
 
 # -- 主题 --
 html_theme = 'pydata_sphinx_theme'
@@ -107,6 +116,9 @@ sphinx_gallery_conf = {
     'reset_modules': (_reset_mpl_zh, 'seaborn'),
     'only_warn_on_example_error': True,       # 单个示例失败不中断构建
     'plot_gallery': True,
+    # Windows 不区分大小写的文件系统找不到 matplotlib.rc.backrefs 等
+    # backreferences 文件（属已知噪音），降级为 debug 不再计入告警。
+    'log_level': {'backreference_missing': 'debug'},
 }
 
 # -- 复制按钮：去掉提示符前缀 --
@@ -123,6 +135,13 @@ exclude_patterns = [
     './examples/plot_numpy/GALLERY_HEADER.rst',
     './examples/plot_viz/GALLERY_HEADER.rst',
 ]
+
+# sphinx-gallery 的两类固有告警，属于预期行为，统一静默：
+#   - config.cache：sphinx_gallery_conf.reset_modules 含函数对象，无法 pickle；
+#   - toc.not_included：各 GALLERY_HEADER.rst 是画廊的内嵌模板，本就无须挂入 toctree。
+# 画廊示例的其它基础设施噪音（backreferences 缺失、ipynb zip 打包重复项）见下方
+# sphinx_gallery_conf 的 log_level 与 conf.py 顶部的 warnings.filterwarnings。
+suppress_warnings = ['config.cache', 'toc.not_included']
 
 
 # -- matplotlib 中文字体（sphinx-gallery 缩略图用）--

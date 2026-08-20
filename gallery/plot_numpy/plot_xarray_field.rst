@@ -21,8 +21,8 @@
 Xarray 西北气温场分析
 =====================
 
-本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行**时间切片**、
-**空间子区域裁剪**，并做**纬度加权区域平均**，最后画出「某时刻空间气温场 +
+本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行\ **时间切片**、
+**空间子区域裁剪**，并做\ **纬度加权区域平均**，最后画出「某时刻空间气温场 +
 区域平均时间序列」两张图，贯穿项目第 8 步。
 
 真实项目中第一步是：
@@ -32,7 +32,7 @@ Xarray 西北气温场分析
 
 用 `open_dataset` 读取项目数据文件（NetCDF），它会自动解析 time/lat/lon
 坐标、识别缺测 `_FillValue`。为了保证本画廊在不联网、无人造数据文件的
-环境下也能直接复现，下面用 ``numpy`` **在脚本内合成**一张覆盖中国西北
+环境下也能直接复现，下面用 ``numpy`` **在脚本内合成**\一张覆盖中国西北
 （lon ≈ 85–105°E，lat ≈ 32–42°N）的温度场，其余分析流程与读取 NetCDF
 完全一致——把 ``da_synth`` 换成 ``ds["temp"]`` 即可无缝迁移。
 
@@ -264,7 +264,7 @@ lon 90–100°E, lat 35–40°N（本例 lat 从小到大排列，故 slice(35, 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.607 seconds)
+   **Total running time of the script:** (0 minutes 1.180 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_xarray_field.py:

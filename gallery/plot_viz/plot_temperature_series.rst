@@ -21,7 +21,7 @@
 兰州气温时间序列综合分析
 ========================
 
-本脚本演示如何用 Matplotlib 的**面向对象接口**，把一套整年的逐日气温数据
+本脚本演示如何用 Matplotlib 的\ **面向对象接口**，把一套整年的逐日气温数据
 绘制成一张 3 行子图的综合图板：上图为逐日平均温的年周期曲线（叠加月均温
 并标注冬夏极值点），中图为日最高温与日最低温的相关性散点，下图为全年气温
 分布直方图。
@@ -197,7 +197,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.365 seconds)
+   **Total running time of the script:** (0 minutes 0.351 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_viz_plot_temperature_series.py:

@@ -55,7 +55,7 @@
 
 .. admonition:: 提示
 
-   这里很容易触发 ``SettingWithCopyWarning``（链式赋值警告）。原因是：筛选结果可能只是原数据的一个「视图」，直接对它赋值修改，可能会悄悄改动原始 DataFrame，pandas 用警告提醒你。
+   这里很容易触发 ``SettingWithCopyWarning``\（链式赋值警告）。原因是：筛选结果可能只是原数据的一个「视图」，直接对它赋值修改，可能会悄悄改动原始 DataFrame，pandas 用警告提醒你。
 
    **✅ 正确做法**：筛选结果立刻 ``.copy()``，得到一份完全独立的副本，再修改就互不影响、也无警告：
 
@@ -87,7 +87,7 @@
 
 1. 将 ``date`` 列转换为 pandas 时间格式。
 2. 从 ``date`` 提取月份，新增一列 ``month``。
-3. 按照 ``month`` 分组，计算每月气温的**平均气温、最高气温、最低气温**。
+3. 按照 ``month`` 分组，计算每月气温的\ **平均气温、最高气温、最低气温**。
 4. 将分组统计结果保存为 ``month_stats``。
 
 .. admonition:: 提示
@@ -118,7 +118,7 @@
 .. admonition:: 提示
 
    - ``df.sort_values(by="temp", ascending=False)``：``by`` 指定排序列，``ascending=False`` 表示降序（从大到小）。升序就写 ``ascending=True``，或省略。
-   - ``sort_values`` 默认返回**新** DataFrame，不会改原表；想原地修改则加参数 ``inplace=True``。对初学者，养成「生成新表、赋值给新变量」的习惯更安全。
+   - ``sort_values`` 默认返回\ **新** DataFrame，不会改原表；想原地修改则加参数 ``inplace=True``。对初学者，养成「生成新表、赋值给新变量」的习惯更安全。
    - 排完取前 N 条用 ``.head(10)``，从大到小取前 10 就是全年最高温的 10 条记录。
 
 **参考答案**：
@@ -136,7 +136,7 @@
 
 **任务**：
 
-1. 将第 2 题得到的高温记录 ``high_temp_df`` 导出保存为 ``high_temperature.csv``，**不要**保存 pandas 自动生成的行索引。
+1. 将第 2 题得到的高温记录 ``high_temp_df`` 导出保存为 ``high_temperature.csv``，**不要**\保存 pandas 自动生成的行索引。
 2. 将第 3 题的按月统计结果 ``month_stats`` 导出保存为 ``month_temp_stat.csv``。
 
 .. admonition:: 提示
@@ -158,20 +158,20 @@
 
 Pandas 列名严格区分大小写。如果你的 CSV 列名是 ``Temp``，写 ``df["temp"]`` 会直接报 ``KeyError``。
 
-调试技巧：先 ``print(df.columns)``，再把真实的列名**复制粘贴**进代码，避免手动输入写错。
+调试技巧：先 ``print(df.columns)``，再把真实的列名\ **复制粘贴**\进代码，避免手动输入写错。
 
 📌 **重要提示 2：SettingWithCopyWarning**
 
 警告含义：你操作的 DataFrame 可能只是原数据的切片视图，修改它可能会改动原始数据，结果不可预期。
 
-**✅ 正确写法**（筛选后加 ``.copy()``）：
+**✅ 正确写法**\（筛选后加 ``.copy()``）：
 
 .. code-block:: python
 
    subset = df[df["temp"] > 30].copy()
    subset["new_col"] = subset["temp"] + 1
 
-**❌ 不推荐写法**（会弹出警告）：
+**❌ 不推荐写法**\（会弹出警告）：
 
 .. code-block:: python
 

@@ -1,9 +1,9 @@
 第 5 章术语：面向对象与高级语法
-==============================
+===============================
 
-配套 :ref:`tut-oop` 正文使用。每个词条 = 一句话定义 + **生活类比** + **气象示例** + **易混淆点**（`.. code-block:: python` 承载代码示例）。本章术语围绕"把气象站抽象成类"展开。
+配套 :ref:`tut-oop` 正文使用。每个词条 = 一句话定义 + **生活类比** + **气象示例** + **易混淆点**\（`.. code-block:: python` 承载代码示例）。本章术语围绕"把气象站抽象成类"展开。
 
-.. seealso:: 配套正文：:doc:`/user_guide/basics/oop`　·　配套练习：:doc:`/tutorials/ch05_practice`
+.. seealso:: 配套正文：:doc:`/user_guide/basics/oop`　·　配套练习：:doc:`/tutorials/basics/ch05_practice`
 
 .. glossary::
 

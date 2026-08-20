@@ -3,7 +3,7 @@
 
 配套 :ref:`tut-func` 正文使用。每个词条 = 一句话定义 + **生活类比** + **代码示例** + **易混淆点**。本章术语围绕"把逻辑收成函数、用模块与包组织代码"展开。
 
-.. seealso:: 配套正文：:doc:`/user_guide/basics/functions`　·　配套练习：:doc:`/tutorials/ch04_practice`
+.. seealso:: 配套正文：:doc:`/user_guide/basics/functions`　·　配套练习：:doc:`/tutorials/basics/ch04_practice`
 
 .. glossary::
 
@@ -116,7 +116,7 @@
       **易混淆点** —— 模块就是一个 ``.py`` 文件；用 ``import weather_utils`` 导入整个模块后，要用 ``weather_utils.c_to_f(...)`` 调用；模块名别和标准库同名（如 ``json.py``、``random.py``），否则 ``import json`` 可能导成你自己的空文件，报莫名其妙的 ``AttributeError``。
 
    包 package
-      用文件夹把多个模块分组构成的目录，通常放一个（可以是空的）``__init__.py`` 作标识。像档案柜里按站点分格子的"文件夹柜"。
+      用文件夹把多个模块分组构成的目录，通常放一个（可以是空的）\ ``__init__.py`` 作标识。像档案柜里按站点分格子的"文件夹柜"。
 
       .. code-block:: python
 
@@ -129,7 +129,7 @@
          from weather_pkg import utils          # 从包导入模块
          average = utils.calc_average(temps)    # 用 模块.函数名 调用
 
-      **易混淆点** —— 导入写完整路径 ``from weather_pkg.utils import c_to_f``，直接拿函数名用；常规包一般保留 ``__init__.py``（Python 3.3 之后没有它也能构成命名空间包）；两个模块互相 ``import`` 会形成循环导入，表现为"模块明明有这个函数却提示没定义"——入门阶段让主程序单向导入工具模块即可避开。
+      **易混淆点** —— 导入写完整路径 ``from weather_pkg.utils import c_to_f``，直接拿函数名用；常规包一般保留 ``__init__.py``\（Python 3.3 之后没有它也能构成命名空间包）；两个模块互相 ``import`` 会形成循环导入，表现为"模块明明有这个函数却提示没定义"——入门阶段让主程序单向导入工具模块即可避开。
 
    导入 import 与 __name__
        ``import`` 把别的模块里的工具"借"进当前文件来用；``__name__`` 用来判断当前这本手册是被"直接翻看运行"，还是被别的文件"引用"。

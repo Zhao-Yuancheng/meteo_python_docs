@@ -6,7 +6,7 @@ Python 与 Conda 简介
 第 1 节 · 模块一 Python 编程基础
 贯穿项目第 1 步：搭建项目环境，创建 ``weather_project/`` 目录并跑通第一个验证脚本。
 
-本章是"兰州气温观测数据分析与可视化系统"的**开篇**。学会这一节，你就拥有了一个"气象专用实验室"：装好 Miniconda、建好虚拟环境、配好 VS Code，并运行出第一段打印兰州站点信息的气象代码。
+本章是"兰州气温观测数据分析与可视化系统"的\ **开篇**。学会这一节，你就拥有了一个"气象专用实验室"：装好 Miniconda、建好虚拟环境、配好 VS Code，并运行出第一段打印兰州站点信息的气象代码。
 
 学完本章你将能够：
 
@@ -28,7 +28,7 @@ Python 与 Conda 简介
       安装与配置录屏 + 执行流程动画
 
    .. grid-item-card:: ✏️ 配套练习
-      :link: /tutorials/ch01_practice
+      :link: /tutorials/basics/ch01_practice
       :link-type: doc
       :class-card: gallery-card
 
@@ -128,9 +128,9 @@ Python 代码无法直接被电脑硬件识别，完整执行流程分三步：`
 Miniconda 极简环境管理器
 ------------------------
 
-Miniconda 是轻量化的 conda 发行版，只保留 conda 管理器与 Python 基础组件，安装包不足 100 MB，需要什么库再手动安装。与之相对的 Anaconda 集成了数百个第三方库、体积超 1 GB，启动慢、冗余多，本课程**统一采用 Miniconda**。
+Miniconda 是轻量化的 conda 发行版，只保留 conda 管理器与 Python 基础组件，安装包不足 100 MB，需要什么库再手动安装。与之相对的 Anaconda 集成了数百个第三方库、体积超 1 GB，启动慢、冗余多，本课程\ **统一采用 Miniconda**。
 
-conda 虚拟环境是气象学习的**必备**工具，三大优势：
+conda 虚拟环境是气象学习的\ **必备**\工具，三大优势：
 
 1. **多 Python 版本隔离**：一台电脑可同时存在多个 Python 版本，本项目固定使用 3.12；
 2. **第三方库版本隔离**：不同项目独立虚拟环境，彻底解决 Cartopy、Xarray、NetCDF4 等气象底层库的版本冲突；
@@ -147,7 +147,7 @@ conda 虚拟环境是气象学习的**必备**工具，三大优势：
 1. 双击安装程序，同意用户许可协议；
 2. 安装类型选【Just Me】，无需管理员权限；
 3. 自定义安装路径（推荐 ``D:\Software\miniconda3``）；
-4. 高级选项**两项必须勾选**：Register Miniconda3 as my default Python 3.12 environment、Add Miniconda3 to my PATH environment variable；
+4. 高级选项\ **两项必须勾选**：Register Miniconda3 as my default Python 3.12 environment、Add Miniconda3 to my PATH environment variable；
 5. 等待进度条走完，点击完成；
 6. 验证：``Win+R`` → ``cmd``，依次输入：
 
@@ -286,8 +286,8 @@ VS Code 配置 Python 开发环境
 类型与命名规范
 ~~~~~~~~~~~~~~~
 
-- 安装路径、项目、环境备份文件**一律纯英文路径**，不出现中文、空格、括号；
-- 所有代码**只用相对路径**，不写 C/D 盘绝对路径，机房、多设备可直接运行；
+- 安装路径、项目、环境备份文件\ **一律纯英文路径**，不出现中文、空格、括号；
+- 所有代码\ **只用相对路径**，不写 C/D 盘绝对路径，机房、多设备可直接运行；
 - 环境统一命名 ``met_p312``，固定 Python 3.12，**禁止** 用系统 Python 或 base 环境做气象分析。
 
 环境备份与迁移
@@ -318,7 +318,7 @@ VS Code 配置 Python 开发环境
 4. 环境与项目备份文件统一英文路径，不出现中文命名的 yml/py/png；
 5. 多人协作共享 ``met_p312_env.yml``，保证环境完全统一。
 
-.. seealso:: 术语详解见 :doc:`/api/ch01_terms`——解释器、环境、PATH、包管理器、IDE、脚本等词条，每个都配有"一句话定义 + 生活类比 + 代码示例 + 易混淆点"。配套练习见 :doc:`/tutorials/ch01_practice`。
+.. seealso:: 术语详解见 :doc:`/api/ch01_terms`——解释器、环境、PATH、包管理器、IDE、脚本等词条，每个都配有"一句话定义 + 生活类比 + 代码示例 + 易混淆点"。配套练习见 :doc:`/tutorials/basics/ch01_practice`。
 
 贯穿项目 · 第 1 步：搭建环境并跑通验证脚本
 ------------------------------------------

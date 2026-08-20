@@ -3,7 +3,7 @@
 
 配套 :ref:`tut-conda` 正文使用。每个词条 = 一句话定义 + **生活类比** + **代码示例** + **易混淆点**。本章术语围绕"装环境、跑代码"展开。
 
-.. seealso:: 配套正文：:doc:`/user_guide/basics/python_conda`　·　配套练习：:doc:`/tutorials/ch01_practice`
+.. seealso:: 配套正文：:doc:`/user_guide/basics/python_conda`　·　配套练习：:doc:`/tutorials/basics/ch01_practice`
 
 .. glossary::
 
