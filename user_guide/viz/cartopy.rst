@@ -52,6 +52,16 @@ Cartopy 概述与选取理由
 
 6. 拓展：绘制风场矢量、兰伯特投影切换、批量逐月绘图、分季节多子图对比。
 
+.. _ch10-animation:
+
+配套动画（T-1002）
+-------------------
+
+本章配有 Cartopy 气象数据可视化动画，先看再读，效果更佳。动画把地图投影变换、``contourf`` 填色过程和地理要素叠加三个核心步骤一口气演完：① 投影——球面经纬度如何展开为平面坐标；② ``contourf``——数据如何映射到色带并填充等值线区域；③ 地理要素——底图 → 海岸线 → 国界 → 填色场的叠加顺序。点击播放，配合下文逐步消化。
+
+.. video:: /_static/videos/T1002_cartopy气象数据可视化动画_av1.webm
+   :width: 100%
+
 基础概念与核心组件
 ------------------
 
@@ -123,20 +133,26 @@ Cartopy 标准绘图固定流程
 完整基础绘图可运行代码
 ^^^^^^^^^^^^^^^^^^^^^^
 
-首先说明数据文件：本项目 T-001 统一提供的格点数据文件 ``./data/northwest_temp.nc`` 内含三个变量——经度 ``lon``\（一维，单位 °E）、纬度 ``lat``\（一维，单位 °N）和气温 ``temp``\（二维，(lat, lon)，单位 ℃），覆盖西北地区范围（东经 90°~112°，北纬 32°~43°）。主轴入仓后，直接读取绘图即可。
+首先说明数据文件：本项目 T-001 统一提供的格点数据文件 ``./data/northwest_temp.nc`` 内含四个变量——经度 ``lon``\（一维，100°~110°E，步长 0.5°）、纬度 ``lat``\（一维，30°~40°N，步长 1°）、时间 ``time``\（一维，2024-01-01 至 01-30 共 30 天）以及气温 ``temp``\（三维，(time, lat, lon)，单位 ℃，取值约 6~18 ℃），另有气压 ``pres``\（单位 hPa）备用。文件覆盖西北地区东部（以兰州为中心的 100°~110°E、30°~40°N 范围）。数据已入仓，点击可直接下载： :download:`northwest_temp.nc <../../data/northwest_temp.nc>`\，放入本地项目的 ``./data/`` 目录即可。
+
+.. note::
+
+   ``temp`` 是含时间维的**三维**数组，直接 ``contourf`` 会报维度错误。画"一张空间分布图"前需先沿时间轴平均：``ds.temp.mean(dim="time")``\（下文主示例已包含此步）。
 
 .. code-block:: python
 
    # 第10章 Cartopy 西北地区气温填色图
+
+   import os
 
    import matplotlib.pyplot as plt
    import cartopy.crs as ccrs
    import cartopy.feature as cfeature
    import xarray as xr
 
-   # 1. 读取 T-001 提供的西北 NetCDF 气温数据（字段：lon/lat/temp）
+   # 1. 读取 T-001 提供的西北 NetCDF 气温数据（字段：lon/lat/time/temp）
    ds = xr.open_dataset("./data/northwest_temp.nc")
-   temp = ds.temp   # 气温变量（二维，(lat, lon)）
+   temp = ds.temp.mean(dim="time")   # 沿时间轴平均 -> 二维 (lat, lon)
    lon = ds.lon     # 经度（一维，°E）
    lat = ds.lat     # 纬度（一维，°N）
 
@@ -153,36 +169,39 @@ Cartopy 标准绘图固定流程
    ax.add_feature(cfeature.BORDERS, linewidth=0.8, color="black")  # 国界
    ax.add_feature(cfeature.RIVERS, linewidth=0.5, color="blue")    # 河流
 
-   # 5. 限定绘图范围：西北地区经纬度
-   ax.set_extent([90, 112, 32, 43], crs=ccrs.PlateCarree())
+   # 5. 限定绘图范围：数据区域外扩 1°（教学数据覆盖 100~110°E、30~40°N）
+   ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
 
    # 6. 添加经纬度刻度
-   ax.gridlines(draw_labels=True, linestyle="--", alpha=0.6)
+   gl = ax.gridlines(draw_labels=True, linestyle="--", alpha=0.6)
+   gl.top_labels = False
+   gl.right_labels = False
 
    # 7. 色标、标题
    cbar = fig.colorbar(contour, shrink=0.8)
    cbar.set_label("气温 ℃")
-   ax.set_title("西北地区2024年平均气温空间分布图", fontsize=14)
+   ax.set_title("西北地区2024年1月平均气温空间分布图", fontsize=14)
 
    # 8. 导出高清图片
+   os.makedirs("./figures", exist_ok=True)
    plt.savefig("./figures/northwest_temp_map.png", dpi=300, bbox_inches="tight")
    plt.show()
 
 .. note::
 
-   无文件时的构造数据备选。如果本地一时拿不到 ``northwest_temp.nc``\（例如想先在自己的电脑上练手），可以用下面这段代码临时构造一份「伪格点场」，字段结构与真实文件完全一致，替换掉上面的数据读取部分即可运行：
+   无文件时的构造数据备选。如果本地一时拿不到 ``northwest_temp.nc``\（例如想先在自己的电脑上练手），可以用下面这段代码临时构造一份「伪格点场」：坐标范围、步长与真实文件一致，``temp`` 相当于已做过时间平均的二维场，替换掉上面的数据读取部分即可运行：
 
    .. code-block:: python
 
       import numpy as np
 
-      # 构造西北范围经纬度网格（与 T-001 文件字段 lon/lat/temp 一致）
-      lon = np.linspace(90, 112, 45)      # 东经 90°~112°
-      lat = np.linspace(32, 43, 33)       # 北纬 32°~43°
-      lon, lat = np.meshgrid(lon, lat)    # 变成二维网格，和 temp 形状匹配
+      # 构造与 T-001 文件同结构的经纬度网格（1 维坐标，范围一致）
+      lon = np.linspace(100, 110, 21)     # 东经 100°~110°，步长 0.5°
+      lat = np.linspace(30, 40, 11)       # 北纬 30°~40°，步长 1°
+      LON, LAT = np.meshgrid(lon, lat)    # 临时二维网格，用于构造 temp
 
-      # 合成气温场：随纬度线性变化（南暖北冷），并加入一点经向起伏
-      temp = 15 + 0.5 * (40 - lat) - 0.02 * (lon - 101) ** 2
+      # 合成气温场：随纬度线性变化（南暖北冷），加一点经向起伏，量级 6~18 ℃
+      temp = 12 + 0.8 * (LAT - 35) - 0.15 * (LON - 105) ** 2
 
    之后把上面的 ``contourf``/``scatter`` 等依赖 ``ds.lon`` 的地方，改成直接用局部变量 ``lon``、``lat``、``temp`` 即可。
 
@@ -235,15 +254,15 @@ Cartopy 标准绘图固定流程
 自定义经纬度刻度间隔
 ^^^^^^^^^^^^^^^^^^^^
 
-自动刻度可能在西北这种窄条区域显得拥挤，可以手动指定经度每 5°、纬度每 3° 一条刻度：
+自动刻度可能在西北这种窄条区域显得拥挤，可以手动指定经度每 2°、纬度每 2° 一条刻度：
 
 .. code-block:: python
 
    import matplotlib.ticker as mticker
 
    gl = ax.gridlines(draw_labels=True, linestyle="--", alpha=0.6)
-   gl.xlocator = mticker.FixedLocator([90, 95, 100, 105, 110])  # 经度每5°
-   gl.ylocator = mticker.FixedLocator([32, 35, 38, 41, 43])     # 纬度每3°
+   gl.xlocator = mticker.FixedLocator([100, 102, 104, 106, 108, 110])  # 经度每2°
+   gl.ylocator = mticker.FixedLocator([30, 32, 34, 36, 38, 40])       # 纬度每2°
 
 色标自定义配置
 ^^^^^^^^^^^^^^
@@ -299,26 +318,27 @@ Cartopy 标准绘图固定流程
    import cartopy.feature as cfeature
 
    ds = xr.open_dataset("./data/northwest_temp.nc")
+   temp = ds.temp.mean(dim="time")   # 三维 -> 二维 (lat, lon)
 
-   # 兰伯特等面积投影，中心对准西北腹地
-   proj = ccrs.LambertAzimuthalEqualArea(central_longitude=101, central_latitude=38)
+   # 兰伯特等面积投影，中心对准数据区域中心（105°E、35°N）
+   proj = ccrs.LambertAzimuthalEqualArea(central_longitude=105, central_latitude=35)
    fig, ax = plt.subplots(figsize=(10, 7), subplot_kw={"projection": proj})
 
-   contour = ax.contourf(ds.lon, ds.lat, ds.temp, levels=20, cmap="coolwarm",
+   contour = ax.contourf(ds.lon, ds.lat, temp, levels=20, cmap="coolwarm",
                          transform=ccrs.PlateCarree())
 
    ax.coastlines(linewidth=0.8, color="black")
    ax.add_feature(cfeature.BORDERS, linewidth=0.8, color="black")
 
    # 注意：set_extent 的经纬度范围以 PlateCarree 坐标给出，并显式指定 crs
-   ax.set_extent([90, 112, 32, 43], crs=ccrs.PlateCarree())
+   ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
 
    ax.gridlines(draw_labels=True, linestyle="--", alpha=0.6)
 
    cbar = fig.colorbar(contour, shrink=0.8)
    cbar.set_label("气温 ℃")
 
-   plt.savefig("./figures/northwest_temp_lambert_annual.png",
+   plt.savefig("./figures/northwest_temp_lambert_jan.png",
                dpi=300, bbox_inches="tight")
    plt.show()
 
@@ -329,22 +349,28 @@ Cartopy 标准绘图固定流程
 叠加风场矢量 quiver 绘图
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-在气温填色底图上叠加风矢量箭头，实现「温风联合」空间图。风场数据同样来自 NetCDF 文件中的 ``u``\（纬向风）、``v``\（经向风）变量，均需注意坐标方向和 ``transform``：
+在气温填色底图上叠加风矢量箭头，实现「温风联合」空间图。注意：教学数据 ``northwest_temp.nc`` **不含风场变量**\（只有 ``temp`` 和 ``pres``\），下面用 NumPy 在格点上构造一份演示用的西风气场——真实项目中换成 ``ds.u`` / ``ds.v`` 即可。风矢量的坐标与分量都需注意坐标方向和 ``transform``：
 
 .. code-block:: python
 
+   import numpy as np
    import cartopy.crs as ccrs
+   import cartopy.feature as cfeature
    import matplotlib.pyplot as plt
    import xarray as xr
 
    ds = xr.open_dataset("./data/northwest_temp.nc")
-   u = ds.u   # 纬向风（m/s）
-   v = ds.v   # 经向风（m/s）
+   temp = ds.temp.mean(dim="time")   # 三维 -> 二维 (lat, lon)
+
+   # 演示风场：西风 5 m/s，随纬度略增强（真实项目改为 u = ds.u、v = ds.v）
+   LON, LAT = np.meshgrid(ds.lon, ds.lat)
+   u = 5.0 + 0.1 * (LAT - 35)        # 纬向风（m/s）
+   v = 1.0 * np.sin(np.radians(LON)) # 经向风（m/s）
 
    fig, ax = plt.subplots(figsize=(10, 6),
                           subplot_kw={"projection": ccrs.PlateCarree()})
 
-   contour = ax.contourf(ds.lon, ds.lat, ds.temp, levels=20, cmap="coolwarm",
+   contour = ax.contourf(ds.lon, ds.lat, temp, levels=20, cmap="coolwarm",
                          transform=ccrs.PlateCarree())
 
    # 每第4个格点取一个箭头，避免箭头过密
@@ -353,22 +379,22 @@ Cartopy 标准绘图固定流程
 
    ax.coastlines(linewidth=0.8, color="black")
    ax.add_feature(cfeature.BORDERS, linewidth=0.8, color="black")
-   ax.set_extent([90, 112, 32, 43], crs=ccrs.PlateCarree())
+   ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
 
    cbar = fig.colorbar(contour, shrink=0.8)
    cbar.set_label("气温 ℃")
 
-   plt.savefig("./figures/northwest_temp_uv_annual.png", dpi=300, bbox_inches="tight")
+   plt.savefig("./figures/northwest_temp_uv_jan.png", dpi=300, bbox_inches="tight")
    plt.show()
 
 .. warning::
 
    ``quiver`` 传参注意：风矢量的起点坐标是「经纬度数组」，箭头分量是 ``u``、``v``\（经向风、纬向风），不要与 x、y 混用。坐标与分量缺一不可，同样都要带上 ``transform``。
 
-批量绘制逐月气温地图循环代码
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+批量绘制逐日/逐月气温地图循环代码
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-用 ``for`` 循环遍历 NetCDF 时间维度，自动生成 12 个月西北气温图，批量保存到 ``figures`` 文件夹：
+用 ``for`` 循环遍历 NetCDF 时间维度，批量出图并保存到 ``figures`` 文件夹。教学文件 ``northwest_temp.nc`` 含 2024 年 1 月的 30 个逐日时次，循环会生成 30 张逐日图；换成年尺度数据（12 个月）时同一套代码即生成 12 张月图：
 
 .. code-block:: python
 
@@ -381,29 +407,28 @@ Cartopy 标准绘图固定流程
    ds = xr.open_dataset("./data/northwest_temp.nc")
    os.makedirs("./figures", exist_ok=True)
 
-   months = ds.time.values   # 假定时维名为 time，取值形如 2024-01 等
-
-   for m in ds.time:
-       month_temp = ds.temp.sel(time=m)   # 取出单月气温场
-       # 统一色标范围，保证 12 张图冷暖尺可互相比较
-       vmin, vmax = -12, 28
+   for t in ds.time.values:
+       date_str = str(t)[:10]                  # 形如 2024-01-05
+       day_temp = ds.temp.sel(time=t)          # 取出单日气温场
+       # 统一色标范围，保证所有图冷暖尺可互相比较（教学数据取值 6~18 ℃）
+       vmin, vmax = 5, 20
 
        fig, ax = plt.subplots(figsize=(10, 6),
                               subplot_kw={"projection": ccrs.PlateCarree()})
-       contour = ax.contourf(ds.lon, ds.lat, month_temp,
+       contour = ax.contourf(ds.lon, ds.lat, day_temp,
                              levels=20, cmap="coolwarm",
                              vmin=vmin, vmax=vmax,
                              transform=ccrs.PlateCarree())
        ax.coastlines(linewidth=0.8, color="black")
        ax.add_feature(cfeature.BORDERS, linewidth=0.8, color="black")
-       ax.set_extent([90, 112, 32, 43], crs=ccrs.PlateCarree())
+       ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
 
        cbar = fig.colorbar(contour, shrink=0.8)
        cbar.set_label("气温 ℃")
-       ax.set_title(f"西北 {m} 气温分布图")
+       ax.set_title(f"西北 {date_str} 气温分布图")
 
-       # 文件名用月份字符串，存进 figures 文件夹
-       plt.savefig(f"./figures/northwest_temp_{m.year}{m.month:02d}.png",
+       # 文件名用日期字符串，存进 figures 文件夹
+       plt.savefig(f"./figures/northwest_temp_{date_str}.png",
                    dpi=300, bbox_inches="tight")
        plt.close(fig)   # 循环里务必关闭画布，否则内存溢出、运行卡顿
 
@@ -411,10 +436,10 @@ Cartopy 标准绘图固定流程
 
    批量绘图三黄金法则：**循环里统一 ``vmin/vmax``（可比性）、画完 ``plt.close()``（释放内存）、文件名按时间命名（可检索）。** 缺一不可。
 
-多子图布局：分季节气温对比地图
+多子图布局：分时段气温对比地图
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2 行 2 列子图，分别绘制春、夏、秋、冬的气温场，统一色标便于季节对比：
+2 行 2 列子图，统一色标便于对比。教学数据只覆盖 2024 年 1 月，这里以「上旬 / 中旬 / 下旬 / 全月平均」四个时段为例；拿到全年数据后，把 ``periods`` 字典换成春、夏、秋、冬的时间切片即可变成四季对比图：
 
 .. code-block:: python
 
@@ -425,46 +450,46 @@ Cartopy 标准绘图固定流程
 
    ds = xr.open_dataset("./data/northwest_temp.nc")
 
-   seasons = {
-       "春季": ("2024-03-01T00", "2024-05-01T00"),   # 起止时间切片用
-       "夏季": ("2024-06-01T00", "2024-08-01T00"),
-       "秋季": ("2024-09-01T00", "2024-11-01T00"),
-       "冬季": ("2024-12-01T00", "2025-02-01T00"),
+   periods = {
+       "1月上旬": ("2024-01-01", "2024-01-10"),   # 起止时间切片用
+       "1月中旬": ("2024-01-11", "2024-01-20"),
+       "1月下旬": ("2024-01-21", "2024-01-30"),
+       "1月平均": ("2024-01-01", "2024-01-30"),
    }
-   vmin, vmax = -20, 30   # 四图统一色标范围
+   vmin, vmax = 5, 20   # 四图统一色标范围（教学数据取值 6~18 ℃）
 
    fig, axes = plt.subplots(
        2, 2, figsize=(12, 9),
        subplot_kw={"projection": ccrs.PlateCarree()})
 
-   for ax, (season, (t0, t1)) in zip(axes.flat, seasons.items()):
-       season_temp = ds.temp.sel(time=slice(t0, t1)).mean(dim="time")  # 季节平均
+   for ax, (name, (t0, t1)) in zip(axes.flat, periods.items()):
+       period_temp = ds.temp.sel(time=slice(t0, t1)).mean(dim="time")  # 时段平均
 
-       contour = ax.contourf(ds.lon, ds.lat, season_temp,
+       contour = ax.contourf(ds.lon, ds.lat, period_temp,
                              levels=20, cmap="coolwarm",
                              vmin=vmin, vmax=vmax,
                              transform=ccrs.PlateCarree())
        ax.coastlines(linewidth=0.8, color="black")
        ax.add_feature(cfeature.BORDERS, linewidth=0.8, color="black")
-       ax.set_extent([90, 112, 32, 43], crs=ccrs.PlateCarree())
-       ax.set_title(f"西北地区{season}平均气温")
+       ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
+       ax.set_title(f"西北地区{name}平均气温")
 
-   # 四张子图共用一只色标，只给最后一列显示纬度刻度以免重叠，此处统一用一个 cbar
+   # 四张子图共用一只色标，视觉更整齐
    fig.colorbar(contour, ax=axes, shrink=0.8, pad=0.02, label="气温 ℃")
    plt.tight_layout()
-   plt.savefig("./figures/northwest_temp_seasons.png", dpi=300, bbox_inches="tight")
+   plt.savefig("./figures/northwest_temp_periods.png", dpi=300, bbox_inches="tight")
    plt.show()
 
 .. note::
 
-   2×2 子图的色标用 ``fig.colorbar(contour, ax=axes)`` 可以让四张图共享一个大色条，视觉更整齐；配合统一的 ``vmin/vmax``，四季冷暖差异一目了然。
+   2×2 子图的色标用 ``fig.colorbar(contour, ax=axes)`` 可以让四张图共享一个大色条，视觉更整齐；配合统一的 ``vmin/vmax``，各时段冷暖差异一目了然。
 
 常见报错核心解决方案
 ^^^^^^^^^^^^^^^^^^^^
 
 1. **地图格点严重错位**：漏写 ``transform=ccrs.PlateCarree()``。排查 ``contourf``、``scatter``、``quiver`` 是否都带了 ``transform``。
 
-2. **set_extent 无裁剪效果**：``extent`` 经纬度范围写反（顺序应为 ``[西经, 东经, 南纬, 北纬]``，即 ``[90, 112, 32, 43]``）、或 ``crs`` 参数缺失。
+2. **set_extent 无裁剪效果**：``extent`` 经纬度范围写反（顺序应为 ``[西经, 东经, 南纬, 北纬]``，即 ``[99, 111, 29, 41]``）、或 ``crs`` 参数缺失。
 
 3. **海岸线加载缓慢**：第一次运行会自动下载 Natural Earth 矢量文件，耐心等待一次即可；也可提前配置本地缓存路径，避免课堂绘图中途卡顿。
 
@@ -481,7 +506,7 @@ Cartopy 标准绘图固定流程
 
 3. 独立完成西北地区气温填色地图，叠加海岸线、国界、河流、刻度、色标全套要素；
 
-4. 掌握画布区域裁剪（``set_extent([90, 112, 32, 43])``）、图片高清导出（``dpi=300`` + ``bbox_inches="tight"``）、地图美化细节调整；
+4. 掌握画布区域裁剪（``set_extent([99, 111, 29, 41])``）、图片高清导出（``dpi=300`` + ``bbox_inches="tight"``）、地图美化细节调整；
 
 5. 拓展学会兰伯特投影、风场叠加、批量时序绘图、多子图季节对比等进阶绘图技巧；
 
@@ -589,14 +614,14 @@ Cartopy 标准绘图固定流程
 
    图层顺序错了：如果先画国界/海岸线、再画气温填色，兜底上去的色块会把国界、海岸线整个埋住，图上一片「糊」——先铺底图色，再画边框与标记，顺序绝不能倒。
 
-研究区域裁剪（西北地区固定经纬度范围）
+研究区域裁剪（教学数据固定经纬度范围）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-所有西北气温地图统一裁剪范围，杜绝图表大小不一：
+所有气温地图统一裁剪范围，杜绝图表大小不一。教学数据 ``northwest_temp.nc`` 覆盖 100°~110°E、30°~40°N，统一在数据范围基础上外扩 1°：
 
 .. code-block:: python
 
-   # 西北标准经纬度：东经90°~112°，北纬32°~43°
-   ax.set_extent([90, 112, 32, 43], crs=ccrs.PlateCarree())
+   # 教学数据范围外扩 1°：东经99°~111°，北纬29°~41°
+   ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
 
 配套网格刻度规范：
 
@@ -607,7 +632,7 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   ``set_extent`` 的列表顺序是 ``[西经, 东经, 南纬, 北纬]``，即 ``[90, 112, 32, 43]``。写反成 ``[32, 43, 90, 112]`` 或漏掉 ``crs=ccrs.PlateCarree()``，裁剪就会失效。
+   ``set_extent`` 的列表顺序是 ``[西经, 东经, 南纬, 北纬]``，即 ``[99, 111, 29, 41]``。写反成 ``[29, 41, 99, 111]`` 或漏掉 ``crs=ccrs.PlateCarree()``，裁剪就会失效。
 
 色标 colorbar 标准化规范
 ^^^^^^^^^^^^^^^^^^^^^^^^

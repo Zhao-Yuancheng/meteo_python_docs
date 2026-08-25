@@ -138,9 +138,10 @@ ax[1].set_ylabel("气温（℃）")
 ax[1].legend()
 ax[1].grid(alpha=0.3, axis="y")
 
-# 导出结果（utf-8-sig 防 Excel 中文乱码）
-month_stats.to_csv("lanzhou_month_stats.csv", encoding="utf-8-sig")
-hot_days.to_csv("lanzhou_hot_days.csv", index=False, encoding="utf-8-sig")
-print("\n已生成：month_stats 汇总 + 高温日记录（随示例自动导出）")
+# 导出演示：to_csv 不给路径时返回 CSV 文本（utf-8-sig 防 Excel 中文乱码），
+# 教学示例里用这种"零落盘"写法；真实项目中加上路径参数即导出文件。
+csv_text = month_stats.to_csv(encoding="utf-8-sig")
+print("\n月度统计 CSV 预览（前 3 行）:")
+print("\n".join(csv_text.splitlines()[:3]))
 
 plt.show()

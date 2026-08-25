@@ -222,7 +222,7 @@ Pandas 气温月度分析
 ⑤ 绘图：左图逐日气温曲线 + 月均温折线，右图月均温柱状图
 --------------------------------------------------------
 
-.. GENERATED FROM PYTHON SOURCE LINES 107-146
+.. GENERATED FROM PYTHON SOURCE LINES 107-147
 
 .. code-block:: Python
 
@@ -260,10 +260,11 @@ Pandas 气温月度分析
     ax[1].legend()
     ax[1].grid(alpha=0.3, axis="y")
 
-    # 导出结果（utf-8-sig 防 Excel 中文乱码）
-    month_stats.to_csv("lanzhou_month_stats.csv", encoding="utf-8-sig")
-    hot_days.to_csv("lanzhou_hot_days.csv", index=False, encoding="utf-8-sig")
-    print("\n已生成：month_stats 汇总 + 高温日记录（随示例自动导出）")
+    # 导出演示：to_csv 不给路径时返回 CSV 文本（utf-8-sig 防 Excel 中文乱码），
+    # 教学示例里用这种"零落盘"写法；真实项目中加上路径参数即导出文件。
+    csv_text = month_stats.to_csv(encoding="utf-8-sig")
+    print("\n月度统计 CSV 预览（前 3 行）:")
+    print("\n".join(csv_text.splitlines()[:3]))
 
     plt.show()
 
@@ -279,7 +280,10 @@ Pandas 气温月度分析
  .. code-block:: none
 
 
-    已生成：month_stats 汇总 + 高温日记录（随示例自动导出）
+    月度统计 CSV 预览（前 3 行）:
+    date,月均温,月最高温,月最低温
+    2024-01-31,-4.2,1.9,-9.6
+    2024-02-29,-2.0,4.1,-10.2
 
 
 
@@ -287,7 +291,7 @@ Pandas 气温月度分析
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.494 seconds)
+   **Total running time of the script:** (0 minutes 0.215 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_pandas_analysis.py:

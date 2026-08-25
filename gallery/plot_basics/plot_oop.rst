@@ -266,20 +266,21 @@ Station 类的气温统计与可视化（兼用兰州站示例数据）
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 166-168
+.. GENERATED FROM PYTHON SOURCE LINES 166-170
 
-六、保存并显示
+六、显示
 ---------------
+sphinx-gallery 会自动截取当前 figure 作为示例图；独立运行时由
+plt.show() 弹窗显示，无需手动 savefig 落盘。
 
-.. GENERATED FROM PYTHON SOURCE LINES 168-172
+.. GENERATED FROM PYTHON SOURCE LINES 170-173
 
 .. code-block:: Python
 
     fig.tight_layout()
-    fig.savefig("T506_station_temperature.png", dpi=150)
     plt.show()
 
-    print("绘图完成，已保存为 T506_station_temperature.png")
+    print("绘图完成")
 
 
 
@@ -287,7 +288,7 @@ Station 类的气温统计与可视化（兼用兰州站示例数据）
 
  .. code-block:: none
 
-    绘图完成，已保存为 T506_station_temperature.png
+    绘图完成
 
 
 
@@ -295,7 +296,7 @@ Station 类的气温统计与可视化（兼用兰州站示例数据）
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.193 seconds)
+   **Total running time of the script:** (0 minutes 0.174 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_basics_plot_oop.py:

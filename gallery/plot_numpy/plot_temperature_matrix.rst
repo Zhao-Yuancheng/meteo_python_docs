@@ -252,7 +252,7 @@ axis=0：沿行方向压缩 → 每个站点的平均气温
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.208 seconds)
+   **Total running time of the script:** (0 minutes 0.235 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_temperature_matrix.py:

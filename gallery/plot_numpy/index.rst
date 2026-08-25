@@ -21,7 +21,7 @@ NumPy 计算示例
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="用 NumPy 生成一个二维场，Matplotlib 的 imshow 展示其结构。">
+    <div class="sphx-glr-thumbcontainer" tooltip="气象数据在 NumPy 里的标准形态是\ 带维度的三维数组 (time, lat, lon)。 本示例读取项目配套的西北气温格点场，演示两个最常用的维度运算：">
 
 .. only:: html
 
@@ -32,7 +32,24 @@ NumPy 计算示例
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">二维数组可视化</div>
+      <div class="sphx-glr-thumbnail-title">格点气温场的 NumPy 维度运算</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取项目配套的 NetCDF 气温场，对其进行\ 时间切片、 空间子区域裁剪，并做\ 纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_xarray_field_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_xarray_field`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Xarray 西北气温场分析</div>
     </div>
 
 
@@ -70,23 +87,6 @@ NumPy 计算示例
     </div>
 
 
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行\ 时间切片、 空间子区域裁剪，并做\ 纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
-
-.. only:: html
-
-  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_xarray_field_thumb.png
-    :alt:
-
-  :doc:`/gallery/plot_numpy/plot_xarray_field`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Xarray 西北气温场分析</div>
-    </div>
-
-
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -98,7 +98,7 @@ NumPy 计算示例
    :hidden:
 
    /gallery/plot_numpy/plot_array_demo
+   /gallery/plot_numpy/plot_xarray_field
    /gallery/plot_numpy/plot_pandas_analysis
    /gallery/plot_numpy/plot_temperature_matrix
-   /gallery/plot_numpy/plot_xarray_field
 

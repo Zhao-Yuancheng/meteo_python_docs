@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib._AxesBase.contour``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="contourf + contour 是气象场可视化的经典组合：填色看分布、 等值线读数值。本示例绘制西北地区 2024 年 1 月平均气温场：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_contour`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">气温场等值线分析（纯 Matplotlib）</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_viz/plot_contour`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

@@ -1,2 +1,13 @@
 _build/
 _static/videos
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 示例脚本运行产物（画廊构建时自动截图，禁止示例直接落盘）
+examples/**/figures/
+examples/**/*.csv
+examples/plot_basics/T506_station_temperature.png
+
+# （_check_imgs 验证截图按用户要求保留并提交，不再忽略）

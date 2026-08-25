@@ -30,6 +30,16 @@ Xarray 正是为解决「多维标记数组」而生：它给 NumPy 数组的每
 
 本章将覆盖的知识点：DataArray / Dataset、坐标与维度、``sel`` / ``isel``、``open_dataset``、简单绘图；提升拓展：``groupby`` 时间分组、``resample`` 重采样、加权平均。文中 :term:`重采样 resample`、:term:`属性 attrs` 等关键词可跳转术语参考。
 
+.. _ch08-animation:
+
+配套动画（T-802）
+------------------
+
+本动画把 Xarray 的核心概念演给你看：① DataArray 的维度与坐标——给 NumPy 数组的每个轴贴上坐标标签；② NetCDF 文件结构——维度 × 变量 × 属性的三维关系；③ ``.sel(lat=36, method='nearest')`` 按坐标取值——在坐标轴上找到最近点。点击播放，配合下文逐步消化。
+
+.. video:: /_static/videos/T802_xarray核心概念动画_av1.webm
+   :width: 100%
+
 8.1 DataArray 与 Dataset：带标签的多维数组
 -------------------------------------------
 

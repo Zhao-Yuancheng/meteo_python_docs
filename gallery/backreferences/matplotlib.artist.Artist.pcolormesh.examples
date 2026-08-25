@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib.artist.Artist.pcolormesh``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="气象数据在 NumPy 里的标准形态是\ 带维度的三维数组 (time, lat, lon)。 本示例读取项目配套的西北气温格点场，演示两个最常用的维度运算：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_array_demo_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_array_demo`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">格点气温场的 NumPy 维度运算</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_numpy/plot_array_demo`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+

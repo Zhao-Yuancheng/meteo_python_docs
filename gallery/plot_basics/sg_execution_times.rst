@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:00.584** total execution time for 6 files **from gallery\plot_basics**:
+**00:00.720** total execution time for 6 files **from gallery\plot_basics**:
 
 .. container::
 
@@ -33,20 +33,20 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_gallery_plot_basics_plot_oop.py` (``plot_oop.py``)
-     - 00:00.193
-     - 0.0
-   * - :ref:`sphx_glr_gallery_plot_basics_plot_flow.py` (``plot_flow.py``)
-     - 00:00.141
-     - 0.0
-   * - :ref:`sphx_glr_gallery_plot_basics_plot_datatypes.py` (``plot_datatypes.py``)
-     - 00:00.068
-     - 0.0
-   * - :ref:`sphx_glr_gallery_plot_basics_plot_sine.py` (``plot_sine.py``)
-     - 00:00.066
-     - 0.0
-   * - :ref:`sphx_glr_gallery_plot_basics_plot_first_weather.py` (``plot_first_weather.py``)
-     - 00:00.064
+     - 00:00.174
      - 0.0
    * - :ref:`sphx_glr_gallery_plot_basics_plot_functions.py` (``plot_functions.py``)
-     - 00:00.052
+     - 00:00.121
+     - 0.0
+   * - :ref:`sphx_glr_gallery_plot_basics_plot_first_weather.py` (``plot_first_weather.py``)
+     - 00:00.116
+     - 0.0
+   * - :ref:`sphx_glr_gallery_plot_basics_plot_sine.py` (``plot_sine.py``)
+     - 00:00.115
+     - 0.0
+   * - :ref:`sphx_glr_gallery_plot_basics_plot_flow.py` (``plot_flow.py``)
+     - 00:00.101
+     - 0.0
+   * - :ref:`sphx_glr_gallery_plot_basics_plot_datatypes.py` (``plot_datatypes.py``)
+     - 00:00.091
      - 0.0

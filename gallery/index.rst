@@ -168,7 +168,7 @@ NumPy 计算示例
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="用 NumPy 生成一个二维场，Matplotlib 的 imshow 展示其结构。">
+    <div class="sphx-glr-thumbcontainer" tooltip="气象数据在 NumPy 里的标准形态是\ 带维度的三维数组 (time, lat, lon)。 本示例读取项目配套的西北气温格点场，演示两个最常用的维度运算：">
 
 .. only:: html
 
@@ -179,7 +179,24 @@ NumPy 计算示例
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">二维数组可视化</div>
+      <div class="sphx-glr-thumbnail-title">格点气温场的 NumPy 维度运算</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取项目配套的 NetCDF 气温场，对其进行\ 时间切片、 空间子区域裁剪，并做\ 纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_xarray_field_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_xarray_field`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Xarray 西北气温场分析</div>
     </div>
 
 
@@ -217,23 +234,6 @@ NumPy 计算示例
     </div>
 
 
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行\ 时间切片、 空间子区域裁剪，并做\ 纬度加权区域平均，最后画出「某时刻空间气温场 + 区域平均时间序列」两张图，贯穿项目第 8 步。">
-
-.. only:: html
-
-  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_xarray_field_thumb.png
-    :alt:
-
-  :doc:`/gallery/plot_numpy/plot_xarray_field`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Xarray 西北气温场分析</div>
-    </div>
-
-
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -259,7 +259,7 @@ NumPy 计算示例
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="绘制一个二维函数的等值线填色（contourf），是气象场可视化的常见形式。">
+    <div class="sphx-glr-thumbcontainer" tooltip="contourf + contour 是气象场可视化的经典组合：填色看分布、 等值线读数值。本示例绘制西北地区 2024 年 1 月平均气温场：">
 
 .. only:: html
 
@@ -270,13 +270,13 @@ NumPy 计算示例
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">等值线填色图</div>
+      <div class="sphx-glr-thumbnail-title">气温场等值线分析（纯 Matplotlib）</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示如何用 Cartopy 绘制中国西北地区的气温空间分布填色图：先构造一 个覆盖东经 90°~112°、北纬 32°~43° 的合成气温场，再用 PlateCarree 等经纬 度投影加上 contourf 填色，随后叠加海岸线、国界、河流等地理要素，裁剪出 西北区域，并标注兰州观测站点。">
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：">
 
 .. only:: html
 
@@ -287,7 +287,7 @@ NumPy 计算示例
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">西北地区气温场地图</div>
+      <div class="sphx-glr-thumbnail-title">西北地区 1 月平均气温地图</div>
     </div>
 
 

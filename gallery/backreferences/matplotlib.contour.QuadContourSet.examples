@@ -15,7 +15,7 @@ Examples using ``matplotlib.contour.QuadContourSet``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="绘制一个二维函数的等值线填色（contourf），是气象场可视化的常见形式。">
+    <div class="sphx-glr-thumbcontainer" tooltip="contourf + contour 是气象场可视化的经典组合：填色看分布、 等值线读数值。本示例绘制西北地区 2024 年 1 月平均气温场：">
 
 .. only:: html
 
@@ -26,7 +26,7 @@ Examples using ``matplotlib.contour.QuadContourSet``
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">等值线填色图</div>
+      <div class="sphx-glr-thumbnail-title">气温场等值线分析（纯 Matplotlib）</div>
     </div>
 
 

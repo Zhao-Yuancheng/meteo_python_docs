@@ -1,30 +1,31 @@
 r"""
-西北地区气温场地图
-==================
+西北地区 1 月平均气温地图
+==================================================
 
-本示例演示如何用 Cartopy 绘制中国西北地区的气温空间分布填色图：先构造一
-个覆盖东经 90°~112°、北纬 32°~43° 的合成气温场，再用 ``PlateCarree`` 等经纬
-度投影加上 ``contourf`` 填色，随后叠加海岸线、国界、河流等地理要素，裁剪出
-西北区域，并标注兰州观测站点。
-
-完整走一遍 Cartopy 的标准流程：
+本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：
 
 1. 指定画布投影（GeoAxes）——决定“纸往哪张地图坐标架上铺”；
 2. ``contourf`` 绘制气温填色场，**必须**\绑定 ``transform``；
 3. 叠加地理要素（海岸线、国界、河流），图层顺序由底到顶；
 4. ``set_extent`` 裁剪西北区域；
-5. 添加 ``colorbar``、标题，并标注兰州站点散点。
+5. 添加 ``colorbar``、标题，并标注兰州观测站点。
+
+数据来自项目配套的 ``./data/northwest_temp.nc``\（2024 年 1 月 30 天的
+模拟格点场，经度 100°~110°E、纬度 30°~40°N）。文件不在时自动改用
+结构一致的合成场，保证脚本在任何环境都能运行。
 
 .. note::
-   实际项目中通常用 ``xarray.open_dataset`` 读取 NetCDF 再分析场（如本项目的
-   ``./data/northwest_temp.nc``）。这里为了保证示例可复现、无需外部文件即可
-   运行，改用 numpy 构造一份字段结构一致的合成气温场。
+
+   本区域深处内陆，海岸线与国界大多落在图幅之外（河流可见：黄河上游
+   “几”字弯正好穿过本区），但叠加地理要素是绘制任何地图的标准步骤。
 """
 
 # %%
 # 1. 导入库并配置中文字体
 # ------------------------
 # ``ccrs`` 负责投影，``cfeature`` 负责地理矢量要素；再统一指定无衬线中文字体。
+import os
+
 import matplotlib
 
 matplotlib.rcParams["font.sans-serif"] = [
@@ -35,71 +36,72 @@ matplotlib.rcParams["axes.unicode_minus"] = False  # 正确显示负号
 
 import numpy as np
 import matplotlib.pyplot as plt
+import xarray as xr
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 
 # %%
-# 2. 构造西北地区合成气温场
-# -------------------------
-# 网格范围：东经 90°~112°，北纬 32°~43°（西北地区标准经纬度）。
-# 温度用一个解析函数描述：纬度越高越冷（南暖北冷），并叠加少许经向起伏，
-# 以模拟西北地形带来的温度空间结构。
-lon = np.linspace(90, 112, 45)     # 经度轴（°E）
-lat = np.linspace(32, 43, 33)      # 纬度轴（°N）
-LON, LAT = np.meshgrid(lon, lat)   # 二维网格，与温度场同形状
+# 2. 读取数据：优先项目配套 NetCDF，缺失时退回合成场
+# --------------------------------------------------
+# 依次尝试三个候选路径：项目根目录运行、画廊构建目录运行、独立运行。
+NC_CANDIDATES = ["./data/northwest_temp.nc",
+                 "../data/northwest_temp.nc",
+                 "../../data/northwest_temp.nc"]
 
-# 合成气温（℃）：15 + 0.5*(40-lat) 体现纬度递减，减去经向平方项体现地形起伏
-temp = 15 + 0.5 * (40 - LAT) - 0.02 * (LON - 101) ** 2
+nc_path = next((p for p in NC_CANDIDATES if os.path.exists(p)), None)
+
+if nc_path:
+    ds = xr.open_dataset(nc_path)
+    # 教学模拟数据：取值 6~18，按课程文档口径以 ℃ 使用
+    temp = ds["temp"].mean(dim="time")        # 1 月 30 天平均 -> (lat, lon)
+    lon, lat = ds["lon"].values, ds["lat"].values
+    source = f"配套数据 {nc_path}"
+else:
+    lon = np.linspace(100, 110, 21)           # 与配套文件同结构
+    lat = np.linspace(30, 40, 11)
+    LON, LAT = np.meshgrid(lon, lat)
+    temp = xr.DataArray(12 + 0.8 * (LAT - 35) - 0.15 * (LON - 105) ** 2,
+                        dims=("lat", "lon"), coords={"lat": lat, "lon": lon})
+    source = "合成场（未找到数据文件）"
+
+LON, LAT = np.meshgrid(lon, lat)
+print(f"数据来源：{source}")
+print(f"气温范围：{float(temp.min()):.1f} ~ {float(temp.max()):.1f} ℃")
 
 # %%
-# 3. 创建画布，绘制气温填色场
-# ---------------------------
-# ``subplot_kw`` 的 ``projection`` 把普通坐标轴换成地理 GeoAxes；
-# ``transform`` 告诉 Cartopy 这份数据贴在地球的哪个经纬度上。
+# 3. 绘制完整地图
+# ---------------
+# 投影、填色场、地理要素、裁剪、色标、标注在同一步完成——
+# 对交互式绘图而言这些代码可以分散执行，但成图时必须全部就位。
 fig, ax = plt.subplots(figsize=(10, 6),
                        subplot_kw={"projection": ccrs.PlateCarree()})
 
-contour = ax.contourf(LON, LAT, temp,
-                      levels=20,
-                      cmap="coolwarm",
-                      transform=ccrs.PlateCarree())
+# 气温填色场：transform 声明数据贴在等经纬度（PlateCarree）坐标架上
+cf = ax.contourf(LON, LAT, temp, levels=16, cmap="RdYlBu_r",
+                 transform=ccrs.PlateCarree())
 
-# %%
-# 4. 叠加地理要素
-# ---------------
-# 图层由底到顶：填色场 → 河流 → 海岸线 → 国界。线条按科研审美统一粗细配色。
-ax.coastlines(linewidth=0.8, color="black")
+# 地理要素：图层由底到顶——填色场 → 河流 → 国界 → 海岸线
+ax.add_feature(cfeature.RIVERS, linewidth=0.5, color="#4488dd")
 ax.add_feature(cfeature.BORDERS, linewidth=0.8, color="black")
-ax.add_feature(cfeature.RIVERS, linewidth=0.4, color="#4488dd")
-ax.add_feature(cfeature.OCEAN, facecolor="#d6e4f0")   # 海洋淡蓝底色
+ax.coastlines(linewidth=0.8, color="black")
 
-# %%
-# 5. 裁剪西北区域
-# ---------------
-# 顺序 [西经, 东经, 南纬, 北纬]，并显式指定 crs 才能正确裁剪。
-ax.set_extent([90, 112, 32, 43], crs=ccrs.PlateCarree())
+# 裁剪到数据区域（[西经, 东经, 南纬, 北纬]，显式指定 crs）
+ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
 
-# %%
-# 6. 色标、标题与兰州站点标记
-# ---------------------------
-# 兰州站坐标：lon=103.83°E, lat=36.06°N；标点和文字都需携带 transform。
-cbar = fig.colorbar(contour, shrink=0.8)
-cbar.set_label("气温 ℃", fontsize=11)
+# 色标与标题
+cbar = fig.colorbar(cf, shrink=0.85)
+cbar.set_label("气温 (℃)", fontsize=11, rotation=0)
+ax.set_title("西北地区 2024 年 1 月平均气温", fontsize=14)
 
-ax.set_title("西北地区气温空间分布图", fontsize=14)
-
+# 兰州站标注：lon=103.83°E, lat=36.06°N；标点与文字都需携带 transform
 ax.scatter(103.83, 36.06, c="black", marker="o", s=30,
            transform=ccrs.PlateCarree())
 ax.text(104.2, 36.06, "兰州站", fontsize=9,
         transform=ccrs.PlateCarree())
 
-# %%
-# 7. 显示与保存
-# -------------
-# 画面中弹出地图；同时以 300 DPI 导出高清 PNG（带紧密白边裁剪）。
-few_features = ax.gridlines(draw_labels=True, linestyle="--", alpha=0.6)
-few_features.top_labels = False
-few_features.right_labels = False
+# 经纬网：只保留左、下两侧标签，避免四周标签互相挤压
+gl = ax.gridlines(draw_labels=True, linestyle="--", alpha=0.6)
+gl.top_labels = False
+gl.right_labels = False
 
 plt.show()
-# plt.savefig("./figures/northwest_temp_map.png", dpi=300, bbox_inches="tight")

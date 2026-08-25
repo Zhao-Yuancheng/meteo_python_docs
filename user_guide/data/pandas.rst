@@ -26,6 +26,16 @@
 
 本章将覆盖的知识点：Series / DataFrame、``read_csv``、索引 / 筛选 / 排序、分组聚合；提升拓展：时间序列、透视表、``merge``。正文中标注的关键词（如 :term:`DataFrame`、:term:`布尔索引`）可跳转到术语参考一词一查。
 
+.. _ch07-animation:
+
+配套动画（T-702）
+------------------
+
+本动画把 Pandas 的核心操作演给你看：① DataFrame 是多个 Series "手拉手"对齐成表格的过程；② 布尔筛选——条件生成 True/False 掩码，掩码盖到 DataFrame 上只留 True 行；③ ``groupby`` 分组聚合——拆分成组 → 各组独立计算 → 合并结果。点击播放，配合下文逐步消化。
+
+.. video:: /_static/videos/T702_Pandas核心操作动画_av1.webm
+   :width: 100%
+
 7.1 Series 与 DataFrame：Pandas 的两块积木
 ------------------------------------------
 

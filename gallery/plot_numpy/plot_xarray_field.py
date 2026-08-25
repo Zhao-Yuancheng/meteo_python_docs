@@ -3,72 +3,72 @@ r"""
 Xarray 西北气温场分析
 =====================
 
-本章目标：用 Xarray 读取 NetCDF 再分析气温场，对其进行\ **时间切片**、
+本章目标：用 Xarray 读取项目配套的 NetCDF 气温场，对其进行\ **时间切片**、
 **空间子区域裁剪**，并做\ **纬度加权区域平均**，最后画出「某时刻空间气温场 +
 区域平均时间序列」两张图，贯穿项目第 8 步。
 
-真实项目中第一步是：
-
-    import xarray as xr
-    ds = xr.open_dataset("northwest_temp.nc")
-
-用 `open_dataset` 读取项目数据文件（NetCDF），它会自动解析 time/lat/lon
-坐标、识别缺测 `_FillValue`。为了保证本画廊在不联网、无人造数据文件的
-环境下也能直接复现，下面用 ``numpy`` **在脚本内合成**\一张覆盖中国西北
-（lon ≈ 85–105°E，lat ≈ 32–42°N）的温度场，其余分析流程与读取 NetCDF
-完全一致——把 ``da_synth`` 换成 ``ds["temp"]`` 即可无缝迁移。
+数据文件为 ``./data/northwest_temp.nc``（2024 年 1 月 1–30 日、经度
+100–110°E、纬度 30–40°N 的教学模拟格点场，变量 ``temp`` 单位 ℃、
+``pres`` 单位 hPa）。用 ``open_dataset`` 读取时，xarray 会自动解析
+time/lat/lon 坐标并识别缺测 ``_FillValue``。文件不在时自动改用结构
+一致的合成场，保证脚本在任何环境都能运行。
 """
 
 # %%
 # ---------- ① 导入库 + 中文字体配置 ----------
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
+import xarray as xr
 
 plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei"]  # 中文字体
 plt.rcParams["axes.unicode_minus"] = False                        # 负号正常显示
 
 # %%
-# ---------- ② 构造 DataArray：显式给出 coords + dims + attrs ----------
-# 覆盖中国西北：lon 85–105°E，lat 32–42°N
-lon = np.arange(85.0, 105.01, 2.5)          # 步长 2.5°，共 9 个经度格点
-lat = np.arange(32.0, 42.01, 2.0)           # 共 6 个纬度格点
-n_m = 12                                     # 12 个时次（模拟 2000 年的逐月）
-time = np.arange("2000-01-01", "2001-01-01",
-                 dtype="datetime64[M]").astype("datetime64[D]")
+# ---------- ② 读取数据：优先项目配套 NetCDF，缺失时退回合成场 ----------
+# 依次尝试三个候选路径：项目根目录运行、画廊构建目录运行、独立运行。
+NC_CANDIDATES = ["./data/northwest_temp.nc",
+                 "../data/northwest_temp.nc",
+                 "../../data/northwest_temp.nc"]
 
-# 物理：温度 = 年均基础 + 季节项(纬向+时间) + 纬度经向订正 + 小噪声，单位 K
-base = 275.0 + 12 * np.cos(np.radians(lat))[:, None]            # 纬度加热
-season = 8 * np.cos(2 * np.pi * (np.arange(n_m) - 6) / 12.0)    # 7 月最热、1 月最冷
-monthly = base[None, :, :] + season[:, None, None]              # (time, lat)
-grad = -0.02 * (lon - 95.0)                                     # 西暖东略冷 (lon,)
-rng = np.random.default_rng(2026)
-noise = rng.normal(0, 0.3, size=(n_m, len(lat), len(lon)))      # 观测噪声
-data_k = monthly + grad + noise                                # 单位 K
+nc_path = next((p for p in NC_CANDIDATES if os.path.exists(p)), None)
 
-import xarray as xr  # noqa: E402
+if nc_path:
+    ds = xr.open_dataset(nc_path)
+    # 教学模拟数据：取值 6~18，按课程文档口径以 ℃ 使用
+    da_c = ds["temp"]
+    source = f"配套数据 {nc_path}"
+else:
+    lon = np.arange(100.0, 110.01, 0.5)        # 与配套文件同结构
+    lat = np.arange(30.0, 40.01, 1.0)
+    time = np.arange("2024-01-01", "2024-01-31", dtype="datetime64[D]")
+    LON, LAT = np.meshgrid(lon, lat)
+    rng = np.random.default_rng(2026)
+    field = (12 + 0.8 * (LAT - 35) - 0.15 * (LON - 105) ** 2
+             + rng.normal(0, 0.3, size=(len(time), len(lat), len(lon))))
+    da_c = xr.DataArray(
+        data=field,
+        dims=["time", "lat", "lon"],
+        coords={"time": time, "lat": lat, "lon": lon},
+        name="temp",
+        attrs={"long_name": "2m 空气温度", "units": "degC",
+               "source": "合成演示数据"},
+    )
+    source = "合成场（未找到数据文件）"
 
-da_synth = xr.DataArray(
-    data=data_k,
-    dims=["time", "lat", "lon"],
-    coords={"time": time, "lat": lat, "lon": lon},
-    name="temp",
-    attrs={"long_name": "2m 空气温度", "units": "K", "source": "合成演示数据"},
-)
-print("构造完成 shape(time, lat, lon):", da_synth.shape)
-
-# 开尔文 → 摄氏度（后续绘图用 ℃）
-da_c = da_synth - 273.15
-da_c.attrs["units"] = "degC"
+print("数据来源：", source)
+print("读取完成 shape(time, lat, lon):", da_c.shape)
 
 # %%
-# ---------- ③ 时间切片：只保留 2000 年 3–9 月（暖半年）----------
-da_season = da_c.sel(time=slice("2000-03-01", "2000-09-01"))
+# ---------- ③ 时间切片：只保留 2024 年 1 月中旬（1-11 至 1-20）----------
+da_season = da_c.sel(time=slice("2024-01-11", "2024-01-20"))
 print("时间切片后 shape:", da_season.shape)
 
 # %%
-# ---------- ④ 空间子区域裁剪：聚焦甘肃河西走廊一带 ----------
-# lon 90–100°E, lat 35–40°N（本例 lat 从小到大排列，故 slice(35, 40)）
-da_region = da_season.sel(lon=slice(90, 100), lat=slice(35, 40))
+# ---------- ④ 空间子区域裁剪：聚焦西北地区东部 ----------
+# lon 102–108°E, lat 33–39°N（本例 lat 从小到大排列，故 slice(33, 39)）
+da_region = da_season.sel(lon=slice(102, 108), lat=slice(33, 39))
 print("空间裁剪后 shape:", da_region.shape)
 
 # %%
@@ -88,25 +88,20 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5),
 # 左图：取裁剪区域内第 0 个时次的空间场（lat, lon）
 da_region.isel(time=0).plot(ax=ax1, cmap="RdBu_r",
                             cbar_kwargs={"label": "气温 ℃"})
-ax1.set_title("某时刻河西走廊气温场")
+ax1.set_title("2024-01-11 西北东部气温场")
 
 # 右图：纬度加权区域平均的时间序列
-ax2.plot(series.time.astype(str), series.values, marker="o", color="tab:red")
-ax2.set_title("区域平均气温时间序列")
+ax2.plot(series.time.astype("datetime64[D]").astype(str), series.values,
+         marker="o", color="tab:red")
+ax2.set_title("纬度加权区域平均气温时间序列")
 ax2.set_ylabel("气温 ℃")
+ax2.set_xlabel("日期")
 ax2.tick_params(axis="x", rotation=30)
 
 fig.suptitle("Xarray 西北气温场分析示例")
 
-# %%
-# 保存示例图片（sphinx-gallery 环境可观察输出）
-import os  # noqa: E402
-
-out_png = "plot_xarray_field.png"
-if not os.path.exists("figures"):
-    os.makedirs("figures", exist_ok=True)
-fig.savefig(os.path.join("figures", out_png), dpi=120, bbox_inches="tight")
-print("已保存示例图: figures/" + out_png)
-
 # 关键结果打印，便于校验
-print("区域平均气温变化范围 (℃):", float(series.min()), "~", float(series.max()))
+print("区域平均气温变化范围 (℃):",
+      f"{float(series.min()):.1f} ~ {float(series.max()):.1f}")
+
+plt.show()

@@ -50,8 +50,8 @@
      - Figure、Axes、Artist、刻度、图例、色带、面向对象接口
      - ✅ 已上线
    * - 第 10 章 · Cartopy 地图绘图
-     - Cartopy 相关术语将在正文交付后上线
-     - ⏳ 待交付
+     - 投影、PlateCarree、transform、海岸线、Natural Earth、色带映射
+     - ✅ 已上线
 
 .. toctree::
    :maxdepth: 2
@@ -66,6 +66,7 @@
    ch07_terms
    ch08_terms
    ch09_terms
+   ch10_terms
 
 使用提示
 --------

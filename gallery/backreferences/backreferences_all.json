@@ -1,1 +1,722 @@
-{}
+{
+ "matplotlib.Artist.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.contourf": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.scatter": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.set_title": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Artist.text": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.contourf": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.scatter": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.set_title": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Axes.text": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Colorbar.set_label": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Figure": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.Figure.colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.FigureBase.colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.RcParams": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.contourf": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.scatter": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.set_title": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib._AxesBase.text": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.contourf": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.scatter": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.set_title": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.artist.Artist.text": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.contourf": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.scatter": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.set_title": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes.Axes.text": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.contourf": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.scatter": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.set_title": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._AxesBase.text": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._axes.Axes.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._axes.Axes.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._axes.Axes.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._axes.Axes.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.add_feature": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.coastlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.contourf": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.gridlines": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.scatter": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.set_extent": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.set_title": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.axes._base._AxesBase.text": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.colorbar.Colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.colorbar.Colorbar.set_label": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.figure.Figure": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.figure.Figure.colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.figure.FigureBase.colorbar": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.pyplot.show": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.pyplot.subplots": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "matplotlib.rcParams": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "numpy._ArrayFunctionDispatcher": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "numpy.linspace": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "numpy.meshgrid": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ],
+ "numpy.ndarray": [
+  [
+   "plot_cartopy_temp.py",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./examples\\plot_viz",
+   "D:\\Code\\Vibe\\meteo_python_docs\\./gallery\\plot_viz",
+   "本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：",
+   "西北地区 1 月平均气温地图"
+  ]
+ ]
+}

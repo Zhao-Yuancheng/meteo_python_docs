@@ -163,10 +163,11 @@ ax.text(0.03, 0.95,
 
 
 # %%
-# 六、保存并显示
+# 六、显示
 # ---------------
+# sphinx-gallery 会自动截取当前 figure 作为示例图；独立运行时由
+# plt.show() 弹窗显示，无需手动 savefig 落盘。
 fig.tight_layout()
-fig.savefig("T506_station_temperature.png", dpi=150)
 plt.show()
 
-print("绘图完成，已保存为 T506_station_temperature.png")
+print("绘图完成")
