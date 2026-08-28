@@ -1,7 +1,7 @@
 术语参考
 ========
 
-本站的术语参考与常规文档不同，是 **术语 API**：常规 API 讲"函数怎么调用"，术语 API 讲"**词是什么意思**"。Python 教程里总有那么些词——整型、浮点型、可变、切片、作用域——它们是专业术语，或与日常用语含义不同。本栏目专门为初学者拆解这些词。
+本站的术语参考与常规文档不同，是 **术语 API**：常规 API 讲「函数怎么调用」，术语 API 讲「**词是什么意思**」。Python 教程里总有那么些词——整型、浮点型、可变、切片、作用域——它们是专业术语，或与日常用语含义不同。本栏目专门为初学者拆解这些词。
 
 每个词条包含四个部分：
 
@@ -12,65 +12,52 @@
 
 正文中出现的术语可用 :term:`行内链接 <变量>` 跳转到这里，例如 :term:`浮点型 <浮点型 float>`、:term:`切片 <切片>`。
 
-章节术语索引
-------------
-
-.. list-table::
-   :header-rows: 1
-   :widths: 18 50 32
-
-   * - 章节
-     - 收录词条
-     - 状态
-   * - 第 2 章 · 基本数据类型、变量和运算符
-     - 变量、整型、浮点型、字符串、布尔值、可变类型、不可变类型、索引、切片、空值
-     - ✅ 已上线
-   * - 第 1 章 · Python 简介及安装环境
-     - 解释器、环境、PATH、包管理器、IDE、脚本
-     - ✅ 已上线
-   * - 第 3 章 · 分支、循环与条件
-     - 条件表达式、循环变量、迭代、缩进、代码块
-     - ✅ 已上线
-   * - 第 4 章 · 函数及变量作用域、模块和包
-     - 函数、形参与实参、返回值、局部变量、全局变量、作用域、global 声明、模块、包、导入与 ``__name__``
-     - ✅ 已上线
-   * - 第 5 章 · 面向对象、函数式编程与高级语法
-     - 类、对象/实例、属性、方法、构造函数、继承、封装、多态、装饰器、生成器
-     - ✅ 已上线
-   * - 第 6 章 · 气象数据计算 NumPy
-     - 数组、维度/轴、形状、dtype、广播、向量化、NaN
-     - ✅ 已上线
-   * - 第 8 章 · 气象数据分析（二）Xarray
-     - DataArray、Dataset、维度、坐标、NetCDF、属性 attrs、重采样
-     - ✅ 已上线
-   * - 第 7 章 · 气象数据分析（一）Pandas
-     - DataFrame、Series、索引、布尔索引、分组聚合、透视表、NaN
-     - ✅ 已上线
-   * - 第 9 章 · Matplotlib 气象绘图
-     - Figure、Axes、Artist、刻度、图例、色带、面向对象接口
-     - ✅ 已上线
-   * - 第 10 章 · Cartopy 地图绘图
-     - 投影、PlateCarree、transform、海岸线、Natural Earth、色带映射
-     - ✅ 已上线
-
 .. toctree::
    :maxdepth: 2
    :hidden:
 
-   ch01_terms
-   ch02_terms
-   ch03_terms
-   ch04_terms
-   ch05_terms
-   ch06_terms
-   ch07_terms
-   ch08_terms
-   ch09_terms
-   ch10_terms
+   basics/index
+   data/index
+   viz/index
+
+三大模块速览
+------------
+
+.. grid:: 1 1 2 3
+   :gutter: 2
+
+   .. grid-item-card:: 模块一 Python 编程基础
+      :link: basics/index
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      第 1–5 节 · 环境、数据类型、控制流、函数与作用域、面向对象与高级语法。
+
+   .. grid-item-card:: 模块二 气象数据处理
+      :link: data/index
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      第 6–8 节 · NumPy 计算、Pandas 分析、Xarray 多维数据。
+
+   .. grid-item-card:: 模块三 气象数据可视化
+      :link: viz/index
+      :link-type: doc
+      :class-card: gallery-card
+
+      ^^^
+
+      第 9–10 节 · Matplotlib 绘图、Cartopy 地图绘图。
+
+每个模块的索引页都按章收录具体词条，也可从左侧导航逐层展开进入。
 
 使用提示
 --------
 
-- 词条按"遇到不懂的词 → 查这里"的方式使用，也可在每章小结处通过链接批量回顾；
-- 每个词条的\ **易混淆点**\都来自初学者的高频报错，读一遍能省几次调试；
+- 词条按「遇到不懂的词 → 查这里」的方式使用，也可在每章小结处通过链接批量回顾；
+- 每个词条的 **易混淆点** 都来自初学者的高频报错，读一遍能省几次调试；
 - 与 Python 官方文档的术语表（`Glossary <https://docs.python.org/zh-cn/3/glossary.html>`_）互为补充：官方版严谨，本站版好懂。

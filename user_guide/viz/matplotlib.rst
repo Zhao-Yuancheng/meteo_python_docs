@@ -8,22 +8,22 @@
 
 .. _ch09-animation:
 
-配套动画（T-902）
+配套动画
 -------------------
 
 本章配了两支动画，先看再读，效果更佳：
 
-（1）**Matplotlib 核心概念动画**——把 :term:`Figure（画布）`／:term:`Axes（坐标区 / 绘图区）`／:term:`Artist（绘图元素）` 谁管什么，以及面向对象接口"先 ``fig, ax = plt.subplots()`` 拿画布，再往 ``ax`` 上下笔"这件事讲透。
+（1）**Matplotlib 核心概念动画**——把 :term:`Figure（画布）`／:term:`Axes（坐标区 / 绘图区）`／:term:`Artist（绘图元素）` 谁管什么，以及面向对象接口「先 fig, ax = plt.subplots() 拿画布，再往 ax 上下笔」这件事讲透。
 
 .. video:: /_static/videos/T902_Matplotlib核心概念动画_av1.webm
    :width: 100%
 
-（2）**画图全流程演示**——从拿到数据、创建画布、画图、设轴标签、加标题图例，到 ``savefig`` 导出的完整闭环，一气呵成。
+（2）**画图全流程演示**——从拿到数据、创建画布、画图、设轴标签、加标题图例，到 savefig 导出的完整闭环，一气呵成。
 
 .. video:: /_static/videos/T902_Matplotlib画图全流程演示_av1.webm
    :width: 100%
 
-面向对象接口（``fig, ax``）是推荐写法，便于拼多子图：
+面向对象接口（fig, ax）是推荐写法，便于拼多子图：
 
 .. code-block:: python
 
@@ -40,28 +40,28 @@
    ax.set_title("正弦与余弦")
    plt.show()
 
-本章将覆盖的知识点：Figure / Axes 面向对象接口、``plot`` / ``scatter`` / ``bar`` / ``hist``、标签 / 标题 / 图例、子图、``savefig``；提升拓展：``twinx`` 双轴、``annotate`` 标注、自定义样式。此外，下面这份「气象绘图最佳实践」浓缩了把"画对图"的关键经验——气象里"数据是米，绘图是炊"，米再好，炊不好，读者端起饭碗就皱眉头。
+本章将覆盖的知识点：Figure / Axes 面向对象接口、plot / scatter / bar / hist、标签 / 标题 / 图例、子图、savefig；提升拓展：twinx 双轴、annotate 标注、自定义样式。此外，下面这份「气象绘图最佳实践」浓缩了把「画对图」的关键经验——气象里「数据是米，绘图是炊」，米再好，炊不好，读者端起饭碗就皱眉头。
 
 最佳实践：气象绘图规范
 ----------------------
 
 □ 项目第 9 步的整体画面：绘制兰州气温时间序列图、散点图、直方图。这份规范把走弯路后回头的经验浓缩成册，可供读者逐条对照。
 
-面向对象接口，别让 pyplot 全局状态"打游击"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+面向对象接口，别让 pyplot 全局状态「打游击」
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用。
 
-**状态机（pyplot）写法**：``plt.plot(...)``、``plt.xlabel(...)``、``plt.title(...)`` 一层一层叠在 Matplotlib 内部的"当前画布"上，像流水线上工人轮流往同一块板上钉钉子，谁最后改的谁说了算。
+**状态机（pyplot）写法**：plt.plot(...)、plt.xlabel(...)、plt.title(...) 一层一层叠在 Matplotlib 内部的「当前画布」上，像流水线上工人轮流往同一块板上钉钉子，谁最后改的谁说了算。
 
-**面向对象（OO）写法**：先 ``fig, ax = plt.subplots()`` 创建"画布 + 坐标区"这对搭档，之后所有操作都\ **明确指定**\是画在哪个 ``ax`` 上。就像每个小组都有自己的白板和记号笔，互不串台。
+**面向对象（OO）写法**：先 fig, ax = plt.subplots() 创建「画布 + 坐标区」这对搭档，之后所有操作都\ **明确指定**\是画在哪个 ax 上。就像每个小组都有自己的白板和记号笔，互不串台。
 
 .. code-block:: python
 
    import matplotlib.pyplot as plt
    import numpy as np
 
-   # ✅ 推荐：面向对象接口，一切操作挂在 ax 上
+   # 推荐：面向对象接口，一切操作挂在 ax 上
    fig, ax = plt.subplots(figsize=(7, 4))
    x = np.arange(1, 32)                 # 1~31 日
    t = 15 + 3.5 * np.sin(2 * np.pi * x / 31)   # 模拟一条正弦气温曲线
@@ -75,19 +75,19 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
 
 .. warning::
 
-   风险点：``plt.plot`` 之后又混用 ``ax.plot``，当前坐标系是谁你心里没数，多图、多子图时元素会画错地方，排错如大海捞针——这就是全局状态混乱在"打游击"。
+   风险点：plt.plot 之后又混用 ax.plot，当前坐标系是谁你心里没数，多图、多子图时元素会画错地方，排错如大海捞针——这就是全局状态混乱在「打游击」。
 
-   💡 什么时候才特意用 pyplot？只有三类场景：**多张独立图**\（一张画完 ``plt.figure()`` 再开下一张）、**多子图布局**\用 ``plt.subplots()``、以及\ **清画布** ``plt.clf()`` / ``plt.close()`` 回收内存时。其余画图细节，一律交给 ``ax``。
+   什么时候才特意用 pyplot？只有三类场景：**多张独立图**\（一张画完 plt.figure() 再开下一张）、**多子图布局**\用 plt.subplots()、以及\ **清画布** plt.clf() / plt.close() 回收内存时。其余画图细节，一律交给 ax。
 
-✅ 最佳实践口诀：画每个坐标系的元素，永远从 ``fig, ax = plt.subplots()`` 起步；凡是对"某个具体图"的操作，都用 ``ax.xxx``。
+最佳实践口诀：画每个坐标系的元素，永远从 fig, ax = plt.subplots() 起步；凡是对「某个具体图」的操作，都用 ax.xxx。
 
 四种气象图的做法与要点
 ^^^^^^^^^^^^^^^^^^^^^^
 
-气温时间序列折线图（``plot``）
+气温时间序列折线图（plot）
 """"""""""""""""""""""""""""""
 
-时间和温度养在同一个坐标系里，折线把"这是一天一个点"的断续观测连绵成"冷暖起伏"的生命线。做折线图只需保证：横轴是时间，纵轴是气温，连线别太粗，别在点与点之间填太多视觉噪音。
+时间和温度养在同一个坐标系里，折线把「这是一天一个点」的断续观测连绵成「冷暖起伏」的生命线。做折线图只需保证：横轴是时间，纵轴是气温，连线别太粗，别在点与点之间填太多视觉噪音。
 
 .. code-block:: python
 
@@ -98,7 +98,7 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    doy = np.arange(1, 32)                     # 一年中的第 1~31 天
    temp = 8 + 12 * np.cos(2 * np.pi * (doy - 200) / 365)  # 冬冷夏热的年周期
 
-   # ✅ plot 画折线：color 定颜色、lw 定粗细、marker 定节点
+   # plot 画折线：color 定颜色、lw 定粗细、marker 定节点
    ax.plot(doy, temp, color="tab:blue", lw=1.8, marker="o",
            ms=4, label="日平均温")
    ax.axhline(temp.mean(), color="gray", ls="--", lw=1, label="年均值")
@@ -109,12 +109,12 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    ax.legend(loc="best")
    plt.show()
 
-✅ 要点：趋势着重用折线；点太多且间隔不等时别用 ``marker='o'``\（会糊成一团墨），实心折线更能体现实测的连续感；年均值或气候均值用一条虚线 ``axhline`` 当"地平线"，比读者自动脑补强得多。
+要点：趋势着重用折线；点太多且间隔不等时别用 marker='o'\（会糊成一团墨），实心折线更能体现实测的连续感；年均值或气候均值用一条虚线 axhline 当「地平线」，比读者自动脑补强得多。
 
-两要素相关性散点图（``scatter``）
+两要素相关性散点图（scatter）
 """""""""""""""""""""""""""""""""
 
-想看"逐日最高温"和"逐日最低温"是不是手牵手一起涨，散点图最直观：每个点代表一天，横轴最低温、纵轴最高温。若点子沿一条对角线密集排布，说明两要素强相关，那一刻"日最高温"和"日最低温"像一对默契的双胞胎。
+想看「逐日最高温」和「逐日最低温」是不是手牵手一起涨，散点图最直观：每个点代表一天，横轴最低温、纵轴最高温。若点子沿一条对角线密集排布，说明两要素强相关，那一刻「日最高温」和「日最低温」像一对默契的双胞胎。
 
 .. code-block:: python
 
@@ -129,7 +129,7 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    fig, ax = plt.subplots(figsize=(7, 5))
    ax.scatter(tmin, tmax, s=25, alpha=0.75, color="tab:orange",
               edgecolors="k", linewidths=0.4)
-   # ✅ 参考线：没有任何一天的最高温低于最低温，这条对角线是"物理下限"
+   # 参考线：没有任何一天的最高温低于最低温，这条对角线是"物理下限"
    lo, hi = ax.get_xlim()
    ax.plot([lo, hi], [lo, hi], ls="--", color="gray", lw=1, label="tmax = tmin")
    ax.set_xlabel("日最低温（℃）")
@@ -140,14 +140,14 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
 
 .. warning::
 
-   风险点：散点没 ``alpha``\（透明度）时，几十上百个点叠在一起会变成一团实心色块，掩盖真实的点云密度。适当 ``alpha``\（0.5~0.8）和细白描边 ``edgecolors='k'`` 能救回可读性。
+   风险点：散点没 alpha\（透明度）时，几十上百个点叠在一起会变成一团实心色块，掩盖真实的点云密度。适当 alpha\（0.5~0.8）和细白描边 edgecolors='k' 能救回可读性。
 
-✅ 要点：想读"相关性强不强、线性不线性、有没有离群点"，颜色的深浅由点密不密来决定；不要一进门就追求拟合回归线，先用裸散点观察数据长什么样。
+要点：想读「相关性强不强、线性不线性、有没有离群点」，颜色的深浅由点密不密来决定；不要一进门就追求拟合回归线，先用裸散点观察数据长什么样。
 
-气温分布直方图（``hist``）
+气温分布直方图（hist）
 """"""""""""""""""""""""""
 
-直方图回答"气温大多待在哪一档"。把整年逐日均温和逐日温差（最高温 − 最低温）都码进直方图，能一眼看出：年气温分布到底偏不偏（**偏态**）、有没有\ **双峰**\（春天和秋天挤成两个山头）、以及这个内陆城市的\ **昼夜温差**\是否常年被拉得很开。
+直方图回答「气温大多待在哪一档」。把整年逐日均温和逐日温差（最高温 − 最低温）都码进直方图，能一眼看出：年气温分布到底偏不偏（**偏态**）、有没有\ **双峰**\（春天和秋天挤成两个山头）、以及这个内陆城市的\ **昼夜温差**\是否常年被拉得很开。
 
 .. code-block:: python
 
@@ -169,12 +169,12 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    ax.legend()
    plt.show()
 
-✅ 要点：``bins`` 是"切几格"，太少糊成一根根柱子看不清形状，太多又抖成锯齿；可从 15~30 起步试试手感。想看"占了多少比例"，加 ``density=True`` 把纵轴换成概率密度。均值在图上画一条竖直虚线，读者立刻知道分布的中轴在哪。
+要点：bins 是「切几格」，太少糊成一根根柱子看不清形状，太多又抖成锯齿；可从 15~30 起步试试手感。想看「占了多少比例」，加 density=True 把纵轴换成概率密度。均值在图上画一条竖直虚线，读者立刻知道分布的中轴在哪。
 
-多子图布局（``subplots(2,2)`` / ``sharex``）
+多子图布局（subplots(2,2) / sharex）
 """""""""""""""""""""""""""""""""""""""""""""
 
-图太多就分房子住——一张画布装 2×2 或 3×1 个坐标区，各管一事。要点是：共享横轴的子图一定开 ``sharex=True``，让它们底部 y 轴对齐、刻度一致，读者扫一眼就能横着对比时间轴。
+图太多就分房子住——一张画布装 2×2 或 3×1 个坐标区，各管一事。要点是：共享横轴的子图一定开 sharex=True，让它们底部 y 轴对齐、刻度一致，读者扫一眼就能横着对比时间轴。
 
 .. code-block:: python
 
@@ -184,7 +184,7 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    doy = np.arange(1, 31)
    t = 16 + 5 * np.cos(2 * np.pi * (doy - 195) / 200)
 
-   # ✅ 2×2 布局：四格各司其职
+   # 2×2 布局：四格各司其职
    fig, axes = plt.subplots(2, 2, figsize=(11, 7), sharex=True)
    axes[0, 0].plot(doy, t, color="tab:red");   axes[0, 0].set_title("折线：逐日气温")
    axes[0, 1].scatter(t[:-1], t[1:], s=20, color="tab:blue"); axes[0, 1].set_title("散点：相邻日相关")
@@ -201,17 +201,17 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    fig.tight_layout()
    plt.show()
 
-💡 记忆：``plt.subplots(2, 2)`` 返回的 ``axes`` 是个二维数组，用 ``axes[行, 列]`` 取元；开了 ``sharex``，上面那行省掉一堆重复的横轴刻度，画面立刻清爽。
+记忆：plt.subplots(2, 2) 返回的 axes 是个二维数组，用 axes[行, 列] 取元；开了 sharex，上面那行省掉一堆重复的横轴刻度，画面立刻清爽。
 
-常规参数：让图"立"得起来
-^^^^^^^^^^^^^^^^^^^^^^^^
+常规参数：让图「立」得起来
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- ``figsize``：画布尺寸，多子图或长序列数据要放大，别让梅西挤进电话亭；
-- ``dpi``：分辨率（常用 100~150），PNG 导出时像素密度所在；
-- 每个 ``ax`` 都要有 ``set_xlabel`` / ``set_ylabel`` / ``set_title``，多曲线加 ``legend(loc=...)``，线太多加 ``grid(ls='--', alpha=0.3)``；
-- ``colorbar``：**只对有颜色映射的图**\（``scatter`` 用 ``c=``、``pcolormesh``、``contourf``）用，普通折线散点别乱挂；
-- 保存必须 ``savefig("a.png", bbox_inches="tight", dpi=150)``——``bbox_inches='tight'`` 会把图边裁剪到刚好贴合内容，四周不留白；
-- 画完 ``plt.show()`` 看效果，批处理时 ``plt.close(fig)`` 释放画布内存，否则 100 张图跑完内存爆表。
+- figsize：画布尺寸，多子图或长序列数据要放大，别让梅西挤进电话亭；
+- dpi：分辨率（常用 100~150），PNG 导出时像素密度所在；
+- 每个 ax 都要有 set_xlabel / set_ylabel / set_title，多曲线加 legend(loc=...)，线太多加 grid(ls='--', alpha=0.3)；
+- colorbar：**只对有颜色映射的图**\（scatter 用 c=、pcolormesh、contourf）用，普通折线散点别乱挂；
+- 保存必须 savefig("a.png", bbox_inches="tight", dpi=150)——bbox_inches='tight' 会把图边裁剪到刚好贴合内容，四周不留白；
+- 画完 plt.show() 看效果，批处理时 plt.close(fig) 释放画布内存，否则 100 张图跑完内存爆表。
 
 .. code-block:: python
 
@@ -224,17 +224,17 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    ax.plot(x, np.cos(x), color="tab:orange")
    ax.set_title("正弦与余弦"); ax.legend(["sin", "cos"]); ax.grid(ls="--", alpha=0.3)
 
-   # ✅ 半成品先 show 抽查，定稿务必 savefig（加 dpi 和 bbox_inches）
+   # 半成品先 show 抽查，定稿务必 savefig（加 dpi 和 bbox_inches）
    plt.tight_layout()
    plt.show()
-   fig.savefig("D:\\Code\\Vibe\\SUBMIT\\Chapter09\\demo_out.png",
+   fig.savefig("./figures/lanzhou_temp_panel.png",
                bbox_inches="tight", dpi=150)
-   plt.close(fig)          # ✅ 批处理关键：画完就回收
+   plt.close(fig)          # 批处理关键：画完就回收
 
-提升技巧：一键从"能用的图"到"好看的图"
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+提升技巧：一键从「能用的图」到「好看的图」
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**双轴 ``twinx``**：当同一时间轴上要摆两个量纲不同的物理量（温度 ℃ 与降水 mm，风速 m/s 与气压 hPa），各走各的坐标轴：
+**双轴 twinx**：当同一时间轴上要摆两个量纲不同的物理量（温度 ℃ 与降水 mm，风速 m/s 与气压 hPa），各走各的坐标轴：
 
 .. code-block:: python
 
@@ -249,7 +249,7 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    ax1.plot(x, temp, color="tab:red", lw=2, label="气温")
    ax1.set_ylabel("气温（℃）", color="tab:red"); ax1.tick_params(axis="y", colors="tab:red")
 
-   ax2 = ax1.twinx()                 # ✅ 共享横轴、另起右纵轴
+   ax2 = ax1.twinx()                 # 共享横轴、另起右纵轴
    ax2.bar(x, rain, color="tab:blue", alpha=0.35, label="降水")
    ax2.set_ylabel("降水（mm）", color="tab:blue"); ax2.tick_params(axis="y", colors="tab:blue")
 
@@ -261,7 +261,7 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
 
    风险点：双轴一定要用\ **颜色区分两套刻度**\（左轴、右轴各自着色），否则读者分不清哪个刻度属于哪条线；两轴的量程比例也别相差几十倍，否则矮的一方会被碾成水平线。
 
-**``annotate`` 标注极值点**：年最热、年最冷那天，用箭头一针见血指出来：
+**annotate 标注极值点**：年最热、年最冷那天，用箭头一针见血指出来：
 
 .. code-block:: python
 
@@ -284,13 +284,13 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
    ax.set_xlabel("一年中的第几天"); ax.set_ylabel("气温（℃）"); ax.set_title("标注冬夏极值点")
    plt.show()
 
-**自定义样式 ``rcParams`` / 风格**：全局主题用 ``plt.style.use("seaborn-v0_8-whitegrid")``、``"ggplot"`` 一把梭；想改字体、字号、线宽等默认值，用 ``plt.rcParams`` 一次性配好：
+**自定义样式 rcParams / 风格**：全局主题用 plt.style.use("seaborn-v0_8-whitegrid")、"ggplot" 一把梭；想改字体、字号、线宽等默认值，用 plt.rcParams 一次性配好：
 
 .. code-block:: python
 
    import matplotlib.pyplot as plt
 
-   # ✅ 工程开始处统一风格，整个文件生效，不用每张图重复设
+   # 工程开始处统一风格，整个文件生效，不用每张图重复设
    plt.style.use("seaborn-v0_8-whitegrid")
    plt.rcParams["font.sans-serif"] = ["SimHei", "Microsoft YaHei",
                                       "Noto Sans CJK SC", "WenQuanYi Micro Hei"]
@@ -299,7 +299,7 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
 
 .. warning::
 
-   风险点：中文显示为"□□方块"的根因，不是缺库，而是\ **没把中文字体装进 ``font.sans-serif`` 白名单**，顺带漏了 ``axes.unicode_minus = False`` 导致负号也是方块。三行 ``rcParams`` 一起上，F5 一次到位。
+   风险点：中文显示为「□□方块」的根因，不是缺库，而是\ **没把中文字体装进 font.sans-serif 白名单**，顺带漏了 axes.unicode_minus = False 导致负号也是方块。三行 rcParams 一起上，F5 一次到位。
 
 常见坑位一次排雷
 ^^^^^^^^^^^^^^^^
@@ -312,23 +312,61 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
      - 症状
      - 排雷
    * - 混用 pyplot 与 OO
-     - 元素画到"错误的画布/子图"上
-     - 全文件统一用 ``fig, ax``，只在开图/清图时碰 pyplot
+     - 元素画到「错误的画布/子图」上
+     - 全文件统一用 fig, ax，只在开图/清图时碰 pyplot
    * - 中文未配置
      - 图上全是一条条小方块
-     - 顶部 ``rcParams["font.sans-serif"]`` + ``unicode_minus``
-   * - 只 ``show()`` 不 ``savefig``
-     - 跑批处理时"图一闪而过、无文件产出"
-     - 每次 ``savefig(..., bbox_inches="tight", dpi=150)``
-   * - 图例 ``loc`` 不合适
+     - 顶部 rcParams["font.sans-serif"] + unicode_minus
+   * - 只 show() 不 savefig
+     - 跑批处理时「图一闪而过、无文件产出」
+     - 每次 savefig(..., bbox_inches="tight", dpi=150)
+   * - 图例 loc 不合适
      - legend 压住曲线趋势
-     - ``loc="best"`` 或手动 ``bbox_to_anchor=(1.02, 1)`` 放到图外
+     - loc="best" 或手动 bbox_to_anchor=(1.02, 1) 放到图外
    * - 刻度重叠
      - 日期/标签糊成一坨
-     - 加 ``figsize``、``plt.xticks(rotation=45)``、或用 ``tick_params`` 稀疏刻度
-   * - 不 ``close``
+     - 加 figsize、plt.xticks(rotation=45)、或用 tick_params 稀疏刻度
+   * - 不 close
      - 跑多张循环内存疯涨
-     - 循环里画完 ``plt.close(fig)``
+     - 循环里画完 plt.close(fig)
+
+更多的图形：饼图与三维
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+**饼图 pie**：展示各项「占总额的比例」最直观——比如某月不同天气现象的日数构成、某流域各级降水的站点占比。注意饼图只适合「占比构成」；要比大小、看趋势，改用条形图/折线图：
+
+.. code-block:: python
+
+   import matplotlib.pyplot as plt
+
+   phenomena = ["晴", "多云", "雨", "雪"]
+   days = [18, 7, 4, 1]              # 某站 30 天天气现象日数
+   fig, ax = plt.subplots(figsize=(6, 5))
+   ax.pie(days, labels=phenomena, autopct="%.1f%%",
+          startangle=90, counterclock=False)
+   ax.set_title("某站 30 天天气现象占比")
+   plt.show()
+
+   # autopct 显示百分比；startangle 控制第一块从 12 点方向开始
+
+**三维绘图**：想同时看气温随「高度 × 时间」的立体变化，可引入 mplot3d，用 projection="3d" 建三维坐标轴：
+
+.. code-block:: python
+
+   import numpy as np
+   import matplotlib.pyplot as plt
+
+   fig = plt.figure(figsize=(8, 6))
+   ax = fig.add_subplot(projection="3d")
+   x = np.linspace(0, 30, 30)            # 时间（天）
+   y = np.linspace(500, 1500, 10)        # 高度（m）
+   X, Y = np.meshgrid(x, y)
+   Z = 12 + 0.005 * Y - 2 * np.cos(2 * np.pi * X / 15)   # 温度随高度递减、随日期波动
+   ax.plot_surface(X, Y, Z, cmap="coolwarm", alpha=0.85)
+   ax.set_xlabel("时间（天）"); ax.set_ylabel("高度（m）"); ax.set_zlabel("气温（℃）")
+   plt.show()
+
+   # 气象里常用于探空曲线的三维初看、三维风场示意；信息量大，正式出图仍以二维为主
 
 完整综合示例：一张多子图图板
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -399,7 +437,7 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
 绘图参数速查手册：颜色、线条、文字与标记
 -----------------------------------------
 
-除图形函数外，Matplotlib 里的颜色、线型、文字字号、标记样式还有一整套速查写法。画图卡壳时拿出来对照，避免"想画虚线却写错了线型"这类玄学报错。以下速查对应术语 :term:`Figure（画布）`、:term:`Axes（坐标区 / 绘图区）` 等，详见 :doc:`/api/ch09_terms`。
+除图形函数外，Matplotlib 里的颜色、线型、文字字号、标记样式还有一整套速查写法。画图卡壳时拿出来对照，避免「想画虚线却写错了线型」这类玄学报错。以下速查对应术语 :term:`Figure（画布）`、:term:`Axes（坐标区 / 绘图区）` 等，详见 :doc:`/api/viz/ch09_terms`。
 
 颜色
 ^^^^
@@ -412,24 +450,24 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
      - 示例
      - 适用场景
    * - 颜色名称
-     - ``'red'``、``'blue'``、``'green'``
+     - 'red'、'blue'、'green'
      - 快速直观
    * - 单字母缩写
-     - ``'r'``、``'b'``、``'g'``、``'k'``、``'w'``
+     - 'r'、'b'、'g'、'k'、'w'
      - 简写代码
    * - 十六进制
-     - ``'#FF5733'``
+     - '#FF5733'
      - 精确匹配颜色
    * - RGB 元组
-     - ``(0.2, 0.4, 0.6)``
+     - (0.2, 0.4, 0.6)
      - 自定义颜色
    * - 颜色映射
-     - ``cmap = 'RdBu_r'``
+     - cmap = 'RdBu_r'
      - 填色图、按数值着色
 
 .. note::
 
-   ``'r'``、``'red'`` 等价；``'k'`` 是黑色、``'w'`` 是白色。颜色映射 ``cmap`` 用在"数值 → 颜色"的图上（``scatter(c=...)``、``contourf``），并配一条色带。
+   'r'、'red' 等价；'k' 是黑色、'w' 是白色。颜色映射 cmap 用在「数值 → 颜色」的图上（scatter(c=...)、contourf），并配一条色带。
 
 线条、文字与标记
 ^^^^^^^^^^^^^^^^
@@ -442,25 +480,25 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
      - 参数名
      - 常用值
    * - 线型
-     - ``linestyle`` / ``ls``
-     - ``'-'`` 实线、``'--'`` 虚线、``'-.'`` 点划线、``':'`` 点线
+     - linestyle / ls
+     - '-' 实线、'--' 虚线、'-.' 点划线、':' 点线
    * - 线宽
-     - ``linewidth`` / ``lw``
-     - 数值，默认 ``1.0``，常用 ``1.5``~``2.5``
+     - linewidth / lw
+     - 数值，默认 1.0，常用 1.5~2.5
    * - 颜色
-     - ``color`` / ``c``
+     - color / c
      - 见上面颜色表
    * - 字体大小
-     - ``fontsize``
-     - 正文 ``10``~``16``，标题 ``14``~``20``
+     - fontsize
+     - 正文 10~16，标题 14~20
    * - 字体粗细
-     - ``fontweight``
-     - ``'normal'``、``'bold'``
+     - fontweight
+     - 'normal'、'bold'
    * - 字体家族
-     - ``fontfamily``
-     - ``'serif'``、``'monospace'``
+     - fontfamily
+     - 'serif'、'monospace'
 
-标记 ``marker`` 的常用样式：
+标记 marker 的常用样式：
 
 .. list-table::
    :widths: 24 38 24 14
@@ -470,37 +508,37 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
      - 说明
      - 标记
      - 说明
-   * - ``.``
+   * - .
      - 点
-     - ``s``
+     - s
      - 方形
-   * - ``,``
+   * - ,
      - 细点（像素级）
-     - ``p``
+     - p
      - 五角形
-   * - ``o``
+   * - o
      - 圆圈
-     - ``+``
+     - +
      - 加号
-   * - ``8``
+   * - 8
      - 八边形
-     - ``P``
+     - P
      - 填充加号
-   * - ``D``
+   * - D
      - 菱形
-     - ``x``
+     - x
      - 十字形
-   * - ``d``
+   * - d
      - 细菱形
-     - ``*``
+     - *
      - 星形
-   * - ``<``
+   * - <
      - 左三角
-     - ``>``
+     - >
      - 右三角
-   * - ``^``
+   * - ^
      - 上三角
-     - ``v``
+     - v
      - 下三角
 
 气象常用图形
@@ -514,32 +552,32 @@ Matplotlib 有两种用法，初学者最常踩的就是把两种混在一起用
      - Matplotlib 函数
      - 气象用途
    * - 等值线图
-     - ``contour`` / ``contourf``
+     - contour / contourf
      - 气压场、温度场、高度场
    * - 矢量箭头
-     - ``quiver``
+     - quiver
      - 风场矢量
    * - 风羽图
-     - ``barbs``
+     - barbs
      - 站点风羽
    * - 箱线图
-     - ``boxplot``
+     - boxplot
      - 数据统计对比
    * - 流线图
-     - ``streamplot``
+     - streamplot
      - 流场分析
 
-这些是第 10 章 Cartopy 地图绘图的地基：``contourf`` 填色 + ``quiver``／``barbs`` 叠风场，是气象图的经典组合。
+这些是第 10 章 Cartopy 地图绘图的地基：contourf 填色 + quiver／barbs 叠风场，是气象图的经典组合。
 
 要点总结
 ^^^^^^^^
 
-1. 画图从 ``fig, ax = plt.subplots()`` 起步，具体元素全归 ``ax`` 管；pyplot 只在开图、多图/多子图、清画布时出场；
-2. 折线 ``plot`` 看趋势、散点 ``scatter`` 看相关（配对角线参考线）、直方图 ``hist`` 看分布（偏态 / 双峰 / 昼夜温差）；
-3. 多子图 ``subplots(行,列)`` 配 ``sharex=True`` 共享时间轴，刻度对齐横着可比；
-4. ``figsize`` / ``dpi`` / 标签 / 标题 / 图例 / 网格 是图的地基；``colorbar`` 只给颜色映射图用；
-5. 保存 ``savefig(bbox_inches="tight", dpi=150)``，画完 ``plt.close(fig)`` 防内存泄漏；
-6. ``twinx`` 双轴管不同量纲、``annotate`` 定点标极值、``rcParams`` 统一定中文字体与风格；
+1. 画图从 fig, ax = plt.subplots() 起步，具体元素全归 ax 管；pyplot 只在开图、多图/多子图、清画布时出场；
+2. 折线 plot 看趋势、散点 scatter 看相关（配对角线参考线）、直方图 hist 看分布（偏态 / 双峰 / 昼夜温差）；
+3. 多子图 subplots(行,列) 配 sharex=True 共享时间轴，刻度对齐横着可比；
+4. figsize / dpi / 标签 / 标题 / 图例 / 网格 是图的地基；colorbar 只给颜色映射图用；
+5. 保存 savefig(bbox_inches="tight", dpi=150)，画完 plt.close(fig) 防内存泄漏；
+6. twinx 双轴管不同量纲、annotate 定点标极值、rcParams 统一定中文字体与风格；
 7. 中文字体、负号方块、不 savefig、图例挡数据、刻度重叠——五座大头坑，各有排雷口诀。
 
-.. seealso:: 示例画廊 :doc:`/gallery/plot_viz/index`　·　配套练习：:doc:`/tutorials/viz/ch09_practice`　·　术语参考：:doc:`/api/ch09_terms`
+.. seealso:: 示例画廊 :doc:`/gallery/plot_viz/index`　·　配套练习：:doc:`/tutorials/viz/ch09_practice`　·　术语参考：:doc:`/api/viz/ch09_terms`

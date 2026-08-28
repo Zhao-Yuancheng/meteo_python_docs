@@ -15,24 +15,45 @@ Examples using ``matplotlib.artist.Artist.clabel``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="contourf + contour 是气象场可视化的经典组合：填色看分布、 等值线读数值。本示例绘制西北地区 2024 年 1 月平均气温场：">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 HadCRUT5 数据集绘制逐年全球平均温度距平的时间序列图（X 轴为年份，Y 轴为温度 ℃/K）与全球气温变化趋势的空间分布图（用 contourf 或 pcolormesh）。">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_hadcrut_trend_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_contour`
+  :doc:`/gallery/plot_viz/plot_hadcrut_trend`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">气温场等值线分析（纯 Matplotlib）</div>
+      <div class="sphx-glr-thumbnail-title">全球平均温度距平时间序列与趋势空间分布</div>
     </div>
 
 
 .. only:: not html
 
- * :doc:`/gallery/plot_viz/plot_contour`
+ * :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="经验动力学建模方法（Empirical Kinetic Modeling Approach, EKMA）曲线， 是研究 O₃ 与前体物关系的经典工具：固定 VOCs 组分谱，系统扫描 NOx 与 VOCs 的 总浓度组合，把每个组合对应的最大 O₃ 浓度填到网格上，再用等值线画出 &quot;O₃ 浓度关于（NOx, VOCs）的平面&quot;。它揭示了 O₃ 生成对两种前体物的 非线性响应，并据此把一个城市的污染状态划分为三个特征区域：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_sci/images/thumb/sphx_glr_plot_ekma_curve_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_sci/plot_ekma_curve`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制 EKMA 曲线：城市臭氧敏感性分析</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_sci/plot_ekma_curve`
 
 .. thumbnail-parent-div-close
 

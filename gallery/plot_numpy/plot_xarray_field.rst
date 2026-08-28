@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_numpy_plot_xarray_field.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_numpy_plot_xarray_field.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -31,11 +31,18 @@ Xarray 西北气温场分析
 time/lat/lon 坐标并识别缺测 ``_FillValue``。文件不在时自动改用结构
 一致的合成场，保证脚本在任何环境都能运行。
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-19
+需要先下载配套数据文件才能跑出与本书一致的效果，点击下方按钮即可获取：
 
----------- ① 导入库 + 中文字体配置 ----------
+.. container:: sphx-glr-download meteopy-download-nc
 
-.. GENERATED FROM PYTHON SOURCE LINES 19-28
+   :download:`下载配套数据文件 northwest_temp.nc </data/northwest_temp.nc>`
+
+.. GENERATED FROM PYTHON SOURCE LINES 24-26
+
+① 导入库 + 中文字体配置
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 27-36
 
 .. code-block:: Python
 
@@ -55,12 +62,13 @@ time/lat/lon 坐标并识别缺测 ``_FillValue``。文件不在时自动改用�
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 29-31
+.. GENERATED FROM PYTHON SOURCE LINES 37-40
 
----------- ② 读取数据：优先项目配套 NetCDF，缺失时退回合成场 ----------
+② 读取数据：优先项目配套 NetCDF，缺失时退回合成场
+
 依次尝试三个候选路径：项目根目录运行、画廊构建目录运行、独立运行。
 
-.. GENERATED FROM PYTHON SOURCE LINES 31-63
+.. GENERATED FROM PYTHON SOURCE LINES 41-73
 
 .. code-block:: Python
 
@@ -110,11 +118,11 @@ time/lat/lon 坐标并识别缺测 ``_FillValue``。文件不在时自动改用�
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 64-65
+.. GENERATED FROM PYTHON SOURCE LINES 74-75
 
----------- ③ 时间切片：只保留 2024 年 1 月中旬（1-11 至 1-20）----------
+③ 时间切片：只保留 2024 年 1 月中旬（1-11 至 1-20）
 
-.. GENERATED FROM PYTHON SOURCE LINES 65-68
+.. GENERATED FROM PYTHON SOURCE LINES 76-79
 
 .. code-block:: Python
 
@@ -134,12 +142,13 @@ time/lat/lon 坐标并识别缺测 ``_FillValue``。文件不在时自动改用�
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-71
+.. GENERATED FROM PYTHON SOURCE LINES 80-83
 
----------- ④ 空间子区域裁剪：聚焦西北地区东部 ----------
+④ 空间子区域裁剪：聚焦西北地区东部
+
 lon 102–108°E, lat 33–39°N（本例 lat 从小到大排列，故 slice(33, 39)）
 
-.. GENERATED FROM PYTHON SOURCE LINES 71-74
+.. GENERATED FROM PYTHON SOURCE LINES 84-87
 
 .. code-block:: Python
 
@@ -159,12 +168,13 @@ lon 102–108°E, lat 33–39°N（本例 lat 从小到大排列，故 slice(33,
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 75-77
+.. GENERATED FROM PYTHON SOURCE LINES 88-91
 
----------- ⑤ 纬度加权区域平均（气象核心，禁止算术平均）----------
+⑤ 纬度加权区域平均（气象核心，禁止算术平均）
+
 球面格点面积正比于 cos(lat)，高纬格点面积更小，直接平均会造成系统偏差
 
-.. GENERATED FROM PYTHON SOURCE LINES 77-83
+.. GENERATED FROM PYTHON SOURCE LINES 92-98
 
 .. code-block:: Python
 
@@ -189,11 +199,11 @@ lon 102–108°E, lat 33–39°N（本例 lat 从小到大排列，故 slice(33,
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-85
+.. GENERATED FROM PYTHON SOURCE LINES 99-100
 
----------- ⑥ 绘图：左=某时刻空间气温场，右=区域平均时间序列 ----------
+⑥ 绘图：左=某时刻空间气温场，右=区域平均时间序列
 
-.. GENERATED FROM PYTHON SOURCE LINES 85-108
+.. GENERATED FROM PYTHON SOURCE LINES 101-124
 
 .. code-block:: Python
 
@@ -241,7 +251,7 @@ lon 102–108°E, lat 33–39°N（本例 lat 从小到大排列，故 slice(33,
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.219 seconds)
+   **Total running time of the script:** (0 minutes 0.241 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_xarray_field.py:
@@ -252,15 +262,15 @@ lon 102–108°E, lat 33–39°N（本例 lat 从小到大排列，故 slice(33,
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_xarray_field.ipynb <plot_xarray_field.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_xarray_field.ipynb <plot_xarray_field.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_xarray_field.py <plot_xarray_field.py>`
+      :download:`下载Python源码：plot_xarray_field.py <plot_xarray_field.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_xarray_field.zip <plot_xarray_field.zip>`
+      :download:`下载压缩包：plot_xarray_field.zip <plot_xarray_field.zip>`
 
 
 .. only:: html

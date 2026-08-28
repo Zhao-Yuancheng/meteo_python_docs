@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:02.314** total execution time for 4 files **from gallery\plot_numpy**:
+**00:01.923** total execution time for 4 files **from gallery\plot_numpy**:
 
 .. container::
 
@@ -33,14 +33,14 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_gallery_plot_numpy_plot_array_demo.py` (``plot_array_demo.py``)
-     - 00:01.645
+     - 00:01.110
      - 0.0
    * - :ref:`sphx_glr_gallery_plot_numpy_plot_temperature_matrix.py` (``plot_temperature_matrix.py``)
-     - 00:00.235
-     - 0.0
-   * - :ref:`sphx_glr_gallery_plot_numpy_plot_xarray_field.py` (``plot_xarray_field.py``)
-     - 00:00.219
+     - 00:00.310
      - 0.0
    * - :ref:`sphx_glr_gallery_plot_numpy_plot_pandas_analysis.py` (``plot_pandas_analysis.py``)
-     - 00:00.215
+     - 00:00.263
+     - 0.0
+   * - :ref:`sphx_glr_gallery_plot_numpy_plot_xarray_field.py` (``plot_xarray_field.py``)
+     - 00:00.241
      - 0.0

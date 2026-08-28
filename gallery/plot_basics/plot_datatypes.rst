@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_basics_plot_datatypes.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_basics_plot_datatypes.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -21,7 +21,7 @@
 用基本数据类型存储站点信息
 ==========================
 
-第 2 章示例（T-206）：不借助任何数据处理库，仅用 ``str`` / ``int`` / ``float`` /
+第 2 章示例：不借助任何数据处理库，仅用 ``str`` / ``int`` / ``float`` /
 ``tuple`` / ``list`` / ``dict`` 这些内置类型，存储兰州站的元信息与近 7 日气温，
 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。
 
@@ -145,7 +145,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.091 seconds)
+   **Total running time of the script:** (0 minutes 0.080 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_basics_plot_datatypes.py:
@@ -156,15 +156,15 @@
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_datatypes.ipynb <plot_datatypes.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_datatypes.ipynb <plot_datatypes.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_datatypes.py <plot_datatypes.py>`
+      :download:`下载Python源码：plot_datatypes.py <plot_datatypes.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_datatypes.zip <plot_datatypes.zip>`
+      :download:`下载压缩包：plot_datatypes.zip <plot_datatypes.zip>`
 
 
 .. only:: html

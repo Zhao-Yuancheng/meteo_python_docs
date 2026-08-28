@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_numpy_plot_pandas_analysis.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_numpy_plot_pandas_analysis.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -291,7 +291,7 @@ Pandas 气温月度分析
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.215 seconds)
+   **Total running time of the script:** (0 minutes 0.263 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_pandas_analysis.py:
@@ -302,15 +302,15 @@ Pandas 气温月度分析
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_pandas_analysis.ipynb <plot_pandas_analysis.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_pandas_analysis.ipynb <plot_pandas_analysis.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_pandas_analysis.py <plot_pandas_analysis.py>`
+      :download:`下载Python源码：plot_pandas_analysis.py <plot_pandas_analysis.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_pandas_analysis.zip <plot_pandas_analysis.zip>`
+      :download:`下载压缩包：plot_pandas_analysis.zip <plot_pandas_analysis.zip>`
 
 
 .. only:: html

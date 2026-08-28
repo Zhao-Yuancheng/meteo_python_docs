@@ -1,7 +1,7 @@
 模块二 气象数据处理
 ===================
 
-模块二覆盖第 6–8 节：NumPy 做数值计算，Pandas 处理表格型观测，Xarray 处理带标注的多维网格。三者层层递进——``ndarray`` 是地基，DataFrame 管表格，DataArray/Dataset 管带坐标的格点场。
+模块二覆盖第 6–8 节：NumPy 做数值计算，Pandas 处理表格型观测，Xarray 处理带标注的多维网格。三者层层递进——ndarray 是地基，DataFrame 管表格，DataArray/Dataset 管带坐标的格点场。
 
 .. toctree::
    :maxdepth: 2

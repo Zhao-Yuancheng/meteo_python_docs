@@ -7,6 +7,9 @@
 .bd-main .bd-content .bd-article-container { max-width: 100%; }
 .bd-page-width { max-width: 100%; }
 
+/* —— 主侧边栏宽度设置定值 —— */
+.bd-sidebar-primary { max-width: 350px; }
+
 /* —— 中文字体回退 —— */
 body {
   font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei",
@@ -14,6 +17,16 @@ body {
 }
 code, pre, kbd {
   font-family: "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+}
+
+/* —— 正文与导航统一放大 1.25 倍（仅标题除外）——
+   标题用各自的 rem 字号，不受 --bs-body-font-size 影响；
+   左侧导航目录、右侧页内目录、顶栏链接均随基础字号/侧栏变量一起放大。 */
+:root {
+  --bs-body-font-size: 1.25rem;            /* 正文基础字号 ×1.25 */
+  --pst-sidebar-font-size: 1.125rem;       /* 0.9rem ×1.25：主目录 */
+  --pst-sidebar-font-size-mobile: 1.375rem;/* 1.1rem ×1.25 */
+  --pst-sidebar-header-font-size: 1.5rem;  /* 1.2rem ×1.25 */
 }
 
 /* ============================================================
@@ -25,8 +38,11 @@ code, pre, kbd {
   position: absolute; inset: auto 0 0 0; margin: 0; padding: 6px 8px;
   background: rgba(0,0,0,.62); color: #fff; font-size: .85rem;
   transform: translateY(110%); transition: transform .25s ease;
+  /* 高于 tooltip 遮罩(::before, z-index:97) 与气泡(::after, z-index:98)，
+     避免悬浮时半透明白色底/气泡盖住标题 */
+  z-index: 200;
 }
-.sphx-glr-thumbcontainer:hover img { filter: brightness(.55); transform: scale(1.03); }
+.sphx-glr-thumbcontainer:hover img { transform: scale(1.03); }
 .sphx-glr-thumbcontainer:hover .sphx-glr-thumbnail-title { transform: translateY(0); }
 
 /* ============================================================
@@ -76,3 +92,365 @@ html[data-theme="dark"] .gallery-card:has(.sd-card-img-top) .sd-card-body { back
   background: #000;
 }
 
+/* ============================================================
+   下载按钮体系 v6.1 —— 精致莫兰迪渐变 · 居中按钮版
+   升级点：柔和渐变、分层阴影、轻微玻璃质感、文字居中、hover微动效
+   暗色优化：去除刺眼青色调，改用柔和雾灰‑浅蓝文字
+   ============================================================ */
+/* —— 共同基础：下载图标 + 居中按钮结构 —— */
+div.sphx-glr-download a,
+div.meteopy-download-nc a {
+  --dl-ic: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Cpath%20fill='none'%20stroke='black'%20stroke-width='1.5'%20stroke-linecap='round'%20stroke-linejoin='round'%20d='M8%202.4v8M4.8%207.8%208%2011%2011.2%207.8M3.2%2013h9.6'/%3E%3C/svg%3E")
+          center / 1em no-repeat;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.55;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-family: system-ui, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 500;
+  transition:
+    background-color .22s ease,
+    background-position .22s ease,
+    border-color .22s ease,
+    color .22s ease,
+    transform .22s ease,
+    box-shadow .22s ease;
+  background-image: none !important;
+  background-color: transparent;
+}
+div.sphx-glr-download a:visited,
+div.meteopy-download-nc a:visited {
+  color: inherit;
+}
+div.sphx-glr-download a::before,
+div.meteopy-download-nc a::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: var(--dl-ic);
+  mask: var(--dl-ic);
+  transition: transform .22s ease;
+}
+div.sphx-glr-download a:hover::before,
+div.meteopy-download-nc a:hover::before {
+  transform: translateY(1px);
+}
+div.sphx-glr-download a:hover,
+div.meteopy-download-nc a:hover {
+  text-decoration: none;
+}
+div.sphx-glr-download a code,
+div.meteopy-download-nc a code {
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: 400;
+  font-size: .92em;
+  opacity: .82;
+}
+div.sphx-glr-download {
+  margin: 12px auto;
+  text-align: center;
+}
+div.meteopy-download-nc {
+  margin-top: .8rem;
+  margin-bottom: .3rem;
+  text-align: center;
+}
+/* ================= Light · 绿色主按钮 ================= */
+div.meteopy-download-nc a[href$=".zip"] {
+  width: 100%;
+  max-width: 420px;
+  margin: 8px 0;
+  padding: 16px 28px;
+  font-size: 17px;
+  background: linear-gradient(135deg, #a8c6b6 0%, #8fb39d 100%);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, .35);
+  box-shadow:
+    0 2px 6px rgba(80, 100, 120, .12),
+    0 8px 18px rgba(80, 100, 120, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+div.meteopy-download-nc a[href$=".zip"]:hover {
+  transform: translateY(-2px) translateZ(0);
+  background: linear-gradient(135deg, #97b8a7 0%, #769986 100%);
+  box-shadow:
+    0 4px 12px rgba(80, 100, 120, .18),
+    0 12px 24px rgba(80, 100, 120, .22),
+    inset 0 1px 0 rgba(255, 255, 255, .55);
+}
+div.meteopy-download-nc a[href$=".zip"]:active {
+  transform: translateY(0) translateZ(0);
+  background: linear-gradient(135deg, #8fb39d 0%, #5c7469 100%);
+  box-shadow:
+    0 1px 4px rgba(80, 100, 120, .15),
+    0 4px 10px rgba(80, 100, 120, .20),
+    inset 0 1px 0 rgba(255, 255, 255, .35);
+}
+/* ================= Light · 绿色次级按钮 ================= */
+div.meteopy-download-nc a:not([href$=".zip"]) {
+  width: 100%;
+  max-width: 420px;
+  margin: 8px 0;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 450;
+  background: linear-gradient(135deg, #e8eee9 0%, #dde5df 100%);
+  color: #2e4739;
+  border-color: rgba(178, 194, 183, .50);
+  box-shadow:
+    0 1px 4px rgba(80, 100, 120, .08),
+    0 6px 14px rgba(80, 100, 120, .12),
+    inset 0 1px 0 rgba(255, 255, 255, .65);
+}
+div.meteopy-download-nc a:not([href$=".zip"]):hover {
+  transform: translateY(-2px) translateZ(0);
+  background: linear-gradient(135deg, #dbe4de 0%, #cdd8d2 100%);
+  box-shadow:
+    0 3px 10px rgba(80, 100, 120, .14),
+    0 10px 20px rgba(80, 100, 120, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .75);
+}
+div.meteopy-download-nc a:not([href$=".zip"]):active {
+  transform: translateY(0) translateZ(0);
+  background: linear-gradient(135deg, #cdd8d2 0%, #b8c9be 100%);
+  box-shadow:
+    0 1px 3px rgba(80, 100, 120, .12),
+    0 3px 8px rgba(80, 100, 120, .16),
+    inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+/* ================= Light · 蓝色按钮 ================= */
+div.sphx-glr-download:not(.meteopy-download-nc) a {
+  width: 100%;
+  max-width: 360px;
+  margin: 8px 12px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  background: linear-gradient(135deg, #e7ebf2 0%, #dbe3ed 100%);
+  color: #2d3a4f;
+  border-color: rgba(176, 188, 208, .50);
+  box-shadow:
+    0 1px 4px rgba(45, 58, 79, .08),
+    0 6px 14px rgba(45, 58, 79, .12),
+    inset 0 1px 0 rgba(255, 255, 255, .65);
+}
+div.sphx-glr-download:not(.meteopy-download-nc) a:hover {
+  transform: translateY(-2px) translateZ(0);
+  background: linear-gradient(135deg, #d9dfe9 0%, #cdd7e3 100%);
+  box-shadow:
+    0 3px 10px rgba(45, 58, 79, .14),
+    0 10px 20px rgba(45, 58, 79, .18),
+    inset 0 1px 0 rgba(255, 255, 255, .75);
+}
+div.sphx-glr-download:not(.meteopy-download-nc) a:active {
+  transform: translateY(0) translateZ(0);
+  background: linear-gradient(135deg, #cdd7e3 0%, #b8c6d6 100%);
+  box-shadow:
+    0 1px 3px rgba(45, 58, 79, .12),
+    0 3px 8px rgba(45, 58, 79, .16),
+    inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+/* ================= Dark · 绿色主按钮 ================= */
+html[data-theme="dark"] div.meteopy-download-nc a[href$=".zip"] {
+  background: linear-gradient(135deg, #435e51 0%, #395247 100%);
+  color: #e0e9ff;
+  border-color: rgba(200, 225, 210, .18);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, .20),
+    0 10px 22px rgba(0, 0, 0, .30),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+html[data-theme="dark"] div.meteopy-download-nc a[href$=".zip"]:hover {
+  transform: translateY(-2px) translateZ(0);
+  background: linear-gradient(135deg, #4f6c5c 0%, #435e51 100%);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, .28),
+    0 14px 28px rgba(0, 0, 0, .38),
+    inset 0 1px 0 rgba(255, 255, 255, .12);
+}
+html[data-theme="dark"] div.meteopy-download-nc a[href$=".zip"]:active {
+  transform: translateY(0) translateZ(0);
+  background: linear-gradient(135deg, #395247 0%, #2e443c 100%);
+  box-shadow:
+    0 1px 6px rgba(0, 0, 0, .22),
+    0 6px 12px rgba(0, 0, 0, .30),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+/* ================= Dark · 绿色次级按钮 ================= */
+html[data-theme="dark"] div.meteopy-download-nc a:not([href$=".zip"]) {
+  background: linear-gradient(135deg, #3d4b45 0%, #35433e 100%);
+  color: #dfe7f5;
+  border-color: rgba(205, 230, 216, .20);
+  box-shadow:
+    0 1px 6px rgba(0, 0, 0, .18),
+    0 8px 16px rgba(0, 0, 0, .26),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+html[data-theme="dark"] div.meteopy-download-nc a:not([href$=".zip"]):hover {
+  transform: translateY(-2px) translateZ(0);
+  background: linear-gradient(135deg, #495a52 0%, #3d4b45 100%);
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, .24),
+    0 12px 22px rgba(0, 0, 0, .34),
+    inset 0 1px 0 rgba(255, 255, 255, .10);
+}
+html[data-theme="dark"] div.meteopy-download-nc a:not([href$=".zip"]):active {
+  transform: translateY(0) translateZ(0);
+  background: linear-gradient(135deg, #35433e 0%, #2c3833 100%);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, .20),
+    0 4px 10px rgba(0, 0, 0, .28),
+    inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+/* ================= Dark · 蓝色按钮（sphinx‑gallery源码下载） ================= */
+html[data-theme="dark"] div.sphx-glr-download:not(.meteopy-download-nc) a {
+  background: linear-gradient(135deg, #3a4658 0%, #333f50 100%);
+  color: #dfe7f5;
+  border-color: rgba(208, 220, 240, .20);
+  box-shadow:
+    0 1px 6px rgba(0, 0, 0, .18),
+    0 8px 16px rgba(0, 0, 0, .26),
+    inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+html[data-theme="dark"] div.sphx-glr-download:not(.meteopy-download-nc) a:hover {
+  transform: translateY(-2px) translateZ(0);
+  background: linear-gradient(135deg, #45536a 0%, #3a4658 100%);
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, .24),
+    0 12px 22px rgba(0, 0, 0, .34),
+    inset 0 1px 0 rgba(255, 255, 255, .10);
+}
+html[data-theme="dark"] div.sphx-glr-download:not(.meteopy-download-nc) a:active {
+  transform: translateY(0) translateZ(0);
+  background: linear-gradient(135deg, #333f50 0%, #2a3544 100%);
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, .20),
+    0 4px 10px rgba(0, 0, 0, .28),
+    inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+/* ================= 侧边栏下载项：玻璃质感 ================= */
+div.sphx-glr-sidebar-component {
+  padding: 0 .25rem;
+}
+div.sphx-glr-sidebar-item {
+  margin: 0;
+}
+div.sphx-glr-sidebar-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  margin: .30rem 0;
+  padding: .45rem .70rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: .9rem;
+  text-decoration: none;
+  transition:
+    background-color .20s ease,
+    border-color .20s ease,
+    transform .20s ease,
+    box-shadow .20s ease;
+}
+div.sphx-glr-sidebar-item a i {
+  flex: none;
+  font-size: .85rem;
+}
+div.sphx-glr-sidebar-item a:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+/* 亮色亚克力侧边栏 */
+div.sphx-glr-sidebar-item a {
+  color: #203c57;
+  background: rgba(96, 130, 175, .08);
+}
+div.sphx-glr-sidebar-item a:hover {
+  color: #142e47;
+  background: rgba(70, 120, 200, .14);
+  border-color: rgba(70, 120, 200, .32);
+  box-shadow:
+    0 2px 8px rgba(70, 120, 200, .12),
+    inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+/* 暗色亚克力侧边栏 */
+html[data-theme="dark"] div.sphx-glr-sidebar-item a {
+  color: #dfe7f5;
+  background: rgba(120, 160, 210, .08);
+}
+html[data-theme="dark"] div.sphx-glr-sidebar-item a:hover {
+  color: #eaf4ff;
+  background: rgba(80, 140, 230, .18);
+  border-color: rgba(120, 170, 235, .34);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, .20),
+    inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+
+/* ============================================================
+   sphinx-gallery 缩略图显示放大到 2 倍（覆盖 sg_gallery.css 写死的 160×112）
+   原样式把缩略图显示锁在 160px 宽 / 112px 高，改 thumbnail_size 生成的
+   高清 png 也会被浏览器等比压回，视觉上全无变化。
+   此处把图显示上限提到 320×224，并把画廊网格最小列宽同步到 320px，
+   否则大图会在 160px 的窄列里溢出。
+   ============================================================ */
+.sphx-glr-thumbnails {
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+}
+.sphx-glr-thumbcontainer .figure {
+  width: 420px !important;
+}
+.sphx-glr-thumbcontainer img {
+  max-width: 400px !important;
+  max-height: 280px !important;
+}
+
+/* ============================================================
+   取消 sphinx-gallery 缩略图悬浮 tooltip。
+   tooltip 由 .sphx-glr-thumbcontainer[tooltip] 的 ::before（遮罩）
+   和 ::after（气泡文字）实现，悬浮时由 sg_gallery.css 显示。
+   此处整体禁用二者，仅去掉 tooltip，不影响图片自身悬停变暗。
+   ============================================================ */
+/* .sphx-glr-thumbcontainer[tooltip]::before,
+.sphx-glr-thumbcontainer[tooltip]:hover::before {
+  display: none !important;
+} */
+/* 半透明白色底更透明（sg 默认 rgba(250,250,250,.9) 几乎不透明，降到 .45） */
+.sphx-glr-thumbcontainer[tooltip]::before,
+.sphx-glr-thumbcontainer[tooltip]:hover::before {
+  background-color: rgba(255, 255, 255, 0.45) !important;
+}
+html[data-theme="dark"] .sphx-glr-thumbcontainer[tooltip]::before,
+html[data-theme="dark"] .sphx-glr-thumbcontainer[tooltip]:hover::before {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.sphx-glr-thumbcontainer[tooltip]::after,
+.sphx-glr-thumbcontainer[tooltip]:hover::after {
+  /* content: none !important;
+  display: none !important; */
+  font-size: 1.3rem !important;
+}
+
+.sphx-glr-thumbnail-title {
+  font-size: 1.3rem !important;
+}
+
+.ellipsis{
+  font-size: 1.0rem !important;
+}
+
+.nav-internal{
+  margin: 0 10px;
+}

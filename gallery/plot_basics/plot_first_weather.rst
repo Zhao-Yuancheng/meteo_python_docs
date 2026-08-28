@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_basics_plot_first_weather.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_basics_plot_first_weather.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -21,7 +21,7 @@
 我的第一个气象图
 ================
 
-第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张"模拟兰州气温随日期变化"
+第 1 章示例：环境搭建好后，用最短的代码画出一张"模拟兰州气温随日期变化"
 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容，
 这里先感受一下"环境跑通"的成就感。
 
@@ -105,7 +105,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.116 seconds)
+   **Total running time of the script:** (0 minutes 0.082 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_basics_plot_first_weather.py:
@@ -116,15 +116,15 @@
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_first_weather.ipynb <plot_first_weather.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_first_weather.ipynb <plot_first_weather.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_first_weather.py <plot_first_weather.py>`
+      :download:`下载Python源码：plot_first_weather.py <plot_first_weather.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_first_weather.zip <plot_first_weather.zip>`
+      :download:`下载压缩包：plot_first_weather.zip <plot_first_weather.zip>`
 
 
 .. only:: html

@@ -10,10 +10,17 @@ r"""
 
 两张图分别用 ``pcolormesh`` 展示，经纬度通过 ``extent`` 映射到坐标轴。
 数据文件为 ``./data/northwest_temp.nc``，缺失时自动改用同结构的合成场。
+
+需要先下载配套数据文件才能跑出与本书一致的效果，点击下方按钮即可获取：
+
+.. container:: sphx-glr-download meteopy-download-nc
+
+   :download:`下载配套数据文件 northwest_temp.nc </data/northwest_temp.nc>`
 """
 
 # %%
-# ---------- ① 导入库 + 中文字体配置 ----------
+# 
+# ① 导入库 + 中文字体配置
 import os
 
 import numpy as np
@@ -23,7 +30,8 @@ plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei"]
 plt.rcParams["axes.unicode_minus"] = False
 
 # %%
-# ---------- ② 读取数据：优先项目配套 NetCDF，缺失时退回合成场 ----------
+# 
+# ② 读取数据：优先项目配套 NetCDF，缺失时退回合成场
 NC_CANDIDATES = ["./data/northwest_temp.nc",
                  "../data/northwest_temp.nc",
                  "../../data/northwest_temp.nc"]
@@ -53,7 +61,9 @@ print("数据来源：", source)
 print("三维场 shape (time, lat, lon):", temp.shape, "dtype:", temp.dtype)
 
 # %%
-# ---------- ③ 沿时间轴的两种统计：平均场 与 日际波动 ----------
+# 
+# ③ 沿时间轴的两种统计：平均场 与 日际波动
+# 
 # axis=0 对应 time 维；结果都降为二维场 (lat, lon)
 mean_field = np.mean(temp, axis=0)      # 1 月平均气温场
 range_field = np.ptp(temp, axis=0)      # 逐格点 30 天内最高 - 最低（日际波动幅度）
@@ -64,7 +74,9 @@ print("波动场 shape:", range_field.shape,
       "值域: {:.1f} ~ {:.1f} ℃".format(range_field.min(), range_field.max()))
 
 # %%
-# ---------- ④ 绘图：左=1 月平均场，右=日际波动幅度 ----------
+# 
+# ④ 绘图：左=1 月平均场，右=日际波动幅度
+# 
 # pcolormesh 的 extent=[西经, 东经, 南纬, 北纬]，把数组下标映射为经纬度
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5),
                                layout="constrained")

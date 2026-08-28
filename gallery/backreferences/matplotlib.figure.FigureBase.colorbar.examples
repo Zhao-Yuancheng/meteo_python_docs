@@ -15,24 +15,108 @@ Examples using ``matplotlib.figure.FigureBase.colorbar``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：">
+    <div class="sphx-glr-thumbcontainer" tooltip="气象数据在 NumPy 里的标准形态是\ 带维度的三维数组 (time, lat, lon)。 本示例读取项目配套的西北气温格点场，演示两个最常用的维度运算：">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_array_demo_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_cartopy_temp`
+  :doc:`/gallery/plot_numpy/plot_array_demo`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">西北地区 1 月平均气温地图</div>
+      <div class="sphx-glr-thumbnail-title">格点气温场的 NumPy 维度运算</div>
     </div>
 
 
 .. only:: not html
 
- * :doc:`/gallery/plot_viz/plot_cartopy_temp`
+ * :doc:`/gallery/plot_numpy/plot_array_demo`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示 NumPy 处理气象多站气温矩阵的完整链路： 创建 7 天 × 5 站 的气温矩阵，沿 axis 做逐站均值 / 逐日极值， 再逐站做 Z-score 标准化，最后用 imshow 热力图把原始矩阵和标准化矩阵画出来。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_numpy/images/thumb/sphx_glr_plot_temperature_matrix_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_numpy/plot_temperature_matrix`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">多站气温矩阵的计算与可视化</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_numpy/plot_temperature_matrix`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 HadCRUT5 数据集绘制逐年全球平均温度距平的时间序列图（X 轴为年份，Y 轴为温度 ℃/K）与全球气温变化趋势的空间分布图（用 contourf 或 pcolormesh）。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_hadcrut_trend_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">全球平均温度距平时间序列与趋势空间分布</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标： 用 stipple.nc 数据绘制 1963 年 1 月的气温等值线图，并在同一张地图上标注 距平符号：正距平（1963 年 1 月比多年同期偏暖）的格点标 &quot;+&quot;， 负距平（偏冷）的格点标 &quot;-&quot;。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_map_anomaly_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_map_anomaly`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制中国地图上的气温等值线图与距平符号标注（1963 年 1 月）</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_viz/plot_map_anomaly`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="经验动力学建模方法（Empirical Kinetic Modeling Approach, EKMA）曲线， 是研究 O₃ 与前体物关系的经典工具：固定 VOCs 组分谱，系统扫描 NOx 与 VOCs 的 总浓度组合，把每个组合对应的最大 O₃ 浓度填到网格上，再用等值线画出 &quot;O₃ 浓度关于（NOx, VOCs）的平面&quot;。它揭示了 O₃ 生成对两种前体物的 非线性响应，并据此把一个城市的污染状态划分为三个特征区域：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_sci/images/thumb/sphx_glr_plot_ekma_curve_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_sci/plot_ekma_curve`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制 EKMA 曲线：城市臭氧敏感性分析</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_sci/plot_ekma_curve`
 
 .. thumbnail-parent-div-close
 

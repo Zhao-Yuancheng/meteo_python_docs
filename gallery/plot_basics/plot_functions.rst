@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_basics_plot_functions.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_basics_plot_functions.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -193,7 +193,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.121 seconds)
+   **Total running time of the script:** (0 minutes 0.059 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_basics_plot_functions.py:
@@ -204,15 +204,15 @@
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_functions.ipynb <plot_functions.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_functions.ipynb <plot_functions.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_functions.py <plot_functions.py>`
+      :download:`下载Python源码：plot_functions.py <plot_functions.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_functions.zip <plot_functions.zip>`
+      :download:`下载压缩包：plot_functions.zip <plot_functions.zip>`
 
 
 .. only:: html

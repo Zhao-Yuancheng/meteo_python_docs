@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_numpy_plot_temperature_matrix.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_numpy_plot_temperature_matrix.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -252,7 +252,7 @@ axis=0：沿行方向压缩 → 每个站点的平均气温
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.235 seconds)
+   **Total running time of the script:** (0 minutes 0.310 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_temperature_matrix.py:
@@ -263,15 +263,15 @@ axis=0：沿行方向压缩 → 每个站点的平均气温
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_temperature_matrix.ipynb <plot_temperature_matrix.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_temperature_matrix.ipynb <plot_temperature_matrix.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_temperature_matrix.py <plot_temperature_matrix.py>`
+      :download:`下载Python源码：plot_temperature_matrix.py <plot_temperature_matrix.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_temperature_matrix.zip <plot_temperature_matrix.zip>`
+      :download:`下载压缩包：plot_temperature_matrix.zip <plot_temperature_matrix.zip>`
 
 
 .. only:: html

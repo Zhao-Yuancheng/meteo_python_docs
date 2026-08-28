@@ -20,7 +20,7 @@ Cartopy 概述与选取理由
 
 3. 多类地图投影完整支持：涵盖气象绘图最常用的等经纬度投影、墨卡托、兰伯特等面积投影，适配全球、中国区域、西北区域不同绘图需求。
 
-4. 与 Matplotlib 无缝联动：Cartopy 基于 Matplotlib 二次开发，可直接复用 ``contourf``、``contour``、``quiver``、``colorbar`` 等绘图接口，与前文 Matplotlib 绘图语法完全统一，学习成本更低。
+4. 与 Matplotlib 无缝联动：Cartopy 基于 Matplotlib 二次开发，可直接复用 contourf、contour、quiver、colorbar 等绘图接口，与前文 Matplotlib 绘图语法完全统一，学习成本更低。
 
 5. 适配本项目实战目标：本章核心任务绘制\ **西北地区气温空间填色分布图**，Cartopy 是完成该图的标准工业工具，也是大气科学专业毕业论文、期刊附图的通用绘图库。
 
@@ -29,7 +29,7 @@ Cartopy 概述与选取理由
 
 本章为整套《兰州气温观测数据分析与可视化系统》的最终可视化章节，承接前文全部内容：
 
-1. **数据来源**：T-001 统一提供西北地区 NetCDF 气温格点数据（Xarray 读取逻辑见第 8 章）；
+1. **数据来源**： 统一提供西北地区 NetCDF 气温格点数据（Xarray 读取逻辑见第 8 章）；
 
 2. **前置基础**：第 6 章 NumPy 数组运算、第 8 章 Xarray 格点数据切片、第 9 章 Matplotlib 画布与子图语法；
 
@@ -42,11 +42,11 @@ Cartopy 概述与选取理由
 
 1. 理解地图投影原理，区分气象常用的 3 种投影适用场景；
 
-2. 掌握 Cartopy 创建地理画布、绑定坐标变换 ``transform`` 参数；
+2. 掌握 Cartopy 创建地理画布、绑定坐标变换 transform 参数；
 
 3. 学会叠加海岸线、国界、区域边界等地理矢量要素；
 
-4. 使用 ``contourf`` 完成气温场等值线填色，配置配套色标 ``colorbar``；
+4. 使用 contourf 完成气温场等值线填色，配置配套色标 colorbar；
 
 5. 限定绘图区域裁剪西北地区范围，输出规范科研风格地图；
 
@@ -54,10 +54,10 @@ Cartopy 概述与选取理由
 
 .. _ch10-animation:
 
-配套动画（T-1002）
+配套动画
 -------------------
 
-本章配有 Cartopy 气象数据可视化动画，先看再读，效果更佳。动画把地图投影变换、``contourf`` 填色过程和地理要素叠加三个核心步骤一口气演完：① 投影——球面经纬度如何展开为平面坐标；② ``contourf``——数据如何映射到色带并填充等值线区域；③ 地理要素——底图 → 海岸线 → 国界 → 填色场的叠加顺序。点击播放，配合下文逐步消化。
+本章配有 Cartopy 气象数据可视化动画，先看再读，效果更佳。动画把地图投影变换、contourf 填色过程和地理要素叠加三个核心步骤一口气演完：① 投影——球面经纬度如何展开为平面坐标；② contourf——数据如何映射到色带并填充等值线区域；③ 地理要素——底图 → 海岸线 → 国界 → 填色场的叠加顺序。点击播放，配合下文逐步消化。
 
 .. video:: /_static/videos/T1002_cartopy气象数据可视化动画_av1.webm
    :width: 100%
@@ -70,7 +70,7 @@ Cartopy 概述与选取理由
 
 1. **地图投影**：把三维球面的经纬度数据映射到二维平面画布的数学变换。你可以把地球想象成一张橘子皮——想把它完整摊平在桌上，四周就会裂开、变形，这种「摊平」就是投影。不同投影会产生不同形变，气象绘图需根据研究区域选择对应投影。
 
-2. **transform 坐标变换**：NetCDF 数据默认是球面地理坐标（带「经纬度标签」），而画布是平面像素坐标。``transform`` 就像给一个个散落的格点贴上经纬度标签，告诉 Cartopy「这份数据真实的家在哪里」，只有这样才能把数据准确「贴在」地图上。**这一步最容易被遗漏。**
+2. **transform 坐标变换**：NetCDF 数据默认是球面地理坐标（带「经纬度标签」），而画布是平面像素坐标。transform 就像给一个个散落的格点贴上经纬度标签，告诉 Cartopy「这份数据真实的家在哪里」，只有这样才能把数据准确「贴在」地图上。**这一步最容易被遗漏。**
 
 3. **GeoAxes**：Cartopy 专用的地理坐标轴，替代普通 Matplotlib 的 Axes，自带经纬度刻度、地理要素加载能力。
 
@@ -83,7 +83,7 @@ Cartopy 概述与选取理由
 
 - 特点：经纬线互相垂直，无角度形变，经纬度刻度均匀分布，「横平竖直、简单直观」；
 - 适用场景：全球大范围图、中国区域、西北地区气温填色图（本项目统一使用）；
-- 代码创建方式：``ccrs.PlateCarree()``。
+- 代码创建方式：ccrs.PlateCarree()。
 
 （2）Mercator 墨卡托投影
 
@@ -105,13 +105,13 @@ Cartopy 标准绘图固定流程
 
 完整标准化流程，本章所有示例、练习统一遵循（编号与后续各小节一一对应）：
 
-1. 导入库：``matplotlib``、``cartopy``、``cartopy.crs``、``xarray``、``numpy``；
+1. 导入库：matplotlib、cartopy、cartopy.crs、xarray、numpy；
 2. 创建画布与地理子图，指定画布投影；
-3. 读取 NetCDF 气温场，用 Xarray ``sel`` 截取西北区域；
-4. 调用 ``contourf`` 绘制气温填色场，绑定地理坐标 ``transform``；
+3. 读取 NetCDF 气温场，用 Xarray sel 截取西北区域；
+4. 调用 contourf 绘制气温填色场，绑定地理坐标 transform；
 5. 添加海岸线、国界、省界、河流等地理要素；
 6. 设置经纬度刻度、画布范围（裁剪西北地区）；
-7. 添加色标 ``colorbar``、标题、坐标轴标签；
+7. 添加色标 colorbar、标题、坐标轴标签；
 8. 高清导出图片，设置 DPI、画布尺寸。
 
 基础绘图：西北地区气温填色图完整实操
@@ -133,11 +133,11 @@ Cartopy 标准绘图固定流程
 完整基础绘图可运行代码
 ^^^^^^^^^^^^^^^^^^^^^^
 
-首先说明数据文件：本项目 T-001 统一提供的格点数据文件 ``./data/northwest_temp.nc`` 内含四个变量——经度 ``lon``\（一维，100°~110°E，步长 0.5°）、纬度 ``lat``\（一维，30°~40°N，步长 1°）、时间 ``time``\（一维，2024-01-01 至 01-30 共 30 天）以及气温 ``temp``\（三维，(time, lat, lon)，单位 ℃，取值约 6~18 ℃），另有气压 ``pres``\（单位 hPa）备用。文件覆盖西北地区东部（以兰州为中心的 100°~110°E、30°~40°N 范围）。数据已入仓，点击可直接下载： :download:`northwest_temp.nc <../../data/northwest_temp.nc>`\，放入本地项目的 ``./data/`` 目录即可。
+首先说明数据文件：本项目  统一提供的格点数据文件 ./data/northwest_temp.nc 内含四个变量——经度 lon\（一维，100°~110°E，步长 0.5°）、纬度 lat\（一维，30°~40°N，步长 1°）、时间 time\（一维，2024-01-01 至 01-30 共 30 天）以及气温 temp\（三维，(time, lat, lon)，单位 ℃，取值约 6~18 ℃），另有气压 pres\（单位 hPa）备用。文件覆盖西北地区东部（以兰州为中心的 100°~110°E、30°~40°N 范围）。数据已入仓，点击可直接下载： :download:`northwest_temp.nc <../../data/northwest_temp.nc>`\，放入本地项目的 ./data/ 目录即可。
 
 .. note::
 
-   ``temp`` 是含时间维的**三维**数组，直接 ``contourf`` 会报维度错误。画"一张空间分布图"前需先沿时间轴平均：``ds.temp.mean(dim="time")``\（下文主示例已包含此步）。
+   temp 是含时间维的**三维**数组，直接 contourf 会报维度错误。画「一张空间分布图」前需先沿时间轴平均：ds.temp.mean(dim="time")\（下文主示例已包含此步）。
 
 .. code-block:: python
 
@@ -150,7 +150,7 @@ Cartopy 标准绘图固定流程
    import cartopy.feature as cfeature
    import xarray as xr
 
-   # 1. 读取 T-001 提供的西北 NetCDF 气温数据（字段：lon/lat/time/temp）
+   # 1. 读取  提供的西北 NetCDF 气温数据（字段：lon/lat/time/temp）
    ds = xr.open_dataset("./data/northwest_temp.nc")
    temp = ds.temp.mean(dim="time")   # 沿时间轴平均 -> 二维 (lat, lon)
    lon = ds.lon     # 经度（一维，°E）
@@ -189,13 +189,13 @@ Cartopy 标准绘图固定流程
 
 .. note::
 
-   无文件时的构造数据备选。如果本地一时拿不到 ``northwest_temp.nc``\（例如想先在自己的电脑上练手），可以用下面这段代码临时构造一份「伪格点场」：坐标范围、步长与真实文件一致，``temp`` 相当于已做过时间平均的二维场，替换掉上面的数据读取部分即可运行：
+   无文件时的构造数据备选。如果本地一时拿不到 northwest_temp.nc\（例如想先在自己的电脑上练手），可以用下面这段代码临时构造一份「伪格点场」：坐标范围、步长与真实文件一致，temp 相当于已做过时间平均的二维场，替换掉上面的数据读取部分即可运行：
 
    .. code-block:: python
 
       import numpy as np
 
-      # 构造与 T-001 文件同结构的经纬度网格（1 维坐标，范围一致）
+      # 构造与  文件同结构的经纬度网格（1 维坐标，范围一致）
       lon = np.linspace(100, 110, 21)     # 东经 100°~110°，步长 0.5°
       lat = np.linspace(30, 40, 11)       # 北纬 30°~40°，步长 1°
       LON, LAT = np.meshgrid(lon, lat)    # 临时二维网格，用于构造 temp
@@ -203,19 +203,19 @@ Cartopy 标准绘图固定流程
       # 合成气温场：随纬度线性变化（南暖北冷），加一点经向起伏，量级 6~18 ℃
       temp = 12 + 0.8 * (LAT - 35) - 0.15 * (LON - 105) ** 2
 
-   之后把上面的 ``contourf``/``scatter`` 等依赖 ``ds.lon`` 的地方，改成直接用局部变量 ``lon``、``lat``、``temp`` 即可。
+   之后把上面的 contourf/scatter 等依赖 ds.lon 的地方，改成直接用局部变量 lon、lat、temp 即可。
 
 代码分步解析
 ^^^^^^^^^^^^
 
-1. **数据读取**：对接项目 ``data`` 目录下 NetCDF 文件，和第 8 章 Xarray 读取逻辑保持统一。记住文件字段是 ``lon`` / ``lat`` / ``temp`` 三个变量。
+1. **数据读取**：对接项目 data 目录下 NetCDF 文件，和第 8 章 Xarray 读取逻辑保持统一。记住文件字段是 lon / lat / temp 三个变量。
 
-2. **subplot_kw 关键参数**：``projection=ccrs.PlateCarree()`` 把普通 Axes 转换成地理绘图的 GeoAxes——这一行决定了「纸往哪张地图坐标架上铺」。
+2. **subplot_kw 关键参数**：projection=ccrs.PlateCarree() 把普通 Axes 转换成地理绘图的 GeoAxes——这一行决定了「纸往哪张地图坐标架上铺」。
 
 3. **contourf 核心参数说明**：
-   - ``levels``：等值分层数量，数值越大色彩过渡越细腻；
-   - ``cmap``：色带，``coolwarm`` 冷-暖色系是气温绘图的标准配色（蓝色冷、红色暖）；
-   - ``transform=ccrs.PlateCarree()``：**最容易遗漏的核心参数**，缺失会导致格点地图错位——没有它，Cartopy 根本不知道这份散落的数据该贴在地图哪个经纬度上。
+   - levels：等值分层数量，数值越大色彩过渡越细腻；
+   - cmap：色带，coolwarm 冷-暖色系是气温绘图的标准配色（蓝色冷、红色暖）；
+   - transform=ccrs.PlateCarree()：**最容易遗漏的核心参数**，缺失会导致格点地图错位——没有它，Cartopy 根本不知道这份散落的数据该贴在地图哪个经纬度上。
 
 4. **set_extent**：裁剪画布范围，锁定西北区域，去掉无关的空白区域，让图面更聚焦。
 
@@ -283,7 +283,7 @@ Cartopy 标准绘图固定流程
    cbar.set_label("气温 ℃", fontsize=12)
    cbar.ax.tick_params(labelsize=10)
 
-3. 反色带、自定义渐变色：若想「暖色表示低温」，直接在 cmap 后加 ``_r``\（``"coolwarm_r"``）；想要连续渐变色带，用 ``matplotlib.colors.LinearSegmentedColormap`` 从调色板拼接自定义色带。
+3. 反色带、自定义渐变色：若想「暖色表示低温」，直接在 cmap 后加 _r\（"coolwarm_r"）；想要连续渐变色带，用 matplotlib.colors.LinearSegmentedColormap 从调色板拼接自定义色带。
 
 叠加城市站点标记
 ^^^^^^^^^^^^^^^^
@@ -300,7 +300,7 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   注意：``scatter`` 和 ``text`` 也必须带 ``transform=ccrs.PlateCarree()``！否则点会画到地图外或错位——这和 ``contourf`` 是同一个道理：不贴经纬度标签，就贴不到正确的位置。
+   注意：scatter 和 text 也必须带 transform=ccrs.PlateCarree()！否则点会画到地图外或错位——这和 contourf 是同一个道理：不贴经纬度标签，就贴不到正确的位置。
 
 拓展提升板块
 ------------
@@ -349,7 +349,7 @@ Cartopy 标准绘图固定流程
 叠加风场矢量 quiver 绘图
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-在气温填色底图上叠加风矢量箭头，实现「温风联合」空间图。注意：教学数据 ``northwest_temp.nc`` **不含风场变量**\（只有 ``temp`` 和 ``pres``\），下面用 NumPy 在格点上构造一份演示用的西风气场——真实项目中换成 ``ds.u`` / ``ds.v`` 即可。风矢量的坐标与分量都需注意坐标方向和 ``transform``：
+在气温填色底图上叠加风矢量箭头，实现「温风联合」空间图。注意：教学数据 northwest_temp.nc **不含风场变量**\（只有 temp 和 pres\），下面用 NumPy 在格点上构造一份演示用的西风气场——真实项目中换成 ds.u / ds.v 即可。风矢量的坐标与分量都需注意坐标方向和 transform：
 
 .. code-block:: python
 
@@ -389,12 +389,60 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   ``quiver`` 传参注意：风矢量的起点坐标是「经纬度数组」，箭头分量是 ``u``、``v``\（经向风、纬向风），不要与 x、y 混用。坐标与分量缺一不可，同样都要带上 ``transform``。
+   quiver 传参注意：风矢量的起点坐标是「经纬度数组」，箭头分量是 u、v\（经向风、纬向风），不要与 x、y 混用。坐标与分量缺一不可，同样都要带上 transform。
+
+叠加风场风羽 barbs 绘图
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+quiver 用「箭头」示意风向风速；而气象站填图、天气图上的「标准语言」是 **风羽（barb）**——每根风羽由一根主杆加若干羽毛组成，羽毛的朝向与根数表示风向和风速。做「温服 + 风羽」的经典地面填图时，barbs 比 quiver 更贴近业务规范。
+
+沿用上一节的演示西风场（真实项目换成 ds.u / ds.v）：
+
+.. code-block:: python
+
+   import numpy as np
+   import matplotlib.pyplot as plt
+   import cartopy.crs as ccrs
+   import cartopy.feature as cfeature
+   import xarray as xr
+
+   ds = xr.open_dataset("./data/northwest_temp.nc")
+   temp = ds.temp.mean(dim="time")   # 三维 -> 二维 (lat, lon)
+
+   # 演示风场：与 quiver 一节完全相同（真实项目改为 u = ds.u、v = ds.v）
+   LON, LAT = np.meshgrid(ds.lon, ds.lat)
+   u = 5.0 + 0.1 * (LAT - 35)        # 纬向风（m/s）
+   v = 1.0 * np.sin(np.radians(LON)) # 经向风（m/s）
+
+   fig, ax = plt.subplots(figsize=(10, 6),
+                          subplot_kw={"projection": ccrs.PlateCarree()})
+
+   contour = ax.contourf(ds.lon, ds.lat, temp, levels=20, cmap="coolwarm",
+                         transform=ccrs.PlateCarree())
+
+   # barbs 绘制风羽：坐标同为经纬度数组，同样必须带 transform
+   ax.barbs(ds.lon[::4], ds.lat[::4], u[::4, ::4], v[::4, ::4],
+            length=5, linewidth=0.8, transform=ccrs.PlateCarree())
+
+   ax.coastlines(linewidth=0.8, color="black")
+   ax.add_feature(cfeature.BORDERS, linewidth=0.8, color="black")
+   ax.set_extent([99, 111, 29, 41], crs=ccrs.PlateCarree())
+
+   cbar = fig.colorbar(contour, shrink=0.8)
+   cbar.set_label("气温 ℃")
+
+   plt.savefig("./figures/northwest_temp_barbs_jan.png",
+               dpi=300, bbox_inches="tight")
+   plt.show()
+
+.. note::
+
+   风羽读法：主杆朝向代表风吹来的方向，羽毛落在主杆尾侧的根数与组合表示风速档位。中国气象局常用「一根长羽 = 一段固定风速」的约定（半羽与三角旗再逐档递增），具体档位以当地的观测填图规范为准；程序里想自定义档位，用 barbs 的 ``bins`` 参数按速度分档即可，例如 ``bins=np.arange(0, 40, 2)``。
 
 批量绘制逐日/逐月气温地图循环代码
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-用 ``for`` 循环遍历 NetCDF 时间维度，批量出图并保存到 ``figures`` 文件夹。教学文件 ``northwest_temp.nc`` 含 2024 年 1 月的 30 个逐日时次，循环会生成 30 张逐日图；换成年尺度数据（12 个月）时同一套代码即生成 12 张月图：
+用 for 循环遍历 NetCDF 时间维度，批量出图并保存到 figures 文件夹。教学文件 northwest_temp.nc 含 2024 年 1 月的 30 个逐日时次，循环会生成 30 张逐日图；换成年尺度数据（12 个月）时同一套代码即生成 12 张月图：
 
 .. code-block:: python
 
@@ -434,12 +482,12 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   批量绘图三黄金法则：**循环里统一 ``vmin/vmax``（可比性）、画完 ``plt.close()``（释放内存）、文件名按时间命名（可检索）。** 缺一不可。
+   批量绘图三黄金法则：**循环里统一 vmin/vmax（可比性）、画完 plt.close()（释放内存）、文件名按时间命名（可检索）。** 缺一不可。
 
 多子图布局：分时段气温对比地图
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2 行 2 列子图，统一色标便于对比。教学数据只覆盖 2024 年 1 月，这里以「上旬 / 中旬 / 下旬 / 全月平均」四个时段为例；拿到全年数据后，把 ``periods`` 字典换成春、夏、秋、冬的时间切片即可变成四季对比图：
+2 行 2 列子图，统一色标便于对比。教学数据只覆盖 2024 年 1 月，这里以「上旬 / 中旬 / 下旬 / 全月平均」四个时段为例；拿到全年数据后，把 periods 字典换成春、夏、秋、冬的时间切片即可变成四季对比图：
 
 .. code-block:: python
 
@@ -482,31 +530,31 @@ Cartopy 标准绘图固定流程
 
 .. note::
 
-   2×2 子图的色标用 ``fig.colorbar(contour, ax=axes)`` 可以让四张图共享一个大色条，视觉更整齐；配合统一的 ``vmin/vmax``，各时段冷暖差异一目了然。
+   2×2 子图的色标用 fig.colorbar(contour, ax=axes) 可以让四张图共享一个大色条，视觉更整齐；配合统一的 vmin/vmax，各时段冷暖差异一目了然。
 
 常见报错核心解决方案
 ^^^^^^^^^^^^^^^^^^^^
 
-1. **地图格点严重错位**：漏写 ``transform=ccrs.PlateCarree()``。排查 ``contourf``、``scatter``、``quiver`` 是否都带了 ``transform``。
+1. **地图格点严重错位**：漏写 transform=ccrs.PlateCarree()。排查 contourf、scatter、quiver 是否都带了 transform。
 
-2. **set_extent 无裁剪效果**：``extent`` 经纬度范围写反（顺序应为 ``[西经, 东经, 南纬, 北纬]``，即 ``[99, 111, 29, 41]``）、或 ``crs`` 参数缺失。
+2. **set_extent 无裁剪效果**：extent 经纬度范围写反（顺序应为 [西经, 东经, 南纬, 北纬]，即 [99, 111, 29, 41]）、或 crs 参数缺失。
 
 3. **海岸线加载缓慢**：第一次运行会自动下载 Natural Earth 矢量文件，耐心等待一次即可；也可提前配置本地缓存路径，避免课堂绘图中途卡顿。
 
-4. **图片导出边缘缺失**：``savefig`` 添加 ``bbox_inches="tight"``。
+4. **图片导出边缘缺失**：savefig 添加 bbox_inches="tight"。
 
-5. **cartopy 安装失败**：优先 ``conda install cartopy``，不要只用 pip（地理底层依赖 pip 无法自动配置）。
+5. **cartopy 安装失败**：优先 conda install cartopy，不要只用 pip（地理底层依赖 pip 无法自动配置）。
 
 本章小结
 --------
 
 1. 掌握 Cartopy 三种气象常用地图投影的原理与适用场景（PlateCarree 图省事、Mercator 保角度、Lambert 保面积）；
 
-2. 熟练使用 GeoAxes、``transform`` 参数，解决气象格点数据地图错位问题；
+2. 熟练使用 GeoAxes、transform 参数，解决气象格点数据地图错位问题；
 
 3. 独立完成西北地区气温填色地图，叠加海岸线、国界、河流、刻度、色标全套要素；
 
-4. 掌握画布区域裁剪（``set_extent([99, 111, 29, 41])``）、图片高清导出（``dpi=300`` + ``bbox_inches="tight"``）、地图美化细节调整；
+4. 掌握画布区域裁剪（set_extent([99, 111, 29, 41])）、图片高清导出（dpi=300 + bbox_inches="tight"）、地图美化细节调整；
 
 5. 拓展学会兰伯特投影、风场叠加、批量时序绘图、多子图季节对比等进阶绘图技巧；
 
@@ -515,17 +563,17 @@ Cartopy 标准绘图固定流程
 最佳实践：Cartopy 地图成果规范
 ------------------------------
 
-下面的规范是一套可以照抄的西北气温地图「施工规范」：每节先给结论（✅），再给常见坑（⚠️），代码均为可直接复制的标准写法。
+下面的规范是一套可以照抄的西北气温地图「施工规范」：每节先给结论，再点出常见坑，代码均为可直接复制的标准写法。
 
 项目目录文件规范（与全书 weather_project 统一）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 所有 Cartopy 地图脚本、输出图片、数据严格遵循固定路径，避免路径报错、文件杂乱：
 
-1. ✅ 格点数据读取路径：``./data/northwest_temp.nc``\（T-001 统一提供模拟 NetCDF 气温文件，**禁止写绝对本地磁盘路径**）；
-2. ✅ 绘图脚本存放路径：``./scripts/plot_cartopy_temp.py``；
-3. ✅ 地图输出保存路径：``./figures/``，所有地图统一存入该文件夹，不散落根目录；
-4. ✅ 输出文件命名规范：``区域_要素_投影_时间.png``，例如 ``northwest_temp_platecarree_annual.png``、``northwest_temp_lambert_july.png``。
+1.  格点数据读取路径：./data/northwest_temp.nc\（ 统一提供模拟 NetCDF 气温文件，**禁止写绝对本地磁盘路径**）；
+2.  绘图脚本存放路径：./scripts/plot_cartopy_temp.py；
+3.  地图输出保存路径：./figures/，所有地图统一存入该文件夹，不散落根目录；
+4.  输出文件命名规范：区域_要素_投影_时间.png，例如 northwest_temp_platecarree_annual.png、northwest_temp_lambert_july.png。
 
 路径最佳实践代码模板：
 
@@ -542,13 +590,13 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   不做 ``os.makedirs(..., exist_ok=True)``，目录不存在时 ``savefig`` 会直接报 ``FileNotFoundError``——批量绘图时最常见的第一声「哎呀」。
+   不做 os.makedirs(..., exist_ok=True)，目录不存在时 savefig 会直接报 FileNotFoundError——批量绘图时最常见的第一声「哎呀」。
 
 虚拟环境与库安装规范
 ^^^^^^^^^^^^^^^^^^^^
 
-1. ✅ 绘图固定使用 ``met_p312`` Python 3.12 虚拟环境，不使用系统默认 Python；
-2. ✅ Cartopy 优先 conda 安装，禁止单独 pip 安装（底层地理依赖 pip 无法自动配置）。
+1.  绘图固定使用 met_p312 Python 3.12 虚拟环境，不使用系统默认 Python；
+2.  Cartopy 优先 conda 安装，禁止单独 pip 安装（底层地理依赖 pip 无法自动配置）。
 
 标准安装命令：
 
@@ -556,34 +604,34 @@ Cartopy 标准绘图固定流程
 
    conda install cartopy xarray netcdf4 numpy matplotlib
 
-3. ⚠️ 禁止混用多源安装方式（一部分 conda、一部分 pip），防止版本冲突、海岸线加载失败。
+3.  禁止混用多源安装方式（一部分 conda、一部分 pip），防止版本冲突、海岸线加载失败。
 
 地图画布与投影选型规范（西北区域专用）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. ✅ 常规年度/逐月气温分布图：``PlateCarree`` 等经纬度投影（项目默认）。
-   - 画布尺寸固定：单张子图 ``figsize=(10, 6)``，双列子图 ``figsize=(12, 5)``，四季对比 2×2 子图 ``figsize=(12, 9)``；
-   - 强制书写 ``subplot_kw={"projection": ccrs.PlateCarree()}``，不可省略地理投影参数。
+1.  常规年度/逐月气温分布图：PlateCarree 等经纬度投影（项目默认）。
+   - 画布尺寸固定：单张子图 figsize=(10, 6)，双列子图 figsize=(12, 5)，四季对比 2×2 子图 figsize=(12, 9)；
+   - 强制书写 subplot_kw={"projection": ccrs.PlateCarree()}，不可省略地理投影参数。
 
-2. ✅ 区域气候专题分析图：``LambertAzimuthalEqualArea`` 兰伯特等面积投影，西北区域统一投影中心配置，减少区域形变：
+2.  区域气候专题分析图：LambertAzimuthalEqualArea 兰伯特等面积投影，西北区域统一投影中心配置，减少区域形变：
 
 .. code-block:: python
 
    proj = ccrs.LambertAzimuthalEqualArea(central_longitude=101, central_latitude=38)
    fig, ax = plt.subplots(figsize=(10, 7), subplot_kw={"projection": proj})
 
-3. ⚠️ **禁止行为**：不使用 Mercator 墨卡托投影绘制西北中纬度气温图——高纬面积被严重拉伸，不符合气象期刊绘图标准。
+3.  **禁止行为**：不使用 Mercator 墨卡托投影绘制西北中纬度气温图——高纬面积被严重拉伸，不符合气象期刊绘图标准。
 
 核心绘图参数标准化（contourf 气温填色统一规范）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-1. ✅ 气温填色 ``levels`` 分层：常规气温场统一设置 ``levels=20``，过渡平滑；如需自定义分级（用于论文分级图例）手动传入数值列表：
+1.  气温填色 levels 分层：常规气温场统一设置 levels=20，过渡平滑；如需自定义分级（用于论文分级图例）手动传入数值列表：
 
 .. code-block:: python
 
    levels = [-10, -5, 0, 5, 10, 15, 20, 25]
 
-2. ✅ 色带固定选用 ``cmap="coolwarm"``\（冷蓝-暖红，气象气温通用配色），**禁止**\使用七彩杂乱色带 ``jet``；
-3. ✅ 强制添加 ``transform=ccrs.PlateCarree()`` 至 ``contourf``，这是地图不偏移的硬性规范，所有示例脚本必须包含该参数。
+2.  色带固定选用 cmap="coolwarm"\（冷蓝-暖红，气象气温通用配色），**禁止**\使用七彩杂乱色带 jet；
+3.  强制添加 transform=ccrs.PlateCarree() 至 contourf，这是地图不偏移的硬性规范，所有示例脚本必须包含该参数。
 
 标准填色代码片段：
 
@@ -598,17 +646,17 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   ``transform`` 相当于给每个格点贴「经纬度标签」。漏写它，Cartopy 不知道数据该贴在地图哪个位置，整片色块会错位、跑偏甚至消失。所有空间绘图（``contourf``、``scatter``、``quiver``、``text``）都要记得贴这个标签。
+   transform 相当于给每个格点贴「经纬度标签」。漏写它，Cartopy 不知道数据该贴在地图哪个位置，整片色块会错位、跑偏甚至消失。所有空间绘图（contourf、scatter、quiver、text）都要记得贴这个标签。
 
 地理要素叠加样式统一标准
 ^^^^^^^^^^^^^^^^^^^^^^^^
 为保证整套项目图表视觉统一，固定各类地理线条粗细、颜色：
 
-1. ✅ 海岸线：``ax.coastlines(linewidth=0.8, color="black")``
-2. ✅ 国界线：``cfeature.BORDERS``，``linewidth=0.8, color="black"``
-3. ✅ 河流：``cfeature.RIVERS``，``linewidth=0.4, color="#4488dd"``
-4. ✅ 省界（拓展绘图）：自定义 shp 省界文件，线条宽度 0.5、浅灰色，不遮盖气温填色场
-5. ✅ 图层绘制顺序规范（由底层到顶层）：**气温填色场 → 河流 → 海岸线 → 国界 → 站点标记散点**
+1.  海岸线：ax.coastlines(linewidth=0.8, color="black")
+2.  国界线：cfeature.BORDERS，linewidth=0.8, color="black"
+3.  河流：cfeature.RIVERS，linewidth=0.4, color="#4488dd"
+4.  省界（拓展绘图）：自定义 shp 省界文件，线条宽度 0.5、浅灰色，不遮盖气温填色场
+5.  图层绘制顺序规范（由底层到顶层）：**气温填色场 → 河流 → 海岸线 → 国界 → 站点标记散点**
 
 .. warning::
 
@@ -616,7 +664,7 @@ Cartopy 标准绘图固定流程
 
 研究区域裁剪（教学数据固定经纬度范围）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-所有气温地图统一裁剪范围，杜绝图表大小不一。教学数据 ``northwest_temp.nc`` 覆盖 100°~110°E、30°~40°N，统一在数据范围基础上外扩 1°：
+所有气温地图统一裁剪范围，杜绝图表大小不一。教学数据 northwest_temp.nc 覆盖 100°~110°E、30°~40°N，统一在数据范围基础上外扩 1°：
 
 .. code-block:: python
 
@@ -632,13 +680,13 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   ``set_extent`` 的列表顺序是 ``[西经, 东经, 南纬, 北纬]``，即 ``[99, 111, 29, 41]``。写反成 ``[29, 41, 99, 111]`` 或漏掉 ``crs=ccrs.PlateCarree()``，裁剪就会失效。
+   set_extent 的列表顺序是 [西经, 东经, 南纬, 北纬]，即 [99, 111, 29, 41]。写反成 [29, 41, 99, 111] 或漏掉 crs=ccrs.PlateCarree()，裁剪就会失效。
 
 色标 colorbar 标准化规范
 ^^^^^^^^^^^^^^^^^^^^^^^^
-1. ✅ 缩放比例统一 ``shrink=0.8``，避免色条过长/过短与画布不协调；
-2. ✅ 色标标签固定：``cbar.set_label("气温 ℃", fontsize=11)``；
-3. ✅ 字号统一：标题 14 号、坐标轴与色标文字 11 号、刻度 10 号。
+1.  缩放比例统一 shrink=0.8，避免色条过长/过短与画布不协调；
+2.  色标标签固定：cbar.set_label(「气温 ℃」, fontsize=11)；
+3.  字号统一：标题 14 号、坐标轴与色标文字 11 号、刻度 10 号。
 
 完整色标代码：
 
@@ -650,9 +698,9 @@ Cartopy 标准绘图固定流程
 
 图片导出高清规范（课程报告/期刊附图通用）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-1. ✅ DPI 固定 300，满足印刷清晰度标准；
-2. ✅ 增加 ``bbox_inches="tight"`` 自动裁剪空白白边，无需手动截图裁剪；
-3. ✅ 图片格式统一 PNG，兼顾清晰度与文件体积。
+1.  DPI 固定 300，满足印刷清晰度标准；
+2.  增加 bbox_inches="tight" 自动裁剪空白白边，无需手动截图裁剪；
+3.  图片格式统一 PNG，兼顾清晰度与文件体积。
 
 标准保存代码：
 
@@ -663,7 +711,7 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   批量绘图最佳实践：循环绘图后必须 ``plt.close()``，否则会累积大量画布导致内存溢出、运行卡顿——开一次 ``fig`` 就相当于打开一扇窗，画完不关，窗会越叠越多。
+   批量绘图最佳实践：循环绘图后必须 plt.close()，否则会累积大量画布导致内存溢出、运行卡顿——开一次 fig 就相当于打开一扇窗，画完不关，窗会越叠越多。
 
 兰州站点标记统一规范（串联全书实战项目）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -678,13 +726,13 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   ``scatter`` 与 ``text`` 必须带 ``transform=ccrs.PlateCarree()``，否则站点标在地图外或错位，跟 ``contourf`` 是同一个道理。
+   scatter 与 text 必须带 transform=ccrs.PlateCarree()，否则站点标在地图外或错位，跟 contourf 是同一个道理。
 
 批量绘图、多子图通用规范
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. ✅ 逐月循环绘图：使用 xarray 内置 ``groupby("time")`` 或 ``sel(time=...)`` 遍历时间，搭配 ``for`` 循环批量出图，自动命名存储；
-2. ✅ 四季对比 2×2 子图：统一色标范围 ``vmin``、``vmax``，保证四张图冷暖色标尺完全一致，便于对比季节差异。
+1.  逐月循环绘图：使用 xarray 内置 groupby("time") 或 sel(time=...) 遍历时间，搭配 for 循环批量出图，自动命名存储；
+2.  四季对比 2×2 子图：统一色标范围 vmin、vmax，保证四张图冷暖色标尺完全一致，便于对比季节差异。
 
 示例统一色标约束：
 
@@ -701,24 +749,24 @@ Cartopy 标准绘图固定流程
 
 .. warning::
 
-   多子图若各自自动定色标，每张图的冷暖含义就完全不同——图 A 的「暖红」可能是 15℃、图 B 却是 25℃。统一 ``vmin/vmax`` 才能保证「同一颜色=同一温度」，季节比较才成立。
+   多子图若各自自动定色标，每张图的冷暖含义就完全不同——图 A 的「暖红」可能是 15℃、图 B 却是 25℃。统一 vmin/vmax 才能保证「同一颜色=同一温度」，季节比较才成立。
 
 避坑最佳实践（高频报错预防规范）
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. ⚠️ 禁止省略 ``transform`` 参数：所有空间绘图函数 ``contourf``、``scatter``、``quiver``、``text`` 均必须携带 ``transform``，防止地图坐标错位；
-2. ⚠️ 不使用中文路径、中文文件名：NetCDF 读取、图片保存路径全程英文，避免系统编码报错；
-3. ⚠️ 第一次运行 Cartopy 提前缓存地理文件：Natural Earth 矢量文件首次加载会自动下载，可提前配置缓存路径，避免课堂绘图卡顿；
-4. ✅ 环境锁定：项目交付附带 ``met_p312_env.yml`` 环境配置文件，保证不同设备绘图效果完全一致；
-5. ✅ 代码可移植：全程使用相对路径，不写入 ``D:/xxx``、``C:/User/xxx`` 等绝对磁盘路径，机房、小组协作可直接运行。
+1.  禁止省略 transform 参数：所有空间绘图函数 contourf、scatter、quiver、text 均必须携带 transform，防止地图坐标错位；
+2.  不使用中文路径、中文文件名：NetCDF 读取、图片保存路径全程英文，避免系统编码报错；
+3.  第一次运行 Cartopy 提前缓存地理文件：Natural Earth 矢量文件首次加载会自动下载，可提前配置缓存路径，避免课堂绘图卡顿；
+4.  环境锁定：项目交付附带 met_p312_env.yml 环境配置文件，保证不同设备绘图效果完全一致；
+5.  代码可移植：全程使用相对路径，不写入 D:/xxx、C:/User/xxx 等绝对磁盘路径，机房、小组协作可直接运行。
 
 科研绘图通用审美规范
 ^^^^^^^^^^^^^^^^^^^^
 
-1. ✅ 图表元素精简：不堆砌多余装饰，核心突出气温填色场；
-2. ✅ 网格透明度降低，仅作为坐标参考，不干扰主图；
-3. ✅ 线条深浅分层：国界粗、省界细、河流浅蓝，层次分明；
-4. ✅ 标题简洁规范：统一格式「区域+时段+气象要素空间分布图」，无冗余文字；
-5. ✅ 字体统一使用无衬线字体，避免系统缺失字体导致文字乱码（中文字体配置见相应章节，如 ``SimHei``/``Microsoft YaHei``）。
+1.  图表元素精简：不堆砌多余装饰，核心突出气温填色场；
+2.  网格透明度降低，仅作为坐标参考，不干扰主图；
+3.  线条深浅分层：国界粗、省界细、河流浅蓝，层次分明；
+4.  标题简洁规范：统一格式「区域+时段+气象要素空间分布图」，无冗余文字；
+5.  字体统一使用无衬线字体，避免系统缺失字体导致文字乱码（中文字体配置见相应章节，如 SimHei/Microsoft YaHei）。
 
-.. seealso:: 配套练习：第 10 章练习《Cartopy 气象地图》将在随后交付后上线（链接到时补全）　·　示例画廊 :doc:`/gallery/plot_viz/index`
+.. seealso:: 配套练习：:doc:`/tutorials/viz/ch10_practice`　·　示例画廊 :doc:`/gallery/plot_viz/index`

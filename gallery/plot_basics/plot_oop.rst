@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_basics_plot_oop.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_basics_plot_oop.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -296,7 +296,7 @@ plt.show() 弹窗显示，无需手动 savefig 落盘。
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.174 seconds)
+   **Total running time of the script:** (0 minutes 0.141 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_basics_plot_oop.py:
@@ -307,15 +307,15 @@ plt.show() 弹窗显示，无需手动 savefig 落盘。
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_oop.ipynb <plot_oop.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_oop.ipynb <plot_oop.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_oop.py <plot_oop.py>`
+      :download:`下载Python源码：plot_oop.py <plot_oop.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_oop.zip <plot_oop.zip>`
+      :download:`下载压缩包：plot_oop.zip <plot_oop.zip>`
 
 
 .. only:: html

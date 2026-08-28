@@ -12,10 +12,18 @@ Xarray 西北气温场分析
 ``pres`` 单位 hPa）。用 ``open_dataset`` 读取时，xarray 会自动解析
 time/lat/lon 坐标并识别缺测 ``_FillValue``。文件不在时自动改用结构
 一致的合成场，保证脚本在任何环境都能运行。
+
+需要先下载配套数据文件才能跑出与本书一致的效果，点击下方按钮即可获取：
+
+.. container:: sphx-glr-download meteopy-download-nc
+
+   :download:`下载配套数据文件 northwest_temp.nc </data/northwest_temp.nc>`
 """
 
 # %%
-# ---------- ① 导入库 + 中文字体配置 ----------
+# 
+# ① 导入库 + 中文字体配置
+# 
 import os
 
 import numpy as np
@@ -26,7 +34,9 @@ plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei"]  # 中文字体
 plt.rcParams["axes.unicode_minus"] = False                        # 负号正常显示
 
 # %%
-# ---------- ② 读取数据：优先项目配套 NetCDF，缺失时退回合成场 ----------
+# 
+# ② 读取数据：优先项目配套 NetCDF，缺失时退回合成场
+# 
 # 依次尝试三个候选路径：项目根目录运行、画廊构建目录运行、独立运行。
 NC_CANDIDATES = ["./data/northwest_temp.nc",
                  "../data/northwest_temp.nc",
@@ -61,18 +71,23 @@ print("数据来源：", source)
 print("读取完成 shape(time, lat, lon):", da_c.shape)
 
 # %%
-# ---------- ③ 时间切片：只保留 2024 年 1 月中旬（1-11 至 1-20）----------
+# 
+# ③ 时间切片：只保留 2024 年 1 月中旬（1-11 至 1-20）
 da_season = da_c.sel(time=slice("2024-01-11", "2024-01-20"))
 print("时间切片后 shape:", da_season.shape)
 
 # %%
-# ---------- ④ 空间子区域裁剪：聚焦西北地区东部 ----------
+# 
+# ④ 空间子区域裁剪：聚焦西北地区东部
+# 
 # lon 102–108°E, lat 33–39°N（本例 lat 从小到大排列，故 slice(33, 39)）
 da_region = da_season.sel(lon=slice(102, 108), lat=slice(33, 39))
 print("空间裁剪后 shape:", da_region.shape)
 
 # %%
-# ---------- ⑤ 纬度加权区域平均（气象核心，禁止算术平均）----------
+# 
+# ⑤ 纬度加权区域平均（气象核心，禁止算术平均）
+# 
 # 球面格点面积正比于 cos(lat)，高纬格点面积更小，直接平均会造成系统偏差
 lat_weight = np.cos(np.radians(da_region.lat))
 series = da_region.weighted(lat_weight).mean(dim=["lat", "lon"])
@@ -81,7 +96,8 @@ print("区域平均气温(℃)序列前 5 个时次:")
 print(series.values[:5])
 
 # %%
-# ---------- ⑥ 绘图：左=某时刻空间气温场，右=区域平均时间序列 ----------
+# 
+# ⑥ 绘图：左=某时刻空间气温场，右=区域平均时间序列
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5),
                                layout="constrained")
 

@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_basics_plot_flow.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_basics_plot_flow.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -21,7 +21,7 @@
 气温等级判定与逐日可视化
 ========================
 
-第 3 章示例（T-306）：用 ``if/elif/else`` 对兰州站近 7 日最高气温做等级判定，
+第 3 章示例：用 ``if/elif/else`` 对兰州站近 7 日最高气温做等级判定，
 用 ``for`` 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张"逐日气温 +
 等级配色"的柱状图——把分支与循环的实战成果"画"出来。
 
@@ -167,7 +167,7 @@
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.101 seconds)
+   **Total running time of the script:** (0 minutes 0.088 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_basics_plot_flow.py:
@@ -178,15 +178,15 @@
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_flow.ipynb <plot_flow.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_flow.ipynb <plot_flow.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_flow.py <plot_flow.py>`
+      :download:`下载Python源码：plot_flow.py <plot_flow.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_flow.zip <plot_flow.zip>`
+      :download:`下载压缩包：plot_flow.zip <plot_flow.zip>`
 
 
 .. only:: html

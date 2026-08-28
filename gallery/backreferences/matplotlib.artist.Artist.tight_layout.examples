@@ -34,27 +34,6 @@ Examples using ``matplotlib.artist.Artist.tight_layout``
 
  * :doc:`/gallery/plot_basics/plot_oop`
 
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示如何用 Matplotlib 的\ 面向对象接口，把一套整年的逐日气温数据 绘制成一张 3 行子图的综合图板：上图为逐日平均温的年周期曲线（叠加月均温 并标注冬夏极值点），中图为日最高温与日最低温的相关性散点，下图为全年气温 分布直方图。">
-
-.. only:: html
-
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_temperature_series_thumb.png
-    :alt:
-
-  :doc:`/gallery/plot_viz/plot_temperature_series`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">兰州气温时间序列综合分析</div>
-    </div>
-
-
-.. only:: not html
-
- * :doc:`/gallery/plot_viz/plot_temperature_series`
-
 .. thumbnail-parent-div-close
 
 .. raw:: html

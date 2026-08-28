@@ -15,24 +15,66 @@ Examples using ``matplotlib.axes._base._AxesBase.text``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_flow_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_cartopy_temp`
+  :doc:`/gallery/plot_basics/plot_flow`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">西北地区 1 月平均气温地图</div>
+      <div class="sphx-glr-thumbnail-title">气温等级判定与逐日可视化</div>
     </div>
 
 
 .. only:: not html
 
- * :doc:`/gallery/plot_viz/plot_cartopy_temp`
+ * :doc:`/gallery/plot_basics/plot_flow`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示面向对象编程在气象数据处理中的应用。它以兰州站（区站号 52889，纬 36.05°N、经 103.88°E、海拔约 1517 m）最近几日的逐日气温为 数据，展示三个要点：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_basics/images/thumb/sphx_glr_plot_oop_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_basics/plot_oop`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Station 类的气温统计与可视化（兼用兰州站示例数据）</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_basics/plot_oop`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="经验动力学建模方法（Empirical Kinetic Modeling Approach, EKMA）曲线， 是研究 O₃ 与前体物关系的经典工具：固定 VOCs 组分谱，系统扫描 NOx 与 VOCs 的 总浓度组合，把每个组合对应的最大 O₃ 浓度填到网格上，再用等值线画出 &quot;O₃ 浓度关于（NOx, VOCs）的平面&quot;。它揭示了 O₃ 生成对两种前体物的 非线性响应，并据此把一个城市的污染状态划分为三个特征区域：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_sci/images/thumb/sphx_glr_plot_ekma_curve_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_sci/plot_ekma_curve`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制 EKMA 曲线：城市臭氧敏感性分析</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_sci/plot_ekma_curve`
 
 .. thumbnail-parent-div-close
 

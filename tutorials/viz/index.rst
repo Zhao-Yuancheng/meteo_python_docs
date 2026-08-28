@@ -23,7 +23,7 @@
 
       ^^^
 
-      折线图、散点图、双子图与 ``savefig`` 导出。
+      折线图、散点图、双子图与 savefig 导出。
 
    .. grid-item-card:: 第 10 章 · 气象数据绘图（二）Cartopy
       :link: ch10_practice

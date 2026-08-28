@@ -17,7 +17,7 @@
     <path d="M-18 -26 L -8 0 L -18 26 Z" fill="#1e3a5f" opacity="0.5"/>
     <path d="M6 -26 L 16 0 L 6 26 Z" fill="#1e3a5f" opacity="0.5"/>
   </g>
-  <text x="480" y="345" text-anchor="middle" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="30" fill="#ffffff" font-weight="700">配套动画位（T-302）</text>
+  <text x="480" y="345" text-anchor="middle" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="30" fill="#ffffff" font-weight="700">配套动画位</text>
   <text x="480" y="389" text-anchor="middle" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="18" fill="#bcd4f5">if / elif / else 分支流程图 · for 遍历 · while 循环 · break / continue 对比</text>
   <rect x="330" y="421" rx="13" width="300" height="30" fill="#ffffff" opacity="0.14"/>
   <text x="480" y="441" text-anchor="middle" font-family="'Noto Sans CJK SC','Microsoft YaHei',sans-serif" font-size="15" fill="#dbe8fa">动画制作完成后将替换本占位图</text>

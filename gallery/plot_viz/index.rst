@@ -3,7 +3,7 @@
 .. _sphx_glr_gallery_plot_viz:
 
 气象数据可视化示例
-==================
+--------------------
 
 本节展示 Matplotlib 与 Cartopy 绘制气象场的示例。
 
@@ -21,52 +21,35 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="contourf + contour 是气象场可视化的经典组合：填色看分布、 等值线读数值。本示例绘制西北地区 2024 年 1 月平均气温场：">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 HadCRUT5 数据集绘制逐年全球平均温度距平的时间序列图（X 轴为年份，Y 轴为温度 ℃/K）与全球气温变化趋势的空间分布图（用 contourf 或 pcolormesh）。">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_hadcrut_trend_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_contour`
+  :doc:`/gallery/plot_viz/plot_hadcrut_trend`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">气温场等值线分析（纯 Matplotlib）</div>
+      <div class="sphx-glr-thumbnail-title">全球平均温度距平时间序列与趋势空间分布</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标： 用 stipple.nc 数据绘制 1963 年 1 月的气温等值线图，并在同一张地图上标注 距平符号：正距平（1963 年 1 月比多年同期偏暖）的格点标 &quot;+&quot;， 负距平（偏冷）的格点标 &quot;-&quot;。">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_map_anomaly_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_cartopy_temp`
+  :doc:`/gallery/plot_viz/plot_map_anomaly`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">西北地区 1 月平均气温地图</div>
-    </div>
-
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示如何用 Matplotlib 的\ 面向对象接口，把一套整年的逐日气温数据 绘制成一张 3 行子图的综合图板：上图为逐日平均温的年周期曲线（叠加月均温 并标注冬夏极值点），中图为日最高温与日最低温的相关性散点，下图为全年气温 分布直方图。">
-
-.. only:: html
-
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_temperature_series_thumb.png
-    :alt:
-
-  :doc:`/gallery/plot_viz/plot_temperature_series`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">兰州气温时间序列综合分析</div>
+      <div class="sphx-glr-thumbnail-title">绘制中国地图上的气温等值线图与距平符号标注（1963 年 1 月）</div>
     </div>
 
 
@@ -80,7 +63,6 @@
 .. toctree::
    :hidden:
 
-   /gallery/plot_viz/plot_contour
-   /gallery/plot_viz/plot_cartopy_temp
-   /gallery/plot_viz/plot_temperature_series
+   /gallery/plot_viz/plot_hadcrut_trend
+   /gallery/plot_viz/plot_map_anomaly
 

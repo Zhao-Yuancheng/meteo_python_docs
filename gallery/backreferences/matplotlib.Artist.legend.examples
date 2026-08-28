@@ -15,7 +15,7 @@ Examples using ``matplotlib.Artist.legend``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
 
 .. only:: html
 
@@ -36,7 +36,7 @@ Examples using ``matplotlib.Artist.legend``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例（T-206）：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
 
 .. only:: html
 
@@ -57,7 +57,7 @@ Examples using ``matplotlib.Artist.legend``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例（T-306）：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
 
 .. only:: html
 
@@ -117,6 +117,48 @@ Examples using ``matplotlib.Artist.legend``
 .. only:: not html
 
  * :doc:`/gallery/plot_basics/plot_oop`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 HadCRUT5 数据集绘制逐年全球平均温度距平的时间序列图（X 轴为年份，Y 轴为温度 ℃/K）与全球气温变化趋势的空间分布图（用 contourf 或 pcolormesh）。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_hadcrut_trend_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">全球平均温度距平时间序列与趋势空间分布</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标： 用 stipple.nc 数据绘制 1963 年 1 月的气温等值线图，并在同一张地图上标注 距平符号：正距平（1963 年 1 月比多年同期偏暖）的格点标 &quot;+&quot;， 负距平（偏冷）的格点标 &quot;-&quot;。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_map_anomaly_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_map_anomaly`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制中国地图上的气温等值线图与距平符号标注（1963 年 1 月）</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_viz/plot_map_anomaly`
 
 .. thumbnail-parent-div-close
 

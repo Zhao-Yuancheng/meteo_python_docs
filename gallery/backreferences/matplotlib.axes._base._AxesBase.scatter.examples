@@ -15,24 +15,24 @@ Examples using ``matplotlib.axes._base._AxesBase.scatter``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标： 用 stipple.nc 数据绘制 1963 年 1 月的气温等值线图，并在同一张地图上标注 距平符号：正距平（1963 年 1 月比多年同期偏暖）的格点标 &quot;+&quot;， 负距平（偏冷）的格点标 &quot;-&quot;。">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_map_anomaly_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_cartopy_temp`
+  :doc:`/gallery/plot_viz/plot_map_anomaly`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">西北地区 1 月平均气温地图</div>
+      <div class="sphx-glr-thumbnail-title">绘制中国地图上的气温等值线图与距平符号标注（1963 年 1 月）</div>
     </div>
 
 
 .. only:: not html
 
- * :doc:`/gallery/plot_viz/plot_cartopy_temp`
+ * :doc:`/gallery/plot_viz/plot_map_anomaly`
 
 .. thumbnail-parent-div-close
 

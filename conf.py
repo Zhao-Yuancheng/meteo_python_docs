@@ -104,12 +104,16 @@ def _reset_mpl_zh(gallery_conf, fname):
 
 
 sphinx_gallery_conf = {
-    'examples_dirs': ['./examples'],            # 源脚本目录
-    'gallery_dirs':  ['./gallery'],  # 生成画廊目录（顶层「示例」导航直连画廊）
+    'examples_dirs': ['./examples'],            # 源脚本目录（子目录构成画廊分区）
+    'gallery_dirs':  ['./gallery'],             # 生成画廊目录（顶层「示例」导航直连画廊）
+    # 顶层分区顺序：按内容主线固定为 基础绘图 → NumPy 计算 → 气象数据可视化 → 科研绘图。
+    # （默认按子目录名升序，plot_sci 会排在 plot_viz 前，故用 ExplicitOrder 显式指定。）
+    'subsection_order': ['examples/plot_basics', 'examples/plot_numpy',
+                         'examples/plot_viz', 'examples/plot_sci'],
     # Windows 路径用 \ 分隔，正则需同时兼容 / 与 \
     'filename_pattern': r'[/\\]plot_[^/\\]+\.py$',   # 仅执行 plot_ 开头的脚本
     'ignore_pattern': r'__init__\.py$|GALLERY_HEADER',
-    'thumbnail_size': (400, 280),
+    'thumbnail_size': (800, 560),
     'backreferences_dir': './gallery/backreferences',
     'doc_module': ('numpy', 'matplotlib'),
     'notebook_extensions': {'.py', '.ipynb'},
@@ -134,6 +138,7 @@ exclude_patterns = [
     './examples/plot_basics/GALLERY_HEADER.rst',
     './examples/plot_numpy/GALLERY_HEADER.rst',
     './examples/plot_viz/GALLERY_HEADER.rst',
+    './examples/plot_sci/GALLERY_HEADER.rst',
 ]
 
 # sphinx-gallery 的两类固有告警，属于预期行为，统一静默：

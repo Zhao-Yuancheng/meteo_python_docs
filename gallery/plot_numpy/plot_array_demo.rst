@@ -10,8 +10,8 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        :ref:`Go to the end <sphx_glr_download_gallery_plot_numpy_plot_array_demo.py>`
-        to download the full example code.
+        :ref:`转到文末 <sphx_glr_download_gallery_plot_numpy_plot_array_demo.py>`
+        下载完整的示例代码.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -30,11 +30,17 @@
 两张图分别用 ``pcolormesh`` 展示，经纬度通过 ``extent`` 映射到坐标轴。
 数据文件为 ``./data/northwest_temp.nc``，缺失时自动改用同结构的合成场。
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-17
+需要先下载配套数据文件才能跑出与本书一致的效果，点击下方按钮即可获取：
 
----------- ① 导入库 + 中文字体配置 ----------
+.. container:: sphx-glr-download meteopy-download-nc
 
-.. GENERATED FROM PYTHON SOURCE LINES 17-25
+   :download:`下载配套数据文件 northwest_temp.nc </data/northwest_temp.nc>`
+
+.. GENERATED FROM PYTHON SOURCE LINES 22-23
+
+① 导入库 + 中文字体配置
+
+.. GENERATED FROM PYTHON SOURCE LINES 24-32
 
 .. code-block:: Python
 
@@ -53,11 +59,11 @@
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-27
+.. GENERATED FROM PYTHON SOURCE LINES 33-34
 
----------- ② 读取数据：优先项目配套 NetCDF，缺失时退回合成场 ----------
+② 读取数据：优先项目配套 NetCDF，缺失时退回合成场
 
-.. GENERATED FROM PYTHON SOURCE LINES 27-55
+.. GENERATED FROM PYTHON SOURCE LINES 35-63
 
 .. code-block:: Python
 
@@ -103,12 +109,13 @@
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 56-58
+.. GENERATED FROM PYTHON SOURCE LINES 64-67
 
----------- ③ 沿时间轴的两种统计：平均场 与 日际波动 ----------
+③ 沿时间轴的两种统计：平均场 与 日际波动
+
 axis=0 对应 time 维；结果都降为二维场 (lat, lon)
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-66
+.. GENERATED FROM PYTHON SOURCE LINES 68-76
 
 .. code-block:: Python
 
@@ -134,12 +141,13 @@ axis=0 对应 time 维；结果都降为二维场 (lat, lon)
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 67-69
+.. GENERATED FROM PYTHON SOURCE LINES 77-80
 
----------- ④ 绘图：左=1 月平均场，右=日际波动幅度 ----------
+④ 绘图：左=1 月平均场，右=日际波动幅度
+
 pcolormesh 的 extent=[西经, 东经, 南纬, 北纬]，把数组下标映射为经纬度
 
-.. GENERATED FROM PYTHON SOURCE LINES 69-89
+.. GENERATED FROM PYTHON SOURCE LINES 81-101
 
 .. code-block:: Python
 
@@ -178,7 +186,7 @@ pcolormesh 的 extent=[西经, 东经, 南纬, 北纬]，把数组下标映射�
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.645 seconds)
+   **Total running time of the script:** (0 minutes 1.110 seconds)
 
 
 .. _sphx_glr_download_gallery_plot_numpy_plot_array_demo.py:
@@ -189,15 +197,15 @@ pcolormesh 的 extent=[西经, 东经, 南纬, 北纬]，把数组下标映射�
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download Jupyter notebook: plot_array_demo.ipynb <plot_array_demo.ipynb>`
+      :download:`下载 Jupyter Notebook：plot_array_demo.ipynb <plot_array_demo.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download Python source code: plot_array_demo.py <plot_array_demo.py>`
+      :download:`下载Python源码：plot_array_demo.py <plot_array_demo.py>`
 
     .. container:: sphx-glr-download sphx-glr-download-zip
 
-      :download:`Download zipped: plot_array_demo.zip <plot_array_demo.zip>`
+      :download:`下载压缩包：plot_array_demo.zip <plot_array_demo.zip>`
 
 
 .. only:: html

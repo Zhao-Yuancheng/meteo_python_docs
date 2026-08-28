@@ -1,0 +1,50 @@
+
+
+.. _sphx_glr_gallery_plot_sci:
+
+科研绘图示例
+----------------
+
+本节展示面向科研论文 / 结课报告的进阶绘图：以大气化学 EKMA 曲线为代表，
+演示如何把实验室导出的长表数据网格化为一幅科学等值面图，并标注机理分区。
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="经验动力学建模方法（Empirical Kinetic Modeling Approach, EKMA）曲线， 是研究 O₃ 与前体物关系的经典工具：固定 VOCs 组分谱，系统扫描 NOx 与 VOCs 的 总浓度组合，把每个组合对应的最大 O₃ 浓度填到网格上，再用等值线画出 &quot;O₃ 浓度关于（NOx, VOCs）的平面&quot;。它揭示了 O₃ 生成对两种前体物的 非线性响应，并据此把一个城市的污染状态划分为三个特征区域：">
+
+.. only:: html
+
+  .. image:: /gallery/plot_sci/images/thumb/sphx_glr_plot_ekma_curve_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_sci/plot_ekma_curve`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">绘制 EKMA 曲线：城市臭氧敏感性分析</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /gallery/plot_sci/plot_ekma_curve
+

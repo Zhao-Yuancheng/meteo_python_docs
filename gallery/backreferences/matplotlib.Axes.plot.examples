@@ -36,7 +36,7 @@ Examples using ``matplotlib.Axes.plot``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
 
 .. only:: html
 
@@ -117,6 +117,27 @@ Examples using ``matplotlib.Axes.plot``
 .. only:: not html
 
  * :doc:`/gallery/plot_numpy/plot_xarray_field`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 HadCRUT5 数据集绘制逐年全球平均温度距平的时间序列图（X 轴为年份，Y 轴为温度 ℃/K）与全球气温变化趋势的空间分布图（用 contourf 或 pcolormesh）。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_hadcrut_trend_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">全球平均温度距平时间序列与趋势空间分布</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_viz/plot_hadcrut_trend`
 
 .. thumbnail-parent-div-close
 

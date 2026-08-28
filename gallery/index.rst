@@ -1,11 +1,9 @@
 :orphan:
 
-示例
-====
+示例画廊
+====================
 
-以下示例由 sphinx-gallery 自动生成，源脚本是 ``examples/`` 下以 ``plot_`` 开头的 Python 文件。
-编译时每个脚本会被真实执行，生成的图自动成为缩略图。
-
+本部分针对科研绘图，循序渐进地给予项目案例，帮助理解 Python 基础、气象数据处理以及气象数据可视化。
 
 .. raw:: html
 
@@ -25,7 +23,7 @@
     </div>
 
 基础绘图示例
-============
+---------------
 
 本节展示 Python 基础语法的可视化示例，帮助理解数据类型与控制流。
 
@@ -60,7 +58,7 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例（T-106）：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 1 章示例：环境搭建好后，用最短的代码画出一张&quot;模拟兰州气温随日期变化&quot; 的折线图——用来验证 NumPy 与 Matplotlib 是否安装成功。绘图细节属于第 9 章内容， 这里先感受一下&quot;环境跑通&quot;的成就感。">
 
 .. only:: html
 
@@ -77,7 +75,7 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例（T-206）：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 2 章示例：不借助任何数据处理库，仅用 str / int / float / tuple / list / dict 这些内置类型，存储兰州站的元信息与近 7 日气温， 完成统计并绘制一张气温柱状图——每个类型的选择理由都写在行尾注释里。">
 
 .. only:: html
 
@@ -94,7 +92,7 @@
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例（T-306）：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
+    <div class="sphx-glr-thumbcontainer" tooltip="第 3 章示例：用 if/elif/else 对兰州站近 7 日最高气温做等级判定， 用 for 循环 + 字典统计各等级天数，最后用 Matplotlib 画一张&quot;逐日气温 + 等级配色&quot;的柱状图——把分支与循环的实战成果&quot;画&quot;出来。">
 
 .. only:: html
 
@@ -149,10 +147,10 @@
 
     </div>
 
-NumPy 计算示例
-==============
+气象数据处理示例
+------------------
 
-本节展示 NumPy 数组运算与可视化的示例。
+本节展示气象数据处理进阶与可视化的示例。
 
 
 .. raw:: html
@@ -241,7 +239,7 @@ NumPy 计算示例
     </div>
 
 气象数据可视化示例
-==================
+--------------------
 
 本节展示 Matplotlib 与 Cartopy 绘制气象场的示例。
 
@@ -259,52 +257,75 @@ NumPy 计算示例
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="contourf + contour 是气象场可视化的经典组合：填色看分布、 等值线读数值。本示例绘制西北地区 2024 年 1 月平均气温场：">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 HadCRUT5 数据集绘制逐年全球平均温度距平的时间序列图（X 轴为年份，Y 轴为温度 ℃/K）与全球气温变化趋势的空间分布图（用 contourf 或 pcolormesh）。">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_contour_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_hadcrut_trend_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_contour`
+  :doc:`/gallery/plot_viz/plot_hadcrut_trend`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">气温场等值线分析（纯 Matplotlib）</div>
+      <div class="sphx-glr-thumbnail-title">全球平均温度距平时间序列与趋势空间分布</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本示例演示用 Cartopy 绘制中国西北地区气温空间分布填色图的标准流程：">
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标： 用 stipple.nc 数据绘制 1963 年 1 月的气温等值线图，并在同一张地图上标注 距平符号：正距平（1963 年 1 月比多年同期偏暖）的格点标 &quot;+&quot;， 负距平（偏冷）的格点标 &quot;-&quot;。">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_cartopy_temp_thumb.png
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_map_anomaly_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_cartopy_temp`
+  :doc:`/gallery/plot_viz/plot_map_anomaly`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">西北地区 1 月平均气温地图</div>
+      <div class="sphx-glr-thumbnail-title">绘制中国地图上的气温等值线图与距平符号标注（1963 年 1 月）</div>
     </div>
 
 
+.. thumbnail-parent-div-close
+
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="本脚本演示如何用 Matplotlib 的\ 面向对象接口，把一套整年的逐日气温数据 绘制成一张 3 行子图的综合图板：上图为逐日平均温的年周期曲线（叠加月均温 并标注冬夏极值点），中图为日最高温与日最低温的相关性散点，下图为全年气温 分布直方图。">
+    </div>
+
+科研绘图示例
+----------------
+
+本节展示面向科研论文 / 结课报告的进阶绘图：以大气化学 EKMA 曲线为代表，
+演示如何把实验室导出的长表数据网格化为一幅科学等值面图，并标注机理分区。
+
+.. raw:: html
+
+  <div id='sg-tag-list' class='sphx-glr-tag-list'></div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="经验动力学建模方法（Empirical Kinetic Modeling Approach, EKMA）曲线， 是研究 O₃ 与前体物关系的经典工具：固定 VOCs 组分谱，系统扫描 NOx 与 VOCs 的 总浓度组合，把每个组合对应的最大 O₃ 浓度填到网格上，再用等值线画出 &quot;O₃ 浓度关于（NOx, VOCs）的平面&quot;。它揭示了 O₃ 生成对两种前体物的 非线性响应，并据此把一个城市的污染状态划分为三个特征区域：">
 
 .. only:: html
 
-  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_temperature_series_thumb.png
+  .. image:: /gallery/plot_sci/images/thumb/sphx_glr_plot_ekma_curve_thumb.png
     :alt:
 
-  :doc:`/gallery/plot_viz/plot_temperature_series`
+  :doc:`/gallery/plot_sci/plot_ekma_curve`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">兰州气温时间序列综合分析</div>
+      <div class="sphx-glr-thumbnail-title">绘制 EKMA 曲线：城市臭氧敏感性分析</div>
     </div>
 
 
@@ -323,6 +344,7 @@ NumPy 计算示例
    /./gallery/plot_basics/index.rst
    /./gallery/plot_numpy/index.rst
    /./gallery/plot_viz/index.rst
+   /./gallery/plot_sci/index.rst
 
 
 .. only:: html
@@ -331,11 +353,11 @@ NumPy 计算示例
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
-      :download:`Download all examples in Python source code: gallery_python.zip </gallery/gallery_python.zip>`
+      :download:`下载全部示例源码：gallery_python.zip </gallery/gallery_python.zip>`
 
     .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-      :download:`Download all examples in Jupyter notebooks: gallery_jupyter.zip </gallery/gallery_jupyter.zip>`
+      :download:`下载全部示例的 Jupyter Notebook：gallery_jupyter.zip </gallery/gallery_jupyter.zip>`
 
 
 .. only:: html

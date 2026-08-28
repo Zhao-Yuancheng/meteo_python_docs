@@ -1,0 +1,42 @@
+
+
+Examples using ``matplotlib.artist.Artist.set_global``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+.. start-sphx-glr-thumbnails
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="本章目标：用 HadCRUT5 数据集绘制逐年全球平均温度距平的时间序列图（X 轴为年份，Y 轴为温度 ℃/K）与全球气温变化趋势的空间分布图（用 contourf 或 pcolormesh）。">
+
+.. only:: html
+
+  .. image:: /gallery/plot_viz/images/thumb/sphx_glr_plot_hadcrut_trend_thumb.png
+    :alt:
+
+  :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">全球平均温度距平时间序列与趋势空间分布</div>
+    </div>
+
+
+.. only:: not html
+
+ * :doc:`/gallery/plot_viz/plot_hadcrut_trend`
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
