@@ -161,7 +161,7 @@ round 改的是数值精度，不是打印时的位数。round(77.0, 2) 仍是 7
    log_daily_temps(18, 22, 25)          # 3 天
    log_daily_temps(5, 8, 12, 15, 20)    # 5 天
 
-**kwargs 同样只收\ **剩下的**\关键字参数。前面已经对上形参名的，不会进这个字典。函数里它就是普通字典，需要时可以用 .get() 取值。
+``**kwargs`` 同样只收**剩下的**关键字参数。前面已经对上形参名的，不会进这个字典。函数里它就是普通字典，需要时可以用 .get() 取值。
 
 .. code-block:: python
 
@@ -183,7 +183,7 @@ round 改的是数值精度，不是打印时的位数。round(77.0, 2) 仍是 7
 参数解包：把列表或字典拆开传入
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-已经有一份列表或字典时，不必把值一个个抄进调用括号，用 * / ** 拆开即可。这和定义时的 *args / **kwargs 方向相反。
+已经有一份列表或字典时，不必把值一个个抄进调用括号，用 * / ** 拆开即可。这和定义时的 ``*args / **kwargs`` 方向相反。
 
 .. code-block:: python
 
@@ -485,7 +485,7 @@ make_checker 返回的是 checker 这个函数，不是 checker(...) 的结果�
    from weather_utils import c_to_f         # 只导入特定函数
    from weather_utils import c_to_f as c2f  # 导入时改名
 
-少用 from weather_utils import *。它会把模块里的名字一股脑倒进当前文件，和自己写的函数重名时，后导入的会盖住前面的，不好查。
+少用 from weather_utils import ``*``。它会把模块里的名字一股脑倒进当前文件，和自己写的函数重名时，后导入的会盖住前面的，不好查。
 
 模块文件不要和标准库同名。项目目录里如果有 json.py、random.py，import json 可能先导入到你自己的空文件，报一些莫名其妙的 AttributeError。
 

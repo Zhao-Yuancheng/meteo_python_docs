@@ -1,0 +1,632 @@
+/* ============================================================
+   首页 · 等压墨迹 Isobaric Ink —— hero 生成艺术 + 版式美化
+   ------------------------------------------------------------
+   加载方式：仅 index.html（index.rst raw html 中的 <link>），
+   因此所有选择器无需再加页面前缀。
+   作用域：article.bd-article:has(.mh-top) —— 首页文章列。
+   色彩：莫兰迪低饱和，亮 / 暗主题分开定义；
+   字号一律 em / rem —— 跟随站点「A±」字号控件；
+   响应式：容器查询挂在文章列（container-type: inline-size），
+   断点跟随正文列宽而非视口，侧边栏开合自动适配。
+   结构约定：小节由 reST `.. rst-class::` 生成
+   <section class="mh-sec mh-toc"> 等，kicker 用 h2::before 注入，
+   禁止用 raw <div> 跨越 reST section 边界（会得到交错嵌套）。
+   ============================================================ */
+
+/* —— 作用域：主题变量 + 容器 —— */
+article.bd-article:has(.mh-top) {
+  --mh-accent: #4a7396;        /* 深莫兰迪蓝 */
+  --mh-accent-strong: #35608a; /* 悬停加深 */
+  --mh-ink: #31424f;           /* 主文字 */
+  --mh-muted: #6d7d8c;         /* 次文字 */
+  --mh-soft: #90a4b5;          /* 弱点缀 */
+  --mh-card-bg: #f7f8fa;       /* 卡片底 */
+  --mh-card-bg2: #eff2f4;      /* 次级底 */
+  --mh-card-border: #dfe4e9;
+  --mh-chip-bg: #e7ecf0;
+  --mh-hero-ink: #2b3c4c;      /* hero 标题 */
+  --mh-scrim-a: rgba(241, 244, 247, .90);
+  --mh-scrim-flat: rgba(241, 244, 247, .84);
+  --mh-shadow: 0 8px 24px rgba(61, 79, 98, .10);
+  container-type: inline-size;
+  color: var(--pst-color-text-base, #26323b);
+}
+html[data-theme="dark"] article.bd-article:has(.mh-top) {
+  --mh-accent: #6f9cc4;
+  --mh-accent-strong: #8ab6d9;
+  --mh-ink: #c9d5e0;
+  --mh-muted: #96a6b6;
+  --mh-soft: #6e8296;
+  --mh-card-bg: #222932;
+  --mh-card-bg2: #1c232b;
+  --mh-card-border: #34404d;
+  --mh-chip-bg: #2c3642;
+  --mh-hero-ink: #e6edf4;
+  --mh-scrim-a: rgba(17, 22, 29, .90);
+  --mh-scrim-flat: rgba(17, 22, 29, .85);
+  --mh-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+/* —— 页面 h1 视觉隐藏（hero 大标题已承担）—— 保留在 DOM 中供无障碍/搜索 */
+article.bd-article:has(.mh-top) h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   Hero · 生成艺术横幅
+   ============================================================ */
+.mh-hero {
+  position: relative;
+  margin: 0 0 2.2rem;
+  border: 1px solid var(--mh-card-border);
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  align-items: stretch;
+  box-shadow: var(--mh-shadow);
+  /* JS 不可用时的莫兰迪底色回退（与 home-flow.js 渐变一致） */
+  background: linear-gradient(160deg, #eef2f6 0%, #e0e7ee 100%);
+}
+html[data-theme="dark"] .mh-hero {
+  background: linear-gradient(160deg, #1b222c 0%, #12171f 100%);
+}
+#mh-canvas-host { position: absolute; inset: 0; }
+#mh-canvas-host canvas { display: block; }
+
+.mh-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 640px;
+  min-height: 400px;
+  padding: 2.6rem 2.8rem 3rem;
+  pointer-events: none;
+}
+/* 左侧压舱渐变：保文字可读，右侧留给等压墨迹 */
+.mh-hero-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg,
+    var(--mh-scrim-a) 0%, var(--mh-scrim-a) 36%,
+    rgba(241, 244, 247, .55) 60%, rgba(241, 244, 247, 0) 88%);
+}
+html[data-theme="dark"] .mh-hero-inner::before {
+  background: linear-gradient(90deg,
+    var(--mh-scrim-a) 0%, var(--mh-scrim-a) 36%,
+    rgba(17, 22, 29, .55) 60%, rgba(17, 22, 29, 0) 88%);
+}
+
+.mh-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: .65em;
+  margin: 0;
+  color: var(--mh-muted);
+  font-size: .84em;
+  letter-spacing: .09em;
+}
+.mh-eyebrow::before {
+  content: "";
+  flex: none;
+  width: 2.1em;
+  height: 1px;
+  background: var(--mh-soft);
+}
+/* —— 品牌大字：云笺 —— */
+.mh-brand {
+  display: flex;
+  align-items: baseline;
+  gap: .55em;
+  margin: .5em 0 0;
+  line-height: 1;
+}
+.mh-brand-cn {
+  font-size: clamp(3.2rem, 10.5cqw, 5.2rem);
+  font-weight: 900;
+  letter-spacing: .08em;
+  color: var(--mh-hero-ink);
+}
+.mh-brand-en {
+  font-size: clamp(.72rem, 2cqw, .95rem);
+  font-weight: 600;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--mh-muted);
+}
+.mh-headline {
+  margin: .55em 0 .45em;
+  color: var(--mh-hero-ink);
+  font-size: clamp(1.55rem, 4.6cqw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: .015em;
+}
+.mh-sub {
+  margin: 0 0 1.7em;
+  max-width: 33em;
+  color: var(--mh-muted);
+  font-size: 1.02em;
+  line-height: 1.78;
+}
+
+/* —— CTA：纯色莫兰迪按钮（无渐变） —— */
+.mh-cta { display: flex; flex-wrap: wrap; align-items: center; gap: .8em; }
+.mh-cta a { pointer-events: auto; }
+.mh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  padding: .58em 1.4em;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: .98em;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color .22s ease, border-color .22s ease,
+              color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+.mh-btn-primary {
+  background: #4a7396;
+  color: #f4f8fb;
+}
+.mh-btn-primary:hover {
+  background: #41688a;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(53, 96, 138, .28);
+  text-decoration: none;
+}
+.mh-btn-ghost {
+  background: rgba(255, 255, 255, .58);
+  border-color: rgba(74, 115, 150, .35);
+  color: #2b3c4c;
+}
+.mh-btn-ghost:hover {
+  background: rgba(255, 255, 255, .82);
+  border-color: rgba(74, 115, 150, .55);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+html[data-theme="dark"] .mh-btn-primary {
+  background: #46698c;
+  color: #eaf1f8;
+}
+html[data-theme="dark"] .mh-btn-primary:hover {
+  background: #517498;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .35);
+}
+html[data-theme="dark"] .mh-btn-ghost {
+  background: rgba(16, 21, 28, .55);
+  border-color: rgba(143, 176, 204, .32);
+  color: #dce6ef;
+}
+html[data-theme="dark"] .mh-btn-ghost:hover {
+  background: rgba(16, 21, 28, .78);
+  border-color: rgba(143, 176, 204, .5);
+}
+.mh-more {
+  color: var(--mh-accent-strong);
+  font-size: .92em;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--mh-soft);
+  padding-bottom: .1em;
+}
+.mh-more:hover { color: var(--mh-accent); text-decoration: none; }
+
+/* —— 站点信息 / 作品落款（右下角） —— */
+.mh-station {
+  position: absolute;
+  right: 1.1rem;
+  bottom: .95rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .4em;
+  font-family: Consolas, "Cascadia Code", monospace;
+  font-size: .68rem;
+  letter-spacing: .13em;
+  color: #4d5f70;
+}
+html[data-theme="dark"] .mh-station { color: #b6c6d6; }
+.mh-station span {
+  padding: .32em .75em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .52);
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+html[data-theme="dark"] .mh-station span {
+  background: rgba(14, 19, 26, .55);
+}
+
+/* ============================================================
+   快捷入口卡
+   ============================================================ */
+.mh-quick {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0 0 2.4rem;
+}
+.mh-qcard {
+  display: flex;
+  align-items: flex-start;
+  gap: .95em;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--mh-card-border);
+  border-radius: 14px;
+  background: var(--mh-card-bg);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .22s ease, box-shadow .22s ease,
+              border-color .22s ease;
+}
+.mh-qcard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--mh-shadow);
+  border-color: var(--mh-soft);
+  text-decoration: none;
+}
+.mh-qicon {
+  flex: none;
+  width: 2.6em;
+  height: 2.6em;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--mh-chip-bg);
+  color: var(--mh-accent);
+  transition: background-color .22s ease, color .22s ease;
+}
+.mh-qcard:hover .mh-qicon {
+  background: var(--mh-accent);
+  color: #f2f6f9;
+}
+html[data-theme="dark"] .mh-qcard:hover .mh-qicon { color: #10161d; }
+.mh-qicon svg { width: 1.25em; height: 1.25em; }
+.mh-qbody { min-width: 0; }
+.mh-qbody b {
+  display: block;
+  margin-bottom: .3em;
+  color: var(--mh-ink);
+  font-size: 1.02em;
+}
+.mh-qbody span {
+  display: block;
+  color: var(--mh-muted);
+  font-size: .88em;
+  line-height: 1.62;
+}
+.mh-qarrow {
+  margin-left: auto;
+  align-self: center;
+  flex: none;
+  color: var(--mh-soft);
+  transition: transform .22s ease, color .22s ease;
+}
+.mh-qarrow svg { width: 1.05em; height: 1.05em; }
+.mh-qcard:hover .mh-qarrow {
+  transform: translateX(3px);
+  color: var(--mh-accent);
+}
+
+/* ============================================================
+   引言段落（reST `.. rst-class:: mh-lead`）
+   ============================================================ */
+p.mh-lead {
+  max-width: 60em;
+  margin: 0 0 1.15rem;
+  color: var(--mh-ink);
+  font-size: 1.05em;
+  line-height: 1.85;
+}
+
+/* ============================================================
+   小节通用：kicker（h2::before 注入）+ 标题 + 下划线短杠
+   ============================================================ */
+.mh-sec { margin: 2.3rem 0 2.6rem; }
+.mh-sec h2 {
+  position: relative;
+  margin: 0 0 1.15rem;
+  padding-bottom: .4em;
+  border-bottom: 1px solid var(--mh-card-border);
+  color: var(--mh-ink);
+  font-size: 1.45em;
+  font-weight: 600;
+  letter-spacing: .01em;
+}
+.mh-sec h2::before {
+  content: "";
+  display: block;
+  margin-bottom: .4rem;
+  color: var(--mh-soft);
+  font-family: Consolas, "Cascadia Code", monospace;
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+.mh-toc h2::before      { content: "Contents"; }
+.mh-modules h2::before  { content: "Curriculum"; }
+.mh-project h2::before  { content: "Capstone"; }
+.mh-usage h2::before    { content: "How to Learn"; }
+.mh-sec h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 3.2rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--mh-accent);
+}
+
+/* ============================================================
+   内容一览 —— 6 张导航卡（reST 列表，纯 CSS 网格化）
+   ============================================================ */
+.mh-toc ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .9rem;
+  margin: 0;
+  padding: 0;
+  counter-reset: mhnav;
+}
+.mh-toc li {
+  counter-increment: mhnav;
+  padding: .95rem 1.1rem;
+  border: 1px solid var(--mh-card-border);
+  border-radius: 12px;
+  background: var(--mh-card-bg);
+  transition: transform .22s ease, box-shadow .22s ease,
+              border-color .22s ease;
+}
+.mh-toc li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mh-shadow);
+  border-color: var(--mh-soft);
+}
+.mh-toc li p { margin: 0; }
+.mh-toc li::before {
+  content: counter(mhnav, decimal-leading-zero);
+  display: block;
+  margin-bottom: .35em;
+  color: var(--mh-soft);
+  font-family: Consolas, "Cascadia Code", monospace;
+  font-size: .72rem;
+  letter-spacing: .18em;
+}
+.mh-toc li a {
+  color: var(--mh-accent-strong);
+  font-weight: 600;
+}
+.mh-toc li a:hover { text-decoration: underline; }
+
+/* ============================================================
+   三大内容模块 —— 3 张编号卡（莫兰迪三色 chip）
+   ============================================================ */
+.mh-modules ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .9rem;
+  margin: 0;
+  padding: 0;
+  counter-reset: mhmod;
+}
+.mh-modules li {
+  counter-increment: mhmod;
+  padding: 1.05rem 1.15rem;
+  border: 1px solid var(--mh-card-border);
+  border-radius: 12px;
+  background: var(--mh-card-bg);
+  color: var(--mh-muted);
+  font-size: .93em;
+  line-height: 1.72;
+  transition: transform .22s ease, box-shadow .22s ease,
+              border-color .22s ease;
+}
+.mh-modules li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mh-shadow);
+  border-color: var(--mh-soft);
+}
+.mh-modules li::before {
+  content: counter(mhmod, decimal-leading-zero);
+  display: inline-block;
+  margin-bottom: .6em;
+  padding: .2em .6em;
+  border-radius: 7px;
+  color: #f2f6f9;
+  font-family: Consolas, "Cascadia Code", monospace;
+  font-size: .78rem;
+  letter-spacing: .1em;
+}
+.mh-modules li:nth-child(1)::before { background: #4a7396; }
+.mh-modules li:nth-child(2)::before { background: #7d9a8a; }
+.mh-modules li:nth-child(3)::before { background: #a08d78; }
+.mh-modules li p { margin: 0; }
+.mh-modules li strong {
+  display: block;
+  margin-bottom: .35em;
+  color: var(--mh-ink);
+  font-size: 1.06em;
+}
+
+/* ============================================================
+   贯穿项目 —— 呼出面板 + 十节进度时间线
+   ============================================================ */
+.mh-project p {
+  margin: 0;
+  padding: 1.1rem 1.35rem;
+  border-left: 3px solid var(--mh-accent);
+  border-radius: 0 12px 12px 0;
+  background: var(--mh-card-bg);
+  color: var(--mh-ink);
+  line-height: 1.85;
+}
+.mh-timeline {
+  display: flex;
+  align-items: center;
+  gap: .95rem;
+  margin-top: .95rem;
+  padding: .8rem 1.2rem;
+  border: 1px dashed var(--mh-card-border);
+  border-radius: 12px;
+  background: var(--mh-card-bg2);
+}
+.mh-tl-label {
+  flex: none;
+  color: var(--mh-muted);
+  font-size: .78rem;
+  line-height: 1.55;
+  text-align: center;
+  white-space: nowrap;
+}
+.mh-tl-label code {
+  color: var(--mh-accent-strong);
+  font-size: .92em;
+}
+.mh-tl-track {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  min-width: 60px;
+}
+.mh-tl-track i {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--mh-chip-bg);
+  transition: background-color .22s ease;
+}
+.mh-tl-track i:first-child { background: #4a7396; }
+.mh-tl-track i:last-child { background: #35608a; }
+html[data-theme="dark"] .mh-tl-track i:first-child { background: #6f9cc4; }
+html[data-theme="dark"] .mh-tl-track i:last-child { background: #8ab6d9; }
+
+/* ============================================================
+   如何使用本站 —— 3 步法（描边圆角 chip，与模块卡区分）
+   ============================================================ */
+.mh-usage ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .9rem;
+  margin: 0;
+  padding: 0;
+}
+.mh-usage li {
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--mh-card-border);
+  border-radius: 12px;
+  background: var(--mh-card-bg);
+  color: var(--mh-muted);
+  font-size: .93em;
+  line-height: 1.72;
+  transition: transform .22s ease, box-shadow .22s ease,
+              border-color .22s ease;
+}
+.mh-usage li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mh-shadow);
+  border-color: var(--mh-soft);
+}
+.mh-usage li p { margin: 0; }
+.mh-usage li strong {
+  display: inline-block;
+  margin-bottom: .55em;
+  padding: .18em .8em;
+  border: 1px solid var(--mh-soft);
+  border-radius: 999px;
+  color: var(--mh-accent-strong);
+  font-size: .95em;
+}
+
+/* ============================================================
+   收尾导流条
+   ============================================================ */
+.mh-next {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .55em 1em;
+  padding-top: 1.35rem;
+  border-top: 1px dashed var(--mh-card-border);
+  color: var(--mh-muted);
+  font-size: .95em;
+}
+.mh-next a {
+  color: var(--mh-accent-strong);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--mh-soft);
+  padding-bottom: .08em;
+}
+.mh-next a:hover { color: var(--mh-accent); text-decoration: none; }
+.mh-next-dot { color: var(--mh-soft); }
+
+/* ============================================================
+   响应式 —— 容器查询（正文列宽），统一三档节奏：
+   宽列 3 栏 → 中列 2 栏（第 3 张通栏）→ 窄列 1 栏
+   ============================================================ */
+@container (max-width: 1100px) {
+  .mh-quick { grid-template-columns: repeat(2, 1fr); }
+  .mh-quick > a:nth-child(3) { grid-column: 1 / -1; }
+  .mh-toc ul { grid-template-columns: repeat(2, 1fr); }
+  .mh-modules ul,
+  .mh-usage ul { grid-template-columns: repeat(2, 1fr); }
+  .mh-modules li:nth-child(3),
+  .mh-usage li:nth-child(3) { grid-column: 1 / -1; }
+}
+@container (max-width: 880px) {
+  /* 中窄幅：文字压舱渐变换平铺柔纱，保证全宽可读 */
+  .mh-hero-inner::before { background: var(--mh-scrim-flat); }
+  .mh-hero-inner { padding: 2.2rem 2rem 3rem; }
+}
+@container (max-width: 720px) {
+  .mh-hero { min-height: 430px; }
+  .mh-hero-inner {
+    min-height: 430px;
+    max-width: none;
+    padding: 1.8rem 1.4rem 3.2rem;
+  }
+  .mh-headline { font-size: clamp(1.4rem, 6cqw, 1.85rem); }
+  .mh-quick,
+  .mh-toc ul,
+  .mh-modules ul,
+  .mh-usage ul { grid-template-columns: 1fr; }
+  .mh-quick > a:nth-child(3),
+  .mh-modules li:nth-child(3),
+  .mh-usage li:nth-child(3) { grid-column: auto; }
+  .mh-timeline { flex-direction: column; gap: .55rem; }
+  .mh-tl-track { width: 100%; }
+}
+@container (max-width: 500px) {
+  .mh-station span:last-child { display: none; }
+}
+
+/* 动效克制：系统偏好减少动效时，卡片只换色不位移 */
+@media (prefers-reduced-motion: reduce) {
+  .mh-qcard,
+  .mh-toc li,
+  .mh-modules li,
+  .mh-usage li { transition: none; transform: none; }
+}

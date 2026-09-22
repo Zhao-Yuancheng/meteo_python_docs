@@ -1,0 +1,367 @@
+/* =====================================================================
+   about.css —— 「关于云笺」页（about.rst 的 raw html）专属样式
+   全部规则限定在 #meteo-about 作用域内，不影响其它页面；本文件仅被
+   about.html 引用（raw html 中的 <link>），构建后由 build.py 的
+   patch_cachebust 重写 ?v= 指纹。
+
+   设计约定：
+   - 亮暗配色复用 pydata 主题变量（--pst-color-*），随 html[data-theme]
+     自动切换，与全站主题天然同步；品牌兰大蓝为本页自定义变量（--ma-*）
+   - 文字字号一律 em，跟随正文字号变量缩放（页眉「A±」控件全站生效）
+   - 响应式用容器查询（#meteo-about 为 inline-size 容器）：本页正文列
+     宽受左右侧边栏挤压，按视口宽度断点判断宽窄并不可靠
+   ===================================================================== */
+
+#meteo-about {
+  /* 品牌色（亮色档） */
+  --ma-accent: #1f5a8a;
+  --ma-accent-2: #2f8ac7;
+  --ma-hero-a: #f7fafd;
+  --ma-hero-b: #e6eef8;
+  --ma-blob: rgba(47, 138, 199, .16);
+  --ma-blob-2: rgba(122, 168, 204, .14);
+  --ma-avatar-ink: #2c6e9e;
+  --ma-badge-shadow: rgba(31, 90, 138, .28);
+  container-type: inline-size;
+  color: var(--pst-color-text-base);
+  line-height: 1.75;
+  margin: .25rem 0 2.5rem;
+}
+
+html[data-theme="dark"] #meteo-about {
+  --ma-accent: #4aa3df;
+  --ma-accent-2: #6fb9ea;
+  --ma-hero-a: #1a212c;
+  --ma-hero-b: #141a23;
+  --ma-blob: rgba(74, 163, 223, .10);
+  --ma-blob-2: rgba(111, 185, 234, .08);
+  --ma-avatar-ink: #8cc3e8;
+  --ma-badge-shadow: rgba(0, 0, 0, .45);
+}
+
+/* 作用域软 reset：本页原为独立整页（全局 reset），迁入主题页后仅在
+   容器内归零，再由组件规则显式设置，避免影响主题排版 */
+#meteo-about *,
+#meteo-about *::before,
+#meteo-about *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* 文档标题隐藏：本页的视觉标题由 hero 大字承担，主题渲染的 h1 冗余
+   （:has 不支持的老浏览器会降级显示，不影响内容完整性） */
+.bd-article h1:has(+ #meteo-about) { display: none; }
+
+#meteo-about a { color: var(--ma-accent); text-decoration: none; }
+#meteo-about a:hover { color: var(--ma-accent-2); }
+
+/* ============ Hero（圆角渐变面板） ============ */
+#meteo-about .ma-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 3.4rem 1.6rem 3rem;
+  text-align: center;
+  border: 1px solid var(--pst-color-border);
+  border-radius: 22px;
+  background: linear-gradient(175deg, var(--ma-hero-a) 0%, var(--ma-hero-b) 100%);
+}
+#meteo-about .ma-blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(60px); pointer-events: none;
+}
+#meteo-about .ma-blob-1 { width: 420px; height: 420px; background: var(--ma-blob); top: -140px; left: -110px; animation: ma-drift 26s ease-in-out infinite alternate; }
+#meteo-about .ma-blob-2 { width: 340px; height: 340px; background: var(--ma-blob-2); bottom: -150px; right: -90px; animation: ma-drift 32s ease-in-out infinite alternate-reverse; }
+#meteo-about .ma-blob-3 { width: 220px; height: 220px; background: var(--ma-blob-2); top: 30px; right: 20%; animation: ma-drift 38s ease-in-out infinite alternate; }
+@keyframes ma-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(60px, 30px) scale(1.12); }
+}
+#meteo-about .ma-hero-inner { position: relative; }
+#meteo-about .ma-badge {
+  width: 84px; height: 84px; margin: 0 auto 1.4rem; display: block;
+  filter: drop-shadow(0 12px 24px var(--ma-badge-shadow));
+  animation: ma-float 6s ease-in-out infinite;
+}
+@keyframes ma-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+#meteo-about .ma-title {
+  font-size: clamp(2.05em, 5vw, 2.9em);
+  font-weight: 800; letter-spacing: .03em; line-height: 1.25;
+  background: linear-gradient(120deg, var(--ma-accent) 20%, var(--ma-accent-2) 80%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+#meteo-about .ma-sub {
+  margin: 1rem auto 0; max-width: 36em;
+  font-size: 1.08em; color: var(--pst-color-text-muted);
+}
+#meteo-about .ma-chips {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center; margin-top: 1.5rem;
+}
+#meteo-about .ma-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 5px 15px; border-radius: 999px; font-size: .85em;
+  color: var(--pst-color-text-muted);
+  background: color-mix(in srgb, var(--ma-accent) 7%, var(--pst-color-on-background));
+  border: 1px solid var(--pst-color-border);
+}
+#meteo-about .ma-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ma-accent-2); }
+#meteo-about .ma-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 2.4rem;
+}
+#meteo-about .ma-stat {
+  flex: 1 1 100px;
+  max-width: 160px;
+  padding: 1rem 8px; border-radius: 14px; text-align: center;
+  background: var(--pst-color-on-background);
+  border: 1px solid var(--pst-color-border);
+  box-shadow: 0 10px 30px var(--pst-color-shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+#meteo-about .ma-stat:hover { transform: translateY(-3px); box-shadow:  0 16px 40px var(--pst-color-shadow); }
+#meteo-about .ma-stat b { display: block; font-size: 1.65em; font-weight: 800; color: var(--ma-accent); }
+#meteo-about .ma-stat span { display: block; font-size: .8em; color: var(--pst-color-text-muted); margin-top: 2px; }
+
+/* ============ 分节通用 ============ */
+#meteo-about .ma-block { margin-top: 4.2rem; }
+#meteo-about .ma-sec-head { text-align: center; margin-bottom: 2.4rem; }
+#meteo-about .ma-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .78em; letter-spacing: .28em; text-transform: uppercase;
+  font-weight: 600; color: var(--ma-accent-2);
+}
+#meteo-about .ma-kicker::before,
+#meteo-about .ma-kicker::after {
+  content: ""; width: 26px; height: 1.5px;
+  background: var(--ma-accent-2); opacity: .55;
+}
+#meteo-about .ma-sec-head h2 {
+  font-size: 1.8em; font-weight: 800; margin-top: .5rem;
+  letter-spacing: .02em; color: var(--pst-color-heading);
+}
+#meteo-about .ma-sec-head p { color: var(--pst-color-text-muted); margin-top: .5rem; font-size: .95em; }
+
+/* ============ 项目缘起 ============ */
+#meteo-about .ma-story-grid {
+  display: grid; grid-template-columns: 1.25fr .9fr;
+  gap: 24px; align-items: stretch;
+}
+#meteo-about .ma-story-card,
+#meteo-about .ma-idea-card {
+  background: var(--pst-color-on-background);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 18px; padding: 2rem 2rem 1.8rem;
+  box-shadow: 0 10px 30px var(--pst-color-shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+#meteo-about .ma-story-card:hover,
+#meteo-about .ma-idea-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px var(--pst-color-shadow); }
+#meteo-about .ma-story-card h3,
+#meteo-about .ma-idea-card h3 {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 1.12em; font-weight: 700; margin-bottom: 1rem;
+  color: var(--pst-color-heading);
+}
+#meteo-about .ma-story-card h3 svg,
+#meteo-about .ma-idea-card h3 svg {
+  width: 1.3em; height: 1.3em; flex: none;
+  color: var(--ma-accent-2);
+}
+#meteo-about .ma-story-card p {
+  color: var(--pst-color-text-muted);
+  font-size: .98em; text-align: justify;
+}
+#meteo-about .ma-story-card p + p { margin-top: .75em; }
+#meteo-about .ma-story-card b { color: var(--ma-accent); font-weight: 700; }
+#meteo-about .ma-idea-card {
+  background: linear-gradient(150deg,
+    var(--pst-color-on-background) 55%,
+    color-mix(in srgb, var(--ma-accent) 8%, var(--pst-color-on-background)) 100%);
+  display: flex; flex-direction: column;
+}
+#meteo-about .ma-idea-card blockquote {
+  margin-top: .3rem; padding: 1rem 1.2rem;
+  border-left: 3px solid var(--ma-accent-2);
+  border-radius: 0 12px 12px 0;
+  background: color-mix(in srgb, var(--ma-accent) 6%, var(--pst-color-on-background));
+  font-size: .95em; color: var(--pst-color-text-muted);
+}
+#meteo-about .ma-idea-card ul { list-style: none; margin-top: 1.1rem; }
+#meteo-about .ma-idea-card li {
+  display: flex; gap: 10px; align-items: flex-start;
+  color: var(--pst-color-text-muted);
+  font-size: .9em; padding: 6px 0;
+}
+#meteo-about .ma-idea-card li svg {
+  width: 1em; height: 1em; flex: none; margin-top: .35em;
+  color: var(--ma-accent-2);
+}
+
+/* ============ 指导教师 ============ */
+#meteo-about .ma-teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 24px;
+}
+#meteo-about .ma-t-card {
+  display: flex; flex-direction: column;
+  background: var(--pst-color-on-background);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 18px; padding: 1.6rem;
+  box-shadow: 0 10px 30px var(--pst-color-shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+#meteo-about .ma-t-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px var(--pst-color-shadow); }
+/* 头部行：照片 + 姓名/职称；详细介绍（.ma-t-body）在下方通栏展开 */
+#meteo-about .ma-t-head { display: flex; align-items: center; gap: 20px; }
+#meteo-about .ma-t-photo {
+  flex: none; width: 116px;
+  aspect-ratio: 3 / 4; border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--pst-color-border);
+  background: color-mix(in srgb, var(--ma-accent) 6%, var(--pst-color-on-background));
+  box-shadow: inset 0 0 0 4px var(--pst-color-on-background);
+}
+#meteo-about .ma-t-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+#meteo-about .ma-t-id { min-width: 0; }
+#meteo-about .ma-t-name { font-size: 1.3em; font-weight: 800; letter-spacing: .04em; }
+#meteo-about .ma-t-title {
+    margin-top: .5rem;
+    font-size: .82em; line-height: 1.6; font-weight: 600;
+    color: var(--ma-accent);
+  }
+  #meteo-about .ma-t-course {
+    display: inline-block;
+    margin-top: .45rem;
+    padding: .16em .75em;
+    border-radius: 999px;
+    font-size: .74em; font-weight: 600; letter-spacing: .05em;
+    color: var(--ma-accent);
+    background: color-mix(in srgb, var(--ma-accent) 9%, transparent);
+    border: 1px solid color-mix(in srgb, var(--ma-accent) 24%, transparent);
+  }
+#meteo-about .ma-t-body { margin-top: 1.1rem; min-width: 0; padding-top: 1rem; border-top: 1px dashed var(--pst-color-border); }
+#meteo-about .ma-t-desc {
+  font-size: .9em;
+  color: var(--pst-color-text-muted); text-align: justify;
+}
+#meteo-about .ma-t-honors {
+  margin-top: .7rem; font-size: .83em;
+  color: var(--pst-color-text-muted); list-style: none;
+}
+#meteo-about .ma-t-honors li { display: flex; gap: 8px; padding: 3px 0; }
+#meteo-about .ma-t-honors li::before { content: "·"; color: var(--ma-accent-2); font-weight: 800; }
+#meteo-about .ma-t-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: .8rem; font-size: .83em; font-weight: 600;
+}
+#meteo-about .ma-t-link svg { width: 1em; height: 1em; transition: transform .15s ease; }
+#meteo-about .ma-t-link:hover svg { transform: translate(2px, -2px); }
+
+/* ============ 团队成员 ============ */
+#meteo-about .ma-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 20px;
+}
+#meteo-about .ma-s-card {
+  position: relative; overflow: hidden; text-align: center;
+  background: var(--pst-color-on-background);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 16px; padding: 1.6rem 1.2rem 1.3rem;
+  box-shadow: 0 10px 30px var(--pst-color-shadow);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+#meteo-about .ma-s-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--pst-color-shadow); }
+#meteo-about .ma-s-card.is-lead { border-color: var(--ma-accent-2); }
+#meteo-about .ma-s-card.is-lead::before {
+  content: "负责人";
+  position: absolute; top: 12px; right: -34px;
+  transform: rotate(38deg);
+  background: var(--ma-accent); color: #fff;
+  font-size: .7em; padding: 3px 40px; letter-spacing: .15em;
+}
+#meteo-about .ma-avatar {
+  width: 58px; height: 58px; margin: 0 auto .8rem;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--ma-accent) 10%, var(--pst-color-on-background));
+  color: var(--ma-avatar-ink);
+  font-size: 1.45em; font-weight: 700;
+  border: 1px solid var(--pst-color-border);
+}
+#meteo-about .ma-s-name { font-size: 1.08em; font-weight: 700; letter-spacing: .05em; }
+/* 班级标签与籍贯标签分行显示 */
+#meteo-about .ma-s-meta {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 6px; margin-top: .55rem;
+}
+#meteo-about .ma-s-tag {
+  font-size: .72em; color: var(--pst-color-text-muted);
+  background: color-mix(in srgb, var(--ma-accent) 6%, var(--pst-color-on-background));
+  border: 1px solid var(--pst-color-border);
+  padding: 3px 10px; border-radius: 12px;
+  text-align: center; line-height: 1.55;
+}
+#meteo-about .ma-s-role {
+  margin-top: .7rem; font-size: .85em;
+  color: var(--pst-color-text-muted); line-height: 1.65;
+}
+
+/* ============ 实践足迹 ============ */
+#meteo-about .ma-timeline {
+  position: relative; max-width: 720px;
+  margin: 0 auto; padding-left: 30px; list-style: none;
+}
+#meteo-about .ma-timeline::before {
+  content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px;
+  width: 2px; border-radius: 2px;
+  background: linear-gradient(var(--ma-accent-2), var(--pst-color-border));
+}
+#meteo-about .ma-tl-item { position: relative; padding: 0 0 1.7rem 24px; }
+#meteo-about .ma-tl-item:last-child { padding-bottom: 4px; }
+#meteo-about .ma-tl-item::before {
+  content: ""; position: absolute; left: -27px; top: 7px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--pst-color-on-background);
+  border: 3px solid var(--ma-accent-2);
+  box-shadow: 0 0 0 4px var(--pst-color-background);
+}
+#meteo-about .ma-tl-date { font-size: .8em; font-weight: 700; color: var(--ma-accent); letter-spacing: .06em; }
+#meteo-about .ma-tl-title { font-size: 1.05em; font-weight: 700; margin-top: 2px; }
+#meteo-about .ma-tl-desc { font-size: .9em; color: var(--pst-color-text-muted); margin-top: 3px; }
+
+/* ============ 致谢 ============ */
+#meteo-about .ma-thanks {
+  margin-top: 1.4rem; text-align: center;
+  background: var(--pst-color-on-background);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 18px; padding: 2.1rem 2.2rem;
+  box-shadow: 0 10px 30px var(--pst-color-shadow);
+}
+#meteo-about .ma-thanks p {
+  color: var(--pst-color-text-muted);
+  font-size: .95em; max-width: 60em; margin: 0 auto;
+}
+#meteo-about .ma-thanks p + p { margin-top: .6em; }
+#meteo-about .ma-thanks b { color: var(--ma-accent); font-weight: 700; }
+
+/* ============ 响应式（容器查询：按正文列宽而非视口） ============ */
+@container (max-width: 780px) {
+  #meteo-about .ma-story-grid { grid-template-columns: 1fr; }
+}
+@container (max-width: 540px) {
+  #meteo-about .ma-block { margin-top: 3rem; }
+  #meteo-about .ma-hero { padding: 2.4rem 1rem 2.1rem; }
+  #meteo-about .ma-t-head { flex-direction: column; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #meteo-about .ma-blob,
+  #meteo-about .ma-badge,
+  #meteo-about .ma-stat,
+  #meteo-about .ma-s-card,
+  #meteo-about .ma-t-card { animation: none !important; transition: none !important; }
+}

@@ -573,7 +573,7 @@ quiver 用「箭头」示意风向风速；而气象站填图、天气图上的�
 1.  格点数据读取路径：./data/northwest_temp.nc\（ 统一提供模拟 NetCDF 气温文件，**禁止写绝对本地磁盘路径**）；
 2.  绘图脚本存放路径：./scripts/plot_cartopy_temp.py；
 3.  地图输出保存路径：./figures/，所有地图统一存入该文件夹，不散落根目录；
-4.  输出文件命名规范：区域_要素_投影_时间.png，例如 northwest_temp_platecarree_annual.png、northwest_temp_lambert_july.png。
+4.  输出文件命名规范：``区域_要素_投影_时间.png``，例如 northwest_temp_platecarree_annual.png、northwest_temp_lambert_july.png。
 
 路径最佳实践代码模板：
 

@@ -1,0 +1,79 @@
+/* ============================================================
+   背景动效（P0 增强版）：动效层 + 开关按钮
+   由 bg-fx.js 注入 / 控制，本文件只负责静态样式。
+   ============================================================ */
+
+/* —— 背景粒子 canvas：fixed 铺满、正文之下、不拦截事件 —— */
+#meteo-fx-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;                    /* 内容之下 */
+  pointer-events: none;           /* 不拦截选中 / 点击 / 滚动 */
+}
+
+/* —— 烟花 canvas：fixed 铺满、内容之上（短暂烟花）、不拦截事件 ——
+   透明画布仅在有爆裂像素时可见，pointer-events:none 保证点击仍穿透。 */
+#meteo-fw-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 6;                     /* 正文内容之上、导航栏之下 */
+  pointer-events: none;
+}
+
+/* —— 关闭状态下隐藏对应画布（js 在 body 上切 .meteo-fx-off / .meteo-fw-off）—— */
+.meteo-fx-off #meteo-fx-canvas { display: none; }
+.meteo-fw-off #meteo-fw-canvas { display: none; }
+
+/* —— 开关按钮：与主题切换同排的 navbar-item ——
+   复用主题的 muted 色与 hover 反馈，点亮/加粗区分开关态。 */
+.meteo-fx-nav-item {
+  display: inline-flex;
+  align-items: center;
+  padding-left: .25rem;
+}
+
+.meteo-fx-nav-item button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--pst-color-text-muted, #586a82);
+  cursor: pointer;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.meteo-fx-nav-item button:hover {
+  color: var(--pst-color-link, #316dca);
+  background-color: var(--pst-color-surface-muted, rgba(0,0,0,.05));
+}
+
+/* 开启态：着主题主色 + 轻微高亮 */
+.meteo-fx-nav-item button.meteo-fx-on {
+  color: var(--pst-color-primary, #316dca);
+  background-color: var(--pst-color-surface-muted, rgba(0,0,0,.05));
+}
+
+/* —— 暗色主题微调 —— */
+html[data-theme="dark"] .meteo-fx-nav-item button {
+  color: rgba(205, 219, 238, .66);
+}
+html[data-theme="dark"] .meteo-fx-nav-item button:hover,
+html[data-theme="dark"] .meteo-fx-nav-item button.meteo-fx-on {
+  color: rgba(215, 228, 245, .95);
+  background-color: rgba(255, 255, 255, .08);
+}
+
+/* —— 小屏：按钮注入页眉与小屏侧边栏两处主题切换旁（见 bg-fx.js），
+   显隐跟随主题自身断点（≥960px 显示页眉容器，<960px 显示侧边栏容器），
+   无需额外媒体查询隐藏。 —— */

@@ -787,7 +787,7 @@ activate（见第 1 章）；②是不是在自己脚本里用了 import cartopy
 
 **原因**\ ：Cartopy 从 0.x
 迭代很快，不少方法、类、参数名变过（\ natural_earth_shp\ →\ add_geometries\ 、某些
-*_style 属性→\ gridliner 新写法等）。看见 AttributeError
+``*_style`` 属性→\ gridliner 新写法等）。看见 AttributeError
 且\ **你确定调用的是“某个对象的方法/属性”**\ ，先猜三点：拼错、对象类型不对（拿
 Gridliner 当 GeoAxes 用）、版本 API 变了。
 

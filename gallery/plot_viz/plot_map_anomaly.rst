@@ -50,7 +50,12 @@
 
 .. container:: sphx-glr-download meteopy-download-nc
 
-   :download:`下载中国国界 shapefile（4 个文件） </data/china.dbf>`
+   :download:`下载中国国界 shapefile 1/4（china.shp） </data/china.shp>`
+   :download:`下载中国国界 shapefile 2/4（china.shx） </data/china.shx>`
+
+
+   :download:`下载中国国界 shapefile 3/4（china.prj） </data/china.prj>`   
+   :download:`下载中国国界 shapefile 4/4（china.dbf） </data/china.dbf>` 
 
 中国国界 shapefile 实际为 ``china.shp``、``china.shx``、``china.prj``、``china.dbf``
 四个配套文件，需一并下载放在同一目录。

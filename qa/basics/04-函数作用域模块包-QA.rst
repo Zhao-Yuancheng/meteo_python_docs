@@ -241,7 +241,7 @@ if __name__ == "__main__": 里调（见 4.4 高频速查表）。
 个位置实参，多出来的没地方放。
 
 **解决办法**\ ：删掉多余实参；如果确实要支持任意个参数，改用
-*args\ （见正文 4.2 的 log_daily_temps\ ）。
+``*args``\ （见正文 4.2 的 log_daily_temps\ ）。
 
 .. code:: python
 
@@ -430,7 +430,7 @@ celsius\ ，调用时会无法区分“到底哪些参数必须传”。正文 4
              ^^^^^^^^^^^^^^^^^^^^^^^
    TypeError: describe_station() missing 1 required positional argument: 'lat'
 
-**原因**\ ：\ *info 会把列表摊成一个个位置实参。这里列表只有 2
+**原因**\ ：\ ``*info`` 会把列表摊成一个个位置实参。这里列表只有 2
 个元素，摊出来的实参只有 2 个，还差 lat\ 。正文 4.2
 提醒：列表元素个数对不上，或字典里多了/少了/写错了键，都会
 TypeError\ 。

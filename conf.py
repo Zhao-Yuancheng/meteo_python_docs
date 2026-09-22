@@ -16,6 +16,51 @@ warnings.filterwarnings('ignore', message='Duplicate name:')
 
 sys.path.insert(0, os.path.abspath('.'))
 
+
+def _patch_cjk_inline_markup() -> None:
+    # docutils 的行内标记识别规则要求 **粗体** 等标记的起始串之前、结束串
+    # 之后必须紧邻空白或西文标点（punctuation_chars 里的 openers/closers/
+    # delimiters 字符类），汉字不是合法边界，因此「在**示例画廊**里」这类
+    # 紧贴中文的加粗会把双星号原样显示出来。
+    #
+    # Inliner.init_customizations() 在每篇文档解析时读取 punctuation_chars
+    # 模块属性组装行内标记正则；这里包装该函数，在组装正则的瞬间向四个边界
+    # 字符类临时追加 CJK 区段再复原。西文规则保持不变：x**2、100**8 等
+    # 字母数字旁的星号依旧按字面处理（官方 character_level_inline_markup
+    # 开关会对任何字符放开边界，导致 (u**2 + v**2) ** 0.5 被误识别为
+    # 粗体，故弃用，删除了 docutils.conf）。
+    from docutils.parsers.rst import states
+    from docutils.utils import punctuation_chars
+
+    cjk = (
+        '\u2e80-\u303f'                                # CJK 部首补充、CJK 符号和标点
+        '\u3040-\u30ff'                                # 平假名、片假名
+        '\u3105-\u312f\u31a0-\u31ff'                   # 注音符号及扩展
+        '\u3130-\u318f'                                # 谚文兼容字母
+        '\u3400-\u4dbf\u4e00-\u9fff'                   # CJK 扩展 A、常用汉字
+        '\ua960-\ua97f\uac00-\ud7ff'                   # 谚文扩展、谚文音节
+        '\uf900-\ufaff\ufe30-\ufe4f'                   # CJK 兼容表意文字及形式
+        '\uff00-\uffef'                                # 全角形式（含全角字母数字）
+        '\U00020000-\U0002ffff\U00030000-\U0003ffff'   # CJK 扩展 B 及以后
+    )
+    names = ('openers', 'closers', 'delimiters', 'closing_delimiters')
+    original = states.Inliner.init_customizations
+
+    def with_cjk_boundaries(self, settings):
+        saved = {name: getattr(punctuation_chars, name) for name in names}
+        try:
+            for name in names:
+                setattr(punctuation_chars, name, saved[name] + cjk)
+            return original(self, settings)
+        finally:
+            for name in names:
+                setattr(punctuation_chars, name, saved[name])
+
+    states.Inliner.init_customizations = with_cjk_boundaries
+
+
+_patch_cjk_inline_markup()
+
 project = '气象 + Python 编程文档'
 author = '兰州大学大气科学学院编程社区'
 copyright = '2026, ' + author
@@ -44,15 +89,19 @@ myst_links_external = False
 # -- 主题 --
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['./_static']
+templates_path = ['_templates']
 
 html_logo = '_static/logo.svg'
 html_favicon = './_static/favicon.svg'
 
 html_theme_options = {
-    # 顶部导航栏
+    # 顶部导航栏：「关于」进主导航（about.rst 的 toctree 项，放最后）；
+    # 阈值提到 6，六个中文短链接全部直接展示，不再折叠进「更多」下拉
     'navbar_align': 'content',
-    'header_links_before_dropdown': 4,
+    'header_links_before_dropdown': 6,
     'header_dropdown_text': '更多',
+    # 页眉右侧组件：主题切换 + 图标链接
+    'navbar_end': ['theme-switcher', 'navbar-icon-links'],
     # 侧边栏
     'show_nav_level': 2,
     'navigation_depth': 4,
@@ -79,10 +128,23 @@ html_theme_options = {
     'show_prev_next': True,
     'back_to_top_button': True,
     'search_bar_text': '搜索文档…',
+    # 页脚：去掉 "Created using Sphinx …" 行，仅保留版权；
+    # 右侧主题版本来一行替换为格言（footer-motto 模板）。
+    'footer_start': ['copyright'],
+    'footer_end': ['footer-motto'],
 }
 
-# -- 自定义 CSS --
-html_css_files = ['./custom.css']
+# 仅「关于」页隐藏全部侧边栏（主导航 + 页内目录），正文全宽展示；
+# 其余页面仍走主题默认侧边栏。
+html_sidebars = {
+    'about': [],
+}
+
+# -- 自定义 CSS --（含背景动效层与开关按钮样式）
+html_css_files = ['./custom.css', './bg-fx.css']
+
+# -- 自定义 JS —— 背景粒子动效（P0）+ 搜索跳转高亮 + 正文字号调节 --
+html_js_files = ['./bg-fx.js', './search-nav.js', './font-scale.js']
 
 # -- sphinx-gallery --
 
@@ -130,7 +192,7 @@ copybutton_prompt_text = r'>>> |\.\.\. |\$ '
 copybutton_prompt_is_regexp = True
 
 # -- 输出 --
-html_title = 'MeteoPython'
+html_title = '云笺 CloudDocs'
 html_last_updated_fmt = '%Y-%m-%d'
 exclude_patterns = [
     './_build', './Thumbs.db', './.DS_Store',
