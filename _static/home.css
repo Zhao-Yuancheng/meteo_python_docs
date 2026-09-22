@@ -178,23 +178,31 @@ html[data-theme="dark"] .mh-hero-inner::before {
   transition: background-color .22s ease, border-color .22s ease,
               color .22s ease, transform .22s ease, box-shadow .22s ease;
 }
-.mh-btn-primary {
+/* 主题 a:visited / a:active（0,1,1）会压过单类选择器（0,1,0），
+   访问过目标页后按钮文字被主题链接色覆盖——加伪类变体抬到 (0,2,0) 防御 */
+.mh-btn-primary,
+.mh-btn-primary:visited,
+.mh-btn-primary:active {
   background: #4a7396;
-  color: #f4f8fb;
+  color: #ffffff;
 }
-.mh-btn-primary:hover {
+.mh-btn-primary:hover,
+.mh-btn-primary:visited:hover {
   background: #41688a;
   color: #ffffff;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(53, 96, 138, .28);
   text-decoration: none;
 }
-.mh-btn-ghost {
+.mh-btn-ghost,
+.mh-btn-ghost:visited,
+.mh-btn-ghost:active {
   background: rgba(255, 255, 255, .58);
   border-color: rgba(74, 115, 150, .35);
   color: #2b3c4c;
 }
-.mh-btn-ghost:hover {
+.mh-btn-ghost:hover,
+.mh-btn-ghost:visited:hover {
   background: rgba(255, 255, 255, .82);
   border-color: rgba(74, 115, 150, .55);
   transform: translateY(-1px);
@@ -203,6 +211,8 @@ html[data-theme="dark"] .mh-hero-inner::before {
 html[data-theme="dark"] .mh-btn-primary {
   background: #46698c;
   color: #eaf1f8;
+  border-color: transparent;
+  box-shadow: none;
 }
 html[data-theme="dark"] .mh-btn-primary:hover {
   background: #517498;
@@ -218,14 +228,17 @@ html[data-theme="dark"] .mh-btn-ghost:hover {
   background: rgba(16, 21, 28, .78);
   border-color: rgba(143, 176, 204, .5);
 }
-.mh-more {
+.mh-more,
+.mh-more:visited,
+.mh-more:active {
   color: var(--mh-accent-strong);
   font-size: .92em;
   text-decoration: none;
   border-bottom: 1px dashed var(--mh-soft);
   padding-bottom: .1em;
 }
-.mh-more:hover { color: var(--mh-accent); text-decoration: none; }
+.mh-more:hover,
+.mh-more:visited:hover { color: var(--mh-accent); text-decoration: none; }
 
 /* —— 站点信息 / 作品落款（右下角） —— */
 .mh-station {
