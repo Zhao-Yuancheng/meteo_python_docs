@@ -143,8 +143,8 @@ html_sidebars = {
 # -- 自定义 CSS --（含背景动效层与开关按钮样式）
 html_css_files = ['./custom.css', './bg-fx.css']
 
-# -- 自定义 JS —— 背景粒子动效（P0）+ 搜索跳转高亮 + 正文字号调节 --
-html_js_files = ['./bg-fx.js', './search-nav.js', './font-scale.js']
+# -- 自定义 JS —— 背景粒子动效（P0）+ 搜索跳转高亮 + 正文字号调节 + 访问统计 --
+html_js_files = ['./bg-fx.js', './search-nav.js', './font-scale.js', './analytics.js']
 
 # -- sphinx-gallery --
 

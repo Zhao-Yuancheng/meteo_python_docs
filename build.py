@@ -185,7 +185,7 @@ def patch_theme_sync():
 # 自定义静态资源：构建后按内容哈希重写页面中的 ?v= 指纹。
 # Sphinx 增量构建不重写未变更页面，页面上这些资源的 ?v= 摘要会停留在旧值，
 # 资源内容更新后浏览器仍按旧 URL 命中缓存（曾导致旧脚本在新构建下运行）。
-_CACHEBUST_ASSETS = ['bg-fx.js', 'font-scale.js', 'search-nav.js',
+_CACHEBUST_ASSETS = ['bg-fx.js', 'font-scale.js', 'search-nav.js', 'analytics.js',
                      'custom.css', 'bg-fx.css', 'search_snippets.js',
                      'logo.svg', 'logo-dark.svg', 'favicon.svg',
                      'about.css', 'home.css', 'home-flow.js', 'p5.min.js']
